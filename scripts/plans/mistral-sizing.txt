@@ -1,0 +1,12 @@
+# Model-sizing study: Mistral Small 3.2 24B (NVFP4, no thinking switch), the
+# best false-alarm profile of the local checkers. Its analyst arms on the
+# corrected packs, its checker variants, and wave 2 on the wave-1 write-ups.
+harvest -T arm=open -T replicates=3 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T replicates=3 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=selfcheck -T replicates=3 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T checklist=true -T replicates=3 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+opacity -T levels=0,3,4 -T replicates=5 -T reviewer=checklist
+opacity -T levels=0,3,4 -T replicates=5 -T reviewer=stepwise
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T reviewer=stepwise
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T show_pack=true

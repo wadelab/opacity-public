@@ -1,0 +1,3 @@
+# Positive control v2 (docs/vetting.md 4.9): the 27B as verbal checker on the
+# steered2 write-ups (the honest ones were checked in steer-cross-27b.txt).
+crosscheck -T logs=runs/inspect/steer2/*harvest-steered2*.eval -T show_pack=true -T thinking=off

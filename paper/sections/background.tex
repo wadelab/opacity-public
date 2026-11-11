@@ -1,0 +1,16 @@
+\section{Background and threat model}
+\label{sec:background}
+
+\paragraph{Disclosure control.}
+The Five Safes framework treats safe outputs as one of five components of responsible data access~\cite{fivesafes,ritchie2017fivesafes}. Output checking combines minimum cell counts, complementary suppression, rounding, dominance rules and the withholding of whole tables~\cite{hundepool2012,griffiths2019handbook}, and software can automate part of it~\cite{acro,sacro2024,alves2020runners}. These measures answer risks such as reconstruction and differencing across releases~\cite{dinur2003,denning1979}. Differential privacy takes a different, formal route through randomized release mechanisms~\cite{dwork2006}. None of these protections establishes that the interpretation of a released result is valid.
+
+TREs now support large and federated health-data services~\cite{opensafely2020,hdruk2020tre,kavianpour2022tre}. Guidance on releasing trained models concerns models leaving the environment~\cite{jefferson2022graimatter}. Our concern is the analytical behavior of models brought inside it, where the disclosure check and any later scientific review serve different purposes.
+
+\paragraph{Analytic errors.}
+The eight errors studied here are unreported multiplicity~\cite{benjamini1995,gelman2014garden,simmons2011false}, silent attrition~\cite{vandenbroucke2007strobe}, confounding with Simpson's reversal~\cite{simpson1951,bickel1975,pearl2014simpson}, an unsupported causal claim~\cite{hernan2020whatif}, the wrong treatment of clustered data~\cite{cornfield1978,donner2000cluster}, the wrong denominator, regression to the mean~\cite{galton1886,barnett2005rtm} and in-sample performance reported as if it were predictive~\cite{steyerberg2001internal,collins2015tripod}. Unlike checks for inconsistent reported statistics~\cite{nuijten2016statcheck,brown2017grim}, OPACITY targets interpretations that are wrong even when every reported number is internally consistent. The evidence of such an error usually lies in the design, in the flow of participants or in the structure of the comparison.
+
+\paragraph{Models as analysts and reviewers.}
+Analysis benchmarks score answers to tasks~\cite{gu2024blade,majumder2024discoverybench,zhu2024statqa,liu2024qrdata,egg2025dabstep,jing2024dsbench,mitchener2025bixbench}, and model-based evaluation and paper review extend models to judging other models' outputs~\cite{zheng2023judge,liang2024reviews}. Such judgments are measurements by fallible models. Whether a model can also mislead on purpose, and whether that can be detected from its text or its internal state, is the subject of the companion paper~\cite{wade2026vetting}.
+
+\paragraph{Threat model.}
+We assume the companion gateway's containment boundary: the analyst receives only vetted aggregates, has no network access and cannot bypass the release audit~\cite{wade2026safetre}. The evaluations concern an honest but fallible analyst whose data invite a particular error. Reviewers see only released outputs, and judges separately receive the hidden answer key. We do not evaluate an attack on the gateway, or deliberate misleading: a model instructed to bias its write-up, and the limits of detecting one trained to deceive, are the subject of the companion paper~\cite{wade2026vetting}.

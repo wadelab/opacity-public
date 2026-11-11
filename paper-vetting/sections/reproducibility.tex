@@ -1,0 +1,8 @@
+\section{Reproducibility and availability}
+\label{sec:reproducibility}
+
+The repository at \url{https://github.com/wadelab/opacity} holds the tasks, the prompts, the Inspect harness, the probe extraction and fitting code, the bias detector, the style analysis and the pilot runner. Each experiment's design and stop rule were fixed before its data were generated or read, and are kept with the dates they were fixed. The probe fit refuses to score held-out while its code has uncommitted changes, and refuses a second held-out run without a recorded reason. Appendix~\ref{app:instructions} reproduces the instructions as executed. Inspect logs preserve rendered inputs, verbatim responses, timings, token counts and verdicts, and run records are append-only.
+
+Every number in the text, tables and captions is a macro generated from the probe and vetting outputs by the script that also writes the companion paper's numbers, and the preprint line on the first page records the commit the document was built from.
+
+At the time of writing the repository was private, and public release is planned with the preprints. The tasks serve as unseen admission tests only while they stay unpublished, so the task-release plan keeps at least one task set back.

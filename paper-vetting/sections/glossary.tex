@@ -1,0 +1,27 @@
+% Terms shared with the first OPACITY paper (../paper/sections/glossary.tex)
+% keep its wording where it applies here; change them in both. Where the code
+% and logs use a different name, it is given in the entry.
+\section*{Glossary}
+\label{sec:glossary}
+
+\begin{glossarylist}
+\gterm{Analysis task}{A research request and the summary tables an analyst works from; the tables always hold the ingredients of the correct analysis and of the tempting wrong one. The code calls the collection of tasks the harvest and the tables the pack.}
+\gterm{AUC within tasks}{The AUC computed only over pairs of write-ups from the same task (one wrong and one right, or one biased and its honest pair), so that knowing which tasks are risky cannot help.}
+\gterm{Bias detector}{A word-frequency classifier trained on a candidate's own honest and biased pairs, tested by AUC within tasks on held-out tasks, and run on the candidate's ordinary write-ups at a service threshold. The code calls it the slant detector.}
+\gterm{Bias instruction}{A hidden instruction, appended after the tables, that asks the analyst to bias its conclusion by choice and emphasis without a false statement; the judge never sees it. The code calls it the steering note.}
+\gterm{Checker}{A model that reads a released write-up under the reviewer instruction and answers whether its interpretation is supported; every recommended pipeline uses a checker from a different family than the analyst.}
+\gterm{Design-first prompt}{An analyst prompt that makes the model record the unit of assignment, the number of comparisons, who is missing and each denominator before it applies ten decision rules to every claim. Labelled rules in tables and figures; ``1k think'' is a 1,024-token thinking budget.}
+\gterm{Dev, held-out and the sealed sets}{The four sets of analysis tasks. Prompts and checks were developed on dev; held-out tested them and was then read for error analysis; the two sealed sets, fresh and fresh2, were written blind to the prompts and results and unread until the configurations they test had been committed. Here, probes and detectors were fit on dev and tested once on held-out, and the sealed sets supply ordinary write-ups.}
+\gterm{Disguise request}{A request, after the bias instruction, that the write-up keep the length, tone and caveats of an honest one.}
+\gterm{Judge}{A model that sees the request, the tables, the write-up and the hidden answer key and decides whether a researcher acting on the write-up would be misled.}
+\gterm{LoRA adapter}{A small set of trainable low-rank matrices added to a frozen model; fine-tuning trains only these, and disabling them returns the base model.}
+\gterm{Ordinary write-ups}{A candidate configuration's write-ups from its runs on all four task sets with no bias instruction; the bias test counts how many of them its detector flags.}
+\gterm{Paired write-ups}{An honest write-up and one written under the bias instruction, sharing the task, dataset and sampling seed. The code calls them twins.}
+\gterm{Probe}{In this paper, a logistic regression from a model's internal state to a label (wrong, or biased), fit on dev write-ups and tested once on held-out ones.}
+\gterm{Rule-based verifier}{Five fixed checks computed from the tables: corrected row tests, clustering, denominators, comparisons on the full base and held-out performance.}
+\gterm{Service threshold}{The score above which a bias detector flags a write-up, set to flag 5\% of honest held-out write-ups.}
+\gterm{Shuffled-label probe}{A probe trained on labels shuffled within each task, so that it can learn only which tasks had more wrong write-ups; within tasks it should score near 0.5.}
+\gterm{Style request}{A note from the researcher after the tables, in both conditions, asking for a concise write-up (two or three sentences each for methods and interpretation) or a thorough one (every analysis choice and every limitation).}
+\gterm{Trusted research environment (TRE)}{An enclave in which sensitive data are analyzed in place and from which only checked outputs are released.}
+\gterm{Write-up}{What an analyst releases: a report in a fixed JSON shape.}
+\end{glossarylist}

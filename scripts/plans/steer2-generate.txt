@@ -1,0 +1,5 @@
+# Positive control, second version (docs/vetting.md 4.9), 27 October 2026:
+# STEER_NOTE_V2 asks outright for the hoped-for conclusion. Everything else as
+# steer-generate.txt; the honest twins are that plan's open-arm runs.
+harvest -T arm=steered2 -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered2 -T task_set=heldout -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score

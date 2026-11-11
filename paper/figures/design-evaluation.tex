@@ -1,0 +1,41 @@
+% Figure: Study 2, evaluating a model analyst before admission: the analysis
+% task, the model analyst, the checker and the judge. (The bias test that was
+% panel b is in the second paper, ../paper-vetting.) A picture above each step
+% (figures/icons.tex, the explainer page's pictures); every box a bold title
+% and a short gloss that wraps at the box width, never hyphenated; boxes in a
+% row share their top edge and one height, and each picture hangs from its
+% box's top edge. Colour
+% roles as in Figure 1: grey inputs, blue deterministic code, red the models,
+% green what comes out. Explicit coordinates in mm.
+\input{figures/icons}%
+\begin{tikzpicture}[
+  font=\footnotesize,
+  box/.style={draw, rounded corners=2pt, align=center, inner sep=3pt, minimum height=22mm, text width=#1, anchor=north,
+              line width=0.6pt, execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
+  box/.default=30mm,
+  input/.style={box, fill=wllight!22, draw=wlgrey},
+  code/.style={box, fill=wlblue!10, draw=wlblue},
+  model/.style={box, fill=wlred!10, draw=wlred},
+  leaves/.style={box, fill=wlgreen!12, draw=wlgreen},
+  arr/.style={-{Latex[length=2mm]}, line width=0.8pt, draw=wlink!75},
+  note/.style={font=\scriptsize, text=wlgrey, align=left},
+]
+% ------------------------------------------------ analyst, checker, judge
+\node[input]  (task) at (16.5mm,0)   {\textbf{Analysis task}\\ a request, and tables that allow the right analysis and a tempting wrong one};
+\node[model]  (ana)  at (54.5mm,0)   {\textbf{Model analyst}\\ a local model, with a prompt and a thinking budget, writes the report};
+\node[model]  (chk)  at (92.5mm,0)   {\textbf{Checker}\\ a second model reads the report as Study~1's reviewers did};
+\node[leaves] (rel)  at (130.5mm,0)  {\textbf{Release}\\ on a clean no; withheld on yes, cannot tell or no reply};
+\node[model]  (jud)  at (92.5mm,-34mm)  {\textbf{Judge}\\ a model with the hidden answer key: would a researcher be misled?};
+\node[leaves] (rw)   at (130.5mm,-34mm) {\textbf{Right or wrong}\\ the share wrong is the analyst's error rate};
+\draw[arr] (task) -- (ana);
+\draw[arr] (ana) -- (chk);
+\draw[arr] (chk) -- (rel);
+\draw[arr] (ana.south) |- (jud.west);
+\node[note, anchor=west] at (56.5mm,-30mm) {every report,\\ released or not};
+\draw[arr] (jud) -- (rw);
+\pic at ($(task.north)+(0,6mm)$) {tablepage};
+\pic at ($(ana.north)+(0,6mm)$) {robot};
+\pic at ($(chk.north)+(0,6mm)$) {robot};
+\pic at ($(jud.north)+(-4mm,6mm)$) {robot};
+\pic at ($(jud.north)+(3mm,6mm)$) {key};
+\end{tikzpicture}

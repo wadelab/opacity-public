@@ -1,0 +1,222 @@
+{
+ "probe": "Qwen3.5-27B-steer",
+ "margin": 0.05,
+ "extract": {
+  "probe": "Qwen3.5-27B-steer",
+  "hf": "Qwen/Qwen3.5-27B",
+  "revision": "fc05daec18b0a78c049392ed2e771dde82bdf654",
+  "class": "AutoModelForImageTextToText",
+  "arch": "Qwen3_5ForConditionalGeneration",
+  "chat": {
+   "enable_thinking": false
+  },
+  "n_layers": 64,
+  "depths": [
+   16,
+   32,
+   48
+  ],
+  "argv": [
+   "/users/<user>/git/opacity/src/opacity/probe/extract.py",
+   "Qwen3.5-27B-steer",
+   "--revision",
+   "fc05daec18b0a78c049392ed2e771dde82bdf654",
+   "--inputs",
+   "runs/probe/steer-v1/inputs/Qwen3.5-27B-steer.jsonl",
+   "--out",
+   "runs/probe/steer-v1/states/Qwen3.5-27B-steer.npz",
+   "--limit",
+   "0"
+  ],
+  "torch": "2.13.0+cu130",
+  "transformers": "5.19.0",
+  "host": "gpu26.viking2.yor.alces.network",
+  "gpus": [
+   "NVIDIA H100 PCIe"
+  ]
+ },
+ "rerun_reason": null,
+ "when": "2026-10-27T00:52:53+00:00",
+ "commit": "e10e0dc9c922a88ebf049c16c1aa9b7bced627cf",
+ "n_dev": 360,
+ "n_heldout": 360,
+ "heldout_tasks": 36,
+ "selection": {
+  "depth": 0,
+  "depth_layer": 16,
+  "C": 1.0,
+  "table": [
+   {
+    "depth": 0,
+    "C": 0.0001,
+    "cv_auc": 0.767962962962963
+   },
+   {
+    "depth": 0,
+    "C": 0.001,
+    "cv_auc": 0.7994444444444445
+   },
+   {
+    "depth": 0,
+    "C": 0.01,
+    "cv_auc": 0.8292592592592593
+   },
+   {
+    "depth": 0,
+    "C": 0.1,
+    "cv_auc": 0.8385185185185184
+   },
+   {
+    "depth": 0,
+    "C": 1.0,
+    "cv_auc": 0.8388888888888889
+   },
+   {
+    "depth": 1,
+    "C": 0.0001,
+    "cv_auc": 0.7483333333333332
+   },
+   {
+    "depth": 1,
+    "C": 0.001,
+    "cv_auc": 0.7964814814814815
+   },
+   {
+    "depth": 1,
+    "C": 0.01,
+    "cv_auc": 0.8261111111111111
+   },
+   {
+    "depth": 1,
+    "C": 0.1,
+    "cv_auc": 0.8237037037037037
+   },
+   {
+    "depth": 1,
+    "C": 1.0,
+    "cv_auc": 0.823425925925926
+   },
+   {
+    "depth": 2,
+    "C": 0.0001,
+    "cv_auc": 0.7379629629629628
+   },
+   {
+    "depth": 2,
+    "C": 0.001,
+    "cv_auc": 0.7909259259259258
+   },
+   {
+    "depth": 2,
+    "C": 0.01,
+    "cv_auc": 0.7968518518518518
+   },
+   {
+    "depth": 2,
+    "C": 0.1,
+    "cv_auc": 0.7868518518518518
+   },
+   {
+    "depth": 2,
+    "C": 1.0,
+    "cv_auc": 0.7861111111111111
+   }
+  ]
+ },
+ "threshold": 0.9923155248165131,
+ "mean_agree_honest": 0.9462829829918014,
+ "mean_agree_steered_under_honest_prompt": 0.9348173454403877,
+ "leaking_steered": {
+  "dev": 3,
+  "heldout": 2
+ },
+ "probe_within": {
+  "auc": 0.8766666666666667,
+  "lo": 0.8333333333333334,
+  "hi": 0.9166666666666666,
+  "n": 360
+ },
+ "hit_rate": 0.4444444444444444,
+ "false_alarm": 0.12222222222222222,
+ "probe_within_without_leaks": {
+  "auc": 0.8752808988764045,
+  "lo": 0.8322222222222222,
+  "hi": 0.9155555555555556,
+  "n": 358
+ },
+ "text_classifier_C": 10.0,
+ "common_heldout": 360,
+ "blackbox_within": {
+  "text classifier": {
+   "auc": 0.8366666666666667,
+   "lo": 0.7877777777777778,
+   "hi": 0.8855555555555555,
+   "n": 360
+  },
+  "verifier": {
+   "auc": 0.5055555555555555,
+   "lo": 0.4888888888888889,
+   "hi": 0.525,
+   "n": 360
+  },
+  "Qwen3.5-27B|off|pack": {
+   "auc": 0.5222222222222223,
+   "lo": 0.4827638888888889,
+   "hi": 0.5594444444444444,
+   "n": 360
+  },
+  "gpt-oss-20b|effort-medium": {
+   "auc": 0.5411111111111111,
+   "lo": 0.5005555555555555,
+   "hi": 0.5838888888888889,
+   "n": 360
+  }
+ },
+ "probe_within_common": {
+  "auc": 0.8766666666666667,
+  "lo": 0.8333333333333334,
+  "hi": 0.9166666666666666,
+  "n": 360
+ },
+ "best_blackbox": "text classifier",
+ "difference": {
+  "auc": 0.040000000000000036,
+  "lo": -0.0022222222222222365,
+  "hi": 0.08222222222222231
+ },
+ "stop_rule_met": false,
+ "missing_checkers": [],
+ "judge_wrong": {
+  "dev": {
+   "steered": [
+    24,
+    180
+   ],
+   "honest": [
+    28,
+    180
+   ]
+  },
+  "heldout": {
+   "steered": [
+    29,
+    180
+   ],
+   "honest": [
+    22,
+    180
+   ]
+  }
+ },
+ "honest_wrong_vs_right_within": {
+  "auc": 0.74,
+  "lo": 0.560590909090909,
+  "hi": 0.9189459459459458,
+  "n": 180
+ },
+ "shuffled_within": {
+  "mean": 0.4841388888888889,
+  "min": 0.3611111111111111,
+  "max": 0.545
+ }
+}

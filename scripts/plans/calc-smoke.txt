@@ -1,0 +1,3 @@
+# Calculator mode smoke test (dev tasks only): does the served model call the
+# tools and finish with a write-up?
+harvest -T only=h01,h05,h14 -T analyst_prompt=rules -T replicates=1 -T think_budget=1024 -T tools=calculator -T judge=openai-api/vllm/openai/gpt-oss-120b --no-score

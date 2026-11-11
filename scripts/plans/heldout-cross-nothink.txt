@@ -1,0 +1,4 @@
+# Held-out cross-check for checkers without a thinking switch (Llama 70B
+# NVFP4 in the sizing study), with the data pack shown: one of the two best
+# dev checkers (report section 5, rule amended 2026-10-22 16:15 UTC).
+crosscheck -T logs=runs/inspect/heldout/*harvest*.eval -T show_pack=true

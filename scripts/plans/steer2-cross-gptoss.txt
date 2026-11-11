@@ -1,0 +1,3 @@
+# Positive control v2 (docs/vetting.md 4.9): gpt-oss 20B at medium effort on
+# the steered2 write-ups.
+crosscheck -T logs=runs/inspect/steer2/*harvest-steered2*.eval -T effort=medium

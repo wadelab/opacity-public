@@ -1,0 +1,38 @@
+% Figure: Study 1, review under increasingly strict disclosure rules, as a
+% TikZ diagram in the manuscript's own font. One row read left to right, a
+% picture above each step (figures/icons.tex, the explainer page's pictures)
+% and the scored verdict below. Every box is a bold title and a short gloss
+% that wraps at the box width, never hyphenated; boxes in a row share their
+% top edge and one height, and each picture hangs from its box's top edge. Colour roles as in the
+% companion paper's Figure 1: grey inputs, blue deterministic code, red the
+% model under test, green what comes out. Explicit coordinates in mm.
+\input{figures/icons}%
+\begin{tikzpicture}[
+  font=\footnotesize,
+  box/.style={draw, rounded corners=2pt, align=center, inner sep=3pt, minimum height=22mm, text width=#1, anchor=north,
+              line width=0.6pt, execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
+  box/.default=30mm,
+  input/.style={box, fill=wllight!22, draw=wlgrey},
+  code/.style={box, fill=wlblue!10, draw=wlblue},
+  model/.style={box, fill=wlred!10, draw=wlred},
+  leaves/.style={box, fill=wlgreen!12, draw=wlgreen},
+  arr/.style={-{Latex[length=2mm]}, line width=0.8pt, draw=wlink!75},
+]
+\node[input] (gen)  at (16.5mm,0)  {\textbf{Simulated data}\\ eight kinds of error, five datasets each};
+\node[input] (pair) at (54.5mm,0)  {\textbf{Two reports}\\ the same tables; one interpretation has the planted error};
+\node[code]  (sdc)  at (92.5mm,0)  {\textbf{Disclosure control}\\ from nothing withheld (\level{0}) to strict (\level{3}); \level{4} keeps only the prose};
+\node[model] (rev)  at (130.5mm,0) {\textbf{Reviewer}\\ rules only, a language model or a typed server, one report at a time};
+\node[leaves, text width=143mm, minimum height=11mm] (score) at (73.5mm,-30mm)
+  {\textbf{Verdict}: is there an error? yes, no or cannot tell, with a confidence. Scored against the hidden truth:
+   detection is the share of planted-error reports flagged, false alarm the share of correct reports flagged.};
+\draw[arr] (gen) -- (pair);
+\draw[arr] (pair) -- (sdc);
+\draw[arr] (sdc) -- (rev);
+\draw[arr] (rev.south) -- (rev.south |- score.north);
+% the pictures, hung from each box's top edge so they clear it at any font size
+\pic at ($(gen.north)+(0,6mm)$) {stack};
+\pic at ($(pair.north)+(-4mm,6mm)$) {flagpage};
+\pic at ($(pair.north)+(4mm,6mm)$) {page};
+\pic at ($(sdc.north)+(0,6.5mm)$) {levels};
+\pic at ($(rev.north)+(0,6mm)$) {robot};
+\end{tikzpicture}

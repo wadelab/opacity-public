@@ -1,0 +1,2 @@
+# Style robustness (docs/vetting.md 4.11): the 27B as verbal checker, pack shown, thinking off.
+crosscheck -T logs=runs/inspect/style/*harvest*.eval -T show_pack=true -T thinking=off

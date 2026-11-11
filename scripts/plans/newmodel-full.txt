@@ -1,0 +1,21 @@
+# Model-sizing study, wave 3: a new model family (Gemma 4, Nemotron 3) through
+# everything the Qwen models ran: the four strongest analyst arms on the dev
+# and held-out tasks, the checker on the planted corpus with and without
+# thinking, and the cross-check on both sets of real write-ups. Serve with the
+# family's REASONING_PARSER (gemma4, nemotron_v3). Nemotron write-ups are
+# judged by MiMo; Nemotron cards list DeepSeek-R1 among their teachers, so
+# DeepSeek's second-judge verdicts on them are reported apart.
+harvest -T arm=open -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=open -T checklist=true -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=selfcheck -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=open -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T arm=open -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T arm=open -T checklist=true -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T arm=selfcheck -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T arm=open -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+opacity -T levels=0,3,4 -T replicates=5 -T thinking=off
+opacity -T levels=0,3,4 -T replicates=5 -T think_budget=1024
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T thinking=off
+crosscheck -T logs=runs/inspect/heldout/*harvest*.eval -T thinking=off
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T think_budget=1024
+crosscheck -T logs=runs/inspect/heldout/*harvest*.eval -T think_budget=1024

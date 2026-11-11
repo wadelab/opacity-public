@@ -1,0 +1,1554 @@
+{
+ "source": "Viking gpu02 (A40), rehearsal dryrun-01, job 38051107, 27 October 2026: /proc/self/mountinfo inside the pilot container",
+ "mounts": [
+  {
+   "options": [
+    "rw",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/",
+   "super_options": [
+    "ro",
+    "lowerdir=/opt/apps/eb/software/Apptainer/latest/var/apptainer/mnt/session/overlay-lowerdir:/opt/apps/eb/software/Apptainer/latest/var/apptainer/mnt/session/rootfs"
+   ],
+   "type": "overlay"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "relatime"
+   ],
+   "path": "/dev",
+   "super_options": [
+    "rw",
+    "size=65536k",
+    "uid=45172",
+    "gid=1520200003"
+   ],
+   "type": "tmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/dev/shm",
+   "super_options": [
+    "rw",
+    "uid=45172",
+    "gid=1520200003"
+   ],
+   "type": "tmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/dev/mqueue",
+   "super_options": [
+    "rw"
+   ],
+   "type": "mqueue"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/dev/pts",
+   "super_options": [
+    "rw",
+    "mode=620",
+    "ptmxmode=666"
+   ],
+   "type": "devpts"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/tty",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/null",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/zero",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/random",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/urandom",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/nvidia-caps",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/nvidia-modeset",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/nvidia-uvm",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/nvidia-uvm-tools",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/nvidia0",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/nvidia1",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/nvidia2",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid"
+   ],
+   "path": "/dev/nvidiactl",
+   "super_options": [
+    "rw",
+    "size=263591724k",
+    "nr_inodes=65897931",
+    "mode=755"
+   ],
+   "type": "devtmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/proc",
+   "super_options": [
+    "rw"
+   ],
+   "type": "proc"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys",
+   "super_options": [
+    "rw"
+   ],
+   "type": "sysfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/kernel/security",
+   "super_options": [
+    "rw"
+   ],
+   "type": "securityfs"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "noexec"
+   ],
+   "path": "/sys/fs/cgroup",
+   "super_options": [
+    "ro",
+    "mode=755"
+   ],
+   "type": "tmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/systemd",
+   "super_options": [
+    "rw",
+    "xattr",
+    "release_agent=/usr/lib/systemd/systemd-cgroups-agent",
+    "name=systemd"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/net_cls,net_prio",
+   "super_options": [
+    "rw",
+    "net_cls",
+    "net_prio"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/hugetlb",
+   "super_options": [
+    "rw",
+    "hugetlb"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/cpu,cpuacct",
+   "super_options": [
+    "rw",
+    "cpu",
+    "cpuacct"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/cpuset",
+   "super_options": [
+    "rw",
+    "cpuset"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/perf_event",
+   "super_options": [
+    "rw",
+    "perf_event"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/devices",
+   "super_options": [
+    "rw",
+    "devices"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/rdma",
+   "super_options": [
+    "rw",
+    "rdma"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/memory",
+   "super_options": [
+    "rw",
+    "memory"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/pids",
+   "super_options": [
+    "rw",
+    "pids"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/blkio",
+   "super_options": [
+    "rw",
+    "blkio"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/cgroup/freezer",
+   "super_options": [
+    "rw",
+    "freezer"
+   ],
+   "type": "cgroup"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/pstore",
+   "super_options": [
+    "rw"
+   ],
+   "type": "pstore"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/firmware/efi/efivars",
+   "super_options": [
+    "rw"
+   ],
+   "type": "efivarfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "noexec",
+    "relatime"
+   ],
+   "path": "/sys/fs/bpf",
+   "super_options": [
+    "rw",
+    "mode=700"
+   ],
+   "type": "bpf"
+  },
+  {
+   "options": [
+    "rw",
+    "relatime"
+   ],
+   "path": "/sys/kernel/tracing",
+   "super_options": [
+    "rw"
+   ],
+   "type": "tracefs"
+  },
+  {
+   "options": [
+    "rw",
+    "relatime"
+   ],
+   "path": "/sys/kernel/config",
+   "super_options": [
+    "rw"
+   ],
+   "type": "configfs"
+  },
+  {
+   "options": [
+    "rw",
+    "relatime"
+   ],
+   "path": "/sys/kernel/debug",
+   "super_options": [
+    "rw"
+   ],
+   "type": "debugfs"
+  },
+  {
+   "options": [
+    "rw",
+    "relatime"
+   ],
+   "path": "/sys/fs/fuse/connections",
+   "super_options": [
+    "rw"
+   ],
+   "type": "fusectl"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/home/pilot",
+   "super_options": [
+    "rw",
+    "user_id=45172",
+    "group_id=1520200003"
+   ],
+   "type": "fuse.ext4"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/tmp",
+   "super_options": [
+    "rw",
+    "size=65536k",
+    "uid=45172",
+    "gid=1520200003"
+   ],
+   "type": "tmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/var/tmp",
+   "super_options": [
+    "rw",
+    "size=65536k",
+    "uid=45172",
+    "gid=1520200003"
+   ],
+   "type": "tmpfs"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs",
+   "super_options": [
+    "rw",
+    "size=65536k",
+    "uid=45172",
+    "gid=1520200003"
+   ],
+   "type": "tmpfs"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-gtk3.so.595.71.05",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-ptxjitcompiler.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libEGL_nvidia.so.0",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libGLESv2_nvidia.so.2",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libGLESv2.so.2",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libcuda.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-encode.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-ptxjitcompiler.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvcuvid.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-glvkspirv.so.595.71.05",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-nvvm.so.4",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libvdpau_nvidia.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libGLESv1_CM_nvidia.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libGLX.so.0",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvcuvid.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-opticalflow.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-cfg.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-fbc.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-glsi.so.595.71.05",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libcudadebugger.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-ml.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-cfg.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-encode.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libOpenCL.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-egl-wayland.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-nvvm.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvoptix.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libcuda.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libGLX_nvidia.so.0",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-eglcore.so.595.71.05",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-glcore.so.595.71.05",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-rtcore.so.595.71.05",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-gpucomp.so.595.71.05",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-opticalflow.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-opencl.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-gtk2.so.595.71.05",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libEGL.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-fbc.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-tls.so.595.71.05",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libOpenGL.so.0",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libnvidia-ml.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libGLESv1_CM.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libGLdispatch.so.0",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libGL.so.1",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/.singularity.d/libs/libOpenCL.so",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/usr/share/egl/egl_external_platform.d/10_nvidia_wayland.json",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/usr/bin/nvidia-smi",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/usr/bin/nvidia-debugdump",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/usr/bin/nvidia-cuda-mps-control",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/usr/bin/nvidia-cuda-mps-server",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/usr/share/glvnd/egl_vendor.d/10_nvidia.json",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/usr/bin/nvidia-persistenced",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/usr/share/egl/egl_external_platform.d/15_nvidia_gbm.json",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/usr/share/nvidia/nvoptix.bin",
+   "super_options": [
+    "rw"
+   ],
+   "type": "ext4"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "relatime"
+   ],
+   "path": "/etc/resolv.conf",
+   "super_options": [
+    "rw",
+    "size=65536k",
+    "uid=45172",
+    "gid=1520200003"
+   ],
+   "type": "tmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "relatime"
+   ],
+   "path": "/etc/passwd",
+   "super_options": [
+    "rw",
+    "size=65536k",
+    "uid=45172",
+    "gid=1520200003"
+   ],
+   "type": "tmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "relatime"
+   ],
+   "path": "/etc/group",
+   "super_options": [
+    "rw",
+    "size=65536k",
+    "uid=45172",
+    "gid=1520200003"
+   ],
+   "type": "tmpfs"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/run",
+   "super_options": [
+    "rw",
+    "user_id=45172",
+    "group_id=1520200003"
+   ],
+   "type": "fuse.ext4"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/tmp",
+   "super_options": [
+    "rw",
+    "user_id=45172",
+    "group_id=1520200003"
+   ],
+   "type": "fuse.ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev"
+   ],
+   "path": "/model",
+   "super_options": [
+    "rw",
+    "checksum",
+    "flock",
+    "nouser_xattr",
+    "lruresize",
+    "lazystatfs",
+    "nouser_fid2path",
+    "verbose",
+    "encrypt"
+   ],
+   "type": "lustre"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev"
+   ],
+   "path": "/bundle",
+   "super_options": [
+    "rw",
+    "checksum",
+    "flock",
+    "nouser_xattr",
+    "lruresize",
+    "lazystatfs",
+    "nouser_fid2path",
+    "verbose",
+    "encrypt"
+   ],
+   "type": "lustre"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/var/tmp",
+   "super_options": [
+    "rw",
+    "user_id=45172",
+    "group_id=1520200003"
+   ],
+   "type": "fuse.ext4"
+  },
+  {
+   "options": [
+    "rw",
+    "nosuid",
+    "nodev",
+    "relatime"
+   ],
+   "path": "/dev/shm",
+   "super_options": [
+    "rw",
+    "user_id=45172",
+    "group_id=1520200003"
+   ],
+   "type": "fuse.ext4"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev"
+   ],
+   "path": "/etc/group",
+   "super_options": [
+    "rw",
+    "checksum",
+    "flock",
+    "nouser_xattr",
+    "lruresize",
+    "lazystatfs",
+    "nouser_fid2path",
+    "verbose",
+    "encrypt"
+   ],
+   "type": "lustre"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev"
+   ],
+   "path": "/etc/passwd",
+   "super_options": [
+    "rw",
+    "checksum",
+    "flock",
+    "nouser_xattr",
+    "lruresize",
+    "lazystatfs",
+    "nouser_fid2path",
+    "verbose",
+    "encrypt"
+   ],
+   "type": "lustre"
+  },
+  {
+   "options": [
+    "ro",
+    "nosuid",
+    "nodev"
+   ],
+   "path": "/etc/resolv.conf",
+   "super_options": [
+    "rw",
+    "checksum",
+    "flock",
+    "nouser_xattr",
+    "lruresize",
+    "lazystatfs",
+    "nouser_fid2path",
+    "verbose",
+    "encrypt"
+   ],
+   "type": "lustre"
+  }
+ ]
+}

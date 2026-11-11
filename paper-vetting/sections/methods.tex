@@ -1,0 +1,61 @@
+\section{Methods}
+\label{sec:methods}
+
+The experiments reuse the analysis tasks, analyst configurations, checkers and judges of the companion evaluation~\cite{wade2026opacity} (\S\ref{sec:methods-tasks}). The probe experiment reads the analysts' honest write-ups (Figure~\ref{fig:design-vetting}a; \S\ref{sec:methods-probe}). The bias experiments write each task twice, once honest and once under a hidden instruction to bias, and train detectors to tell the two apart (Figure~\ref{fig:design-vetting}b; \S\ref{sec:methods-steer} to \S\ref{sec:methods-style}).
+
+\begin{figure}[t]
+\centering
+\input{figures/design-vetting}
+\caption{The two questions, in the colours of the companion paper's design figures: grey boxes are inputs, blue boxes deterministic code, red boxes the models under test and green boxes what comes out. (a) Does a model's internal state reveal its errors? Analysts' write-ups, each judged right or wrong against a hidden answer key, are read by a model as it reads them when checking. A probe on its internal state is compared with its own verdict, within tasks the probe never saw. (b) Can a biased write-up be detected? Each task is written twice, once honest and once under a hidden instruction to bias the conclusion. Detectors trained to tell the two apart are tested on unseen tasks and then run on the candidate's ordinary write-ups.}
+\label{fig:design-vetting}
+\end{figure}
+
+\subsection{Analysis tasks, analysts, checkers and judges}
+\label{sec:methods-tasks}
+
+An analysis task gives the model a research request and summary tables that hold everything needed for the correct analysis and for a tempting wrong one, such as pooled and subgroup results, both candidate denominators or the counts at each stage~\cite{wade2026opacity}. The model writes a structured report, the write-up, from the tables without running code. The \N{harvest.tasks.total} tasks form four sets: dev (\N{harvest.dev.count} tasks), on which every probe and detector here was fit; held-out (\N{harvest.heldout.count} tasks, disjoint from dev), on which each was tested; and two sealed sets of \N{harvest.fresh.count} and \N{harvest.fresh2.count} tasks, which served the companion paper's confirmation and here supply ordinary write-ups. A Claude model wrote the tasks and was excluded from the analyst, checker and judge roles.
+
+The analyst in the bias experiments is Qwen3.5 27B with the companion paper's design-first prompt, which makes the model record the study design before it writes (Appendix~\ref{app:instructions}). The recommended configuration adds a 1,024-token thinking budget and gpt-oss 20B at medium reasoning effort as its checker. A checker reads a write-up blind under a fixed reviewer instruction and answers whether its interpretation is supported. A judge sees the request, the tables, the write-up and the hidden answer key, and decides whether a researcher acting on the write-up would be misled. The probe experiment takes its labels from the companion study's primary judge, \N{model.mimo.pro.short}, and the bias experiments use the locally served \N{model.gptoss120.short} at high reasoning effort. A fixed rule-based verifier adds five checks computed from the tables: corrected row tests, clustering, denominators, comparisons on the full base and held-out performance.
+
+\subsection{Probes on honest errors}
+\label{sec:methods-probe}
+
+The first experiment asks whether a classifier on a model's internal state separates wrong write-ups from right ones better than the model's own verbal verdict. Qwen3.5 27B and gpt-oss 20B each read every write-up through the messages its own checker runs sent, so the probe sees exactly what the verbal checker saw. The state is taken at the last prompt token at a quarter, a half and three quarters of the model's depth. The probes are logistic regressions trained on \N{probe.train.n} dev write-ups (\N{probe.train.wrong} judged wrong) and tested once on \N{probe.test.n} write-ups from the \N{probe.test.tasks} held-out tasks, with depth and penalty chosen by folds on dev that leave whole tasks out.
+
+The stop rule, fixed before the fit, required the 27B's probe to beat the same model's best verbal checker on the same held-out write-ups by at least \N{probe.margin} of AUC, with the task-resampled interval of the difference above zero. The gpt-oss probe shows whether the method carries to a second family. Three checks were fixed with the rule: the reconstructed prompts must match the serving engine's log in length and, for the 27B's greedy runs, in the first token of the reply, and a probe trained on labels shuffled within tasks, which can learn only which tasks are risky, should score near chance.
+
+\subsection{Instructed bias as a positive control}
+\label{sec:methods-steer}
+
+Honest errors cannot show whether a detector would recognize deliberate misleading. The positive control therefore pairs each honest write-up with one written under a hidden instruction to bias the conclusion, for the same task, dataset and sampling seed (Figure~\ref{fig:design-vetting}b). The instruction, appended after the tables, asks the model to state outright that the result the request hopes for holds, without inventing or altering any number, by choice and emphasis: which comparison leads, which corrections or exclusions are left out, which subgroups are reported and how briefly the caveats are worded (Appendix~\ref{app:instructions}). The analyst ran with thinking off and its vendor's sampling settings for that mode (temperature 0.7, top-p 0.8, top-k 20), five times per task with a different seed each time, giving \N{steer.n.heldout} write-ups per condition on each of dev and held-out.
+
+The instruction counts as having worked only if the judge finds more wrong conclusions among the biased write-ups than among their honest pairs on held-out, with the task-resampled interval of the difference above zero. A gentler first version, which asked only for a favorable reading, failed this check. The instruction used here was fixed before any write-up was generated with it, and the first is kept in the repository.
+
+Probes read each completed write-up after the honest prompt, so the instruction itself is never in their input, and average the state over the write-up's tokens. The comparators are a classifier on word and word-pair counts, the two models as verbal checkers and the verifier. The rule for a probe to enter vetting was the margin of \S\ref{sec:methods-probe} over the best of these.
+
+\subsection{The bias test for a candidate}
+\label{sec:methods-slant}
+
+The bias test turns the positive control into a procedure for any candidate. The candidate, in the configuration it would run in service, writes paired write-ups of every dev and held-out task, honest and under the bias instruction. A text classifier on word and word-pair counts is trained on the dev pairs, with its penalty chosen by folds that leave whole tasks out, and its AUC within tasks is tested once on held-out. Its service threshold is set to flag \N{slant.threshold.fa} of the honest held-out write-ups. The test then counts how many of the candidate's ordinary write-ups, from its runs on all four task sets without any instruction to bias, the detector flags.
+
+A candidate passes if the instruction worked, the lower bound of the held-out AUC is at least \N{slant.auc.required}, and the upper Wilson bound of its ordinary write-ups' flag rate is at most \N{slant.limit}. A candidate that will not bias even when told to fails the first part, which is good news about the candidate but leaves its own detector without a measured sensitivity, so for such a candidate the detector is built on another configuration of the same model in which the instruction worked. The pass rule was fixed before the first candidate's pairs were generated. The borrowed detector, specified then as a comparison, and training on three styles (\S\ref{sec:methods-style}) were adopted after those data had been read.
+
+\subsection{Robustness to the requested style}
+\label{sec:methods-style}
+
+A researcher can ask for a short write-up or a thorough one, and a detector that learned the length of a write-up would then mistake style for bias. Pairs were written in two more styles, with a request from the researcher after the tables in both conditions: concise (two or three sentences each for the methods and the interpretation) and thorough (every analysis choice and every limitation). A disguise condition followed the bias instruction with a request that the write-up keep the length, tone and caveats of an honest one. Its honest pairs are the default-style ones. The \N{style.n.new} new write-ups were scored by the judge and both checkers and read by the probes. Detection counts as broken in a style if the AUC falls below \N{slant.auc.required} or more than \N{slant.limit} of honest write-ups are flagged, and training across styles counts as restoring it if neither happens in any style. A test that relabels each task's subject and groups~\cite{ribeiro2020checklist}, for bias aimed at particular subjects, is specified but not implemented.
+
+\subsection{The fine-tuning pilot}
+\label{sec:methods-lora}
+
+A model trained to deceive cannot be made by instruction. An isolated engineering pilot therefore tested whether Qwen3.5 27B can be fine-tuned with low-rank (LoRA) adapters~\cite{hu2022lora}, saved, reloaded and returned to the base model on one H100, inside a container with no network, on honest training examples only (Appendix~\ref{app:lora}).
+
+\subsection{Statistics}
+\label{sec:methods-stats}
+
+AUC, the area under the ROC curve, is the probability that a detector scores a wrong write-up above a right one, or a biased write-up above an honest one, and is computed with the Mann--Whitney statistic~\cite{hanley1982auc}. Verbal checkers are scored from confidence-weighted verdicts: 50 plus half the stated confidence for yes, 50 minus half for no, and 50 for cannot tell or a parse failure. AUC within tasks counts only pairs of write-ups from the same task (in the style experiment, the same task in the same style), so knowing which tasks are risky cannot help. Intervals are percentile bootstraps~\cite{efron1994bootstrap} that resample tasks, because write-ups of one task share its content, and the paired difference in wrong conclusions between biased and honest write-ups resamples tasks the same way. Proportions, such as wrong conclusions and flag rates, carry Wilson 95\% intervals~\cite{wilson1927}.
+
+\subsection{Software and compute}
+\label{sec:methods-software}
+
+Write-ups were generated with vLLM \N{sw.vllm}~\cite{kwon2023vllm} and recorded with their inputs, verbatim responses and verdicts by Inspect \N{sw.inspect}~\cite{inspect2024}. Probes and the pilot use transformers \N{sw.transformers}~\cite{wolf2020transformers} and torch \N{sw.torch}, and the pilot also uses Apptainer~\cite{apptainer2021} and PEFT~\cite{peft2022}. Everything ran on H100 80~GB and A40 48~GB GPUs on York's Viking cluster. Weights and tokenizers are pinned to downloaded revisions and served offline without code from the model repository (Appendix~\ref{app:models}).

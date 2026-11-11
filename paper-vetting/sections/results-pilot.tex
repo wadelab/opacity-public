@@ -1,0 +1,4 @@
+\section{Preparing for trained deception: the fine-tuning pilot}
+\label{sec:lora}
+
+The pilot showed that Qwen3.5 27B can be fine-tuned with LoRA adapters, saved, reloaded and returned to the base model on one H100. Integrity and containment checks passed, reproductions were bit-exact, and the digest of the base weights never changed. Honest updates improved a small diagnostic set from \N{lora.diag.before} to \N{lora.diag.after} of 16 questions without any newly wrong answer. Appendix~\ref{app:lora} and Figure~\ref{fig:lora} report the runtime and memory limits. No adapted model contributes to the evaluations above. The pilot supplies what an experiment with a model trained to deceive will need, not evidence about detecting one.

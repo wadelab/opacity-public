@@ -1,0 +1,47 @@
+% Appendix figures and tables are numbered S1, S2, ... as supplementary material.
+\setcounter{figure}{0}\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{table}{0}\renewcommand{\thetable}{S\arabic{table}}
+
+\section{The instructions, verbatim}
+\label{app:instructions}
+
+The following instructions are reproduced verbatim from the source snapshot. The paired write-ups used the standard analyst instruction with the design-first prompt appended; the checkers used the reviewer instruction, and the judges the judge instruction, as in the companion paper. The bias instruction followed the tables in the biased condition only; the style requests followed the tables in both conditions, and the disguise request followed the bias instruction.
+
+\input{instructions}
+
+\section{Models and revisions}
+\label{app:models}
+\input{models}
+
+Table~\ref{tab:models} lists the open-weight models this paper's experiments used, with the Hugging Face repository and the commit at which each model's weights and tokenizer were downloaded once on a login node and served offline with no code from the repository. The families are Qwen3.5~\cite{qwen35_2026} and gpt-oss~\cite{gptoss2025}. The probe labels come from the hosted \N{model.mimo.pro} (\code{mimo-v2.6-pro}, Xiaomi, Amsterdam endpoint)~\cite{mimo26_2026,mimo2025}, the companion study's primary judge. Serving: vLLM \N{sw.vllm}, torch \N{sw.torch}, transformers \N{sw.transformers}, Inspect \N{sw.inspect}.
+
+\begin{table}[h]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{threeparttable}
+\caption{Open-weight models, their Hugging Face repositories and pinned revisions. Roles: C checker, P probe, S bias pairs, L fine-tuning pilot, J local judge.}
+\label{tab:models}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Model, then its Hugging Face repository & Roles & Revision \\
+\midrule
+\modelrows
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\section{The fine-tuning pilot}
+\label{app:lora}
+
+The pilot tested LoRA updates to the pinned Qwen3.5 27B on one H100. An Apptainer runtime used an isolated network namespace, read-only inputs, no credentials, and a per-attempt writable image. An external positive control verified that the network test could succeed outside isolation; it failed inside. Base weights were hashed before each process and after each stage.
+
+LoRA adapters updated query and value projections in the full-attention layers, using fp32 adapters on a frozen bf16 base. Smoke, training, and fresh-process reload stages tested attachment, saving, reloading, disabling, and stress cycles (Figure~\ref{fig:lora}a). All integrity and containment checks passed. Reproduction comparisons had zero logit difference where equality was expected, while the trained adapter differed from the base. Diagnostic performance improved from \N{lora.diag.before} to \N{lora.diag.after} of 16 questions, with no newly wrong answer. The stages used \N{lora.minutes.used} of \N{lora.minutes.reserved} reserved GPU-minutes.
+
+A later profile placed the reserved-memory limit near \N{lora.gate.tokens} tokens at the 85\% limit (Figure~\ref{fig:lora}b), which excludes \N{lora.over.gate.pct} of study-like examples, whose median length is \N{lora.median.tokens}. These checks establish an engineering capability, not the effectiveness or detectability of a biased adapter.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{lora_pilot}
+\caption{The fine-tuning pilot on one H100. (a) Wall time of each stage, split by the payload's own records into isolation and integrity checks, diagnostic passes, training and stress steps, and loading, launch and teardown, against the stage's limit. (b) Peak GPU memory against tokens per training step in the pilot and the later profile run, against the device's capacity and the 85\% limit. Ticks along the bottom are the lengths of 360 study-like training examples.}
+\label{fig:lora}
+\end{figure}

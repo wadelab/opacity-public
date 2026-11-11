@@ -1,0 +1,14 @@
+# Model-sizing study, stage 3: confirm a checker configuration that passed the
+# phase-0 gate in wave 1. A new corpus seed (datasets never seen in wave 1),
+# twenty replicates, every level; then the register-matched controls, so that
+# a pass cannot rest on the controls' hedging tone; then the neighbouring
+# budgets on the same seed to place the configuration on its curve.
+opacity -T seed=1 -T levels=0,1,2,3,4 -T replicates=20 -T think_budget=1024
+opacity -T seed=1 -T levels=0,2,3,4 -T replicates=5 -T think_budget=1024 -T register=matched
+opacity -T seed=1 -T levels=0,3 -T replicates=10 -T think_budget=512
+opacity -T seed=1 -T levels=0,3 -T replicates=10 -T think_budget=2048
+opacity -T seed=1 -T levels=0,3 -T replicates=10 -T thinking=off
+# appended 2026-10-22 12:35 UTC after wave 1: the stepwise reviewer text with
+# thinking off also passed the gate at s0 (seed 0), at under half the cost
+opacity -T seed=1 -T levels=0,1,2,3,4 -T replicates=20 -T thinking=off -T reviewer=stepwise
+opacity -T seed=1 -T levels=0,2,3,4 -T replicates=5 -T thinking=off -T reviewer=stepwise -T register=matched

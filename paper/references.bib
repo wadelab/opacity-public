@@ -1,0 +1,939 @@
+% OPACITY preprint bibliography.
+% Built 28 October 2026. Every DOI and arXiv id below was confirmed by a live
+% lookup (Crossref, DataCite, arXiv API, Europe PMC, OpenAlex or the landing
+% page) on that date; see the verification report for the evidence per entry.
+% Entries carrying note = {... unverified ...} have one field that no lookup
+% could confirm; the field itself has been left out.
+
+% ---------------------------------------------------------------------------
+% TREs, disclosure control, output checking
+% ---------------------------------------------------------------------------
+
+
+
+@misc{ritchie2017fivesafes,
+  author       = {Ritchie, Felix},
+  title        = {The `{Five Safes}': a framework for planning, designing and evaluating data access solutions},
+  howpublished = {Paper presented at Data for Policy 2017: Government by Algorithm?, London, 6--7 September 2017. Zenodo},
+  year         = {2017},
+  doi          = {10.5281/zenodo.897821}
+}
+
+
+
+@techreport{griffiths2019handbook,
+  author      = {Griffiths, Emily and Greci, Carlotta and Kotrotsios, Yannis and Parker, Simon and Scott, James and Welpton, Richard and Wolters, Arne and Woods, Christine},
+  title       = {Handbook on Statistical Disclosure Control for Outputs},
+  institution = {Safe Data Access Professionals Working Group},
+  type        = {Version 1.0},
+  month       = jul,
+  year        = {2019},
+  doi         = {10.6084/m9.figshare.9958520},
+  url         = {https://securedatagroup.org/wp-content/uploads/2019/09/thf_datareport_aw_web.pdf},
+  note        = {The figshare record lists the title as ``SDC Handbook'' and Richard Welpton as depositor. Accessed 28 October 2026}
+}
+
+@article{alves2020runners,
+  author  = {Alves, Kyle and Ritchie, Felix},
+  title   = {Runners, repeaters, strangers and aliens: operationalising efficient output disclosure control},
+  journal = {Statistical Journal of the IAOS},
+  volume  = {36},
+  number  = {4},
+  pages   = {1281--1293},
+  year    = {2020},
+  doi     = {10.3233/SJI-200661}
+}
+
+@techreport{sacro2024,
+  author      = {Smith, Jim and Albashir, Maha and Bacon, Seb and Butler Cole, Ben and Caldwell, Jackie and Cole, Christian and Crespi Boixander, Alba and Green, Elizabeth and Jefferson, Emily and Jones, Yola and others},
+  title       = {{SACRO}: Semi-Automated Checking of Research Outputs},
+  institution = {DARE UK},
+  type        = {Final report},
+  year        = {2023},
+  doi         = {10.5281/zenodo.10055365},
+  note        = {DARE UK Phase 1 driver project (UKRI grant MC\_PC\_23006), with HDR UK and ADR UK; 22 authors. Zenodo, 6 November 2023}
+}
+
+@misc{jefferson2022graimatter,
+  author       = {Jefferson, Emily and Liley, James and Malone, Maeve and Reel, Smarti and Crespi-Boixader, Alba and Kerasidou, Xaroula and Tava, Francesco and McCarthy, Andrew and Preen, Richard and Blanco-Justicia, Alberto and others},
+  title        = {{GRAIMATTER} Green Paper: Recommendations for disclosure control of trained Machine Learning ({ML}) models from Trusted Research Environments ({TREs})},
+  howpublished = {Zenodo},
+  year         = {2022},
+  doi          = {10.5281/zenodo.7089491},
+  note         = {19 authors}
+}
+
+@techreport{hdruk2020tre,
+  author      = {Hubbard, Tim and Reilly, Gerry and Varma, Susheel and Seymour, David},
+  title       = {Trusted Research Environments ({TRE}) Green Paper},
+  institution = {UK Health Data Research Alliance},
+  type        = {Version 2.0},
+  month       = jul,
+  year        = {2020},
+  doi         = {10.5281/zenodo.4594704}
+}
+
+@article{kavianpour2022tre,
+  author  = {Kavianpour, Sanaz and Sutherland, James and Mansouri-Benssassi, Esma and Coull, Natalie and Jefferson, Emily},
+  title   = {Next-generation capabilities in trusted research environments: interview study},
+  journal = {Journal of Medical Internet Research},
+  volume  = {24},
+  number  = {9},
+  pages   = {e33720},
+  year    = {2022},
+  doi     = {10.2196/33720}
+}
+
+
+
+
+
+
+
+% ---------------------------------------------------------------------------
+% Statistics and the error classes
+% ---------------------------------------------------------------------------
+
+@article{simpson1951,
+  author  = {Simpson, E. H.},
+  title   = {The interpretation of interaction in contingency tables},
+  journal = {Journal of the Royal Statistical Society: Series B (Methodological)},
+  volume  = {13},
+  number  = {2},
+  pages   = {238--241},
+  year    = {1951},
+  doi     = {10.1111/j.2517-6161.1951.tb00088.x}
+}
+
+@article{bickel1975,
+  author  = {Bickel, P. J. and Hammel, E. A. and O'Connell, J. W.},
+  title   = {Sex bias in graduate admissions: data from {Berkeley}},
+  journal = {Science},
+  volume  = {187},
+  number  = {4175},
+  pages   = {398--404},
+  year    = {1975},
+  doi     = {10.1126/science.187.4175.398}
+}
+
+@article{pearl2014simpson,
+  author  = {Pearl, Judea},
+  title   = {Comment: Understanding {Simpson}'s paradox},
+  journal = {The American Statistician},
+  volume  = {68},
+  number  = {1},
+  pages   = {8--13},
+  year    = {2014},
+  doi     = {10.1080/00031305.2014.876829}
+}
+
+
+
+@article{gelman2014garden,
+  author  = {Gelman, Andrew and Loken, Eric},
+  title   = {The statistical crisis in science},
+  journal = {American Scientist},
+  volume  = {102},
+  number  = {6},
+  pages   = {460},
+  year    = {2014},
+  doi     = {10.1511/2014.111.460},
+  note    = {Start page only; the end page (465) is unverified}
+}
+
+@article{simmons2011false,
+  author  = {Simmons, Joseph P. and Nelson, Leif D. and Simonsohn, Uri},
+  title   = {False-positive psychology: undisclosed flexibility in data collection and analysis allows presenting anything as significant},
+  journal = {Psychological Science},
+  volume  = {22},
+  number  = {11},
+  pages   = {1359--1366},
+  year    = {2011},
+  doi     = {10.1177/0956797611417632}
+}
+
+@article{barnett2005rtm,
+  author  = {Barnett, Adrian G. and van der Pols, Jolieke C. and Dobson, Annette J.},
+  title   = {Regression to the mean: what it is and how to deal with it},
+  journal = {International Journal of Epidemiology},
+  volume  = {34},
+  number  = {1},
+  pages   = {215--220},
+  year    = {2005},
+  doi     = {10.1093/ije/dyh299}
+}
+
+@article{galton1886,
+  author  = {Galton, Francis},
+  title   = {Regression towards mediocrity in hereditary stature},
+  journal = {The Journal of the Anthropological Institute of Great Britain and Ireland},
+  volume  = {15},
+  pages   = {246--263},
+  year    = {1886},
+  doi     = {10.2307/2841583}
+}
+
+@article{cornfield1978,
+  author  = {Cornfield, Jerome},
+  title   = {Randomization by group: a formal analysis},
+  journal = {American Journal of Epidemiology},
+  volume  = {108},
+  number  = {2},
+  pages   = {100--102},
+  year    = {1978},
+  doi     = {10.1093/oxfordjournals.aje.a112592},
+  note    = {PMID 707470. Crossref records this DOI under the symposium heading ``Symposium on CHD prevention trials: design issues in testing life style intervention''}
+}
+
+@book{donner2000cluster,
+  author    = {Donner, Allan and Klar, Neil},
+  title     = {Design and Analysis of Cluster Randomization Trials in Health Research},
+  publisher = {Arnold},
+  address   = {London},
+  year      = {2000},
+  isbn      = {0-340-69153-0}
+}
+
+@article{steyerberg2001internal,
+  author  = {Steyerberg, Ewout W. and Harrell, Frank E. and Borsboom, Gerard J. J. M. and Eijkemans, M. J. C. and Vergouwe, Yvonne and Habbema, J. Dik F.},
+  title   = {Internal validation of predictive models: efficiency of some procedures for logistic regression analysis},
+  journal = {Journal of Clinical Epidemiology},
+  volume  = {54},
+  number  = {8},
+  pages   = {774--781},
+  year    = {2001},
+  doi     = {10.1016/S0895-4356(01)00341-9}
+}
+
+@article{collins2015tripod,
+  author  = {Collins, Gary S. and Reitsma, Johannes B. and Altman, Douglas G. and Moons, Karel G. M.},
+  title   = {Transparent reporting of a multivariable prediction model for individual prognosis or diagnosis ({TRIPOD}): the {TRIPOD} statement},
+  journal = {BMJ},
+  volume  = {350},
+  pages   = {g7594},
+  year    = {2015},
+  doi     = {10.1136/bmj.g7594}
+}
+
+@book{hernan2020whatif,
+  author    = {Hern{\'a}n, Miguel A. and Robins, James M.},
+  title     = {Causal Inference: What If},
+  publisher = {Chapman \& Hall/CRC},
+  address   = {Boca Raton},
+  year      = {2020},
+  url       = {https://miguelhernan.org/whatifbook},
+  note      = {Accessed 28 October 2026}
+}
+
+@article{vandenbroucke2007strobe,
+  author  = {Vandenbroucke, Jan P. and von Elm, Erik and Altman, Douglas G. and G{\o}tzsche, Peter C. and Mulrow, Cynthia D. and Pocock, Stuart J. and Poole, Charles and Schlesselman, James J. and Egger, Matthias and {for the STROBE Initiative}},
+  title   = {Strengthening the Reporting of Observational Studies in Epidemiology ({STROBE}): explanation and elaboration},
+  journal = {PLoS Medicine},
+  volume  = {4},
+  number  = {10},
+  pages   = {e297},
+  year    = {2007},
+  doi     = {10.1371/journal.pmed.0040297}
+}
+
+@article{nuijten2016statcheck,
+  author  = {Nuijten, Mich{\`e}le B. and Hartgerink, Chris H. J. and van Assen, Marcel A. L. M. and Epskamp, Sacha and Wicherts, Jelte M.},
+  title   = {The prevalence of statistical reporting errors in psychology (1985--2013)},
+  journal = {Behavior Research Methods},
+  volume  = {48},
+  number  = {4},
+  pages   = {1205--1226},
+  year    = {2016},
+  doi     = {10.3758/s13428-015-0664-2}
+}
+
+@article{brown2017grim,
+  author  = {Brown, Nicholas J. L. and Heathers, James A. J.},
+  title   = {The {GRIM} test: a simple technique detects numerous anomalies in the reporting of results in psychology},
+  journal = {Social Psychological and Personality Science},
+  volume  = {8},
+  number  = {4},
+  pages   = {363--369},
+  year    = {2017},
+  doi     = {10.1177/1948550616673876}
+}
+
+@article{ioannidis2005,
+  author  = {Ioannidis, John P. A.},
+  title   = {Why most published research findings are false},
+  journal = {PLoS Medicine},
+  volume  = {2},
+  number  = {8},
+  pages   = {e124},
+  year    = {2005},
+  doi     = {10.1371/journal.pmed.0020124}
+}
+
+@article{nosek2018prereg,
+  author  = {Nosek, Brian A. and Ebersole, Charles R. and DeHaven, Alexander C. and Mellor, David T.},
+  title   = {The preregistration revolution},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {115},
+  number  = {11},
+  pages   = {2600--2606},
+  year    = {2018},
+  doi     = {10.1073/pnas.1708274114}
+}
+
+@article{chambers2022rr,
+  author  = {Chambers, Christopher D. and Tzavella, Loukia},
+  title   = {The past, present and future of {Registered Reports}},
+  journal = {Nature Human Behaviour},
+  volume  = {6},
+  number  = {1},
+  pages   = {29--42},
+  year    = {2022},
+  doi     = {10.1038/s41562-021-01193-7}
+}
+
+@article{hanley1982auc,
+  author  = {Hanley, James A. and McNeil, Barbara J.},
+  title   = {The meaning and use of the area under a receiver operating characteristic ({ROC}) curve},
+  journal = {Radiology},
+  volume  = {143},
+  number  = {1},
+  pages   = {29--36},
+  year    = {1982},
+  doi     = {10.1148/radiology.143.1.7063747}
+}
+
+@article{wilson1927,
+  author  = {Wilson, Edwin B.},
+  title   = {Probable inference, the law of succession, and statistical inference},
+  journal = {Journal of the American Statistical Association},
+  volume  = {22},
+  number  = {158},
+  pages   = {209--212},
+  year    = {1927},
+  doi     = {10.1080/01621459.1927.10502953}
+}
+
+@article{cohen1960kappa,
+  author  = {Cohen, Jacob},
+  title   = {A coefficient of agreement for nominal scales},
+  journal = {Educational and Psychological Measurement},
+  volume  = {20},
+  number  = {1},
+  pages   = {37--46},
+  year    = {1960},
+  doi     = {10.1177/001316446002000104}
+}
+
+@book{efron1994bootstrap,
+  author    = {Efron, Bradley and Tibshirani, Robert J.},
+  title     = {An Introduction to the Bootstrap},
+  publisher = {Chapman \& Hall/CRC},
+  address   = {Boca Raton},
+  year      = {1994},
+  doi       = {10.1201/9780429246593}
+}
+
+% ---------------------------------------------------------------------------
+% Language-model agents, benchmarks, judges
+% ---------------------------------------------------------------------------
+
+@inproceedings{gu2024blade,
+  author        = {Gu, Ken and Shang, Ruoxi and Jiang, Ruien and Kuang, Keying and Lin, Richard-John and Lyu, Donghe and Mao, Yue and Pan, Youran and Wu, Teng and Yu, Jiaqian and others},
+  title         = {{BLADE}: Benchmarking language model agents for data-driven science},
+  booktitle     = {Findings of the Association for Computational Linguistics: {EMNLP} 2024},
+  publisher     = {Association for Computational Linguistics},
+  pages         = {13936--13971},
+  year          = {2024},
+  doi           = {10.18653/v1/2024.findings-emnlp.815},
+  eprint        = {2408.09667},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@misc{majumder2024discoverybench,
+  author        = {Majumder, Bodhisattwa Prasad and Surana, Harshit and Agarwal, Dhruv and Dalvi Mishra, Bhavana and Meena, Abhijeetsingh and Prakhar, Aryan and Vora, Tirth and Khot, Tushar and Sabharwal, Ashish and Clark, Peter},
+  title         = {{DiscoveryBench}: Towards data-driven discovery with large language models},
+  year          = {2024},
+  eprint        = {2407.01725},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2407.01725}}
+}
+
+@inproceedings{zhu2024statqa,
+  author        = {Zhu, Yizhang and Du, Shiyin and Li, Boyan and Luo, Yuyu and Tang, Nan},
+  title         = {Are large language models good statisticians?},
+  booktitle     = {Advances in Neural Information Processing Systems 37 ({NeurIPS} 2024)},
+  pages         = {62697--62731},
+  year          = {2024},
+  doi           = {10.52202/079017-2005},
+  eprint        = {2406.07815},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {Datasets and Benchmarks track}
+}
+
+@inproceedings{liu2024qrdata,
+  author        = {Liu, Xiao and Wu, Zirui and Wu, Xueqing and Lu, Pan and Chang, Kai-Wei and Feng, Yansong},
+  title         = {Are {LLMs} capable of data-based statistical and causal reasoning? {Benchmarking} advanced quantitative reasoning with data},
+  booktitle     = {Findings of the Association for Computational Linguistics: {ACL} 2024},
+  publisher     = {Association for Computational Linguistics},
+  pages         = {9215--9235},
+  year          = {2024},
+  doi           = {10.18653/v1/2024.findings-acl.548},
+  eprint        = {2402.17644},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@misc{egg2025dabstep,
+  author        = {Egg, Alex and Iglesias Goyanes, Martin and Kingma, Friso and Mora, Andreu and von Werra, Leandro and Wolf, Thomas},
+  title         = {{DABstep}: Data Agent Benchmark for Multi-step Reasoning},
+  year          = {2025},
+  eprint        = {2506.23719},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  howpublished  = {\url{https://arxiv.org/abs/2506.23719}}
+}
+
+@inproceedings{jing2024dsbench,
+  author        = {Jing, Liqiang and Huang, Zhehui and Wang, Xiaoyang and Yao, Wenlin and Yu, Wenhao and Ma, Kaixin and Zhang, Hongming and Du, Xinya and Yu, Dong},
+  title         = {{DSBench}: How far are data science agents from becoming data science experts?},
+  booktitle     = {International Conference on Learning Representations ({ICLR} 2025)},
+  year          = {2025},
+  eprint        = {2409.07703},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {First posted to arXiv in 2024}
+}
+
+@misc{mitchener2025bixbench,
+  author        = {Mitchener, Ludovico and Laurent, Jon M. and Andonian, Alex and Tenmann, Benjamin and Narayanan, Siddharth and Wellawatte, Geemi P. and White, Andrew and Sani, Lorenzo and Rodriques, Samuel G.},
+  title         = {{BixBench}: a comprehensive benchmark for {LLM}-based agents in computational biology},
+  year          = {2025},
+  eprint        = {2503.00096},
+  archivePrefix = {arXiv},
+  primaryClass  = {q-bio.QM},
+  howpublished  = {\url{https://arxiv.org/abs/2503.00096}}
+}
+
+@inproceedings{zheng2023judge,
+  author        = {Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric P. and others},
+  title         = {Judging {LLM-as-a-judge} with {MT-Bench} and {Chatbot Arena}},
+  booktitle     = {Advances in Neural Information Processing Systems 36 ({NeurIPS} 2023)},
+  pages         = {46595--46623},
+  year          = {2023},
+  doi           = {10.52202/075280-2020},
+  eprint        = {2306.05685},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {Datasets and Benchmarks track}
+}
+
+@inproceedings{wei2022cot,
+  author        = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed and Le, Quoc and Zhou, Denny},
+  title         = {Chain-of-thought prompting elicits reasoning in large language models},
+  booktitle     = {Advances in Neural Information Processing Systems 35 ({NeurIPS} 2022)},
+  pages         = {24824--24837},
+  year          = {2022},
+  doi           = {10.52202/068431-1800},
+  eprint        = {2201.11903},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+
+
+@inproceedings{greenblatt2024control,
+  author        = {Greenblatt, Ryan and Shlegeris, Buck and Sachan, Kshitij and Roger, Fabien},
+  title         = {{AI} control: improving safety despite intentional subversion},
+  booktitle     = {Proceedings of the 41st International Conference on Machine Learning ({ICML} 2024)},
+  year          = {2024},
+  eprint        = {2312.06942},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {First posted to arXiv in 2023}
+}
+
+@misc{vanderweij2024sandbagging,
+  author        = {van der Weij, Teun and Hofst{\"a}tter, Felix and Jaffe, Ollie and Brown, Samuel F. and Ward, Francis Rhys},
+  title         = {{AI} sandbagging: language models can strategically underperform on evaluations},
+  year          = {2024},
+  eprint        = {2406.07358},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  howpublished  = {\url{https://arxiv.org/abs/2406.07358}}
+}
+
+@misc{hubinger2024sleeper,
+  author        = {Hubinger, Evan and Denison, Carson and Mu, Jesse and Lambert, Mike and Tong, Meg and MacDiarmid, Monte and Lanham, Tamera and Ziegler, Daniel M. and Maxwell, Tim and Cheng, Newton and others},
+  title         = {Sleeper agents: training deceptive {LLMs} that persist through safety training},
+  year          = {2024},
+  eprint        = {2401.05566},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  howpublished  = {\url{https://arxiv.org/abs/2401.05566}}
+}
+
+@inproceedings{perez2022redteam,
+  author        = {Perez, Ethan and Huang, Saffron and Song, Francis and Cai, Trevor and Ring, Roman and Aslanides, John and Glaese, Amelia and McAleese, Nat and Irving, Geoffrey},
+  title         = {Red teaming language models with language models},
+  booktitle     = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing ({EMNLP} 2022)},
+  publisher     = {Association for Computational Linguistics},
+  pages         = {3419--3448},
+  year          = {2022},
+  doi           = {10.18653/v1/2022.emnlp-main.225},
+  eprint        = {2202.03286},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@inproceedings{ribeiro2020checklist,
+  author    = {Ribeiro, Marco Tulio and Wu, Tongshuang and Guestrin, Carlos and Singh, Sameer},
+  title     = {Beyond accuracy: behavioral testing of {NLP} models with {CheckList}},
+  booktitle = {Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics ({ACL} 2020)},
+  publisher = {Association for Computational Linguistics},
+  pages     = {4902--4912},
+  year      = {2020},
+  doi       = {10.18653/v1/2020.acl-main.442}
+}
+
+@article{liang2024reviews,
+  author        = {Liang, Weixin and Zhang, Yuhui and Cao, Hancheng and Wang, Binglu and Ding, Daisy Yi and Yang, Xinyu and Vodrahalli, Kailas and He, Siyu and Smith, Daniel Scott and Yin, Yian and McFarland, Daniel A. and Zou, James},
+  title         = {Can large language models provide useful feedback on research papers? {A} large-scale empirical analysis},
+  journal       = {NEJM AI},
+  volume        = {1},
+  number        = {8},
+  year          = {2024},
+  doi           = {10.1056/AIoa2400196},
+  eprint        = {2310.01783},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+% ---------------------------------------------------------------------------
+% Interpretability and probes
+% ---------------------------------------------------------------------------
+
+@misc{alain2017probes,
+  author        = {Alain, Guillaume and Bengio, Yoshua},
+  title         = {Understanding intermediate layers using linear classifier probes},
+  year          = {2016},
+  eprint        = {1610.01644},
+  archivePrefix = {arXiv},
+  primaryClass  = {stat.ML},
+  howpublished  = {\url{https://arxiv.org/abs/1610.01644}},
+  note          = {ICLR 2017 workshop track; venue unverified}
+}
+
+@article{belinkov2022probing,
+  author  = {Belinkov, Yonatan},
+  title   = {Probing classifiers: promises, shortcomings, and advances},
+  journal = {Computational Linguistics},
+  volume  = {48},
+  number  = {1},
+  pages   = {207--219},
+  year    = {2022},
+  doi     = {10.1162/coli_a_00422}
+}
+
+@inproceedings{burns2023latent,
+  author        = {Burns, Collin and Ye, Haotian and Klein, Dan and Steinhardt, Jacob},
+  title         = {Discovering latent knowledge in language models without supervision},
+  booktitle     = {International Conference on Learning Representations ({ICLR} 2023)},
+  year          = {2023},
+  eprint        = {2212.03827},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {First posted to arXiv in 2022}
+}
+
+@inproceedings{marks2024geometry,
+  author        = {Marks, Samuel and Tegmark, Max},
+  title         = {The geometry of truth: emergent linear structure in large language model representations of true/false datasets},
+  booktitle     = {First Conference on Language Modeling ({COLM} 2024)},
+  year          = {2024},
+  eprint        = {2310.06824},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {First posted to arXiv in 2023}
+}
+
+@misc{zou2023repe,
+  author        = {Zou, Andy and Phan, Long and Chen, Sarah and Campbell, James and Guo, Phillip and Ren, Richard and Pan, Alexander and Yin, Xuwang and Mazeika, Mantas and Dombrowski, Ann-Kathrin and others},
+  title         = {Representation engineering: a top-down approach to {AI} transparency},
+  year          = {2023},
+  eprint        = {2310.01405},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  howpublished  = {\url{https://arxiv.org/abs/2310.01405}}
+}
+
+@misc{goldowskydill2025probes,
+  author        = {Goldowsky-Dill, Nicholas and Chughtai, Bilal and Heimersheim, Stefan and Hobbhahn, Marius},
+  title         = {Detecting strategic deception using linear probes},
+  year          = {2025},
+  eprint        = {2502.03407},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  howpublished  = {\url{https://arxiv.org/abs/2502.03407}}
+}
+
+@misc{macdiarmid2024sleeperprobes,
+  author       = {MacDiarmid, Monte and Maxwell, Timothy and Schiefer, Nicholas and Mu, Jesse and Kaplan, Jared and Duvenaud, David and Bowman, Sam and Tamkin, Alex and Perez, Ethan and Sharma, Mrinank and Denison, Carson and Hubinger, Evan},
+  title        = {Simple probes can catch sleeper agents},
+  howpublished = {Anthropic Alignment Science blog, \url{https://www.anthropic.com/research/probes-catch-sleeper-agents}},
+  month        = apr,
+  year         = {2024},
+  note         = {Published 23 April 2024. Accessed 28 October 2026}
+}
+
+@misc{hu2022lora,
+  author        = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  title         = {{LoRA}: Low-rank adaptation of large language models},
+  year          = {2021},
+  eprint        = {2106.09685},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2106.09685}},
+  note          = {ICLR 2022; venue unverified}
+}
+
+% ---------------------------------------------------------------------------
+% Software and models
+% ---------------------------------------------------------------------------
+
+@misc{inspect2024,
+  author       = {{UK AI Security Institute}},
+  title        = {Inspect {AI}: Framework for Large Language Model Evaluations},
+  howpublished = {Software, \url{https://github.com/UKGovernmentBEIS/inspect_ai}},
+  year         = {2024},
+  note         = {MIT licence; released 10 May 2024; documentation at \url{https://inspect.aisi.org.uk/}. Accessed 28 October 2026}
+}
+
+@inproceedings{kwon2023vllm,
+  author        = {Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph E. and Zhang, Hao and Stoica, Ion},
+  title         = {Efficient memory management for large language model serving with {PagedAttention}},
+  booktitle     = {Proceedings of the 29th Symposium on Operating Systems Principles ({SOSP} '23)},
+  publisher     = {ACM},
+  address       = {New York, NY, USA},
+  pages         = {611--626},
+  year          = {2023},
+  doi           = {10.1145/3600006.3613165},
+  eprint        = {2309.06180},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+@inproceedings{wolf2020transformers,
+  author    = {Wolf, Thomas and Debut, Lysandre and Sanh, Victor and Chaumond, Julien and Delangue, Clement and Moi, Anthony and Cistac, Pierric and Rault, Tim and Louf, Remi and Funtowicz, Morgan and others},
+  title     = {Transformers: state-of-the-art natural language processing},
+  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations},
+  publisher = {Association for Computational Linguistics},
+  pages     = {38--45},
+  year      = {2020},
+  doi       = {10.18653/v1/2020.emnlp-demos.6}
+}
+
+@misc{qwen3_2025,
+  author        = {Yang, An and Li, Anfeng and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Gao, Chang and Huang, Chengen and Lv, Chenxu and others},
+  title         = {Qwen3 technical report},
+  year          = {2025},
+  eprint        = {2505.09388},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2505.09388}}
+}
+
+@misc{qwen35_2026,
+  author       = {{Qwen Team}},
+  title        = {{Qwen3.5}: Towards native multimodal agents},
+  howpublished = {Model cards, Hugging Face, \url{https://huggingface.co/Qwen/Qwen3.5-27B}},
+  month        = feb,
+  year         = {2026},
+  note         = {Blog post \url{https://qwen.ai/blog?id=qwen3.5}. Dense checkpoints 0.8B to 27B and mixture-of-experts 35B-A3B and 122B-A10B, Apache-2.0; no technical report found. Accessed 28 October 2026}
+}
+
+@misc{gemma3_2025,
+  author        = {{Gemma Team}},
+  title         = {Gemma 3 technical report},
+  year          = {2025},
+  eprint        = {2503.19786},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2503.19786}}
+}
+
+@misc{gemma4_2026,
+  author        = {{Gemma Team}},
+  title         = {Gemma 4 technical report},
+  year          = {2026},
+  eprint        = {2607.02770},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2607.02770}},
+  note          = {Model cards \url{https://huggingface.co/google/gemma-4-31B-it} and \url{https://huggingface.co/google/gemma-4-26B-A4B-it} (Apache-2.0), accessed 28 October 2026}
+}
+
+@misc{llama3_2024,
+  author        = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and Vaughan, Alex and others},
+  title         = {The {Llama} 3 herd of models},
+  year          = {2024},
+  eprint        = {2407.21783},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  howpublished  = {\url{https://arxiv.org/abs/2407.21783}}
+}
+
+@misc{gptoss2025,
+  author        = {{OpenAI}},
+  title         = {gpt-oss-120b \& gpt-oss-20b model card},
+  year          = {2025},
+  eprint        = {2508.10925},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2508.10925}}
+}
+
+@misc{deepseekv3_2024,
+  author        = {{DeepSeek-AI}},
+  title         = {{DeepSeek-V3} technical report},
+  year          = {2024},
+  eprint        = {2412.19437},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2412.19437}}
+}
+
+@misc{deepseekv4_2026,
+  author        = {{DeepSeek-AI}},
+  title         = {{DeepSeek-V4}: Towards highly efficient million-token context intelligence},
+  year          = {2026},
+  eprint        = {2606.19348},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2606.19348}},
+  note          = {Covers DeepSeek-V4-Pro and DeepSeek-V4-Flash. The flash model used here is DeepSeek-V4.1-Flash, model card \url{https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash} (MIT, with its own report ``DeepSeek-V4.1-Flash: Pushing the limits of KV cache compression'' in the repository), accessed 28 October 2026}
+}
+
+@misc{mimo2025,
+  author        = {{Xiaomi LLM-Core Team}},
+  title         = {{MiMo}: Unlocking the reasoning potential of language model -- from pretraining to posttraining},
+  year          = {2025},
+  eprint        = {2505.07608},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2505.07608}}
+}
+
+@misc{mimo26_2026,
+  author       = {{Xiaomi MiMo Team}},
+  title        = {{MiMo-V2.6-Flash-RL}},
+  howpublished = {Model card, Hugging Face, \url{https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL}},
+  month        = sep,
+  year         = {2026},
+  note         = {MIT licence; the Pro checkpoint is \url{https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL}; the repository carries a MiMo-V2.6 technical report (PDF). Accessed 28 October 2026}
+}
+
+@misc{glm45_2025,
+  author        = {{GLM-4.5 Team}},
+  title         = {{GLM-4.5}: Agentic, reasoning, and coding ({ARC}) foundation models},
+  year          = {2025},
+  eprint        = {2508.06471},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2508.06471}}
+}
+
+@misc{glm53_2026,
+  author       = {{Z.ai}},
+  title        = {{GLM-5.3-Flash}},
+  howpublished = {Model card, Hugging Face, \url{https://huggingface.co/zai-org/GLM-5.3-Flash}},
+  month        = aug,
+  year         = {2026},
+  note         = {MIT licence; the full-size checkpoint is \url{https://huggingface.co/zai-org/GLM-5.3}; both cards cite the GLM-5 report, arXiv:2602.15763. Accessed 28 October 2026}
+}
+
+@misc{mistral_small32_2025,
+  author       = {{Mistral AI}},
+  title        = {{Mistral-Small-3.2-24B-Instruct-2506}},
+  howpublished = {Model card, Hugging Face, \url{https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506}},
+  month        = jun,
+  year         = {2025},
+  note         = {Apache-2.0. Accessed 28 October 2026}
+}
+
+@misc{nemotron3_2026,
+  author        = {{NVIDIA}},
+  title         = {Nemotron 3 Super: Open, efficient mixture-of-experts hybrid {Mamba-Transformer} model for agentic reasoning},
+  year          = {2026},
+  eprint        = {2604.12374},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  howpublished  = {\url{https://arxiv.org/abs/2604.12374}},
+  note          = {Checkpoints used: \url{https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4} and \url{https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4} (released 11 August 2026; no separate report found), accessed 28 October 2026. The family report is arXiv:2512.20856}
+}
+
+@misc{diffusiongemma_2026,
+  author       = {{Google DeepMind}},
+  title        = {{DiffusionGemma} 26B-A4B-it},
+  howpublished = {Model card, Hugging Face, \url{https://huggingface.co/google/diffusiongemma-26B-A4B-it}},
+  month        = jun,
+  year         = {2026},
+  note         = {Apache-2.0. The checkpoint served here is NVIDIA's NVFP4 quantisation, \url{https://huggingface.co/nvidia/diffusiongemma-26B-A4B-it-NVFP4}. Accessed 28 October 2026}
+}
+
+@misc{openjev2026,
+  author       = {{razorback16}},
+  title        = {{OpenJev}: open, {Jev}-compatible System One decision server on {DiffusionGemma}},
+  howpublished = {Software, \url{https://github.com/razorback16/openjev}},
+  year         = {2026},
+  note         = {Accessed 28 October 2026}
+}
+
+@article{apptainer2021,
+  author  = {Kurtzer, Gregory M. and Sochat, Vanessa and Bauer, Michael W.},
+  title   = {Singularity: scientific containers for mobility of compute},
+  journal = {PLoS ONE},
+  volume  = {12},
+  number  = {5},
+  pages   = {e0177459},
+  year    = {2017},
+  doi     = {10.1371/journal.pone.0177459}
+}
+
+@misc{peft2022,
+  author       = {Mangrulkar, Sourab and Gugger, Sylvain and Debut, Lysandre and Belkada, Younes and Paul, Sayak and Bossan, Benjamin and Tietz, Marian},
+  title        = {{PEFT}: State-of-the-art parameter-efficient fine-tuning methods},
+  howpublished = {Software, \url{https://github.com/huggingface/peft}},
+  year         = {2022},
+  note         = {Accessed 28 October 2026}
+}
+
+% ---- Entries shared with the companion paper (safe-tre-agent/paper/references.bib); keys and text identical in both.
+
+@article{opensafely2020,
+  title   = {Factors associated with {COVID}-19-related death using {OpenSAFELY}},
+  author  = {Williamson, Elizabeth J. and Walker, Alex J. and Bhaskaran, Krishnan and Bacon, Seb and Bates, Chris and Morton, Caroline E. and Curtis, Helen J. and Mehrkar, Amir and Evans, David and Inglesby, Peter and Cockburn, Jonathan and McDonald, Helen I. and MacKenna, Brian and Tomlinson, Laurie and Douglas, Ian J. and Rentsch, Christopher T. and Mathur, Rohini and Wong, Angel Y. S. and Grieve, Richard and Harrison, David and Forbes, Harriet and Schultze, Anna and Croker, Richard and Parry, John and Hester, Frank and Harper, Sam and Perera, Rafael and Evans, Stephen J. W. and Smeeth, Liam and Goldacre, Ben},
+  journal = {Nature},
+  volume  = {584},
+  number  = {7821},
+  pages   = {430--436},
+  year    = {2020},
+  doi     = {10.1038/s41586-020-2521-4}
+}
+
+@book{hundepool2012,
+  title     = {Statistical Disclosure Control},
+  author    = {Hundepool, Anco and Domingo-Ferrer, Josep and Franconi, Luisa and
+               Giessing, Sarah and Schulte Nordholt, Eric and Spicer, Keith and
+               de Wolf, Peter-Paul},
+  publisher = {Wiley},
+  address   = {Chichester},
+  year      = {2012},
+  doi       = {10.1002/9781118348239}
+}
+
+@inproceedings{dinur2003,
+  title     = {Revealing information while preserving privacy},
+  author    = {Dinur, Irit and Nissim, Kobbi},
+  booktitle = {Proceedings of the 22nd ACM SIGMOD-SIGACT-SIGART Symposium on
+               Principles of Database Systems (PODS)},
+  pages     = {202--210},
+  year      = {2003},
+  doi       = {10.1145/773153.773173}
+}
+
+@inproceedings{kenthapadi2005,
+  title     = {Simulatable auditing},
+  author    = {Kenthapadi, Krishnaram and Mishra, Nina and Nissim, Kobbi},
+  booktitle = {Proceedings of the 24th ACM SIGMOD-SIGACT-SIGART Symposium on
+               Principles of Database Systems (PODS)},
+  pages     = {118--127},
+  year      = {2005},
+  doi       = {10.1145/1065167.1065183}
+}
+
+@inproceedings{dwork2006,
+  title     = {Calibrating noise to sensitivity in private data analysis},
+  author    = {Dwork, Cynthia and McSherry, Frank and Nissim, Kobbi and Smith, Adam},
+  booktitle = {Theory of Cryptography Conference (TCC)},
+  pages     = {265--284},
+  year      = {2006},
+  doi       = {10.1007/11681878_14}
+}
+
+@inproceedings{greshake2023,
+  title     = {Not what you've signed up for: compromising real-world
+               {LLM}-integrated applications with indirect prompt injection},
+  author    = {Greshake, Kai and Abdelnabi, Sahar and Mishra, Shailesh and
+               Endres, Christoph and Holz, Thorsten and Fritz, Mario},
+  booktitle = {Proceedings of the 16th ACM Workshop on Artificial Intelligence
+               and Security (AISec)},
+  pages     = {79--90},
+  year      = {2023},
+  doi       = {10.1145/3605764.3623985}
+}
+
+@article{acro,
+  title   = {A multi-language toolkit for the semi-automated checking of research outputs},
+  author  = {Preen, Richard J. and Albashir, Maha and Davy, Simon and Smith, Jim},
+  journal = {IEEE Transactions on Privacy},
+  volume  = {2},
+  pages   = {55--66},
+  year    = {2025},
+  doi     = {10.1109/TP.2025.3566052},
+  note    = {The ACRO and SACRO tools: \url{https://github.com/AI-SDC/ACRO}}
+}
+
+@techreport{fivesafes,
+  title       = {Five {Safes}: designing data access for research},
+  author      = {Desai, Tanvi and Ritchie, Felix and Welpton, Richard},
+  institution = {University of the West of England, Bristol},
+  type        = {Economics Working Paper Series},
+  number      = {1601},
+  year        = {2016}
+}
+
+@article{denning1979,
+  title   = {The tracker: a threat to statistical database security},
+  author  = {Denning, Dorothy E. and Denning, Peter J. and Schwartz, Mayer D.},
+  journal = {ACM Transactions on Database Systems},
+  volume  = {4},
+  number  = {1},
+  pages   = {76--96},
+  year    = {1979},
+  doi     = {10.1145/320064.320069}
+}
+
+@article{benjamini1995,
+  title   = {Controlling the false discovery rate: a practical and powerful approach to multiple testing},
+  author  = {Benjamini, Yoav and Hochberg, Yosef},
+  journal = {Journal of the Royal Statistical Society: Series B},
+  volume  = {57},
+  number  = {1},
+  pages   = {289--300},
+  year    = {1995},
+  doi     = {10.1111/j.2517-6161.1995.tb02031.x}
+}
+
+@misc{wade2026safetre,
+  title  = {A safe-outputs gateway for remote analysis of sensitive data},
+  author = {Wade, Alex R.},
+  year   = {2026},
+  note   = {Preprint, in preparation. Code, specification and proofs: \url{https://github.com/wadelab/safe-tre-agent}}
+}
+
+@misc{wade2026opacity,
+  title  = {Evaluating the capabilities of local {LLMs} for safe statistical analysis},
+  author = {Wade, Alex R.},
+  year   = {2026},
+  note   = {Preprint, in preparation. Code and logs: \url{https://github.com/wadelab/opacity}}
+}
+
+@misc{wade2026vetting,
+  title  = {Testing local {LLMs} for bias and deception in safe statistical analysis},
+  author = {Wade, Alex R.},
+  year   = {2026},
+  note   = {Preprint, in preparation. Code and logs: \url{https://github.com/wadelab/opacity}}
+}

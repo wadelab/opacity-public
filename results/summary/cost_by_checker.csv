@@ -1,0 +1,7 @@
+checker,n,median_seconds,p90_seconds,median_output_tokens,p90_output_tokens
+MiMo pro,400,14.6,48.0,635,2514
+DeepSeek flash,400,4.4,20.0,675,3950
+Qwen3.5 27B,400,4.2,5.5,90,119
+Mistral 24B,400,0.9,1.5,38,88
+Llama 70B,400,3.0,4.7,44,98
+typed (openjev),1200,,,,

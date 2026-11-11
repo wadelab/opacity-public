@@ -1,0 +1,579 @@
+model,contrast,metric,n,diff,lo,hi
+Qwen3.5-27B,Qwen3.5-27B|open|off|v2 + verifier - alone,wrong_release_seeded,108,-0.042,-0.108,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|off|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|off|v2 + verifier - alone,wrong_release_seeded,108,-0.095,-0.172,-0.030
+Qwen3.5-9B,Qwen3.5-9B|open|off|v2 + verifier - alone,coverage_all,108,-0.019,-0.047,0.000
+Qwen3.5-27B,Qwen3.5-27B|closed|off|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,0.031,-0.097,0.167
+Qwen3.5-27B,Qwen3.5-27B|closed|off|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.212,-0.023
+Qwen3.5-27B,Qwen3.5-27B|closed|off|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,-0.472,-0.630,-0.315
+Qwen3.5-27B,Qwen3.5-27B|closed|off|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-9B,Qwen3.5-9B|closed|off|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,0.100,-0.036,0.244
+Qwen3.5-9B,Qwen3.5-9B|closed|off|v2 + verifier - alone,wrong_release_seeded,108,-0.125,-0.226,-0.040
+Qwen3.5-9B,Qwen3.5-9B|closed|off|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,-0.339,-0.474,-0.194
+Qwen3.5-9B,Qwen3.5-9B|closed|off|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+Qwen3.5-27B,Qwen3.5-27B|selfcheck|off|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,-0.062,-0.178,0.040
+Qwen3.5-27B,Qwen3.5-27B|selfcheck|off|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.069,0.000
+Qwen3.5-27B,Qwen3.5-27B|selfcheck|off|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,-0.046,-0.130,0.037
+Qwen3.5-27B,Qwen3.5-27B|selfcheck|off|v2 + verifier - alone,coverage_all,108,-0.028,-0.084,0.000
+Qwen3.5-9B,Qwen3.5-9B|selfcheck|off|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.160,-0.306,-0.022
+Qwen3.5-9B,Qwen3.5-9B|selfcheck|off|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.141,-0.010
+Qwen3.5-9B,Qwen3.5-9B|selfcheck|off|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,-0.117,-0.213,-0.029
+Qwen3.5-9B,Qwen3.5-9B|selfcheck|off|v2 + verifier - alone,coverage_all,108,-0.028,-0.074,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|off|checklist|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,0.062,-0.088,0.210
+Qwen3.5-27B,Qwen3.5-27B|open|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.198,-0.030
+Qwen3.5-27B,Qwen3.5-27B|open|off|checklist|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,-0.056,-0.185,0.083
+Qwen3.5-27B,Qwen3.5-27B|open|off|checklist|v2 + verifier - alone,coverage_all,108,-0.046,-0.102,-0.009
+Qwen3.5-4B,Qwen3.5-4B|open|off|v2 + verifier - alone,wrong_release_seeded,108,-0.073,-0.171,0.000
+Qwen3.5-4B,Qwen3.5-4B|open|off|v2 + verifier - alone,coverage_all,108,-0.028,-0.074,0.000
+Qwen3.5-4B,Qwen3.5-4B|closed|off|v2 - Qwen3.5-4B|open|off|v2,wrong_release_seeded,108,0.031,-0.115,0.185
+Qwen3.5-4B,Qwen3.5-4B|closed|off|v2 + verifier - alone,wrong_release_seeded,108,-0.156,-0.269,-0.054
+Qwen3.5-4B,Qwen3.5-4B|closed|off|v2 - Qwen3.5-4B|open|off|v2,coverage_all,108,-0.370,-0.519,-0.213
+Qwen3.5-4B,Qwen3.5-4B|closed|off|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-27B,Qwen3.5-27B|closed|off|checklist|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,-0.040,-0.200,0.104
+Qwen3.5-27B,Qwen3.5-27B|closed|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.033,-0.090,0.000
+Qwen3.5-27B,Qwen3.5-27B|closed|off|checklist|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,-0.413,-0.562,-0.263
+Qwen3.5-27B,Qwen3.5-27B|closed|off|checklist|v2 + verifier - alone,coverage_all,108,-0.004,-0.014,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.198,-0.030
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|v2 + verifier - alone,coverage_all,108,-0.046,-0.111,0.000
+Qwen3.5-4B,Qwen3.5-4B|selfcheck|off|v2 - Qwen3.5-4B|open|off|v2,wrong_release_seeded,108,-0.219,-0.354,-0.083
+Qwen3.5-4B,Qwen3.5-4B|selfcheck|off|v2 + verifier - alone,wrong_release_seeded,108,-0.042,-0.100,0.000
+Qwen3.5-4B,Qwen3.5-4B|selfcheck|off|v2 - Qwen3.5-4B|open|off|v2,coverage_all,108,-0.222,-0.352,-0.093
+Qwen3.5-4B,Qwen3.5-4B|selfcheck|off|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|off|checklist|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.087,-0.214,0.052
+Qwen3.5-9B,Qwen3.5-9B|open|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.147,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|off|checklist|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,0.087,-0.035,0.203
+Qwen3.5-9B,Qwen3.5-9B|open|off|checklist|v2 + verifier - alone,coverage_all,108,-0.028,-0.074,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|off|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,0.000,-0.141,0.133
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|off|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.214,-0.010
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|off|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,-0.398,-0.556,-0.231
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|off|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,0.010,-0.075,0.080
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.137,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,-0.019,-0.083,0.065
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|v2 + verifier - alone,coverage_all,108,-0.037,-0.111,0.000
+Qwen3.5-4B,Qwen3.5-4B|open|off|checklist|v2 - Qwen3.5-4B|open|off|v2,wrong_release_seeded,108,0.046,-0.074,0.167
+Qwen3.5-4B,Qwen3.5-4B|open|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.129,-0.237,-0.037
+Qwen3.5-4B,Qwen3.5-4B|open|off|checklist|v2 - Qwen3.5-4B|open|off|v2,coverage_all,108,-0.041,-0.148,0.065
+Qwen3.5-4B,Qwen3.5-4B|open|off|checklist|v2 + verifier - alone,coverage_all,108,-0.024,-0.061,0.000
+Qwen3.5-9B,Qwen3.5-9B|closed|off|checklist|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.129,-0.261,0.000
+Qwen3.5-9B,Qwen3.5-9B|closed|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.131,0.000
+Qwen3.5-9B,Qwen3.5-9B|closed|off|checklist|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,-0.311,-0.475,-0.146
+Qwen3.5-9B,Qwen3.5-9B|closed|off|checklist|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|selfcheck|off|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.208,-0.344,-0.089
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|selfcheck|off|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|selfcheck|off|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,-0.463,-0.602,-0.324
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|selfcheck|off|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-4B,Qwen3.5-4B|closed|off|checklist|v2 - Qwen3.5-4B|open|off|v2,wrong_release_seeded,108,0.015,-0.138,0.172
+Qwen3.5-4B,Qwen3.5-4B|closed|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.211,-0.344,-0.099
+Qwen3.5-4B,Qwen3.5-4B|closed|off|checklist|v2 - Qwen3.5-4B|open|off|v2,coverage_all,108,-0.200,-0.321,-0.074
+Qwen3.5-4B,Qwen3.5-4B|closed|off|checklist|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.066,-0.219,0.088
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.083,-0.186,-0.010
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,0.105,-0.046,0.245
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|v2 + verifier - alone,coverage_all,108,-0.037,-0.111,0.000
+Qwen3.5-4B,Qwen3.5-4B|open|think1024|v2 - Qwen3.5-4B|open|off|v2,wrong_release_seeded,108,-0.083,-0.222,0.056
+Qwen3.5-4B,Qwen3.5-4B|open|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.111,-0.010
+Qwen3.5-4B,Qwen3.5-4B|open|think1024|v2 - Qwen3.5-4B|open|off|v2,coverage_all,108,0.090,-0.033,0.211
+Qwen3.5-4B,Qwen3.5-4B|open|think1024|v2 + verifier - alone,coverage_all,108,-0.028,-0.065,0.000
+gpt-oss-20b,gpt-oss-20b|open|effort-low|v2 + verifier - alone,wrong_release_seeded,108,-0.074,-0.153,-0.020
+gpt-oss-20b,gpt-oss-20b|open|effort-low|v2 + verifier - alone,coverage_all,108,-0.038,-0.086,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|checklist|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.134,-0.254,-0.021
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.042,-0.101,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|checklist|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,0.119,0.016,0.231
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|checklist|v2 + verifier - alone,coverage_all,108,-0.028,-0.065,0.000
+Qwen3.5-27B,Qwen3.5-27B|closed|think1024|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,0.002,-0.138,0.135
+Qwen3.5-27B,Qwen3.5-27B|closed|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.074,-0.158,-0.011
+Qwen3.5-27B,Qwen3.5-27B|closed|think1024|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,-0.375,-0.537,-0.217
+Qwen3.5-27B,Qwen3.5-27B|closed|think1024|v2 + verifier - alone,coverage_all,108,-0.009,-0.029,0.000
+gpt-oss-20b,gpt-oss-20b|closed|effort-low|v2 - gpt-oss-20b|open|effort-low|v2,wrong_release_seeded,108,-0.050,-0.183,0.070
+gpt-oss-20b,gpt-oss-20b|closed|effort-low|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.202,-0.032
+gpt-oss-20b,gpt-oss-20b|closed|effort-low|v2 - gpt-oss-20b|open|effort-low|v2,coverage_all,108,-0.002,-0.112,0.121
+gpt-oss-20b,gpt-oss-20b|closed|effort-low|v2 + verifier - alone,coverage_all,108,-0.037,-0.111,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|off|checklist|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.135,-0.250,-0.044
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.042,-0.098,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|off|checklist|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,-0.389,-0.537,-0.222
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|off|checklist|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+gpt-oss-20b,gpt-oss-20b|selfcheck|effort-low|v2 - gpt-oss-20b|open|effort-low|v2,wrong_release_seeded,108,-0.102,-0.197,-0.011
+gpt-oss-20b,gpt-oss-20b|selfcheck|effort-low|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.131,0.000
+gpt-oss-20b,gpt-oss-20b|selfcheck|effort-low|v2 - gpt-oss-20b|open|effort-low|v2,coverage_all,108,-0.067,-0.151,0.013
+gpt-oss-20b,gpt-oss-20b|selfcheck|effort-low|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+Qwen3.5-4B,Qwen3.5-4B|closed|think1024|v2 - Qwen3.5-4B|open|off|v2,wrong_release_seeded,108,-0.156,-0.300,-0.010
+Qwen3.5-4B,Qwen3.5-4B|closed|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.189,-0.032
+Qwen3.5-4B,Qwen3.5-4B|closed|think1024|v2 - Qwen3.5-4B|open|off|v2,coverage_all,108,-0.231,-0.389,-0.056
+Qwen3.5-4B,Qwen3.5-4B|closed|think1024|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.042,-0.118,0.012
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.094,-0.188,-0.021
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,0.037,-0.028,0.102
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|v2 + verifier - alone,coverage_all,108,-0.037,-0.093,0.000
+Qwen3.5-9B,Qwen3.5-9B|closed|think1024|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,0.048,-0.111,0.207
+Qwen3.5-9B,Qwen3.5-9B|closed|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.135,-0.242,-0.052
+Qwen3.5-9B,Qwen3.5-9B|closed|think1024|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,-0.136,-0.302,0.037
+Qwen3.5-9B,Qwen3.5-9B|closed|think1024|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+gpt-oss-20b,gpt-oss-20b|open|effort-medium|v2 - gpt-oss-20b|open|effort-low|v2,wrong_release_seeded,108,-0.082,-0.226,0.071
+gpt-oss-20b,gpt-oss-20b|open|effort-medium|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.192,-0.039
+gpt-oss-20b,gpt-oss-20b|open|effort-medium|v2 - gpt-oss-20b|open|effort-low|v2,coverage_all,108,0.072,-0.065,0.204
+gpt-oss-20b,gpt-oss-20b|open|effort-medium|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|think4096|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,0.010,-0.083,0.098
+Qwen3.5-27B,Qwen3.5-27B|open|think4096|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.151,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|think4096|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,-0.019,-0.093,0.065
+Qwen3.5-27B,Qwen3.5-27B|open|think4096|v2 + verifier - alone,coverage_all,108,-0.037,-0.102,0.000
+Qwen3.5-4B,Qwen3.5-4B|open|think4096|v2 - Qwen3.5-4B|open|off|v2,wrong_release_seeded,108,-0.135,-0.300,0.031
+Qwen3.5-4B,Qwen3.5-4B|open|think4096|v2 + verifier - alone,wrong_release_seeded,108,-0.031,-0.083,0.000
+Qwen3.5-4B,Qwen3.5-4B|open|think4096|v2 - Qwen3.5-4B|open|off|v2,coverage_all,108,0.120,-0.037,0.278
+Qwen3.5-4B,Qwen3.5-4B|open|think4096|v2 + verifier - alone,coverage_all,108,-0.028,-0.065,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|think1024|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.031,-0.141,0.069
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.135,-0.244,-0.042
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|think1024|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,-0.287,-0.435,-0.139
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|think1024|v2 + verifier - alone,coverage_all,108,-0.019,-0.056,0.000
+gpt-oss-20b,gpt-oss-20b|closed|effort-medium|v2 - gpt-oss-20b|open|effort-low|v2,wrong_release_seeded,108,-0.134,-0.274,0.001
+gpt-oss-20b,gpt-oss-20b|closed|effort-medium|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.135,-0.010
+gpt-oss-20b,gpt-oss-20b|closed|effort-medium|v2 - gpt-oss-20b|open|effort-low|v2,coverage_all,108,0.078,-0.030,0.195
+gpt-oss-20b,gpt-oss-20b|closed|effort-medium|v2 + verifier - alone,coverage_all,108,-0.037,-0.093,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|think4096|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.108,-0.251,0.024
+Qwen3.5-9B,Qwen3.5-9B|open|think4096|v2 + verifier - alone,wrong_release_seeded,108,-0.135,-0.233,-0.057
+Qwen3.5-9B,Qwen3.5-9B|open|think4096|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,0.133,0.011,0.264
+Qwen3.5-9B,Qwen3.5-9B|open|think4096|v2 + verifier - alone,coverage_all,108,-0.046,-0.102,-0.009
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think4096|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.062,-0.152,0.012
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think4096|v2 + verifier - alone,wrong_release_seeded,108,-0.115,-0.226,-0.029
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think4096|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,0.065,-0.009,0.148
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think4096|v2 + verifier - alone,coverage_all,108,-0.028,-0.074,0.000
+Qwen3.5-4B,Qwen3.5-4B|closed|think4096|v2 - Qwen3.5-4B|open|off|v2,wrong_release_seeded,108,-0.156,-0.293,-0.022
+Qwen3.5-4B,Qwen3.5-4B|closed|think4096|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.208,-0.023
+Qwen3.5-4B,Qwen3.5-4B|closed|think4096|v2 - Qwen3.5-4B|open|off|v2,coverage_all,108,-0.204,-0.380,-0.028
+Qwen3.5-4B,Qwen3.5-4B|closed|think4096|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+Qwen3.5-27B,Qwen3.5-27B|closed|think4096|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,-0.031,-0.167,0.104
+Qwen3.5-27B,Qwen3.5-27B|closed|think4096|v2 + verifier - alone,wrong_release_seeded,108,-0.094,-0.183,-0.022
+Qwen3.5-27B,Qwen3.5-27B|closed|think4096|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,-0.296,-0.463,-0.129
+Qwen3.5-27B,Qwen3.5-27B|closed|think4096|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-9B,Qwen3.5-9B|closed|think4096|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.045,-0.181,0.097
+Qwen3.5-9B,Qwen3.5-9B|closed|think4096|v2 + verifier - alone,wrong_release_seeded,108,-0.146,-0.263,-0.051
+Qwen3.5-9B,Qwen3.5-9B|closed|think4096|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,-0.080,-0.248,0.098
+Qwen3.5-9B,Qwen3.5-9B|closed|think4096|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|think4096|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.104,-0.215,-0.021
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|think4096|v2 + verifier - alone,wrong_release_seeded,108,-0.094,-0.190,-0.010
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|think4096|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,-0.306,-0.454,-0.148
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|closed|think4096|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Mistral-Small-3.2-24B-Instruct-2506-NVFP4,Mistral-Small-3.2-24B-Instruct-2506-NVFP4|open|default|v2 + verifier - alone,wrong_release_seeded,108,-0.146,-0.255,-0.048
+Mistral-Small-3.2-24B-Instruct-2506-NVFP4,Mistral-Small-3.2-24B-Instruct-2506-NVFP4|open|default|v2 + verifier - alone,coverage_all,108,-0.028,-0.074,0.000
+Mistral-Small-3.2-24B-Instruct-2506-NVFP4,Mistral-Small-3.2-24B-Instruct-2506-NVFP4|closed|default|v2 + verifier - alone,wrong_release_seeded,108,-0.146,-0.258,-0.042
+Mistral-Small-3.2-24B-Instruct-2506-NVFP4,Mistral-Small-3.2-24B-Instruct-2506-NVFP4|closed|default|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+Mistral-Small-3.2-24B-Instruct-2506-NVFP4,Mistral-Small-3.2-24B-Instruct-2506-NVFP4|selfcheck|default|v2 + verifier - alone,wrong_release_seeded,108,-0.135,-0.245,-0.040
+Mistral-Small-3.2-24B-Instruct-2506-NVFP4,Mistral-Small-3.2-24B-Instruct-2506-NVFP4|selfcheck|default|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Mistral-Small-3.2-24B-Instruct-2506-NVFP4,Mistral-Small-3.2-24B-Instruct-2506-NVFP4|closed|default|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.094,-0.198,-0.021
+Mistral-Small-3.2-24B-Instruct-2506-NVFP4,Mistral-Small-3.2-24B-Instruct-2506-NVFP4|closed|default|checklist|v2 + verifier - alone,coverage_all,108,-0.037,-0.102,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.115,-0.226,-0.030
+Qwen3.5-9B,Qwen3.5-9B|open|off|heldout|v2 + verifier - alone,coverage_all,108,-0.056,-0.130,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|off|checklist|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,wrong_release_seeded,108,-0.281,-0.430,-0.141
+Qwen3.5-9B,Qwen3.5-9B|open|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.127,-0.010
+Qwen3.5-9B,Qwen3.5-9B|open|off|checklist|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,coverage_all,108,0.231,0.102,0.380
+Qwen3.5-9B,Qwen3.5-9B|open|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.139,-0.241,-0.056
+Qwen3.5-9B,Qwen3.5-9B|selfcheck|off|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,wrong_release_seeded,108,-0.198,-0.352,-0.054
+Qwen3.5-9B,Qwen3.5-9B|selfcheck|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.071,0.000
+Qwen3.5-9B,Qwen3.5-9B|selfcheck|off|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,coverage_all,108,-0.120,-0.231,-0.028
+Qwen3.5-9B,Qwen3.5-9B|selfcheck|off|heldout|v2 + verifier - alone,coverage_all,108,-0.037,-0.083,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,wrong_release_seeded,108,-0.052,-0.161,0.048
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.115,-0.226,-0.032
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,coverage_all,108,0.056,-0.037,0.157
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|heldout|v2 + verifier - alone,coverage_all,108,-0.065,-0.139,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.073,-0.157,-0.010
+Qwen3.5-27B,Qwen3.5-27B|open|off|heldout|v2 + verifier - alone,coverage_all,108,-0.093,-0.194,-0.019
+Qwen3.5-27B,Qwen3.5-27B|open|off|checklist|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,wrong_release_seeded,108,-0.271,-0.427,-0.129
+Qwen3.5-27B,Qwen3.5-27B|open|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.031,-0.083,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|off|checklist|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,coverage_all,108,0.250,0.120,0.389
+Qwen3.5-27B,Qwen3.5-27B|open|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.139,-0.250,-0.046
+Qwen3.5-27B,Qwen3.5-27B|selfcheck|off|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,wrong_release_seeded,108,-0.104,-0.215,0.010
+Qwen3.5-27B,Qwen3.5-27B|selfcheck|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.031,-0.069,0.000
+Qwen3.5-27B,Qwen3.5-27B|selfcheck|off|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,coverage_all,108,-0.046,-0.167,0.056
+Qwen3.5-27B,Qwen3.5-27B|selfcheck|off|heldout|v2 + verifier - alone,coverage_all,108,-0.120,-0.222,-0.037
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,wrong_release_seeded,108,-0.153,-0.273,-0.039
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.084,-0.172,-0.021
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,coverage_all,108,0.127,0.019,0.236
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|heldout|v2 + verifier - alone,coverage_all,108,-0.103,-0.198,-0.028
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|off|v2 + verifier - alone,wrong_release_seeded,108,-0.083,-0.162,-0.022
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|off|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|closed|off|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.021,-0.156,0.108
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|closed|off|v2 + verifier - alone,wrong_release_seeded,108,-0.083,-0.173,-0.011
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|closed|off|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,coverage_all,108,-0.324,-0.491,-0.157
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|closed|off|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|selfcheck|off|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.062,-0.184,0.033
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|selfcheck|off|v2 + verifier - alone,wrong_release_seeded,108,-0.073,-0.141,-0.019
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|selfcheck|off|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,coverage_all,108,-0.102,-0.204,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|selfcheck|off|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.104,-0.212,-0.019
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.131,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,coverage_all,108,0.093,0.019,0.194
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|v2 + verifier - alone,coverage_all,108,-0.046,-0.102,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|closed|think1024|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.050,-0.165,0.071
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|closed|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.095,-0.198,-0.020
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|closed|think1024|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,coverage_all,108,-0.208,-0.357,-0.050
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|closed|think1024|v2 + verifier - alone,coverage_all,108,-0.019,-0.047,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.125,-0.229,-0.043
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|heldout|v2 + verifier - alone,coverage_all,108,-0.056,-0.130,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|checklist|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,wrong_release_seeded,108,-0.177,-0.323,-0.046
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.133,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|checklist|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,coverage_all,108,0.157,0.028,0.287
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.130,-0.241,-0.037
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|selfcheck|off|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,wrong_release_seeded,108,-0.146,-0.293,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|selfcheck|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.143,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|selfcheck|off|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,coverage_all,108,-0.241,-0.371,-0.111
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|selfcheck|off|heldout|v2 + verifier - alone,coverage_all,108,-0.019,-0.056,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,wrong_release_seeded,108,-0.010,-0.129,0.118
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.125,-0.245,-0.032
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,coverage_all,108,0.037,-0.074,0.148
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|heldout|v2 + verifier - alone,coverage_all,108,-0.056,-0.130,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|off|rules|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.134,-0.258,-0.016
+Qwen3.5-9B,Qwen3.5-9B|open|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.055,-0.143,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|off|rules|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,0.166,0.051,0.287
+Qwen3.5-9B,Qwen3.5-9B|open|off|rules|v2 + verifier - alone,coverage_all,108,-0.054,-0.107,-0.015
+Qwen3.5-27B,Qwen3.5-27B|open|off|rules|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,-0.083,-0.196,0.011
+Qwen3.5-27B,Qwen3.5-27B|open|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.010,-0.033,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|off|rules|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,0.046,-0.056,0.148
+Qwen3.5-27B,Qwen3.5-27B|open|off|rules|v2 + verifier - alone,coverage_all,108,-0.046,-0.102,-0.009
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|rules|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.094,-0.206,0.010
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.031,-0.067,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|rules|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,0.074,-0.019,0.185
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|rules|v2 + verifier - alone,coverage_all,108,-0.065,-0.157,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|checklist|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.052,-0.137,0.030
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.129,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|checklist|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,0.028,-0.056,0.111
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|checklist|v2 + verifier - alone,coverage_all,108,-0.065,-0.148,-0.009
+Qwen3.5-9B,Qwen3.5-9B|revise|off|checklist|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.084,-0.209,0.046
+Qwen3.5-9B,Qwen3.5-9B|revise|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.084,-0.188,-0.011
+Qwen3.5-9B,Qwen3.5-9B|revise|off|checklist|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,0.093,-0.028,0.212
+Qwen3.5-9B,Qwen3.5-9B|revise|off|checklist|v2 + verifier - alone,coverage_all,108,-0.019,-0.047,0.000
+Qwen3.5-27B,Qwen3.5-27B|revise|off|checklist|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,0.052,-0.104,0.215
+Qwen3.5-27B,Qwen3.5-27B|revise|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.125,-0.235,-0.032
+Qwen3.5-27B,Qwen3.5-27B|revise|off|checklist|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,-0.056,-0.204,0.083
+Qwen3.5-27B,Qwen3.5-27B|revise|off|checklist|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|rules|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.094,-0.229,0.011
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.063,-0.141,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|rules|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,0.074,-0.028,0.194
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|rules|v2 + verifier - alone,coverage_all,108,-0.056,-0.102,-0.019
+Qwen3.5-9B,Qwen3.5-9B|revise|off|rules|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.139,-0.278,-0.012
+Qwen3.5-9B,Qwen3.5-9B|revise|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.133,0.000
+Qwen3.5-9B,Qwen3.5-9B|revise|off|rules|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,0.161,0.041,0.292
+Qwen3.5-9B,Qwen3.5-9B|revise|off|rules|v2 + verifier - alone,coverage_all,108,-0.028,-0.065,0.000
+Qwen3.5-27B,Qwen3.5-27B|revise|off|rules|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,-0.042,-0.200,0.108
+Qwen3.5-27B,Qwen3.5-27B|revise|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.010,-0.034,0.000
+Qwen3.5-27B,Qwen3.5-27B|revise|off|rules|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,0.028,-0.111,0.167
+Qwen3.5-27B,Qwen3.5-27B|revise|off|rules|v2 + verifier - alone,coverage_all,108,-0.065,-0.139,-0.009
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|rules|v2 - Qwen3.5-35B-A3B|open|off|v2,wrong_release_seeded,108,-0.166,-0.279,-0.076
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.011,-0.035,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|rules|v2 - Qwen3.5-35B-A3B|open|off|v2,coverage_all,108,0.157,0.074,0.258
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|rules|v2 + verifier - alone,coverage_all,108,-0.037,-0.093,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|rules|v2 - Qwen3.5-27B|open|off|v2,wrong_release_seeded,108,-0.103,-0.241,0.026
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|rules|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|rules|v2 - Qwen3.5-27B|open|off|v2,coverage_all,108,0.092,-0.022,0.212
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|rules|v2 + verifier - alone,coverage_all,108,-0.047,-0.093,-0.010
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|rules|v2 - Qwen3.5-9B|open|off|v2,wrong_release_seeded,108,-0.222,-0.366,-0.097
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.031,-0.086,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|rules|v2 - Qwen3.5-9B|open|off|v2,coverage_all,108,0.244,0.123,0.370
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|rules|v2 + verifier - alone,coverage_all,108,-0.037,-0.093,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2 + verifier - alone,wrong_release_seeded,108,-0.147,-0.258,-0.054
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2 + verifier - alone,coverage_all,108,-0.009,-0.029,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|checklist|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.165,-0.276,-0.058
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.117,-0.211,-0.040
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|checklist|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,coverage_all,108,0.128,0.028,0.235
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|checklist|v2 + verifier - alone,coverage_all,108,-0.019,-0.049,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|selfcheck|off|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.349,-0.471,-0.242
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|selfcheck|off|v2 + verifier - alone,wrong_release_seeded,108,-0.063,-0.129,-0.010
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|selfcheck|off|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,coverage_all,108,-0.338,-0.451,-0.226
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|selfcheck|off|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.116,-0.261,0.021
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.074,-0.135,-0.021
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,coverage_all,108,0.103,-0.024,0.243
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|v2 + verifier - alone,coverage_all,108,-0.019,-0.047,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.146,-0.273,-0.039
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|checklist|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.223,-0.345,-0.114
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.140,-0.247,-0.046
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|checklist|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,coverage_all,108,0.207,0.108,0.315
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.109,-0.192,-0.038
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|selfcheck|off|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.500,-0.656,-0.344
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|selfcheck|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|selfcheck|off|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,coverage_all,108,-0.185,-0.306,-0.065
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|selfcheck|off|heldout|v2 + verifier - alone,coverage_all,108,-0.028,-0.074,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|off|rules|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,wrong_release_seeded,108,-0.290,-0.448,-0.140
+Qwen3.5-9B,Qwen3.5-9B|open|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.053,-0.105,-0.010
+Qwen3.5-9B,Qwen3.5-9B|open|off|rules|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,coverage_all,108,0.276,0.130,0.426
+Qwen3.5-9B,Qwen3.5-9B|open|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.103,-0.198,-0.028
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.187,-0.333,-0.059
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.083,-0.162,-0.021
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,coverage_all,108,0.130,0.000,0.269
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|heldout|v2 + verifier - alone,coverage_all,108,-0.111,-0.204,-0.037
+Qwen3.5-9B,Qwen3.5-9B|revise|off|checklist|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,wrong_release_seeded,108,-0.344,-0.500,-0.194
+Qwen3.5-9B,Qwen3.5-9B|revise|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.010,-0.033,0.000
+Qwen3.5-9B,Qwen3.5-9B|revise|off|checklist|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,coverage_all,108,0.296,0.157,0.445
+Qwen3.5-9B,Qwen3.5-9B|revise|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.157,-0.269,-0.065
+Qwen3.5-9B,Qwen3.5-9B|revise|off|rules|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,wrong_release_seeded,108,-0.260,-0.414,-0.124
+Qwen3.5-9B,Qwen3.5-9B|revise|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.010,-0.031,0.000
+Qwen3.5-9B,Qwen3.5-9B|revise|off|rules|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,coverage_all,108,0.231,0.111,0.380
+Qwen3.5-9B,Qwen3.5-9B|revise|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.111,-0.204,-0.037
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|rules|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,wrong_release_seeded,108,-0.353,-0.520,-0.196
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.054,0.000
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|rules|heldout|v2 - Qwen3.5-9B|open|off|heldout|v2,coverage_all,108,0.323,0.176,0.480
+Qwen3.5-9B,Qwen3.5-9B|open|think1024|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.112,-0.208,-0.029
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|rules|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.187,-0.311,-0.074
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|rules|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|rules|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,coverage_all,108,0.166,0.064,0.277
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|rules|v2 + verifier - alone,coverage_all,108,-0.047,-0.122,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|off|rules|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.167,-0.280,-0.071
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|off|rules|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|off|rules|v2 - Qwen3.5-122B-A10B-NVFP4|open|off|v2,coverage_all,108,0.148,0.065,0.250
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|off|rules|v2 + verifier - alone,coverage_all,108,-0.028,-0.065,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+Qwen3.5-122B-A10B-NVFP4,Qwen3.5-122B-A10B-NVFP4|open|think1024|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.187,-0.315,-0.065
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|rules|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.112,-0.238,0.016
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.046,-0.092,-0.010
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|rules|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,coverage_all,108,0.080,-0.036,0.202
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|rules|v2 + verifier - alone,coverage_all,108,-0.006,-0.018,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|checklist|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.095,-0.198,0.010
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.095,-0.169,-0.035
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|checklist|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,coverage_all,108,0.084,-0.013,0.178
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|checklist|v2 + verifier - alone,coverage_all,108,-0.037,-0.075,-0.009
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|rules|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.130,-0.240,-0.021
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.056,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|rules|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,coverage_all,108,0.115,0.019,0.214
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|rules|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|rules|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.026,-0.173,0.121
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.056,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|rules|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|v2,coverage_all,108,-0.051,-0.200,0.102
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|rules|v2 + verifier - alone,coverage_all,108,-0.028,-0.074,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|rules|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.240,-0.391,-0.089
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.127,-0.010
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|rules|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,coverage_all,108,0.213,0.074,0.352
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.120,-0.204,-0.046
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|checklist|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.268,-0.387,-0.152
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.074,-0.132,-0.021
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|checklist|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,coverage_all,108,0.257,0.138,0.376
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.112,-0.208,-0.028
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|rules|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.268,-0.438,-0.095
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.032,-0.069,0.000
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|rules|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,coverage_all,108,0.238,0.083,0.398
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|revise|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.131,-0.232,-0.037
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|rules|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.115,-0.256,0.022
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.073,-0.151,-0.011
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|rules|heldout|v2 - NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|off|heldout|v2,coverage_all,108,0.083,-0.046,0.213
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4,NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4|open|think1024|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.111,-0.213,-0.028
+gpt-oss-120b,gpt-oss-120b|open|effort-low|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.141,-0.010
+gpt-oss-120b,gpt-oss-120b|open|effort-low|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+gpt-oss-120b,gpt-oss-120b|closed|effort-low|v2 - gpt-oss-120b|open|effort-low|v2,wrong_release_seeded,108,0.000,-0.143,0.156
+gpt-oss-120b,gpt-oss-120b|closed|effort-low|v2 + verifier - alone,wrong_release_seeded,108,-0.115,-0.233,-0.024
+gpt-oss-120b,gpt-oss-120b|closed|effort-low|v2 - gpt-oss-120b|open|effort-low|v2,coverage_all,108,0.000,-0.139,0.121
+gpt-oss-120b,gpt-oss-120b|closed|effort-low|v2 + verifier - alone,coverage_all,108,-0.028,-0.065,0.000
+gpt-oss-120b,gpt-oss-120b|selfcheck|effort-low|v2 - gpt-oss-120b|open|effort-low|v2,wrong_release_seeded,108,-0.104,-0.204,-0.011
+gpt-oss-120b,gpt-oss-120b|selfcheck|effort-low|v2 + verifier - alone,wrong_release_seeded,108,-0.042,-0.097,0.000
+gpt-oss-120b,gpt-oss-120b|selfcheck|effort-low|v2 - gpt-oss-120b|open|effort-low|v2,coverage_all,108,0.009,-0.056,0.074
+gpt-oss-120b,gpt-oss-120b|selfcheck|effort-low|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+gpt-oss-120b,gpt-oss-120b|open|effort-medium|v2 - gpt-oss-120b|open|effort-low|v2,wrong_release_seeded,108,-0.042,-0.152,0.062
+gpt-oss-120b,gpt-oss-120b|open|effort-medium|v2 + verifier - alone,wrong_release_seeded,108,-0.094,-0.189,-0.023
+gpt-oss-120b,gpt-oss-120b|open|effort-medium|v2 - gpt-oss-120b|open|effort-low|v2,coverage_all,108,0.046,-0.046,0.148
+gpt-oss-120b,gpt-oss-120b|open|effort-medium|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+gpt-oss-120b,gpt-oss-120b|closed|effort-medium|v2 - gpt-oss-120b|open|effort-low|v2,wrong_release_seeded,108,-0.052,-0.157,0.054
+gpt-oss-120b,gpt-oss-120b|closed|effort-medium|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.210,-0.029
+gpt-oss-120b,gpt-oss-120b|closed|effort-medium|v2 - gpt-oss-120b|open|effort-low|v2,coverage_all,108,-0.019,-0.139,0.102
+gpt-oss-120b,gpt-oss-120b|closed|effort-medium|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|v2 + verifier - alone,wrong_release_seeded,108,-0.063,-0.148,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|v2 + verifier - alone,coverage_all,108,-0.019,-0.056,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|checklist|v2 - gemma-4-31B-it|open|off|v2,wrong_release_seeded,108,0.000,-0.083,0.065
+gemma-4-31B-it,gemma-4-31B-it|open|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.031,-0.071,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|checklist|v2 - gemma-4-31B-it|open|off|v2,coverage_all,108,0.000,-0.056,0.074
+gemma-4-31B-it,gemma-4-31B-it|open|off|checklist|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+gemma-4-31B-it,gemma-4-31B-it|selfcheck|off|v2 - gemma-4-31B-it|open|off|v2,wrong_release_seeded,108,0.002,-0.069,0.080
+gemma-4-31B-it,gemma-4-31B-it|selfcheck|off|v2 + verifier - alone,wrong_release_seeded,108,-0.044,-0.106,0.000
+gemma-4-31B-it,gemma-4-31B-it|selfcheck|off|v2 - gemma-4-31B-it|open|off|v2,coverage_all,108,-0.039,-0.105,0.016
+gemma-4-31B-it,gemma-4-31B-it|selfcheck|off|v2 + verifier - alone,coverage_all,108,-0.026,-0.058,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|v2 - gemma-4-31B-it|open|off|v2,wrong_release_seeded,108,0.052,-0.038,0.149
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.104,-0.186,-0.031
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|v2 - gemma-4-31B-it|open|off|v2,coverage_all,108,-0.046,-0.130,0.037
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.094,-0.219,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|heldout|v2 + verifier - alone,coverage_all,108,-0.083,-0.167,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|checklist|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.188,-0.313,-0.076
+gemma-4-31B-it,gemma-4-31B-it|open|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.031,-0.081,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|checklist|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,coverage_all,108,0.167,0.065,0.278
+gemma-4-31B-it,gemma-4-31B-it|open|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.111,-0.213,-0.028
+gemma-4-31B-it,gemma-4-31B-it|selfcheck|off|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.021,-0.121,0.062
+gemma-4-31B-it,gemma-4-31B-it|selfcheck|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.073,-0.178,0.000
+gemma-4-31B-it,gemma-4-31B-it|selfcheck|off|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,coverage_all,108,-0.028,-0.074,0.009
+gemma-4-31B-it,gemma-4-31B-it|selfcheck|off|heldout|v2 + verifier - alone,coverage_all,108,-0.083,-0.167,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.052,-0.161,0.042
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.094,-0.219,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,coverage_all,108,0.046,-0.037,0.139
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|heldout|v2 + verifier - alone,coverage_all,108,-0.111,-0.222,-0.028
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|v2 + verifier - alone,wrong_release_seeded,108,-0.105,-0.225,-0.011
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|v2 + verifier - alone,coverage_all,108,-0.019,-0.047,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|checklist|v2 - gemma-4-26B-A4B-it|open|off|v2,wrong_release_seeded,108,-0.055,-0.165,0.047
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.083,-0.176,-0.020
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|checklist|v2 - gemma-4-26B-A4B-it|open|off|v2,coverage_all,108,0.058,-0.035,0.157
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|checklist|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|selfcheck|off|v2 - gemma-4-26B-A4B-it|open|off|v2,wrong_release_seeded,108,-0.003,-0.064,0.048
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|selfcheck|off|v2 + verifier - alone,wrong_release_seeded,108,-0.115,-0.233,-0.029
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|selfcheck|off|v2 - gemma-4-26B-A4B-it|open|off|v2,coverage_all,108,-0.035,-0.120,0.041
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|selfcheck|off|v2 + verifier - alone,coverage_all,108,-0.028,-0.065,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|v2 - gemma-4-26B-A4B-it|open|off|v2,wrong_release_seeded,108,0.011,-0.129,0.144
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.126,-0.238,-0.032
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|v2 - gemma-4-26B-A4B-it|open|off|v2,coverage_all,108,0.000,-0.130,0.130
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|v2 + verifier - alone,coverage_all,108,-0.047,-0.122,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.105,-0.209,-0.022
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|heldout|v2 + verifier - alone,coverage_all,108,-0.131,-0.245,-0.028
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|checklist|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.243,-0.419,-0.086
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|checklist|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,coverage_all,108,0.216,0.056,0.382
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.176,-0.296,-0.074
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|selfcheck|off|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.084,-0.205,0.021
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|selfcheck|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.053,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|selfcheck|off|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,coverage_all,108,-0.047,-0.150,0.056
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|selfcheck|off|heldout|v2 + verifier - alone,coverage_all,108,-0.075,-0.167,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,wrong_release_seeded,108,0.100,-0.054,0.256
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.161,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,coverage_all,108,-0.080,-0.221,0.056
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|heldout|v2 + verifier - alone,coverage_all,108,-0.083,-0.167,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|off|rules|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,wrong_release_seeded,108,-0.311,-0.488,-0.149
+Qwen3.5-27B,Qwen3.5-27B|open|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|off|rules|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,coverage_all,108,0.286,0.142,0.452
+Qwen3.5-27B,Qwen3.5-27B|open|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.187,-0.315,-0.065
+Qwen3.5-27B,Qwen3.5-27B|revise|off|checklist|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,wrong_release_seeded,108,-0.271,-0.422,-0.123
+Qwen3.5-27B,Qwen3.5-27B|revise|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+Qwen3.5-27B,Qwen3.5-27B|revise|off|checklist|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,coverage_all,108,0.250,0.111,0.389
+Qwen3.5-27B,Qwen3.5-27B|revise|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.176,-0.287,-0.074
+Qwen3.5-27B,Qwen3.5-27B|revise|off|rules|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,wrong_release_seeded,108,-0.260,-0.432,-0.111
+Qwen3.5-27B,Qwen3.5-27B|revise|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+Qwen3.5-27B,Qwen3.5-27B|revise|off|rules|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,coverage_all,108,0.241,0.102,0.389
+Qwen3.5-27B,Qwen3.5-27B|revise|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.176,-0.296,-0.065
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|rules|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,wrong_release_seeded,108,-0.374,-0.523,-0.219
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.011,-0.033,0.000
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|rules|heldout|v2 - Qwen3.5-27B|open|off|heldout|v2,coverage_all,108,0.342,0.204,0.489
+Qwen3.5-27B,Qwen3.5-27B|open|think1024|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.189,-0.315,-0.066
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|rules|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,wrong_release_seeded,108,-0.198,-0.324,-0.078
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.108,-0.010
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|rules|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,coverage_all,108,0.204,0.093,0.324
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.120,-0.213,-0.046
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|checklist|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,wrong_release_seeded,108,-0.219,-0.398,-0.040
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.052,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|checklist|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,coverage_all,108,0.222,0.065,0.380
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.120,-0.222,-0.028
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|rules|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,wrong_release_seeded,108,-0.154,-0.341,0.012
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.066,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|rules|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,coverage_all,108,0.165,0.016,0.324
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|revise|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.131,-0.236,-0.047
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|rules|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,wrong_release_seeded,108,-0.280,-0.437,-0.123
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.051,0.000
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|rules|heldout|v2 - Qwen3.5-35B-A3B|open|off|heldout|v2,coverage_all,108,0.277,0.147,0.416
+Qwen3.5-35B-A3B,Qwen3.5-35B-A3B|open|think1024|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.131,-0.236,-0.046
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|rules|v2 - gemma-4-26B-A4B-it|open|off|v2,wrong_release_seeded,108,-0.147,-0.289,-0.008
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.032,-0.107,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|rules|v2 - gemma-4-26B-A4B-it|open|off|v2,coverage_all,108,0.150,0.027,0.280
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|rules|v2 + verifier - alone,coverage_all,108,-0.028,-0.086,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|checklist|v2 - gemma-4-26B-A4B-it|open|off|v2,wrong_release_seeded,108,-0.021,-0.124,0.080
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.053,-0.133,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|checklist|v2 - gemma-4-26B-A4B-it|open|off|v2,coverage_all,108,0.037,-0.060,0.133
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|checklist|v2 + verifier - alone,coverage_all,108,-0.028,-0.086,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|rules|v2 - gemma-4-26B-A4B-it|open|off|v2,wrong_release_seeded,108,-0.146,-0.292,-0.014
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.032,-0.107,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|rules|v2 - gemma-4-26B-A4B-it|open|off|v2,coverage_all,108,0.130,0.016,0.262
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|rules|v2 + verifier - alone,coverage_all,108,-0.038,-0.111,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|rules|v2 - gemma-4-26B-A4B-it|open|off|v2,wrong_release_seeded,108,-0.170,-0.302,-0.043
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|rules|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|rules|v2 - gemma-4-26B-A4B-it|open|off|v2,coverage_all,108,0.169,0.056,0.296
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|rules|v2 + verifier - alone,coverage_all,108,-0.037,-0.111,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|rules|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.327,-0.489,-0.188
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.010,-0.031,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|rules|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,coverage_all,108,0.272,0.141,0.426
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.102,-0.195,-0.028
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|checklist|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.222,-0.392,-0.071
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.031,-0.067,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|checklist|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,coverage_all,108,0.216,0.083,0.370
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.176,-0.296,-0.074
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|rules|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.316,-0.478,-0.167
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.011,-0.033,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|rules|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,coverage_all,108,0.280,0.139,0.434
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|revise|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.129,-0.231,-0.036
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|rules|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.170,-0.333,-0.004
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|rules|heldout|v2 - gemma-4-26B-A4B-it|open|off|heldout|v2,coverage_all,108,0.142,-0.009,0.301
+gemma-4-26B-A4B-it,gemma-4-26B-A4B-it|open|think1024|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.130,-0.231,-0.046
+gemma-4-31B-it,gemma-4-31B-it|open|off|rules|v2 - gemma-4-31B-it|open|off|v2,wrong_release_seeded,108,-0.104,-0.222,-0.010
+gemma-4-31B-it,gemma-4-31B-it|open|off|rules|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|rules|v2 - gemma-4-31B-it|open|off|v2,coverage_all,108,0.065,-0.037,0.185
+gemma-4-31B-it,gemma-4-31B-it|open|off|rules|v2 + verifier - alone,coverage_all,108,-0.046,-0.102,0.000
+gemma-4-31B-it,gemma-4-31B-it|revise|off|checklist|v2 - gemma-4-31B-it|open|off|v2,wrong_release_seeded,108,-0.010,-0.100,0.078
+gemma-4-31B-it,gemma-4-31B-it|revise|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.108,-0.010
+gemma-4-31B-it,gemma-4-31B-it|revise|off|checklist|v2 - gemma-4-31B-it|open|off|v2,coverage_all,108,0.009,-0.074,0.084
+gemma-4-31B-it,gemma-4-31B-it|revise|off|checklist|v2 + verifier - alone,coverage_all,108,-0.046,-0.102,-0.009
+gemma-4-31B-it,gemma-4-31B-it|revise|off|rules|v2 - gemma-4-31B-it|open|off|v2,wrong_release_seeded,108,-0.115,-0.235,-0.023
+gemma-4-31B-it,gemma-4-31B-it|revise|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.054,0.000
+gemma-4-31B-it,gemma-4-31B-it|revise|off|rules|v2 - gemma-4-31B-it|open|off|v2,coverage_all,108,0.074,-0.028,0.194
+gemma-4-31B-it,gemma-4-31B-it|revise|off|rules|v2 + verifier - alone,coverage_all,108,-0.046,-0.093,-0.009
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|rules|v2 - gemma-4-31B-it|open|off|v2,wrong_release_seeded,108,0.002,-0.137,0.111
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.023,-0.070,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|rules|v2 - gemma-4-31B-it|open|off|v2,coverage_all,108,-0.020,-0.130,0.100
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|rules|v2 + verifier - alone,coverage_all,108,-0.017,-0.044,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|rules|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.333,-0.485,-0.172
+gemma-4-31B-it,gemma-4-31B-it|open|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|off|rules|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,coverage_all,108,0.249,0.065,0.407
+gemma-4-31B-it,gemma-4-31B-it|open|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.121,-0.231,-0.028
+gemma-4-31B-it,gemma-4-31B-it|revise|off|checklist|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.177,-0.322,-0.048
+gemma-4-31B-it,gemma-4-31B-it|revise|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.010,-0.033,0.000
+gemma-4-31B-it,gemma-4-31B-it|revise|off|checklist|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,coverage_all,108,0.157,0.037,0.287
+gemma-4-31B-it,gemma-4-31B-it|revise|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.120,-0.222,-0.037
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2 + verifier - alone,wrong_release_seeded,108,-0.073,-0.156,-0.010
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+gemma-4-31B-it,gemma-4-31B-it|revise|off|rules|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.302,-0.467,-0.140
+gemma-4-31B-it,gemma-4-31B-it|revise|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+gemma-4-31B-it,gemma-4-31B-it|revise|off|rules|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,coverage_all,108,0.231,0.065,0.398
+gemma-4-31B-it,gemma-4-31B-it|revise|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.130,-0.241,-0.037
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|checklist|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,wrong_release_seeded,108,0.052,-0.057,0.167
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.094,-0.192,-0.021
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|checklist|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,coverage_all,108,-0.019,-0.130,0.083
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|checklist|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|selfcheck|off|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,wrong_release_seeded,108,0.062,-0.020,0.147
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|selfcheck|off|v2 + verifier - alone,wrong_release_seeded,108,-0.073,-0.172,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|selfcheck|off|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,coverage_all,108,-0.019,-0.111,0.083
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|selfcheck|off|v2 + verifier - alone,coverage_all,108,-0.019,-0.046,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.021,-0.157,0.118
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|v2 + verifier - alone,wrong_release_seeded,108,-0.094,-0.191,-0.022
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,coverage_all,108,0.065,-0.074,0.194
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|v2 + verifier - alone,coverage_all,108,-0.028,-0.074,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|rules|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,wrong_release_seeded,108,-0.343,-0.513,-0.181
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,0.000,0.000,0.000
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|rules|heldout|v2 - gemma-4-31B-it|open|off|heldout|v2,coverage_all,108,0.305,0.157,0.462
+gemma-4-31B-it,gemma-4-31B-it|open|think1024|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.104,-0.206,-0.028
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.021,-0.052,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2 + verifier - alone,coverage_all,108,-0.075,-0.160,-0.009
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|checklist|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.179,-0.301,-0.069
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.011,-0.034,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|checklist|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,coverage_all,108,0.234,0.126,0.351
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.112,-0.215,-0.037
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|selfcheck|off|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,0.049,-0.035,0.131
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|selfcheck|off|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.031,-0.081,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|selfcheck|off|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,coverage_all,108,-0.053,-0.136,0.028
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|selfcheck|off|heldout|v2 + verifier - alone,coverage_all,108,-0.056,-0.130,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,0.049,-0.055,0.161
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.062,-0.118,-0.020
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,coverage_all,108,0.031,-0.088,0.153
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|heldout|v2 + verifier - alone,coverage_all,108,-0.102,-0.194,-0.037
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|rules|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.146,-0.274,-0.021
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.042,-0.108,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|rules|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,coverage_all,108,0.148,0.037,0.269
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|rules|v2 + verifier - alone,coverage_all,108,-0.028,-0.065,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|checklist|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,wrong_release_seeded,108,0.073,-0.031,0.188
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|checklist|v2 + verifier - alone,wrong_release_seeded,108,-0.052,-0.122,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|checklist|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,coverage_all,108,-0.037,-0.148,0.074
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|checklist|v2 + verifier - alone,coverage_all,108,0.000,0.000,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|rules|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.083,-0.212,0.039
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.042,-0.095,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|rules|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,coverage_all,108,0.111,-0.009,0.231
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|rules|v2 + verifier - alone,coverage_all,108,-0.009,-0.028,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|rules|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,wrong_release_seeded,108,-0.073,-0.222,0.071
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|rules|v2 + verifier - alone,wrong_release_seeded,108,-0.042,-0.097,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|rules|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|v2,coverage_all,108,0.083,-0.065,0.222
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|think1024|rules|v2 + verifier - alone,coverage_all,108,-0.065,-0.130,-0.019
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|rules|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.180,-0.312,-0.065
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|rules|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.010,-0.031,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|rules|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,coverage_all,108,0.207,0.102,0.332
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|rules|heldout|v2 + verifier - alone,coverage_all,108,-0.102,-0.185,-0.037
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|checklist|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,wrong_release_seeded,108,-0.126,-0.241,-0.030
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|checklist|heldout|v2 + verifier - alone,wrong_release_seeded,108,-0.022,-0.053,0.000
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|checklist|heldout|v2 - NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|open|off|heldout|v2,coverage_all,108,0.187,0.081,0.308
+NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4,NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4|revise|off|checklist|heldout|v2 + verifier - alone,coverage_all,108,-0.101,-0.191,-0.035

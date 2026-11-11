@@ -1,0 +1,5 @@
+# Model-sizing study, cross-check round 3: the confirmed checker (gpt-oss 20B,
+# medium effort) on every prompt-optimisation and new-family write-up, dev and
+# held-out (runs/inspect/round3/: harvest logs tagged sizing-20261022-po or
+# -nm), so scripts/fresh_select.py can choose a checker for each analyst.
+crosscheck -T logs=runs/inspect/round3/*harvest*.eval -T effort=medium

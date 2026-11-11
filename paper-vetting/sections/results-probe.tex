@@ -1,0 +1,36 @@
+\section{Does a model's internal state reveal its errors?}
+\label{sec:results-probe}
+
+A checker asks a model for its verdict on a write-up; a probe reads the model's internal state while it reads the same write-up (Figure~\ref{fig:probe}a). Both probes beat their models' verbal verdicts by more than the pre-registered margin across the held-out write-ups (Table~\ref{tab:probe}; Figure~\ref{fig:probe}b), and the reconstructed prompts matched what the serving engine had logged. The shuffled-label control failed, however: a probe trained on labels shuffled within tasks still separated the write-ups well (\N{probe.q27.shuffled} for the 27B, against \N{probe.q27.auc} for the real probe), and the length of the prompt alone reached \N{probe.q27.length}. Dev and held-out share no task, so what the probe learned was the riskiness carried by the kind of task, its design and its tables, not the recognition of a wrong write-up.
+
+An exploratory analysis within tasks, run after that failure was recorded, compared wrong and right write-ups of the same task, over the \N{probe.within.tasks} held-out tasks that have at least one of each. Neither probe beat its verbal comparator (Figure~\ref{fig:probe}c), and the shuffled probe fell to chance. At these depths, and with linear probes, we found no information in the internal state that helps to check an individual write-up. That does not show that the state holds none, but probes did not enter the vetting procedure as a checker of write-ups.
+
+\begin{table}[t]
+\centering\footnotesize
+\begin{threeparttable}
+\caption{Internal-state probes against the models' own verdicts on the \N{probe.test.n} held-out write-ups (\N{probe.test.wrong} judged wrong, \N{probe.test.tasks} tasks). Probes used the deepest of the three depths. Intervals resample tasks; the shuffled-label probe is the mean of 20 fits. The stop rule was a difference of at least \N{probe.margin} with its interval above zero.}
+\label{tab:probe}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & Qwen3.5 27B & gpt-oss 20B \\
+\midrule
+Probe AUC & \N{probe.q27.auc} (\N{probe.q27.auc.lo}--\N{probe.q27.auc.hi}) & \N{probe.g20.auc} (\N{probe.g20.auc.lo}--\N{probe.g20.auc.hi}) \\
+Best verbal AUC & \N{probe.q27.verbal} & \N{probe.g20.verbal} \\
+Difference & \N{probe.q27.diff} (\N{probe.q27.diff.lo}--\N{probe.q27.diff.hi}), met & \N{probe.g20.diff} (\N{probe.g20.diff.lo}--\N{probe.g20.diff.hi}), met \\
+Probe trained on labels shuffled within tasks (expected 0.5) & \N{probe.q27.shuffled} & \N{probe.g20.shuffled} \\
+Prompt length alone & \N{probe.q27.length} & \N{probe.g20.length} \\
+AUC within tasks: probe & \N{probe.q27.within} & \N{probe.g20.within} \\
+AUC within tasks: best verbal & \N{probe.q27.within.verbal} & \N{probe.g20.within.verbal} \\
+Difference within tasks & \N{probe.q27.within.diff} (\N{probe.q27.within.diff.lo}--\N{probe.q27.within.diff.hi}) & \N{probe.g20.within.diff} (\N{probe.g20.within.diff.lo}--\N{probe.g20.within.diff.hi}) \\
+AUC within tasks: shuffled probe & \N{probe.q27.within.shuffled} & \N{probe.g20.within.shuffled} \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{probe_reading}
+\caption{Two ways to check a write-up, compared on the held-out write-ups (\N{probe.test.n} write-ups, \N{probe.test.wrong} wrong). (a) Asking the model for its verdict, against reading its internal state with a linear probe. (b) AUC for telling wrong write-ups from right ones across all write-ups and (c) within tasks. Bars are 95\% intervals from resampling tasks. The probe trained on labels shuffled within tasks can learn only which tasks are risky: it nearly matches the real probe across tasks and falls to chance within them.}
+\label{fig:probe}
+\end{figure}

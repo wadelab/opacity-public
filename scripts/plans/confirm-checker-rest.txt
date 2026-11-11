@@ -1,0 +1,12 @@
+# The rest of confirm-checker.txt after its first line, resubmitted on
+# 2026-10-22: job 37905877 ran the first line, then re-ran it in a loop when
+# its plan file went stale on NFS. Same seed, same settings.
+opacity -T seed=1 -T levels=0,2,3,4 -T replicates=5 -T think_budget=1024 -T register=matched
+opacity -T seed=1 -T levels=0,3 -T replicates=10 -T think_budget=512
+opacity -T seed=1 -T levels=0,3 -T replicates=10 -T think_budget=2048
+opacity -T seed=1 -T levels=0,3 -T replicates=10 -T thinking=off
+opacity -T seed=1 -T levels=0,1,2,3,4 -T replicates=20 -T thinking=off -T reviewer=stepwise
+opacity -T seed=1 -T levels=0,2,3,4 -T replicates=5 -T thinking=off -T reviewer=stepwise -T register=matched
+# appended 2026-10-22 16:15 UTC, before the job started: the pre-registered
+# test of the 27B confidence threshold (report section 3) on a third seed
+opacity -T seed=2 -T levels=0,3 -T replicates=20 -T think_budget=1024

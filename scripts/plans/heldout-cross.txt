@@ -1,0 +1,8 @@
+# Model-sizing study, stage 3: the candidate checker configurations on the
+# held-out analysts' write-ups (runs/inspect/heldout/ holds copies of the
+# held-out harvest logs only). Qwen-family lines; gpt-oss and Mistral have
+# their own files.
+crosscheck -T logs=runs/inspect/heldout/*harvest*.eval -T think_budget=1024
+crosscheck -T logs=runs/inspect/heldout/*harvest*.eval -T thinking=off -T reviewer=stepwise
+crosscheck -T logs=runs/inspect/heldout/*harvest*.eval -T thinking=off
+crosscheck -T logs=runs/inspect/heldout/*harvest*.eval -T think_budget=1024 -T show_pack=true

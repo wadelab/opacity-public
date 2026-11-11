@@ -1,0 +1,4 @@
+# Positive control (docs/vetting.md 4.8): the 27B as verbal checker on the
+# honest and steered write-ups, pack shown, thinking off. Copy the four
+# generation logs to runs/inspect/steer/ first.
+crosscheck -T logs=runs/inspect/steer/*harvest*.eval -T show_pack=true -T thinking=off

@@ -1,0 +1,98 @@
+# wadelab.mplstyle
+# Publication figure style. Sized so that a saved figure drops into a
+# journal column at 100% scale — point sizes below are final printed sizes.
+#
+# Usage:
+#   plt.style.use('/path/to/wadelab.mplstyle')
+# or drop into ~/.config/matplotlib/stylelib/ and use plt.style.use('wadelab')
+
+# ---- Canvas -----------------------------------------------------------
+figure.figsize      : 3.5, 2.6      # single column (89 mm). Double col: 7.2
+figure.dpi          : 150
+figure.facecolor    : white
+figure.constrained_layout.use : True
+figure.constrained_layout.h_pad : 0.03
+figure.constrained_layout.w_pad : 0.03
+
+savefig.dpi         : 600
+savefig.format      : pdf
+savefig.bbox        : tight
+savefig.pad_inches  : 0.02
+savefig.transparent : False
+pdf.fonttype        : 42           # embed TrueType, not Type 3 (journals reject T3)
+ps.fonttype         : 42
+
+# ---- Type -------------------------------------------------------------
+font.family         : sans-serif
+font.sans-serif     : Source Sans 3, Helvetica Neue, Helvetica, Arial, DejaVu Sans
+font.size           : 8
+axes.titlesize      : 8
+axes.titleweight    : semibold
+axes.titlelocation  : left          # left-aligned titles read as labels, not banners
+axes.titlepad       : 5
+axes.labelsize      : 8
+axes.labelpad       : 3
+xtick.labelsize     : 7
+ytick.labelsize     : 7
+legend.fontsize     : 7
+figure.titlesize    : 9
+figure.labelsize    : 8
+mathtext.fontset    : dejavusans
+axes.formatter.use_mathtext : True
+
+# ---- Axes -------------------------------------------------------------
+axes.facecolor      : white
+axes.edgecolor      : 262626
+axes.linewidth      : 0.6
+axes.spines.top     : False
+axes.spines.right   : False
+axes.labelcolor     : 262626
+text.color          : 262626
+axes.axisbelow      : True
+axes.xmargin        : 0.03
+axes.ymargin        : 0.05
+axes.autolimit_mode : data
+
+# ---- Grid: present but subordinate ------------------------------------
+axes.grid           : True
+axes.grid.axis      : y
+grid.color          : D8D6D1
+grid.linewidth      : 0.5
+grid.alpha          : 1.0
+
+# ---- Ticks ------------------------------------------------------------
+xtick.direction     : out
+ytick.direction     : out
+xtick.major.size    : 3
+ytick.major.size    : 3
+xtick.minor.size    : 1.5
+ytick.minor.size    : 1.5
+xtick.major.width   : 0.6
+ytick.major.width   : 0.6
+xtick.color         : 262626
+ytick.color         : 262626
+xtick.major.pad     : 2.5
+ytick.major.pad     : 2.5
+
+# ---- Data ink ---------------------------------------------------------
+axes.prop_cycle     : cycler('color', ['33608C', 'D08C34', '4F8C6B', 'A34E5E', '6E5B8E', '8A8578'])
+lines.linewidth     : 1.4
+lines.markersize    : 3.5
+lines.markeredgewidth : 0
+lines.solid_capstyle : round
+patch.linewidth     : 0
+patch.edgecolor     : white
+patch.force_edgecolor : False
+scatter.marker      : o
+errorbar.capsize    : 0             # capped bars add ink, not information
+boxplot.notch       : False
+image.cmap          : cividis       # perceptually uniform, colourblind-safe
+hist.bins           : auto
+
+# ---- Legend: quiet, or better, replaced by direct labels ---------------
+legend.frameon      : False
+legend.handlelength : 1.4
+legend.handletextpad : 0.5
+legend.columnspacing : 1.2
+legend.labelspacing : 0.35
+legend.borderpad    : 0.2

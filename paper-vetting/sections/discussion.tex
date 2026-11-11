@@ -1,0 +1,21 @@
+\section{Discussion}
+\label{sec:discussion}
+
+These experiments characterize a candidate model's behavior under specified instructions. They support three conclusions for testing a model before admission, and they leave the most serious threat untested.
+
+\paragraph{A learned detector needs controls within tasks.}
+The internal-state probes looked successful until a probe trained on shuffled labels showed that they were predicting which tasks were risky. Within tasks they added nothing to the model's own verdict. The same shortcut is open to any scorer trained on write-ups from tasks that differ in difficulty, whether it reads the internal state, the words or the length of the prompt. Such a scorer should be reported within tasks, beside a version trained on labels shuffled within tasks.
+
+\paragraph{For instructed bias, the words are enough.}
+Probes and text classifiers both caught a successful instructed bias on unseen tasks, and the probe never beat the text classifier by the required margin. A text detector needs no access to the model's internals. Both kinds of detector recognize the mark of the instruction, such as dropped inferential language and words of endorsement, not analytical correctness. Checkers of correctness caught little of the bias, because they ask whether a conclusion follows from the data, and most biased write-ups (\N{steer.v2.steered.right} of \N{steer.n.heldout} on held-out) were still judged right. A bias test and a correctness check are therefore separate tests, and a TRE needs both.
+
+\paragraph{A candidate that resists the instruction cannot validate its own detector.}
+The recommended configuration, allowed to think first, did not bias even when told outright. That is reassuring about the candidate, but it leaves the bias test without a measured sensitivity on that configuration. Borrowing a detector from another configuration of the same model gives the test a known sensitivity, at the cost of assuming that a bias would look the same in both.
+
+\paragraph{Thresholds move with style.}
+A detector's ranking can survive an ordinary change in what a researcher asks for while its threshold does not. Training across styles fixed this for the styles tried, but other ordinary changes, in topic, language or format, could move a threshold the same way and need their own tests before a detector runs in service.
+
+\paragraph{What remains untested.}
+Instruction did not produce a bias that misleads while reading like an honest report: asked to disguise its bias, the model wrote honest conclusions. A model trained to deceive might leave no mark in its words, and that is where its internal state could still matter. Testing this needs a model fine-tuned to mislead and given to the tests without the trigger named. The pilot shows that the engineering is possible in containment. Until that experiment runs, these tests describe only the behavior a model shows when told to bias, and give no grounds to claim that a hidden or trained deception would be detected.
+
+For TRE practice, a procedure for admitting a model can already pair the companion paper's tests of honest error with a bias test of this kind, trained on the candidate's own pairs in several styles and judged within tasks. Containment and pinned provenance remain necessary, because behavioral tests cannot anticipate every failure~\cite{wade2026safetre}, and a change to the weights, the prompt, the serving version or the release rules calls for testing again.

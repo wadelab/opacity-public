@@ -1,0 +1,10 @@
+model,role,analyst,pipeline,dev_wrong,dev_lo,dev_hi,dev_answer_control,dev_coverage,dev_gpu_s
+Qwen3.5-9B,chosen,Qwen3.5-9B|selfcheck|off|v2,verifier+checker:typed|think512,0.104,0.038,0.179,0.75,0.463,2.431
+Qwen3.5-9B,baseline,Qwen3.5-9B|selfcheck|off|v2,alone,0.198,0.106,0.312,0.833,0.519,2.13
+Qwen3.5-9B,baseline,Qwen3.5-9B|selfcheck|off|v2,verifier,0.135,0.054,0.229,0.833,0.491,2.13
+Qwen3.5-27B,chosen,Qwen3.5-27B|open|off|v2,verifier+checker:Llama-3.3-70B-Instruct-NVFP4|default|pack,0.052,0.011,0.1,0.833,0.639,1.205
+Qwen3.5-27B,baseline,Qwen3.5-27B|open|off|v2,alone,0.188,0.071,0.333,1.0,0.833,0.981
+Qwen3.5-27B,baseline,Qwen3.5-27B|open|off|v2,verifier,0.146,0.043,0.28,1.0,0.824,0.981
+Qwen3.5-35B-A3B,chosen,Qwen3.5-35B-A3B|open|off|checklist|v2,verifier+checker:typed|think512,0.042,0.01,0.089,0.917,0.833,2.842
+Qwen3.5-35B-A3B,baseline,Qwen3.5-35B-A3B|open|off|checklist|v2,alone,0.105,0.043,0.198,1.0,0.897,2.407
+Qwen3.5-35B-A3B,baseline,Qwen3.5-35B-A3B|open|off|checklist|v2,verifier,0.063,0.011,0.129,0.917,0.869,2.407

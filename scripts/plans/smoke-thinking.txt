@@ -1,0 +1,7 @@
+# Smoke test for the thinking budget, the prompt variants and the plan loop.
+# Serve with REASONING_PARSER=qwen3. Few samples; not a result.
+harvest -T only=h01,h21 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T only=h01,h21 -T think_budget=512 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T only=h01 -T arm=selfcheck -T checklist=true -T reviewer=stepwise -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+opacity -T levels=0 -T replicates=1 -T think_budget=1024 -T reviewer=checklist --limit 6
+crosscheck -T logs=runs/inspect/scored/2026-10-21T22-36-58-00-00_harvest_62oHQL8wca7U7UXBdQ4RQN.eval -T thinking=off -T reviewer=stepwise --limit 6

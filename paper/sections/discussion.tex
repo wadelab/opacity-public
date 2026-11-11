@@ -1,0 +1,21 @@
+\section{Discussion}
+\label{sec:discussion}
+
+The results argue for assessing disclosure protection, analytical correctness and review performance separately. Passing one of the three says little about the others, even when an analyst and a checker each do well on a controlled benchmark.
+
+\paragraph{Disclosure control removes specific evidence.}
+In this corpus, stricter disclosure mainly hid the errors that need a count. The other errors stayed detectable because the methods and the interpretation revealed an inference the design does not support. A TRE can therefore keep its disclosure rules while giving reviewers the permitted information on design, denominators and the flow of participants. The result does not show that any disclosure policy preserves review quality: the corpus was small, the prose carried strong cues, and matching the assertiveness of correct and wrong reports raised local reviewers' false alarms. Prose and tables also need the same treatment: an exact statistic quoted beside a rounded count reveals what the rounding was meant to conceal.
+
+\paragraph{The configuration is the unit to evaluate.}
+A design-first prompt with a short thinking budget gave the most consistent improvement across task sets. Among the stronger Qwen3.5 configurations, a larger model added no consistent benefit. Thinking repaired arithmetic failures in review directly, whereas tools sometimes gave precision to an invalid comparison. What a TRE admits is therefore a pinned combination of weights, prompt, reasoning settings, tools and release rules, and a change to any of them calls for a new evaluation.
+
+\paragraph{Confirmation matters more than development rank.}
+Pipelines chosen on dev failed on held-out, and some analysts that looked strong regressed on the sealed sets. The strongest evidence came from configurations that stayed stable across sets and met selection rules fixed before the sealed sets were opened. Small sealed sets support comparisons and exclude poor configurations, but they cannot establish a negligible error rate in production.
+
+\paragraph{A checker reduces errors at a measurable cost.}
+Detection fell sharply from planted errors to analysts' real write-ups. A separate checker reduced wrong releases and withheld correct work. Qwen3.5 27B with the design-first prompt and a short thinking budget, followed by gpt-oss 20B, was the only configuration confirmed on both sealed sets under every available judge. Choosing it for deployment also means deciding whether the coverage lost is acceptable and how contested cases reach a human. A clean checker verdict does not certify a conclusion.
+
+\paragraph{Honest error is not the only risk.}
+Every analyst here was honest but fallible, working on tasks whose data invited a particular error. A model that misleads on purpose is a different risk, and the checkers, which ask whether a conclusion follows from the data, are not built to catch it. The companion paper tests the configuration recommended here for bias and deception~\cite{wade2026vetting}.
+
+For TRE practice the immediate priorities are to apply disclosure policies consistently across every form of output, to test complete analyst configurations on unseen tasks, to leave refusal of what cannot be answered to the gateway rather than the model, to report wrong releases together with coverage, and to adjudicate the disagreements that matter. Containment remains necessary because behavioral tests cannot anticipate every failure, and review remains necessary because containment does not establish that a conclusion is sound.

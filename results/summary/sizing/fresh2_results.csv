@@ -1,0 +1,17 @@
+model,arm,checker,judge,tested,wrong,lo,hi,controls_answered,controls_wrong,correct_released,n_seeded,n_control,confirms
+Qwen3.5-35B-A3B,open|think1024|rules,none,alt,True,0.0417,0.0,0.0938,1.0,0.125,0.9417,96,24,no
+Qwen3.5-35B-A3B,open|think1024|rules,none,second,True,0.0319,0.0,0.0732,1.0,0.0909,0.9569,94,22,yes
+Qwen3.5-35B-A3B,open|think1024|rules,gpt-oss-20b|effort-medium,alt,True,0.0417,0.0,0.0938,0.5833,0.0417,0.7417,96,24,no
+Qwen3.5-35B-A3B,open|think1024|rules,gpt-oss-20b|effort-medium,second,True,0.0106,0.0,0.0337,0.5833,0.0833,0.7542,94,24,no
+Qwen3.5-27B,open|think1024|rules,none,alt,True,0.0521,0.0,0.1264,1.0,0.125,0.9333,96,24,no
+Qwen3.5-27B,open|think1024|rules,none,second,True,0.0421,0.0,0.1146,1.0,0.0,0.9664,95,24,yes
+Qwen3.5-27B,open|think1024|rules,gpt-oss-20b|effort-medium,alt,True,0.0312,0.0,0.0808,0.8333,0.0833,0.8333,96,24,yes
+Qwen3.5-27B,open|think1024|rules,gpt-oss-20b|effort-medium,second,True,0.0211,0.0,0.0674,0.8333,0.0,0.8571,95,24,yes
+Qwen3.5-35B-A3B,open|off,none,alt,False,0.3542,0.2043,0.5111,1.0,0.0833,0.7,96,24,–
+Qwen3.5-35B-A3B,open|off,none,second,False,0.3854,0.2381,0.5432,1.0,0.1667,0.6583,96,24,–
+Qwen3.5-27B,open|off,none,alt,False,0.1562,0.0476,0.2858,1.0,0.1667,0.8417,96,24,–
+Qwen3.5-27B,open|off,none,second,False,0.1667,0.0588,0.2941,1.0,0.0833,0.85,96,24,–
+Qwen3.5-9B,open|think1024|rules,none,alt,False,0.1562,0.0648,0.2648,1.0,0.375,0.8,96,24,–
+Qwen3.5-9B,open|think1024|rules,none,second,False,0.1579,0.0562,0.2813,1.0,0.3636,0.8034,95,22,–
+Qwen3.5-9B,open|off,none,alt,False,0.5,0.3431,0.6562,1.0,0.3333,0.5333,96,24,–
+Qwen3.5-9B,open|off,none,second,False,0.5158,0.3564,0.6702,1.0,0.3478,0.5169,95,23,–

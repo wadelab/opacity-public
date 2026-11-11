@@ -1,0 +1,62 @@
+% The second OPACITY preprint: tests of a candidate model for bias and deception.
+% The first, on review under disclosure rules and model analysts, is ../paper/main.tex;
+% the two share numbers.tex, references.bib, the style and the build (links to ../paper).
+% Wrapper only: class, the shared style, the title
+% block and the generated numbers. The body lives in sections/*.tex.
+% Build with paper-vetting/build.sh (a link to paper/build.sh, which is shared
+% with safe-tre-agent/paper; regen.sh beside it is this paper's part).
+\documentclass[11pt,a4paper]{article}
+\usepackage{wadelab}
+% Breakout boxes with worked examples (this paper only; the shared style has none).
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\newtcolorbox[auto counter]{examplebox}[2][]{enhanced, breakable, colback=wllight!20, colframe=wlgrey,
+  boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=4pt, bottom=5pt, fontupper=\small,
+  title={Box~\thetcbcounter. #2}, fonttitle=\bfseries\sffamily\small, coltitle=black, colbacktitle=wllight!70,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm}, boxed title style={boxrule=0.5pt, colframe=wlgrey, arc=1pt}, #1}
+% Marked phrases in the worked examples, as on the explainer page: blue where an
+% honest write-up says what the data show, orange where a biased one departs.
+% render_html.py maps both to emphasis.
+\usepackage{soul}
+\colorlet{markhonest}{wlblue!16}\colorlet{markbiased}{wlorange!26}
+\newcommand{\markhonest}[1]{{\sethlcolor{markhonest}\hl{#1}}}
+\newcommand{\markbiased}[1]{{\sethlcolor{markbiased}\hl{#1}}}
+\input{numbers}
+\IfFileExists{version.tex}{\input{version}}{\newcommand{\BuildCommit}{\tbd}\newcommand{\BuildDate}{\tbd}}
+
+\title{Testing local LLMs for bias and deception\\in safe statistical analysis}
+\shorttitle{Testing local LLMs for bias and deception in safe statistical analysis}
+\author{Alex R. Wade\\[2pt]
+  \small Department of Psychology and York Neuroimaging Centre, University of York, UK\\
+  \small \code{alex.wade@york.ac.uk}}
+\preprintline{Preprint, not peer reviewed \;\textperiodcentered\; \BuildDate{} \;\textperiodcentered\; all data synthetic\\
+  \sys{OPACITY} at commit \code{\BuildCommit}; instructed bias only, no model trained to deceive}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\input{sections/map}
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/methods}
+\input{sections/results-probe}
+\input{sections/results-bias}
+\input{sections/results-pilot}
+\input{sections/discussion}
+\input{sections/limitations}
+\input{sections/reproducibility}
+\input{sections/acknowledgements}
+\input{sections/glossary}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{sections/appendix}
+
+\end{document}

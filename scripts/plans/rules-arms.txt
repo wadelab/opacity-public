@@ -1,0 +1,8 @@
+# Model-sizing study: the design-first rules prompt, the best analyst variant
+# on the dev tasks (Qwen3.5 27B 0.08, 35B-A3B 0.07 wrong with a 1k think).
+# Dev arms, and the held-out arm as an exploratory second test only (that set
+# has been read). Appended to newmodel-full.txt at 20:55 UTC for the jobs that
+# had not started (Gemma 4 x2, Nemotron 3 Super).
+harvest -T analyst_prompt=rules -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T analyst_prompt=rules -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T analyst_prompt=rules -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score

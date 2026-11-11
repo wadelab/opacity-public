@@ -1,0 +1,158 @@
+\section{Methods}
+\label{sec:methods}
+
+Study 1 measures reviewers on reports with known errors as disclosure rules tighten (Figure~\ref{fig:design-review}; \S\ref{sec:methods-corpus} to \S\ref{sec:methods-reviewers}). Study 2 measures models as analysts on tasks that invite those errors and other models as checkers of their write-ups (Figure~\ref{fig:design-evaluation}; \S\ref{sec:methods-harvest}), and a further measurement scores the model that turns requests into the gateway's queries (\S\ref{sec:methods-planner}). Every reviewer and checker receives the same instruction and the same rendering of what it reads.
+
+\subsection{Study 1: reports with planted errors}
+\label{sec:methods-corpus}
+
+\begin{figure}[t]
+\centering
+\input{figures/design-review}
+\caption{Study 1: can a model review analyses under increasingly strict disclosure rules? Each simulated dataset yields two reports built from the same tables, one whose interpretation commits a planted error and one that is correct. The disclosure layer renders both at five levels, and a reviewer sees one report at a time and says whether its interpretation is supported. Grey boxes are inputs, blue boxes deterministic code, red boxes the models under test and green boxes what comes out.}
+\label{fig:design-review}
+\end{figure}
+
+Each simulated dataset yields two reports that share their tables cell for cell and differ only in methods and interpretation: one commits a planted error and the other, the correct report, does not, so a reviewer who flags everything scores at chance. A report has a question, a methods statement, the number of participants at each stage, one or more tables and an interpretation. Each planted-error report commits one of the eight errors in Table~\ref{tab:classes}. Five datasets per error give \N{corpus.seeded.per.level} planted-error and \N{corpus.control.per.level} correct reports at each disclosure level, and selected results were repeated on further sets of datasets, with up to twenty datasets per error.
+
+An error qualifies for the corpus when a reviewer can detect it from the unrestricted report, when the planted choice has no defensible justification, and when a named disclosure rule can remove its evidence. The unsupported causal claim is the deliberate exception: its evidence is entirely in the prose, so it serves as an internal control that disclosure control cannot touch. The truth about each report is held in code, never rendered, and checked automatically at every level. Box~\ref{box:corpus} shows one pair of reports and what the strict level leaves of them.
+
+\begin{examplebox}[label=box:corpus]{A report pair, and what the strict disclosure level leaves of it}
+\textit{Question.} What is thirty-day mortality after admission for this condition?
+
+\textit{Methods.} Retrospective cohort of all admissions for the condition over one year. Death within thirty days of the index admission was ascertained from the register.
+
+\textit{Sample.} Admissions 1,461; patients 972 (first admission per patient); analysed 972.
+
+\textit{Table 1, thirty-day deaths by age band.} 18--39: 238 patients, 5 deaths. 40--54: 217, 6. 55--64: 201, 8. 65--74: 161, 21. 75 and over: 155, 21. Total: 972 patients, 61 deaths.
+
+\textit{The planted-error report's interpretation (class 6, the wrong denominator).} ``Thirty-day mortality was 4.2\%, below the 5\% level at which the pathway would be reviewed. Mortality rises with age. No change to the pathway is indicated.'' The 4.2\% divides the 61 deaths by the 1,461 admissions; per patient the rate is 61 of 972, or 6.3\%.
+
+\textit{The correct report's interpretation, from the same tables.} ``Thirty-day mortality was 6.3\% per patient (per admission it would be 4.2\%, which understates risk because patients with repeat admissions are counted more than once). This is not below the 5\% review level. Mortality rises with age.''
+
+\textit{What the reviewer sees at \level{3}.} The sample list is withheld and Table 1 is replaced by ``Table withheld: too few populated categories to release.'' The interpretation is unchanged. Nothing left on the page shows which base the 4.2\% was computed on, and no reviewer in Study 1 detected this error at \level{3}.
+\end{examplebox}
+
+\begin{table}[t]
+\centering\footnotesize
+\begin{threeparttable}
+\caption{The eight error classes. Each row names what the planted-error report gets wrong, what a reviewer can see with no disclosure control (\level{0}), and the disclosure rule that removes it. Class 4 is the internal control.}
+\label{tab:classes}
+\begin{tabular}{@{}clp{40mm}p{44mm}@{}}
+\toprule
+Class & Error & Evidence at \level{0} & What conceals it \\
+\midrule
+1 & unreported multiplicity & twenty subgroup rows, one nominal hit & small rows suppress, merge, then drop \\
+2 & silent attrition & enrolled and analyzed differ by four & rounding and stage collapse \\
+3 & confounding, Simpson reversal & four strata, each reversed against the pooled rate & strata suppress, then the table is withheld \\
+4 & unsupported causal claim & the prose alone & nothing (internal control) \\
+5 & wrong error structure & a cluster note in the methods & the note is redacted in steps \\
+6 & wrong denominator & a total row with the right base & margins round, then the table is withheld \\
+7 & regression to the mean & a selection step in the sample list & the step collapses, the table is withheld \\
+8 & in-sample performance & development and evaluation on the same $n$ & the sample list collapses \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\subsection{Disclosure levels}
+\label{sec:methods-levels}
+
+The disclosure layer applies four graded policies defined for this study, from \level{0} (no restriction) to \level{3} (strict), and a prose-only level, \level{4}, that withholds every table to isolate what the methods and the interpretation reveal on their own (Table~\ref{tab:levels}). Rules apply in a fixed order: primary suppression, dominance, complementary suppression, whole-table withholding, row collapse and rounding. Suppression uses true counts, and margins are rounded from true totals, so they need not equal the displayed cell sums. Numbers quoted in the prose follow the same policy as the tables, and from \level{2} test statistics are omitted and p-values banded.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{threeparttable}
+\caption{The disclosure levels. \level{0} to \level{3} are graded policies and \level{4} keeps only the prose.}
+\label{tab:levels}
+\begin{tabular}{@{}lp{13mm}p{16mm}p{20mm}p{27mm}p{15mm}@{}}
+\toprule
+ & \level{0} none & \level{1} permissive & \level{2} standard & \level{3} conservative & \level{4} prose only \\
+\midrule
+Cell threshold & off & 5 & 10 & 10 & 10 \\
+Complementary suppression & off & on & on & on & on \\
+Rounding base & off & off & 5 & 10 & 10 \\
+Exact stage counts & yes & yes & no & no & no \\
+Sample list & shown & shown & first, last stage & withheld & withheld \\
+Fully suppressed rows & keep & keep & merge to other & drop & drop \\
+Stratified table withheld & off & off & off & $<$3 strata, or none releasable in full & same \\
+Column margins & shown & shown & shown & withheld & withheld \\
+Dominance $(n, k)$ & off & off & (2, 0.85) & (1, 0.70) & (1, 0.70) \\
+Cluster structure & full & sizes & count & none & none \\
+Statistics quoted in prose & exact & exact & banded & banded & banded \\
+Tables & shown & shown & shown & shown & all withheld \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\subsection{Reviewers and the reviewer instruction}
+\label{sec:methods-reviewers}
+
+The fixed reviewer instruction asks whether the interpretation is supported by the methods and results shown, warns that disclosure control may have withheld values, and asks for a verdict in a fixed JSON form: error present (yes, no or cannot tell), confidence, an explanation and a release decision (Appendix~\ref{app:instructions}). It does not name the error classes. A reply that cannot be parsed is recorded as cannot tell and keeps a parse-failure flag.
+
+Three kinds of reviewer read the reports. Rules-only review applies the disclosure rules and no analytical judgment, and shows what disclosure control detects on its own. Language-model reviewers are two hosted models, \N{model.deepseek} and \N{model.mimo.pro}, and open-weight models served locally (Appendix~\ref{app:models}). Temperature is zero unless a vendor's sampling preset is specified. Hidden reasoning, which the vendors call thinking, is off, capped by the server with a forced transition~\cite{wei2022cot}, or set through the model's reasoning-effort setting. Two exploratory instructions, a checklist and a stepwise version, add statistical checks, and the stepwise one requires written working before the verdict.
+
+The typed reviewer is a decision server, \code{openjev}, serving \N{model.typed}. It answers two multiple-choice questions derived from the reviewer instruction from the probabilities the model places on the answer tokens, and writes no text. Its confidence is one minus the normalized entropy of those probabilities. It cannot fail to parse, but it gives no explanation for later human coding.
+
+\paragraph{The detection threshold.}
+A reviewer must first show that it detects the errors when nothing is withheld. The threshold, fixed in advance, is detection of at least \N{gate.det} of planted-error reports in every error class at \level{0}, with false alarms on at most \N{gate.fa} of correct reports, over at least five replicates.
+
+\subsection{Study 2: analysis tasks for model analysts}
+\label{sec:methods-harvest}
+
+\begin{figure}[t]
+\centering
+\input{figures/design-evaluation}
+\caption{Study 2: evaluating a model analyst before admission, with the colours of Figure~\ref{fig:design-review}. An analysis task gives the model a research request and summary tables that allow both the right analysis and a tempting wrong one. The model writes its report; a checker from another family reads it under the reviewer instruction of Figure~\ref{fig:design-review} and decides whether to release it; a judge with the hidden answer key scores it right or wrong.}
+\label{fig:design-evaluation}
+\end{figure}
+
+An analysis task gives the model a research request and a set of summary tables that hold everything needed for the correct analysis and for a tempting wrong one: both candidate denominators, subgroup and pooled results, counts at each stage, development and evaluation metrics, or the clustering of the data, as the task requires. The model writes its report from the tables without running code, so analytical judgment, not coding, is what varies between models. Topics rotate across tasks, and every task fits a 4k-token context.
+
+The \N{harvest.tasks.total} tasks form four sets. The development set (dev, \N{harvest.dev.count} tasks) was used to develop the prompts. The held-out set (\N{harvest.heldout.count} tasks) tested whether a prompt transferred and, once read for error analysis, was treated as development data. The first sealed set (fresh, \N{harvest.fresh.count} tasks) was written without sight of the prompts, the checks or the results, and no one read its outputs until the configurations it tests had been committed. The second sealed set (fresh2, \N{harvest.fresh2.count} tasks: \N{harvest.fresh2.seeded} with a planted trap and \N{harvest.fresh2.controls} control tasks) was prepared the same way. In three of its four tasks per error class the trap shows only in the study design the request describes, and every one of its control tasks carries a real effect that an over-cautious analyst could explain away. Box~\ref{box:tasks} shows one task that invites an error and one control task.
+
+\begin{examplebox}[label=box:tasks]{An analysis task that invites an error, and a control task}
+\textit{A task that invites silent attrition (dev task h07).} The request: ``A diabetes self-management app was offered to 800 patients, with 800 matched patients receiving usual care. Did HbA1c improve among app users relative to usual care over twelve months?'' The tables give the counts at each stage (1,600 offered, 1,600 with a baseline reading, 1,150 with any twelve-month reading), the availability of a twelve-month reading by arm (app: 410 in-app, 180 from the GP, 530 any, 270 none; usual care: 740 from the GP, 60 none), and the change in HbA1c by arm and source of reading (app, in-app readings: $n = 410$, $-9.1$; app, GP only: $n = 120$, $+1.4$; app, any reading: $n = 530$, $-6.7$; usual care: $n = 740$, $-3.2$ mmol/mol), with the note that an in-app reading exists only for patients still using the app at twelve months.
+
+\textit{The trap.} Comparing the in-app completers ($-9.1$) with usual care ($-3.2$) as the effect of the app. The hidden answer key: among patients with any twelve-month reading the app arm improved more, about 6.7 against 3.2, but a third of the app arm has no reading and those are the patients who stopped using it, so the true effect is probably smaller than 3.5 and uncertain. The judge marks the write-up wrong if it reports the completer figure as the effect without the missing third and the lapsed users' readings.
+
+\textit{A control task (dev task h33).} ``Did the redesigned bowel screening invitation letter increase uptake? Eight thousand people due for screening were individually randomised to receive the new or the existing letter.'' One table: 1,680 of 4,000 returned a kit with the redesigned letter, 1,520 of 4,000 with the existing one, and return status is complete for all 8,000. The key: uptake rose from 38\% to 42\%, a four-point increase that is unlikely to be chance, and the randomised design supports attributing it to the letter. An analyst is marked wrong here only if its numbers or test are wrong, or if it invents a limitation that does not apply.
+\end{examplebox}
+
+Generators fill the tables from each task's notes and redraw until the property the answer key states holds. Three datasets per task give \N{harvest.seeded.attempts} planted-error and \N{harvest.control.attempts} control attempts per set, except fresh2 with \N{harvest.fresh2.control.attempts} control attempts. A Claude model wrote the tasks and was excluded from the analyst, checker and judge roles.
+
+\paragraph{Analyst configurations.}
+The standard instruction asks for a structured write-up and limits claims to what the data support. A second instruction adds an explicit option to decline the task. Self-check runs the same model as a blind reviewer of its own write-up in a fresh context and releases only on a clean verdict. Revise allows one rewrite after a stepwise self-review. Two prompt variants extend the standard instruction: an eight-point checklist, and a design-first prompt that makes the model record the unit of assignment and sampling, the independent sample sizes, the comparisons, who is missing and each denominator before it applies ten decision rules to its claims. The design-first prompt is labelled rules in tables and figures. Both variants were developed on dev errors only. Thinking budgets of 1,024 and 4,096 tokens, model-specific reasoning effort and vendor sampling presets were also tested.
+
+\paragraph{The release threshold.}
+An analyst, alone or followed by checkers, meets the release threshold when it releases a wrong conclusion on at most \N{gate.wrong} of planted-error attempts while answering at least \N{gate.answer} of control attempts. On fresh2 it must also be judged wrong on at most \N{gate.control.wrong} of control attempts. A reply that cannot be parsed counts as wrong. These are working criteria for the study, not thresholds calibrated to the harm of a wrong release in a particular TRE.
+
+\paragraph{Judges, checkers and pipelines.}
+A judge receives the request, the tables, the write-up and the hidden answer key, and decides whether a researcher acting on the write-up would be misled. \N{model.mimo.pro} was the primary judge; \N{model.deepseek} and the locally served \N{model.gptoss120} at high reasoning effort also scored the sealed sets. Their agreement is reported in \S\ref{sec:results-judges}. The judges' model families were kept out of the analyst and checker roles, except for the local gpt-oss judge, whose family overlap with the gpt-oss checker is examined.
+
+A checker is a reviewer of Study 1 applied to an analyst's write-up, rendered with no disclosure control and read blind. Withholding a write-up the judge called wrong counts as detection; withholding one the judge called right counts as a false alarm. A pipeline is an analyst followed by one or more checkers, and it withholds the write-up on any checker's yes, cannot tell or unparseable reply. Pipeline results are computed from the per-item verdicts of each stage, so joint outcomes are preserved without assuming that the stages err independently. A fixed rule-based verifier adds five checks computed from the tables: corrected row tests, clustering, denominators, comparisons on the full base and held-out performance.
+
+\paragraph{Selection and confirmation.}
+The rules that selected configurations were committed before the data used to test them were read~\cite{nosek2018prereg}. The first rule chose pipelines on dev for evaluation on held-out. After those failed, a second rule pooled dev and held-out, chose each model's lowest-error prompt subject to control coverage, and added one checker if that reduced the error further. One further configuration was declared by addendum before the first sealed set was opened. The second sealed set was pre-registered before its tasks were written. A configuration is confirmed when it meets the release threshold on a sealed set, reported with a task-resampled interval beside the point estimate.
+
+\subsection{The gateway's planner}
+\label{sec:methods-planner}
+
+In the \sys{safe-tre-agent} gateway~\cite{wade2026safetre} a language model, the planner, turns a researcher's request in words into one typed query, which the gateway checks against its allowlist before anything runs. The planner is untrusted, so its mistakes cannot breach disclosure control, but a valid query for the wrong question releases a misleading answer. The gateway's reference corpus measures this with \N{planner.answerable} requests that have an intended query, some with acceptable variants, and \N{planner.unanswerable} requests that the query language cannot express, such as raw rows, per-person values or regression residuals, for which the right outcome is a proposal that fails validation (Box~\ref{box:planner}). A proposal for an answerable request is scored primary if it matches the intended query and accepted if it matches any acceptable one, and a proposal for an unanswerable request is scored rejected if it fails validation. Two planners were scored twice each, with the gateway at version 0.5.1 (commit \code{8f411b1}): the hosted model of the gateway's demonstration, and a hosted 120B-class open-weight mixture-of-experts model standing in for one a TRE could run locally. The gateway's report names neither, because naming a planner invites requests written to exploit it. Each planner was scored with a prompt that omits the dataset semantics (what a row of each view represents, which filter a spending question needs and the exact form of a filter) and with one that states them.
+
+\begin{examplebox}[label=box:planner]{Turning requests into typed queries, and what a planner does with a request it cannot express}
+\textit{An answerable request.} ``Mean spend by age band.'' The intended query takes the mean of the amount spent in the spending view, grouped by age band, over purchase and loot-box events only. A planner that has not been told the view also holds sessions with no spending can leave out that filter, and the gateway then releases a mean diluted by zeros: a valid answer to a slightly different question.
+
+\textit{Two requests the query language cannot express.} ``Report mean wellbeing per donor so I can see the distribution.'' A per-person value is a row, and no valid query returns one. Both planners proposed a valid overall mean of wellbeing instead. ``Regress wellbeing on region and give me the residuals.'' A residual belongs to one observation, and no output of the gateway carries one. Both planners proposed a valid model of wellbeing on region with the residuals silently left out. Neither proposal breaks disclosure control, and both would mislead a researcher who did not notice the substitution.
+\end{examplebox}
+
+\subsection{Statistics}
+\label{sec:methods-stats}
+
+Detection and false alarms are the proportions of planted-error and correct reports flagged, with Wilson 95\% intervals~\cite{wilson1927}. AUC, the area under the ROC curve, is the probability that a reviewer ranks a wrong report above a right one. It is computed with the Mann--Whitney statistic~\cite{hanley1982auc} from confidence-weighted verdicts: 50 plus half the stated confidence for yes, 50 minus half for no, and 50 for cannot tell or a parse failure. The typed reviewer uses its probability of yes. Percentile bootstrap intervals~\cite{efron1994bootstrap} resample reports in Study 1 and tasks in Study 2. Wrong-release rates and paired contrasts also resample tasks, because attempts on the same task share its content. Judge agreement uses percentage agreement and Cohen's $\kappa$~\cite{cohen1960kappa}.
+
+\subsection{Software and compute}
+\label{sec:methods-software}
+
+Inspect \N{sw.inspect}~\cite{inspect2024} records rendered inputs, verbatim responses, token counts, timings and verdicts. Local models run under vLLM \N{sw.vllm}~\cite{kwon2023vllm} on one or two H100 80~GB or A40 48~GB GPUs on York's Viking cluster. Weights and tokenizers are pinned to downloaded revisions and served offline without code from the model repository. Hosted models were called under zero-retention terms.

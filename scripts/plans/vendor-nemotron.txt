@@ -1,0 +1,10 @@
+# Model-sizing study, 23 October: Nemotron 3 Super as its model card serves it.
+# Thinking on with no budget (16k allowance), NVIDIA's sampling (temperature
+# 1.0, top-p 0.95), and the job started with VLLM_EXTRA_ARGS="--mamba-ssm-cache-dtype
+# float16". The earlier Super runs were greedy, with thinking off or capped
+# at 1k, and the Mamba state cache left at auto (bf16). Plain and rules
+# prompts, dev and held-out. Diagnostic only: the fresh set is not used.
+harvest -T replicates=3 -T thinking=on -T sampling=nemotron -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T analyst_prompt=rules -T replicates=3 -T thinking=on -T sampling=nemotron -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T replicates=3 -T thinking=on -T sampling=nemotron -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T analyst_prompt=rules -T replicates=3 -T thinking=on -T sampling=nemotron -T judge=openai-api/mimo/mimo-v2.6-pro --no-score

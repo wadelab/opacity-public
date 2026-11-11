@@ -1,0 +1,3 @@
+# Model-sizing study: arm B of the second fresh set, gpt-oss 20B at medium
+# effort as checker on every fresh2 write-up (runs/inspect/fresh2/).
+crosscheck -T logs=runs/inspect/fresh2/*harvest*.eval -T effort=medium

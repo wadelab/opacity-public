@@ -1,0 +1,81 @@
+% Small pictures for the design figures, in the explainer page's visual
+% language (docs/explainers/reading-the-robots-mind.html): a model is a robot
+% head on a stand, a report is a page, a dataset is a stack, and the five
+% disclosure levels are five small tables that empty from s0 to s4. Each pic
+% is centred on its coordinate and about 9 mm tall. Colours from wadelab.sty.
+\tikzset{
+  icon/.style={line width=0.7pt, draw=wlink},
+  pics/robot/.style={code={
+    \draw[icon, fill=white, rounded corners=0.6mm] (-1.8mm,-4.7mm) rectangle (1.8mm,-3.1mm);
+    \fill[wlink] (-0.6mm,-3.1mm) rectangle (0.6mm,-2.6mm);
+    \draw[icon, fill=white, rounded corners=1.1mm] (-3.6mm,-2.6mm) rectangle (3.6mm,2.7mm);
+    \draw[icon] (0,2.7mm) -- (0,3.7mm);
+    \fill[wlorange] (0,4.0mm) circle (0.45mm);
+    \fill[wlink] (-1.3mm,0.6mm) circle (0.42mm) (1.3mm,0.6mm) circle (0.42mm);
+    \draw[icon, line cap=round] (-0.8mm,-1.1mm) -- (0.8mm,-1.1mm);
+  }},
+  % a robot whose head shows its internal state, read by a magnifier: a probe
+  pics/proberobot/.style={code={
+    \draw[icon, fill=white, rounded corners=0.6mm] (-1.8mm,-4.7mm) rectangle (1.8mm,-3.1mm);
+    \fill[wlink] (-0.6mm,-3.1mm) rectangle (0.6mm,-2.6mm);
+    \draw[icon, fill=white, rounded corners=1.1mm] (-3.6mm,-2.6mm) rectangle (3.6mm,2.7mm);
+    \draw[icon] (0,2.7mm) -- (0,3.7mm);
+    \fill[wlorange] (0,4.0mm) circle (0.45mm);
+    \fill[wlblue!12, rounded corners=0.5mm] (-2.9mm,0.1mm) rectangle (2.9mm,2.1mm);
+    \foreach \x/\c in {-2.3/wlblue,-1.5/wllight,-0.7/wlblue,0.1/wlorange,0.9/wllight,1.7/wlblue,2.4/wllight}{
+      \fill[\c] (\x mm,1.6mm) circle (0.28mm);}
+    \foreach \x/\c in {-2.3/wllight,-1.5/wlblue,-0.7/wllight,0.1/wlblue,0.9/wlblue,1.7/wllight,2.4/wlorange}{
+      \fill[\c] (\x mm,0.65mm) circle (0.28mm);}
+    \fill[wlink] (-1.3mm,-1.2mm) circle (0.42mm) (1.3mm,-1.2mm) circle (0.42mm);
+    \draw[wlblue, line width=1pt] (2.6mm,1.3mm) circle (1.5mm);
+    \draw[wlblue, line width=1.6pt, line cap=round] (3.7mm,0.2mm) -- (5.0mm,-1.1mm);
+  }},
+  % a page of a report; the flag marks the planted error or the bias
+  pics/page/.style={code={
+    \draw[icon, fill=white] (-2.6mm,-3.6mm) -- (-2.6mm,3.6mm) -- (1.4mm,3.6mm) -- (2.6mm,2.4mm) -- (2.6mm,-3.6mm) -- cycle;
+    \foreach \y in {1.8,0.8,-0.2,-1.2,-2.2}{\draw[wllight, line width=0.6pt] (-1.7mm,\y mm) -- (1.7mm,\y mm);}
+  }},
+  pics/flagpage/.style={code={
+    \pic {page};
+    \fill[wlorange] (1.0mm,-3.6mm) rectangle (2.6mm,-2.0mm);
+    \draw[wlorange, line width=0.9pt] (-1.7mm,-1.2mm) -- (1.7mm,-1.2mm);
+  }},
+  % a page that is mostly a table: an analysis task's request and tables
+  pics/tablepage/.style={code={
+    \draw[icon, fill=white] (-2.6mm,-3.6mm) -- (-2.6mm,3.6mm) -- (1.4mm,3.6mm) -- (2.6mm,2.4mm) -- (2.6mm,-3.6mm) -- cycle;
+    \draw[wllight, line width=0.6pt] (-1.7mm,2.2mm) -- (1.2mm,2.2mm);
+    \draw[wlgrey, line width=0.4pt] (-1.8mm,-2.8mm) grid[step=1.2mm] (1.8mm,0.8mm);
+  }},
+  % a dataset
+  pics/stack/.style={code={
+    \foreach \y in {-2.4,-0.6,1.2}{
+      \draw[icon, fill=white] (-3mm,\y mm) -- (-3mm,\y mm+1.4mm) arc[start angle=180, end angle=360, x radius=3mm, y radius=0.9mm]
+        -- (3mm,\y mm) arc[start angle=0, end angle=-180, x radius=3mm, y radius=0.9mm];}
+    \draw[icon, fill=white] (0,2.6mm) ellipse[x radius=3mm, y radius=0.9mm];
+  }},
+  % the hidden answer key, held by the judge
+  pics/key/.style={code={
+    \draw[wlorange, line width=1.1pt] (0,0) circle (1.0mm);
+    \draw[wlorange, line width=1.1pt, line cap=round] (1.0mm,0) -- (3.6mm,0) (2.6mm,0) -- (2.6mm,-0.9mm) (3.4mm,0) -- (3.4mm,-0.9mm);
+  }},
+  % five small tables, s0 to s4: cells withheld as the level tightens, then prose only
+  pics/levels/.style={code={
+    \foreach \l/\gone in {0/{}, 1/{3}, 2/{3,8}, 3/{1,3,5,8}}{
+      \begin{scope}[xshift=\l*6.4mm-12.8mm]
+        \draw[icon, line width=0.5pt, fill=white] (-2.4mm,-2.6mm) rectangle (2.4mm,2.6mm);
+        \foreach \i in {0,...,8}{
+          \pgfmathtruncatemacro{\r}{int(\i/3)}\pgfmathtruncatemacro{\c}{mod(\i,3)}
+          \fill[wlgrey!70] (-1.8mm+\c*1.3mm,1.1mm-\r*1.3mm) rectangle ++(1.0mm,1.0mm);}
+        \foreach \i in \gone{
+          \pgfmathtruncatemacro{\r}{int(\i/3)}\pgfmathtruncatemacro{\c}{mod(\i,3)}
+          \fill[white] (-1.85mm+\c*1.3mm,1.05mm-\r*1.3mm) rectangle ++(1.1mm,1.1mm);}
+        \node[font=\scriptsize, text=wlgrey, inner sep=0] at (0,-4.0mm) {s\l};
+      \end{scope}}
+    \begin{scope}[xshift=12.8mm]
+      \draw[icon, line width=0.5pt, fill=white] (-2.4mm,-2.6mm) rectangle (2.4mm,2.6mm);
+      \foreach \y in {1.4,0.4,-0.6,-1.6}{\draw[wllight, line width=0.6pt] (-1.7mm,\y mm) -- (1.7mm,\y mm);}
+      \node[font=\scriptsize, text=wlgrey, inner sep=0] at (0,-4.0mm) {s4};
+    \end{scope}
+  }},
+}
+%

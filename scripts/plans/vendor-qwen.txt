@@ -1,0 +1,9 @@
+# Model-sizing study, 23 October: is greedy decoding with capped or no
+# thinking handicapping the large models? Thinking on with no budget (16k
+# allowance) at the Qwen model cards' thinking-mode sampling, plain and rules
+# prompts, dev and held-out. Run for the 122B-A10B and, as the matched
+# control, the 27B. Diagnostic only: the fresh set is not used.
+harvest -T replicates=3 -T thinking=on -T sampling=qwen-thinking -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T analyst_prompt=rules -T replicates=3 -T thinking=on -T sampling=qwen-thinking -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T replicates=3 -T thinking=on -T sampling=qwen-thinking -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T analyst_prompt=rules -T replicates=3 -T thinking=on -T sampling=qwen-thinking -T judge=openai-api/mimo/mimo-v2.6-pro --no-score

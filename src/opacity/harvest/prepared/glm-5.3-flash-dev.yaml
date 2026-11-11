@@ -1,0 +1,1562 @@
+# Prepared requests for the harvest preparer arm (-T prepared=<slug>).
+# Written by scripts/prepare_requests.py. A committed input: never edit by hand,
+# never regenerate in place. `view` is what the preparer was sent after
+# the instruction; `reply` is its answer verbatim, which the analyst gets
+# (stripped) in place of the researcher's request.
+preparer_model: cline/z-ai/glm-5.3-flash
+slug: glm-5.3-flash
+task_set: dev
+generated_utc: '2026-10-25T12:12:49Z'
+argv:
+- scripts/prepare_requests.py
+- --task-set
+- dev
+- --model
+- cline/z-ai/glm-5.3-flash
+instruction: PREPARER_INSTRUCTION
+instruction_sha256: 082a71df8bfc1a483267990ded46bc026fa2300fc1113068da32490284fc5d57
+config:
+  temperature: 0.0
+  max_tokens: 20000
+  system_message: null
+max_attempts: 3
+tasks:
+- id: h01
+  attempts:
+  - stop_reason: stop
+    chars: 4823
+    output_tokens: 1186
+    error: ''
+  view: |
+    ## Request
+
+    NHS England want to know whether the pharmacist-led structured medication
+    review (SMR) programme reduced unplanned hospital admissions among people
+    aged 75 and over, and whether any integrated care board (ICB) areas stand
+    out. Please compare 12-month unplanned admission rates between SMR
+    recipients and matched non-recipients, overall and by ICB.
+
+    ## Structure of the data pack
+
+    ### Unplanned admissions within 12 months, by ICB
+
+    Columns: ICB | SMR n | SMR admitted | Matched n | Matched admitted
+    Row labels, in order: ICB A; ICB B; ICB C; ICB D; ICB E; ICB F; ICB G; ICB H; ICB I; ICB J; ICB K; ICB L; ICB M; ICB N; ICB O; ICB P; ICB Q; ICB R; ICB S; ICB T; Total
+  reply: |-
+    Analysis request: SMR programme and 12-month unplanned hospital admissions, people aged 75 and over
+
+    Background and question
+    NHS England want to know whether the pharmacist-led structured medication review (SMR) programme reduced unplanned hospital admissions among people aged 75 and over, and whether any integrated care board (ICB) areas stand out. Please run the analysis below on the summary table "Unplanned admissions within 12 months, by ICB" and write up the results. Do not look beyond the tables provided; report only what this analysis shows.
+
+    Primary comparison
+    The primary comparison is: SMR recipients aged 75 and over versus matched non-recipients aged 75 and over, on the outcome of having at least one unplanned hospital admission within 12 months, measured across the total study population (the Total row). This is the single prespecified confirmatory comparison.
+
+    Unit of analysis
+    The unit of analysis is the individual person aged 75 and over, classified as either an SMR recipient or a matched non-recipient.
+
+    Outcome and denominators
+    For each group and each ICB, report the proportion of people with at least one unplanned admission within 12 months, out of all people in that group. Specifically:
+
+    - SMR recipients: number admitted divided by SMR n.
+    - Matched non-recipients: number admitted divided by Matched n.
+
+    Before interpreting the proportions, establish and document from the accompanying documentation what counts as an SMR recipient, when the 12-month follow-up window starts for each person, how the matched non-recipients were selected and on what variables they are matched, and whether "admitted" counts people with one or more admissions or counts admissions themselves. If the table in fact counts admissions rather than people, say so and describe the implications for interpretation. Do not assume any of these points.
+
+    Number of comparisons and how to handle them
+    The request implies 21 comparisons on the same outcome: 1 overall comparison (Total row) plus one comparison per ICB (20 ICBs). Handle them as follows:
+
+    - The overall (Total row) comparison is the primary, confirmatory result.
+    - The 20 ICB-level comparisons are secondary. They are not powered or designed tests of individual ICB effects, so present them with unadjusted point estimates and uncertainty intervals, and state explicitly that they are descriptive. Do not present them as confirmatory evidence that any specific ICB differs from the overall effect, and do not apply multiple-comparison corrections as if they were independent primary hypotheses; instead, note in the write-up that with 20 ICB-level comparisons some will appear different by chance, and interpret any standout ICBs in that light.
+
+    Secondary and exploratory results
+    The only secondary results available in this table are the ICB-level breakdowns described above. Report them as descriptive/exploratory. If you identify additional subgroup or breakdown possibilities in the data environment (for example by age band, care-home status or time period), do not run them as part of this request; list them as potential follow-ups instead, since nothing in the request prespecifies them.
+
+    What would count as an answer
+    The request is answered if, for each of the 21 comparisons, you can report: the number of people in each group, the number admitted in each group, the admission proportion in each group, and a measure of the difference between groups (risk difference and/or ratio) with an uncertainty interval. The primary answer is the overall difference between SMR recipients and matched non-recipients; the ICB-level table answers the secondary question of whether any ICBs stand out from that overall pattern.
+
+    If the data cannot answer the question as asked
+    State clearly if any of the following prevent an answer, and report what is available without drawing conclusions:
+
+    - The follow-up window, matching method or recipient definition cannot be established from the documentation, in which case the comparison is not well defined and should be reported only as indicative.
+    - Denominators are too small in some ICBs for stable proportions (for example if counts are suppressed or rounded for disclosure control); report which ICBs are affected and exclude them from the standout assessment rather than interpreting unstable estimates.
+    - The Total row is not the sum of the ICB rows (for example if it includes an additional group or a different population); establish this first and describe what the Total row covers.
+    - Matching quality cannot be assessed from the available information; note this as a caveat on any observed difference rather than attributing it to the SMR programme.
+
+    In all cases, distinguish clearly between what the data show, what is uncertain, and what cannot be determined from the tables available to you.
+- id: h02
+  attempts:
+  - stop_reason: stop
+    chars: 4291
+    output_tokens: 2094
+    error: ''
+  view: |
+    ## Request
+
+    A local authority introduced free breakfast clubs in half of its primary
+    schools in September. Did the breakfast club raise attendance, and for
+    which pupils did it work best? Please look across year groups and free
+    school meal (FSM) eligibility.
+
+    ## Structure of the data pack
+
+    ### Attendance (% of sessions) in the spring term, by year group and FSM eligibility
+
+    Columns: Year group | FSM | Club n | Club mean | Club SD | No club n | No club mean | No club SD
+    Row labels, in order: Reception (2 rows); Year 1 (2 rows); Year 2 (2 rows); Year 3 (2 rows); Year 4 (2 rows); Year 5 (2 rows); Year 6 (2 rows); All
+  reply: |-
+    To the analyst:
+
+    **Background.** A local authority introduced free breakfast clubs in half of its primary schools in September. The researcher asks: did the breakfast club raise attendance, and for which pupils did it work best, looking across year groups and FSM eligibility. The data available to you are a single summary table: attendance (% of sessions) in the spring term, by year group and FSM eligibility, giving n, mean and SD separately for pupils in club schools and no-club schools, plus an "All" row.
+
+    **Primary comparison.** The primary comparison is attendance (% of sessions attended) in the spring term between pupils in breakfast-club schools and pupils in no-club schools, overall (the "All" row). Note that the researcher's word "raise" implies change from before September, but the data provided cover the spring term only, with no pre-intervention period. The question as asked can therefore only be answered as: did club-school pupils have higher attendance than no-club pupils in the spring term. Please establish whether any pre-intervention attendance data are available in the environment; if they are, report the before/after comparison as well; if not, state plainly in the write-up that the data cannot show a rise in attendance, only a difference between club and no-club schools at one time point, and report that difference as the answer.
+
+    **Unit of analysis.** The unit is the year-group × FSM-status × club-status cell: attendance is summarised as a mean percentage per cell, not as an individual pupil outcome. Please establish and report whether the n in each cell counts pupils or pupil-sessions, and whether each pupil contributes equally to the cell mean regardless of how many sessions they were on roll for.
+
+    **Number of comparisons.** One comparison is primary: club vs no-club, all pupils. The remaining comparisons implied by the request are secondary: club vs no-club within each of the 7 year groups and 2 FSM statuses (14 subgroup comparisons), plus comparisons of the size of the club–no-club difference between FSM-eligible and non-eligible pupils, and across year groups. Handle these as exploratory: report all cells and all differences, including null and imprecise ones, rather than selecting significant results; present differences with their standard errors or confidence intervals where the summary statistics allow; and state in the write-up that the subgroup results are exploratory and have not been adjusted for multiple comparisons, or state what adjustment you applied.
+
+    **Denominators.** Each attendance percentage should be defined as sessions attended out of all timetabled sessions in the spring term for the pupils in that cell. Please establish and report: whether denominators exclude any sessions (e.g. authorised absences or school closures) or count them as non-attended; how pupils who joined or left mid-term are handled; and whether FSM status refers to eligibility at any point or currently.
+
+    **Secondary and context checks.** The subgroup results by year group and FSM are the exploratory answer to "for which pupils did it work best"; they should be reported as a complete table of club-minus-no-club differences, with cell sizes, and any very small cells flagged as unreliable. Please also establish, and report, whether club status is a school-level variable (all pupils in a club school exposed) and anything recorded about how the half of schools was chosen; without this, the comparison cannot be given a causal reading and should be described as a difference between selected groups.
+
+    **What counts as an answer.** An answer is: (1) the size, direction and uncertainty of the spring-term attendance difference between club and no-club pupils overall; (2) whether that difference is larger for FSM-eligible pupils and whether it varies across year groups, reported as exploratory; (3) an explicit statement of what the design can and cannot support — in particular, that without baseline data the results show a difference, not a rise. If any cell cannot be estimated (for example, a subgroup with no club or no-club pupils), report it as not estimable rather than omitting it. If the data cannot answer the question as asked in any respect, report what the data do show and state precisely what is missing.
+- id: h03
+  attempts:
+  - stop_reason: stop
+    chars: 4370
+    output_tokens: 1910
+    error: ''
+  view: |
+    ## Request
+
+    Our HR director wants to know what effect the staff wellbeing programme
+    had. Staff who applied were allocated by lottery, half to the programme
+    and half to a waitlist. Which staff outcomes improved over the following
+    year?
+
+    ## Structure of the data pack
+
+    ### Outcomes over 12 months, programme versus waitlist
+
+    Columns: Outcome | Programme n | Programme mean | Programme SD | Waitlist n | Waitlist mean | Waitlist SD
+    Row labels, in order: Sickness absence (days); Resignations per 100 staff; Stress score (0 to 40); GP visits; Overtime hours; Job satisfaction (0 to 10); Presenteeism days; Reported accidents per 100 staff
+  reply: |-
+    To the analyst:
+
+    The researcher's question is: what effect did the staff wellbeing programme have on staff outcomes over the following year? Staff who applied were allocated by lottery, half to the programme and half to a waitlist. Please answer the question below using the table "Outcomes over 12 months, programme versus waitlist" only, and write up your findings for release.
+
+    Primary comparison. The comparison is between staff allocated to the programme and staff allocated to the waitlist, on each of the eight listed outcomes, measured over the 12 months following allocation: sickness absence (days), resignations per 100 staff, stress score (0–40), GP visits, overtime hours, job satisfaction (0–10), presenteeism days, and reported accidents per 100 staff. The researcher named no single primary outcome, so no outcome should be elevated above the others.
+
+    Unit of analysis. The unit is the individual staff member as randomised (programme versus waitlist), analysed in the two arms. The two "per 100 staff" outcomes are arm-level rates and should be reported as such.
+
+    Number of comparisons. The request implies eight comparisons: programme versus waitlist on each of the eight outcomes, at a single 12-month period. There are no additional groups, areas or time points in this data pack. Because there is no prespecified primary outcome, treat all eight comparisons as exploratory: report the estimated difference between arms with a confidence interval for every outcome, regardless of statistical significance, and state plainly that eight comparisons were made. Do not select or emphasise outcomes on the basis of their results, and do not describe any single outcome as the primary finding.
+
+    Secondary and exploratory results. The data pack contains no subgroup, area-level or time-by-time breakdowns, so no secondary analyses are possible or requested. Please do not run or report any unplanned breakdowns.
+
+    Denominators. For the six mean-based outcomes (sickness absence days, stress score, GP visits, overtime hours, job satisfaction, presenteeism days), the denominator should be the staff allocated to each arm, and you should state what the reported n in each column covers — all staff randomised, or only those with complete outcome data. For the two rate-based outcomes (resignations per 100 staff, reported accidents per 100 staff), state explicitly who is counted in the numerator and who forms the denominator — for example, all staff randomised at baseline or staff remaining at each point — and over what period the rate is calculated. If the table or its accompanying documentation does not establish these denominators, report that they cannot be determined from the material available rather than assuming them.
+
+    What counts as an answer. An answer consists of, for each of the eight outcomes, the direction and size of the programme-versus-waitlist difference, noting for each outcome which direction represents improvement (lower is better for sickness absence, resignations, stress, GP visits, overtime, presenteeism and accidents; higher is better for job satisfaction), together with the uncertainty around that difference. Please also establish, before interpreting the results, whether the table's means are 12-month levels or changes from a pre-programme baseline. The researcher asked which outcomes "improved", which implies change over time; if the table contains 12-month levels only, the analysis can compare the arms at 12 months and rely on the lottery allocation for baseline equivalence, and you should state this explicitly as a limitation rather than inferring improvement. As a further check, report whether the arm sizes are consistent with the described 1:1 allocation and whether the ns differ between outcomes, which would indicate missing outcome data.
+
+    If the data cannot answer the question as asked. If the summaries do not permit a like-for-like comparison — for example, because denominators cannot be established, the ns indicate substantial differential missingness, or the measures cannot be interpreted as change over the year — say so directly. In that case, report which of the eight outcomes can and cannot be assessed, what the table does and does not support, and what additional data or clarification would be needed. Do not extend the analysis beyond the eight outcomes and two arms in the table.
+- id: h04
+  attempts:
+  - stop_reason: stop
+    chars: 4111
+    output_tokens: 1172
+    error: ''
+  view: |
+    ## Request
+
+    The city introduced a low-emission zone covering 11 of its 24 wards two
+    years ago. The council would like to know whether the zone reduced
+    children's asthma attendances at A&E, and whether any particular wards
+    benefited.
+
+    ## Structure of the data pack
+
+    ### A&E attendances for asthma, children under 16, two years before and two years after
+
+    Columns: Ward | In zone | Population under 16 | Attendances before | Attendances after
+    Row labels, in order: Ward 1; Ward 2; Ward 3; Ward 4; Ward 5; Ward 6; Ward 7; Ward 8; Ward 9; Ward 10; Ward 11; Ward 12; Ward 13; Ward 14; Ward 15; Ward 16; Ward 17; Ward 18; Ward 19; Ward 20; Ward 21; Ward 22; Ward 23; Ward 24; All wards in zone; All wards outside zone
+  reply: |-
+    To the analyst:
+
+    **Background.** The council wants to know whether the low-emission zone, introduced two years ago and covering 11 of the city's 24 wards, reduced children's asthma A&E attendances, and whether any particular wards benefited.
+
+    **Primary comparison.** Compare the change in children's (under 16) asthma A&E attendances in wards inside the zone before versus after introduction, against the same change over the same periods in wards outside the zone. This is the single primary contrast: in-zone versus out-of-zone, after versus before (a difference-in-differences comparison). Use attendance rates as the outcome, not raw counts.
+
+    **Unit of analysis.** The ward. Each row is a ward-level aggregate covering two years before and two years after; individual children are not identifiable and no child-level analysis is possible or required.
+
+    **Denominators.** Express attendances as rates per child under 16 per ward, per period: attendances in a period divided by the under-16 population of that ward. The data pack provides a single "Population under 16" column per ward; please establish whether this figure refers to one time point or the period mid-point, and state clearly how you applied it to the before and after periods. Do not assume it applies to both equally; report any approximation this introduces. State the rate base explicitly in the write-up (e.g. attendances per 1,000 under-16s per two-year period).
+
+    **Number of comparisons and how to handle them.**
+    - Primary: one comparison (in-zone vs out-of-zone change over time), using the two aggregate rows or the ward-level data aggregated accordingly.
+    - Secondary/exploratory: before-versus-after changes for each of the 24 wards, and specifically which of the 11 in-zone wards changed most or least. These are 24 individual ward comparisons (or 11 if restricted to in-zone wards). Treat them all as exploratory and report them descriptively — do not treat any single ward result as a confirmatory finding. If you use formal significance tests, account for multiplicity (e.g. report unadjusted estimates with a clear caveat, or apply a correction and say which you did), and make clear which results would and would not survive it.
+
+    **Reporting of exploratory results.** Present ward-level before and after rates and the change for each ward in a table, with in-zone wards flagged. Rank or highlight in-zone wards only descriptively. Avoid naming "winner" wards as conclusions; note that the aggregate rows in the table are weighted summaries and state how they were derived.
+
+    **What would count as an answer.** The question is answered if we can estimate, with appropriate uncertainty, the difference in the before-to-after change in asthma attendance rates between in-zone and out-of-zone wards, and state whether it is consistent with a reduction attributable to the zone. Note the limitations you should check and report rather than assume:
+    - There are only two periods, so any pre-existing trend or seasonal pattern between periods cannot be separated from the zone effect from these tables alone. State this as a limitation and describe what the data can and cannot distinguish.
+    - Ward populations are pre-16 residents only; establish whether attendances can be attributed to resident wards as the tables imply, or whether that needs to be verified before results are released.
+    - Small counts: if any ward-period cell is very small, apply the secure environment's disclosure rules and report suppressed or rounded figures as required, noting where this limits ward-level conclusions.
+
+    **If the data cannot answer the question as asked.** If, after inspection, the tables cannot support the primary comparison (for example because of incompatible denominators, unresolvable attribution issues, or suppressed counts), say so explicitly. In that case, report what the data can support — for example, descriptive before-versus-after changes by zone status — and set out what additional data or time points would be needed to answer the council's question properly. Do not present an inconclusive analysis as if it were an answer.
+- id: h05
+  attempts:
+  - stop_reason: stop
+    chars: 3436
+    output_tokens: 880
+    error: ''
+  view: |
+    ## Request
+
+    The stop-smoking service offers support by telephone or in person. What
+    were the six-month quit rates for the two delivery modes, and which
+    performed better?
+
+    ## Structure of the data pack
+
+    ### Sample stages
+
+    Columns: Stage | n
+    Row labels, in order: Referred; Enrolled and set a quit date; Four-week outcome recorded; Six-month outcome recorded
+
+    ### Enrolment and follow-up by delivery mode
+
+    Columns: Mode | Enrolled | Six-month outcome recorded | Not contactable at six months
+    Row labels, in order: Telephone; In person
+
+    ### Six-month quit status among those with a recorded outcome
+
+    Columns: Mode | Recorded | Quit | Still smoking
+    Row labels, in order: Telephone; In person
+  reply: |-
+    To the analyst:
+
+    The researcher's question is: for a stop-smoking service offering support by telephone or in person, what were the six-month quit rates for the two delivery modes, and which performed better?
+
+    Primary comparison
+    - Compare six-month quit status between clients supported by telephone and clients supported in person. The outcome is quit status at six months, taken from the table "Six-month quit status among those with a recorded outcome".
+    - Primary rates: for each mode, quit as a proportion of the denominator defined below. Primary contrast: the difference between the two modes (report the direction of the difference and its uncertainty, e.g. a confidence interval, using whatever the secure environment permits).
+
+    Unit of analysis
+    - The individual client. Each client contributes once. Establish from the data whether any client received both delivery modes; if so, report how they are handled (this cannot be determined from the table structure alone). If clients are counted per episode rather than per person, state that.
+
+    Denominators
+    - State both denominators explicitly and designate one as primary before unblinding results:
+      1. Among clients with a six-month outcome recorded (quit / (quit + still smoking), per mode).
+      2. Among all enrolled clients, treating those not contactable at six months as not quit (quit / enrolled, per mode).
+    - Recommend denominator 2 (enrolled) as the primary denominator, since it is unaffected by differential loss to follow-up, with denominator 1 reported alongside it. Justify or revise this choice only on methodological grounds, not on the basis of results.
+    - Report the number and percentage not contactable at six months by mode, so readers can judge how much the two denominators diverge.
+
+    Number of comparisons
+    - This is one primary comparison: telephone versus in person on six-month quit status. The two mode-specific rates are components of it, not separate tests. Do not multiply tests across alternative denominators; present both denominators as descriptive sensitivity, with the single inference attached to the primary one.
+
+    Exploratory results
+    - The sample-flow table (Referred; Enrolled and set a quit date; Four-week outcome recorded; Six-month outcome recorded) is background and attrition description. Report it descriptively. Any exploration beyond the primary comparison — e.g. four-week attrition as a predictor of six-month loss, or differences in loss to follow-up between modes — should be labelled exploratory and reported without inferential emphasis.
+
+    What counts as an answer
+    - The question is answered if, for each mode, the number quit, the number still smoking, the number enrolled, and the number not contactable at six months are available, so that both denominators can be computed and the direction of the difference stated with an appropriate measure of uncertainty.
+    - If the data cannot answer it as asked — for example, if recorded outcomes are too sparse for a stable estimate in either mode, if loss to follow-up is so high or so unequal between modes that the comparison is not meaningful, or if the tables cannot establish whether clients are unique to one mode — say so explicitly. Report the descriptive rates that are calculable, quantify the limitation (e.g. cell counts, attrition percentages), and state plainly that the comparison of which mode performed better cannot be made reliably, rather than forcing a conclusion.
+- id: h06
+  attempts:
+  - stop_reason: stop
+    chars: 3680
+    output_tokens: 1209
+    error: ''
+  view: |
+    ## Request
+
+    Please compare apprenticeship completion rates between further education
+    colleges and independent training providers for the 2023 starter cohort.
+    Completion is obtained by linking starter records to the achievement
+    register.
+
+    ## Structure of the data pack
+
+    ### Sample stages
+
+    Columns: Stage | n
+    Row labels, in order: Starters in cohort; Linked to achievement register
+
+    ### Linkage and completion by provider type
+
+    Columns: Provider type | Starters | Linked | Not linked | Completed among linked
+    Row labels, in order: FE college; Independent provider
+
+    ### Linkage rate by learner age at start
+
+    Columns: Age band | Starters | Linked
+    Row labels, in order: 16 to 18; 19 to 24; 25 to 34; 35 and over
+  reply: |-
+    To the analyst:
+
+    **Research question (primary comparison).** For the 2023 apprenticeship starter cohort, compare apprenticeship completion between two provider types: further education colleges and independent training providers. The outcome is completion, obtained by linking starter records to the achievement register.
+
+    **Unit of analysis.** The individual learner starter record in the 2023 cohort.
+
+    **Denominators — please define and report explicitly.**
+    - Linkage rate: learners linked to the achievement register, divided by all starters in that group, per provider type.
+    - Completion rate (primary definition): learners with a completion record, divided by starters who were linked to the achievement register, within each provider type.
+    - Because unlinked starters have unknown completion status, also report a sensitivity measure: completers divided by all starters, treating unlinked starters as not completed. If the two definitions point in different directions, say so; do not treat the among-linked rate as definitive if linkage differs between provider types.
+
+    **Number of comparisons and how to handle them.**
+    - One primary, confirmatory comparison: FE college vs independent provider on the completion rate. Report the completion rate for each group, the difference between them, and appropriate uncertainty (confidence interval). Establish from the data what the comparable numbers of starters are per group; if counts are too small to release under disclosure control rules, say so and report only what can be released.
+    - Secondary, exploratory results, to be reported descriptively (estimates with confidence intervals, no significance testing and no claims of statistical significance): (1) linkage rates by provider type; (2) linkage rates across the four age bands at start (16 to 18; 19 to 24; 25 to 34; 35 and over). These exploratory results should be clearly labelled as such in the write-up.
+    - The sensitivity comparison using all starters as denominator should be reported alongside the primary result, not treated as an independent test.
+
+    **Secondary and exploratory analyses.**
+    - Linkage rate by age band is exploratory only; it describes whether linkage varies by learner age. The supplied tables do not cross-tabulate provider type by age, so you cannot assess from these tables whether the two provider types differ in age composition or whether linkage differs by age within provider type. Please state this limitation in the write-up rather than assuming the age pattern holds within each provider type.
+    - Please also establish and report the sample sizes at each stage (starters, linked, not linked, completed) so the reader can see how much of the cohort each rate is based on.
+
+    **What counts as an answer.** The question is answered by an estimate of the difference in completion between the two provider types, with uncertainty, plus the evidence on whether linkage rates are similar enough between the two groups for the among-linked comparison to be fair. If linkage rates differ substantially between provider types, the honest answer is that the primary comparison is biased in an unclear direction, and the write-up should say so and lean on the sensitivity definition.
+
+    **If the data cannot answer the question as asked.** If the cohort, linkage or completion counts are too small for release, or the linkage rate is so low or so different between provider types that neither definition of completion is meaningful, report that clearly: state which part of the question can be answered (e.g. linkage rates and sample sizes only), which cannot, and why. Do not impute, adjust or reinterpret the results beyond what the tables support.
+- id: h07
+  attempts:
+  - stop_reason: stop
+    chars: 3900
+    output_tokens: 1241
+    error: ''
+  view: |
+    ## Request
+
+    A diabetes self-management app was offered to 800 patients, with 800
+    matched patients receiving usual care. Did HbA1c improve among app users
+    relative to usual care over twelve months?
+
+    ## Structure of the data pack
+
+    ### Sample stages
+
+    Columns: Stage | n
+    Row labels, in order: Offered app or usual care; Baseline HbA1c recorded; Any twelve-month HbA1c recorded
+
+    ### Twelve-month HbA1c availability
+
+    Columns: Arm | n | In-app reading at 12 months | GP reading at 12 months | Any 12-month reading | No 12-month reading
+    Row labels, in order: App; Usual care
+
+    ### Change in HbA1c (mmol/mol) from baseline to twelve months
+
+    Columns: Arm | Source of 12-month reading | n | Mean change | SD
+    Row labels, in order: App (3 rows); Usual care
+  reply: |-
+    To the analyst:
+
+    **Research question (as submitted):** A diabetes self-management app was offered to 800 patients, with 800 matched patients receiving usual care. Did HbA1c improve among app users relative to usual care over twelve months?
+
+    **Primary comparison.** The primary comparison is between the two arms (app vs usual care) on the outcome: change in HbA1c (mmol/mol) from baseline to twelve months. The question asks whether HbA1c *improved* among app users relative to usual care, so the estimand is the difference between arms in mean change from baseline to twelve months, with each arm's mean change reported alongside it. Report the difference with an appropriate measure of uncertainty and state the direction of the effect in mmol/mol (i.e. whether a lower value indicates improvement).
+
+    **Unit of analysis.** The patient. Each patient contributes once to each arm-level summary.
+
+    **Number of comparisons.** One primary comparison is pre-specified: app vs usual care on mean change in HbA1c, using the patient's twelve-month reading under the "any 12-month reading" source. All other comparisons implied by the tables are secondary or exploratory and should be reported as such. These include, at minimum: (a) the same comparison restricted to each source of twelve-month reading (in-app; GP), and (b) arm-by-source comparisons of reading availability. Please do not treat the source-specific change estimates as confirmatory tests of effectiveness; label them exploratory and report them descriptively, without implying that any single result stands as the answer to the research question.
+
+    **Denominators.** For every rate or proportion, state who is counted out of whom. Specifically:
+    - In the twelve-month availability table, establish from the data pack whether the denominator for each arm is the 800 patients offered that arm, or the patients in that arm with a baseline HbA1c recorded (per the sample stages table), and state which you have used. Do not assume one or the other.
+    - Clarify whether "In-app reading" and "GP reading" are mutually exclusive categories that sum to "Any 12-month reading," or whether a patient could appear in both. Establish this from the structure or flag it in the write-up rather than assuming it; this affects whether source-specific estimates are based on overlapping groups.
+
+    **Secondary and exploratory results.** The following should be reported descriptively as context, not as tests of the primary question: (a) the flow through the sample stages table, including how many patients in each arm reached baseline and twelve-month measurement; (b) twelve-month reading availability by arm and source; (c) mean change by arm and by source of reading. For each, give the denominator explicitly. Where the structure leaves a point open — for example, whether the three source rows within an arm are non-overlapping patient groups, or whether the counts across the three tables are internally consistent — establish what you can from the data pack and report what you could not establish, rather than assuming an interpretation.
+
+    **What would count as an answer.** An answer to the research question is an estimate of the difference between arms in mean change in HbA1c from baseline to twelve months (mmol/mol), with uncertainty, based on patients with both a baseline and a twelve-month reading, together with a clear statement of the denominators and of differential attrition or reading availability between arms if present. If the data cannot answer the question as asked — for example, if twelve-month readings are too sparse, if the arm and source categories do not permit a single primary estimate, or if the denominators cannot be reconciled across the tables — say so explicitly, report the flow and availability figures you can produce, and state precisely what is missing rather than presenting an incomplete comparison as an answer.
+- id: h08
+  attempts:
+  - stop_reason: stop
+    chars: 4298
+    output_tokens: 2473
+    error: ''
+  view: |
+    ## Request
+
+    A council retrofitted insulation in 1,200 social homes. By how much did
+    household energy bills fall compared with similar homes not yet
+    retrofitted?
+
+    ## Structure of the data pack
+
+    ### Sample stages
+
+    Columns: Stage | n
+    Row labels, in order: Homes in retrofit programme; Comparison homes awaiting retrofit; Smart-meter data consent obtained
+
+    ### Smart-meter consent by group and household income tercile
+
+    Columns: Group | Income tercile | Homes | Consented
+    Row labels, in order: Retrofit (3 rows); Comparison (3 rows)
+
+    ### Change in annual energy cost, smart-meter households only
+
+    Columns: Group | n | Mean change (GBP) | SD
+    Row labels, in order: Retrofit; Comparison
+
+    ### Change in annual energy cost, all households, from supplier annual statements
+
+    Columns: Group | n | Mean change (GBP) | SD
+    Row labels, in order: Retrofit; Comparison
+  reply: |-
+    To the analyst:
+
+    Researcher's question, to be answered as specified below: A council retrofitted insulation in 1,200 social homes. By how much did household energy bills fall compared with similar homes not yet retrofitted?
+
+    Primary comparison. The primary comparison is retrofit homes versus comparison homes (awaiting retrofit) on the change in annual energy cost (GBP). Because the question concerns all households' bills, the supplier annual statements table (all households) is the primary outcome; the smart-meter-only table is a secondary version of the same comparison, useful as a sensitivity analysis because it is restricted to consenting households. The estimand is the difference between groups in mean change (difference-in-differences style), not the retrofit group's raw mean change alone: report each group's mean change, its SD and n, and the between-group difference with its standard error or confidence interval. Establish from the tables' documentation the period over which "change" is measured and whether it is the same for both groups; if it is not, say so rather than treating the contrast as valid.
+
+    Unit of analysis. The household (home). All means, SDs, ns and rates should be computed at household level; do not aggregate to estate, scheme or area level.
+
+    Number of comparisons. This request implies one primary comparison: retrofit vs comparison, on change in annual energy cost from supplier statements. It implies four secondary comparisons: (a) the same group contrast using smart-meter households only; (b–d) the group contrast within each of the three income terciles. Handle these as follows: report the primary comparison as the headline result with its uncertainty; report all four secondary comparisons, clearly labelled exploratory, with estimates and uncertainty, and do not treat any of them as confirmatory or select among them after seeing results.
+
+    Secondary and exploratory results. The income-tercile breakdowns and the smart-meter subset are exploratory. Report, for each group and tercile: homes, consented, consent rate, and (for households with outcome data) mean change and SD. Report the within-tercile group contrasts as exploratory, noting the analysis is not designed to confirm subgroup effects. Also report the sample-stages table as a flow diagram: n remaining at each stage for the 1,200 programme homes, and the equivalent stages for comparison homes, establishing how many comparison homes there were at each stage.
+
+    Denominators. State the denominator explicitly for every rate or proportion:
+    - Consent rate: Consented divided by Homes, within each Group x Income tercile cell.
+    - Mean change: the n shown in each outcome table; establish what that n counts (e.g. households with a complete before-and-after measure) and report it as the denominator for each mean.
+    - Sample stages: each stage's n expressed out of the previous stage's n, separately for each group.
+
+    Establish rather than assume. The request describes the comparison homes as "similar" but the data pack does not show how comparability was achieved; report what the documentation says about how comparison homes were selected or matched, and flag any remaining threat to comparability. Establish whether attrition between stages differed by group or income tercile, since differential consent or missingness could bias the smart-meter comparison in particular.
+
+    What counts as an answer. An answer is a single headline estimate: the difference between groups in mean change in annual energy cost (GBP per year), with a confidence interval, from the all-household supplier statements outcome, together with the supporting group means and the equivalent smart-meter-subset estimate, and the consent and attrition figures needed to judge selection.
+
+    If the data cannot answer the question as asked — for example, if the two groups' changes are not measured over comparable periods, if the comparison group is too small at some stage to support the contrast, or if the tables do not permit the between-group difference to be computed — state this explicitly. Describe what can and cannot be estimated from these tables, report the descriptive results (group means, ns, SDs, consent rates, stage flows) without over-interpreting them, and do not fill gaps with assumptions.
+- id: h09
+  attempts:
+  - stop_reason: stop
+    chars: 4604
+    output_tokens: 1199
+    error: ''
+  view: |
+    ## Request
+
+    Which of our two hospitals has the lower 30-day mortality after elective
+    colorectal resection, and should the commissioning board be concerned
+    about either?
+
+    ## Structure of the data pack
+
+    ### 30-day mortality by hospital
+
+    Columns: Hospital | Operations | Deaths
+    Row labels, in order: Hospital A; Hospital B
+
+    ### 30-day mortality by hospital and ASA grade
+
+    Columns: ASA grade | Hospital A operations | Hospital A deaths | Hospital B operations | Hospital B deaths
+    Row labels, in order: I; II; III; IV
+  reply: |-
+    To the analyst:
+
+    The researcher asks which of two hospitals has the lower 30-day mortality after elective colorectal resection, and whether the commissioning board should be concerned about either hospital. Please analyse this as specified below, before inspecting any output.
+
+    **Primary comparison.** Hospital A versus Hospital B, on the outcome of death within 30 days of elective colorectal resection, using the table "30-day mortality by hospital". This is one primary comparison, the only one on which a headline conclusion should rest.
+
+    **Unit of analysis.** The operation (each elective colorectal resection). Deaths are to be reported as counts of operations followed by a death within 30 days, not as counts of patients; please establish from the table definitions whether a patient can contribute more than one operation and state what convention the data uses.
+
+    **Denominators.** Each hospital's 30-day mortality rate is deaths divided by operations at that hospital, where "operations" means elective colorectal resections and "deaths" means deaths from any cause within 30 days of such an operation, whether or not the death occurred in the same hospital. Please confirm from the data definitions that the Operations column counts resections, not patients, and that Deaths is defined as above; if the definitions differ, report the rates under the definitions actually used and say so. In the ASA table, the denominator for each rate is the operations at that hospital within that ASA grade, and the numerator is the deaths within that same hospital-and-grade cell.
+
+    **Number of comparisons and how to handle them.** The request implies five comparisons in total: one primary (Hospital A vs Hospital B, overall) and four secondary (the same comparison within ASA grades I, II, III and IV separately). Report the primary comparison as the headline result. Treat the four ASA-specific comparisons as exploratory only: report their rates and counts descriptively, do not present them as confirmatory tests, and interpret them jointly rather than highlighting any single significant-looking grade. If any cell count is small (including zero deaths), say so explicitly rather than reporting a rate alone, and follow whatever disclosure-control rules apply before output leaves the secure environment.
+
+    **Secondary and exploratory results.** The ASA-stratified table also allows an examination of case mix: report the distribution of operations across ASA grades for each hospital, and note whether a difference in case mix could account for any difference in the overall crude rates. Any within-hospital gradient of mortality across ASA grades is also exploratory and should be reported descriptively. No formal risk-adjusted comparison is possible from these tables; do not attempt one, but say plainly that the headline comparison is crude (unadjusted) and that the ASA breakdown is the only available check on case mix.
+
+    **What counts as an answer.** The question is answered by: the 30-day mortality rate for each hospital, the absolute difference between them with an uncertainty statement appropriate to the counts, and a statement of which hospital is lower and how strong the evidence is that the difference is not a chance artefact given the number of operations involved. Please also state what size of difference the data could and could not detect with these denominators, since "no clear difference" may reflect low power rather than equivalence.
+
+    **On whether the board should be concerned.** The data pack contains no external benchmark, national rate, control limit, or historical comparator. The data as held cannot answer whether either hospital's rate is abnormal or cause for concern; it can only compare the two hospitals to each other. Please state this limitation in the write-up and report the rates in a form that would allow the researcher to compare them later against an external standard. Do not infer concern or reassurance from the internal comparison alone.
+
+    **If the data cannot answer the question as asked.** If the table definitions show that the counts do not correspond to the stated population (for example, if operations are not restricted to elective colorectal resections, or deaths are counted on a different basis), report what the data do show under the definitions that apply, state clearly how that differs from what was asked, and set out what additional data or definitions would be needed to answer the question as posed. Where any definitional point above cannot be established from the pack, state what needs confirming rather than assuming it.
+- id: h10
+  attempts:
+  - stop_reason: stop
+    chars: 4201
+    output_tokens: 1276
+    error: ''
+  view: |
+    ## Request
+
+    Did pupils who received the one-to-one reading intervention in Year 3
+    finish the year with better reading scores than pupils who did not?
+
+    ## Structure of the data pack
+
+    ### End-of-year reading score by intervention status
+
+    Columns: Group | n | Mean score | SD
+    Row labels, in order: Intervention; No intervention
+
+    ### End-of-year reading score by baseline band and intervention status
+
+    Columns: Baseline band | Intervention n | Intervention mean | No intervention n | No intervention mean
+    Row labels, in order: 1 (lowest); 2; 3; 4 (highest)
+  reply: |-
+    To the analyst:
+
+    **Researcher's question (as asked):** Did pupils who received the one-to-one reading intervention in Year 3 finish the year with better reading scores than pupils who did not?
+
+    **Primary comparison.** The primary comparison is a single comparison: pupils recorded as receiving the one-to-one reading intervention versus pupils recorded as receiving no intervention, on the outcome of end-of-year reading score, using the table "End-of-year reading score by intervention status". Report the mean score and SD for each group, the difference in means (intervention minus no intervention), and the number of pupils in each group. State clearly that these are the only inferential results.
+
+    **Unit of analysis.** The individual pupil. Each pupil contributes once to their group's mean.
+
+    **Number of comparisons.** The request implies one primary comparison. It also implies four secondary comparisons: intervention versus no intervention within each of the four baseline bands (1 lowest to 4 highest). All four are secondary. Handle them as follows: report them descriptively only, as differences in group means within each band, without presenting any of them as a confirmatory finding, and note in the write-up that multiple subgroup comparisons were made and that band-level patterns should be treated as exploratory. Do not single out any one band as "the" result.
+
+    **Exploratory/secondary reporting.** The analysis by baseline band is secondary and exploratory. Its purpose is to describe whether the difference in end-of-year scores appears larger or smaller among pupils at different baseline levels. Report all four bands whatever the pattern, do not select bands post hoc, and label the whole band analysis as exploratory in the write-up. Note two limitations of the available structure: the band-level table gives no SDs, so spread cannot be reported at band level; and from summary tables alone it will not be possible to formally test whether the difference varies across bands (an interaction). The analyst should state this limitation rather than implying a test was done, and should establish what the baseline bands represent (e.g., whether they are bands of a pre-intervention reading measure) before interpreting them.
+
+    **Denominators.** There are no rates or proportions as such, but each reported mean has a denominator: the n column. The analyst should establish and report who is counted in each n — specifically, whether n is all pupils recorded in each group or only those with a non-missing end-of-year score, and whether the group labels reflect intervention as assigned or as actually received. If pupils with missing end-of-year scores are excluded, report how many such pupils there are in each group (or state that this cannot be determined from the summary tables) and flag this as a possible source of difference between groups.
+
+    **What would count as an answer, and what to do if the data cannot answer it.** An answer to the primary question is a comparison of the two group means on the end-of-year score: whether the intervention group's mean is higher, and by how many score points, with the group sizes reported alongside. Because the tables contain summary statistics only, the analyst should report the observed difference in means descriptively and state whether any measure of uncertainty or significance testing is possible from the available summary data; if it is not, say so explicitly rather than over-claiming. The data as structured cannot establish that the intervention caused any difference — for example, they cannot show whether the two groups were comparable at baseline overall. The write-up should present the results as a difference in end-of-year scores between recorded groups, note that pupils were not (as far as the structure shows) randomised, and flag that any observed difference may reflect pre-existing differences between the groups. If any element cannot be established from the summary tables — such as missingness, group definitions, or what the baseline bands measure — report the parts that can be answered, and state precisely what additional information would be needed to answer the question as originally asked.
+- id: h11
+  attempts:
+  - stop_reason: stop
+    chars: 3954
+    output_tokens: 974
+    error: ''
+  view: |
+    ## Request
+
+    Is participation in the Work Skills programme associated with a higher
+    rate of re-employment within six months? Jobcentre advisers refer
+    claimants to the programme at their discretion.
+
+    ## Structure of the data pack
+
+    ### Re-employment within six months, by participation
+
+    Columns: Group | Claimants | Re-employed
+    Row labels, in order: Participants; Non-participants
+
+    ### Re-employment within six months, by prior unemployment duration and participation
+
+    Columns: Prior duration | Participant claimants | Participant re-employed | Non-participant claimants | Non-participant re-employed
+    Row labels, in order: Under 6 months; 6 to 12 months; 12 to 24 months; Over 24 months
+  reply: |-
+    To the analyst:
+
+    **Question to address.** The researcher asks: is participation in the Work Skills programme associated with a higher rate of re-employment within six months? Please note that advisers referred claimants at their discretion, so participation is not assigned at random. Any comparison you report is an association between participation and re-employment, not an estimate of the effect of participation, and it should be written up as such.
+
+    **Primary comparison.** Compare the proportion re-employed within six months among Participants with the proportion among Non-participants, using the first table. Report, for each group: the number of claimants, the number re-employed, the proportion re-employed, and the difference in proportions between the two groups (Participants minus Non-participants), with a measure of uncertainty for that difference.
+
+    **Unit of analysis.** The individual claimant. Rates and proportions are to be computed as claimant counts, not from any aggregated measure.
+
+    **Denominators.** For each rate, the numerator is claimants in the group who were re-employed within six months; the denominator is all claimants in that group (participants or non-participants respectively) in the table. Before reporting, please establish what the tables define: whether the "Claimants" column is the count of all referred-in or eligible claimants in each group, whether the two tables cover the same population and time period, and what base period the six-month window is measured from. If any of these is not evident from the tables, state the assumption the tables force rather than inferring one.
+
+    **Number of comparisons.** There is one primary comparison (Participants vs Non-participants, overall). The second table implies four further comparisons — Participants vs Non-participants within each of the four prior-duration bands (Under 6 months; 6 to 12 months; 12 to 24 months; Over 24 months). Treat these four as secondary and exploratory: report them descriptively (counts, proportions and differences) without framing any of them as a confirmatory finding, and state explicitly that they were secondary. If you apply any multiplicity adjustment or significance testing across them, say so; otherwise present them as unadjusted and label them accordingly.
+
+    **Secondary/exploratory results.** The breakdown by prior unemployment duration is exploratory. Report each band's participant and non-participant counts, re-employment proportions, and the within-band difference. Also note whether the composition of participants versus non-participants differs across the duration bands (for example, if participants are concentrated in some bands), since the discretionary referral policy means the groups may not be comparable within or across bands. Do not attempt causal interpretation of any band-level difference.
+
+    **What would count as an answer.** The question is answered by: a like-for-like proportion re-employed within six months for each group, the difference between them, and a clear statement of whether participants' rate is higher, lower, or consistent with no difference, together with the uncertainty around that difference. Because referral was discretionary, if the observed difference is confounded in ways the data cannot address, say so; the deliverable is still the association itself with appropriate caveats, not a causal estimate.
+
+    **If the data cannot answer the question as asked.** If, on inspection, the tables do not support the comparison — for example, the two tables cover different populations or periods, the "Non-participants" group's definition is unclear, denominators are inconsistent between tables, or counts are suppressed or too small to compute stable proportions — report exactly what can and cannot be determined, list what additional definition or data would be needed, and do not substitute a different outcome or population without flagging the change in your write-up.
+- id: h12
+  attempts:
+  - stop_reason: stop
+    chars: 4923
+    output_tokens: 1420
+    error: ''
+  view: |
+    ## Request
+
+    Has the digital early warning score reduced unplanned transfers to
+    intensive care? It was rolled out ward by ward over the last year and
+    about half the wards now use it.
+
+    ## Structure of the data pack
+
+    ### Unplanned ICU transfers per 1,000 admissions, by rollout status
+
+    Columns: Wards | Admissions | Unplanned ICU transfers
+    Row labels, in order: Using digital score; Not yet using
+
+    ### Unplanned ICU transfers by ward type and rollout status
+
+    Columns: Ward type | Digital admissions | Digital transfers | Paper admissions | Paper transfers
+    Row labels, in order: Acute medical; Surgical; Elderly care
+  reply: |-
+    To the analyst:
+
+    **Research question (keep in full):** Has the digital early warning score reduced unplanned transfers to intensive care? It was rolled out ward by ward over the last year and about half the wards now use it.
+
+    **Primary comparison.** The primary comparison is unplanned ICU transfer rate per 1,000 admissions between wards currently using the digital early warning score and wards not yet using it, using the first summary table. The numerator for each group is the count of unplanned ICU transfers on wards in that group; the denominator is all admissions to wards in that group over the same period. State clearly in your write-up that the data compare wards by current rollout status, not the same wards before and after rollout; the tables as structured cannot on their own establish a reduction over time within wards. If any additional information on rollout timing or pre-rollout rates exists in the secure environment, establish what is available and report it; do not assume it.
+
+    **Unit of analysis.** The unit of analysis is the ward. The first table presents totals aggregated across wards by rollout status. Before analysis, establish whether ward-level counts underlie these aggregates; if they do, base the primary comparison on ward-level variation (for example, a rate ratio comparing the two groups with wards as the units, reporting the uncertainty appropriately). If only the two aggregate rows exist, say so explicitly and report the comparison of the two group-level rates, noting that no within-group variation can be quantified.
+
+    **Number of comparisons and how to handle them.** The request implies four comparisons in total: one primary comparison (digital vs not yet using, all wards, on unplanned ICU transfers per 1,000 admissions), plus three secondary comparisons from the second table (the same contrast within each of acute medical, surgical, and elderly care). Treat the first as the primary comparison and interpret it at the conventional significance threshold. Treat the three ward-type comparisons as secondary; because the primary question is about the overall effect, do not treat the ward-type results as independent confirmatory tests. Report them descriptively with a note that consistent direction across ward types is supportive but not independently conclusive.
+
+    **Exploratory/secondary results.** The ward-type breakdown (acute medical, surgical, elderly care) is exploratory. For each ward type, compute the transfer rate among digital admissions (digital transfers out of digital admissions) and among paper admissions (paper transfers out of paper admissions), and report the rates and their differences or ratios. Report all three ward types regardless of result, including any where numbers are small; flag small numerators or denominators rather than suppressing them. Note that in the second table the rollout status is captured as a within-ward-type split (digital vs paper admissions), so establish how wards using both systems during the period are counted in this table before interpreting the comparison.
+
+    **Denominators.** State in the write-up, for every rate reported: (a) primary table — numerator is unplanned ICU transfers occurring on wards in the stated rollout group; denominator is all admissions to those wards over the reporting period; (b) second table — numerator is unplanned ICU transfers from admissions under the digital (or paper) system within that ward type; denominator is the corresponding admissions count within that ward type. Establish what "admissions" counts (distinct patients versus episodes) and confirm both groups' rates cover the same length of reporting period; if the two groups' periods differ, say so and discuss the implication rather than comparing as if equivalent.
+
+    **What would count as an answer, and what to do if the data cannot answer it.** An answer to the primary question is a comparison of the unplanned ICU transfer rate per 1,000 admissions between the two rollout groups, with an estimate of precision if ward-level data allow it: a lower rate in the digital group would be consistent with benefit, and the size of the difference should be reported whether or not it is statistically significant. Because wards were not randomised and rollout occurred over the year, the result is at most suggestive of an effect; do not describe it as proof of causation. If the data cannot answer the question as asked — for example, if only group-level aggregates are available, if the two groups' observation windows are not comparable, or if ward case mix differs in ways visible in the secure environment — report the comparison that the data do support, state precisely why the question as asked cannot be answered from these tables, and describe what additional data would be needed (for example, ward-level counts with rollout dates, or pre-rollout baseline rates). Do not guess at values at any point.
+- id: h13
+  attempts:
+  - stop_reason: stop
+    chars: 4259
+    output_tokens: 1029
+    error: ''
+  view: |
+    ## Request
+
+    Does heavy social media use increase anxiety in teenagers? We have a
+    cross-sectional survey of 3,200 15-year-olds with self-reported daily
+    social media hours and GAD-7 anxiety scores.
+
+    ## Structure of the data pack
+
+    ### GAD-7 score by daily social media use
+
+    Columns: Daily use | n | Mean GAD-7 | SD
+    Row labels, in order: Under 1 hour; 1 to 2 hours; 2 to 4 hours; Over 4 hours
+  reply: |-
+    Analyst analysis request — social media use and anxiety (GAD-7), cross-sectional survey of 3,200 15-year-olds
+
+    Primary comparison
+    - Researcher's question: "Does heavy social media use increase anxiety in teenagers?" The available design is cross-sectional, so a causal effect of use on anxiety cannot be established from these data. The analysis can estimate whether reported daily social media use is associated with anxiety. Frame and report results in association terms; note explicitly in the write-up that causality and direction cannot be determined from a cross-sectional survey.
+    - Groups compared: the four daily-use categories as they appear in the summary table — Under 1 hour; 1 to 2 hours; 2 to 4 hours; Over 4 hours. "Heavy use" should be operationalised as the Over 4 hours category, since that is the only category the structure supports; if the researcher intends a different threshold, the analyst should confirm before release.
+    - Outcome: GAD-7 score (continuous), summarised as mean and SD per group.
+
+    Unit of analysis
+    - The individual 15-year-old survey respondent. The table provided is already aggregated to use category, so all statistics should be computed from, or checked against, the n, mean and SD columns.
+
+    Comparisons implied and how to handle them
+    - With one outcome and four ordered use groups compared against a common reference (Under 1 hour), the primary analysis implies three comparisons: 1–2 hours vs Under 1 hour; 2–4 hours vs Under 1 hour; Over 4 hours vs Under 1 hour.
+    - State how multiplicity across these three comparisons is handled (for example an overall test across the four groups first, or an adjustment such as Bonferroni); the researcher has not specified a preference, so the analyst should adopt one, state it in the write-up, and apply it consistently.
+    - Do not treat every pairwise combination of the four groups as a primary comparison; any additional pairwise contrasts, if wanted, are exploratory.
+
+    Secondary/exploratory results
+    - The researcher's request implies no subgroup or area-level analyses, and the data structure contains none. If any additional breakdowns are produced, label them clearly as exploratory and unadjusted for multiplicity in the write-up.
+    - A test or descriptive display of trend across the four ordered use categories may be reported as exploratory, clearly separated from the primary comparisons.
+
+    Denominators
+    - Each mean GAD-7 is the mean among respondents in that use category; the denominator is the n in the corresponding row of the table — respondents with both a valid use category and a valid GAD-7 score.
+    - The analyst should establish and report: (a) whether the row ns sum to 3,200, and if not, how many respondents are excluded and for what reason (missing use category, missing GAD-7, or both); (b) whether the use categories are mutually exclusive and exhaustive as labelled (for example, whether 1 hour exactly and 4 hours exactly have assigned homes); (c) whether GAD-7 was scored only for respondents completing a minimum number of items, and how missing items were handled, if this information is available in the environment. Do not assume any of these; report what can be established and flag what cannot.
+
+    What counts as an answer
+    - The answer is a set of estimated mean GAD-7 differences between each non-reference use category and the Under 1 hour reference, with standard errors or confidence intervals and the multiplicity handling applied, plus the group ns, means and SDs, and an overall assessment of whether mean anxiety differs across use categories.
+    - If the data cannot answer the question as asked — for example if row ns are too small for stable estimates in one or more categories, if the categories are not mutually exclusive or exhaustive, or if the GAD-7 variable is not usable as a continuous score — the analyst should not substitute a different outcome or recoding without flagging it. Instead: report exactly what in the data prevents the analysis as specified, present the descriptive group means, ns and SDs that can be reported, and set out what additional data or information would be needed to answer the original question. Any alternative specification actually run must be reported alongside, clearly labelled as a deviation.
+- id: h14
+  attempts:
+  - stop_reason: stop
+    chars: 4202
+    output_tokens: 1194
+    error: ''
+  view: |
+    ## Request
+
+    Does living near green space reduce depression? We have small-area
+    (LSOA) data on the proportion of residents within 300 m of a public park
+    and the rate of antidepressant prescribing.
+
+    ## Structure of the data pack
+
+    ### Antidepressant prescribing by green-space access, LSOAs grouped in quintiles
+
+    Columns: Green-space quintile | LSOAs | Items per 1,000 residents per month
+    Row labels, in order: 1 (least access); 2; 3; 4; 5 (most access)
+  reply: |-
+    To the analyst:
+
+    Research question (as submitted): "Does living near green space reduce depression? We have small-area (LSOA) data on the proportion of residents within 300 m of a public park and the rate of antidepressant prescribing."
+
+    Please carry out the following analysis on the table "Antidepressant prescribing by green-space access, LSOAs grouped in quintiles".
+
+    1. Primary comparison. The primary comparison is the antidepressant prescribing rate (items per 1,000 residents per month) between LSOAs in quintile 5 (most access) and quintile 1 (least access), and secondarily whether the prescribing rate shows a monotonic trend across the five quintiles. Note that the outcome available is prescribing, not diagnosed depression; the analysis can therefore address whether green-space access is associated with prescribing, not whether green space reduces depression as such. Please report it as an association and flag this limitation in the write-up.
+
+    2. Unit of analysis. The unit of analysis is the LSOA, as summarised into five quintile groups. The table gives one rate per quintile plus the number of LSOAs per quintile; please establish whether the underlying LSOA-level data are available to you, since the number of LSOAs per quintile affects the precision of any comparison. If only the five grouped rows are available, say so and report what the grouped data can and cannot support.
+
+    3. Number of comparisons. The quintile structure implies up to ten pairwise comparisons between quintiles, plus a trend test. Please treat only the Q5-versus-Q1 contrast and the across-quintile trend as primary. Any other pairwise comparisons (for example Q4 vs Q2) should be reported, if at all, as exploratory, with an explicit note that they were not the prespecified focus and that no multiplicity adjustment was applied to them, or alternatively apply a correction and state which was used.
+
+    4. Exploratory and secondary results. No subgroup, area-type or time-period breakdowns are shown in the data pack, so there are no secondary analyses to request. If further breakdowns exist in the environment, do not report them as confirmatory; list them separately as exploratory.
+
+    5. Denominators. Each rate is expressed as items per 1,000 residents per month. Please establish and state in the write-up exactly who is counted in the denominator: whether "residents" means the total resident population of the LSOA, the adult population, or some other defined group, since prescribing is concentrated in adults and the choice affects interpretation. Also state the time period over which the rates are averaged, which is not visible in the table structure.
+
+    6. What counts as an answer. The question is answered if you can report, with appropriate uncertainty, (a) the difference in prescribing rates between quintile 5 and quintile 1, and (b) whether the rates rise or fall consistently from quintile 1 to quintile 5. Please also state the direction and, if calculable, a confidence interval or equivalent measure of uncertainty for the primary contrast.
+
+    7. If the data cannot answer the question as asked. If the grouped table alone does not permit a trend or contrast test, if the denominator definition cannot be established, or if the data do not allow any adjustment, say so explicitly rather than approximating. In particular, note that the data as structured cannot support a causal statement about green space "reducing" depression: quintile groups may differ in deprivation, age structure or urbanicity, none of which are visible here. Please report the observed association, state clearly that confounding cannot be assessed from this table, and identify any covariates available in the environment that could be used in a follow-up analysis.
+
+    8. Points to establish rather than assume. Before analysing, please confirm: how the green-space quintiles were constructed (variable used and cut-points); whether the green-space measure is the proportion of residents within 300 m of a public park as described; the definition of the population denominator; the time period covered; and whether LSOA-level (ungrouped) data are accessible to you. Report these in the output before any results.
+- id: h15
+  attempts:
+  - stop_reason: stop
+    chars: 4164
+    output_tokens: 1307
+    error: ''
+  view: |
+    ## Request
+
+    Does adopting AI tools raise firm productivity? A survey of 2,400 firms
+    recorded whether they used AI tools in 2025 and their revenue per
+    employee.
+
+    ## Structure of the data pack
+
+    ### Revenue per employee by AI adoption
+
+    Columns: AI tools in use | Firms | Median revenue per employee (GBP thousand) | IQR
+    Row labels, in order: yes; no
+
+    ### Revenue per employee by AI adoption and firm size
+
+    Columns: Size band | Adopters | Adopter median | Non-adopters | Non-adopter median
+    Row labels, in order: Under 50 staff; 50 to 249; 250 and over
+  reply: |-
+    To the analyst:
+
+    The researcher asks whether adopting AI tools raises firm productivity, drawing on a survey of 2,400 firms that recorded whether each firm used AI tools in 2025 and its revenue per employee. Please analyse the two summary tables provided ("Revenue per employee by AI adoption" and "Revenue per employee by AI adoption and firm size") and write up the results for release.
+
+    Primary comparison. The primary comparison is adopters (AI tools in use: yes) versus non-adopters (AI tools in use: no), on the outcome of revenue per employee (GBP thousand), as summarised by the median and IQR in the first table. Please report the difference between the two medians, its direction and its size, alongside the IQRs as a description of spread.
+
+    Unit of analysis. The unit of analysis is the firm. All counts, medians and IQRs should be interpreted as firm-level quantities; please do not treat revenue per employee values or size bands as independent observations beyond what the tables summarise.
+
+    Number of comparisons. The request implies four comparisons on the same outcome: one primary comparison (adopters vs non-adopters overall) and three further comparisons of adopters vs non-adopters within each size band (under 50 staff; 50 to 249; 250 and over). Please treat the overall comparison as primary and the three size-band comparisons as secondary. Report the primary comparison as the main finding; report the size-band comparisons descriptively, as a pattern across bands rather than as three independent tests, and state clearly in the write-up that they are secondary.
+
+    Exploratory results. The breakdown by firm size band is exploratory. Please report it as such, describing the difference between adopter and non-adopter medians within each band, and avoid language implying confirmation or hypothesis testing for these rows. Note that the size-band table provides medians but no IQRs, so spread cannot be compared within bands; please state this limitation rather than inferring variability from the overall table.
+
+    Denominators. The relevant denominators are the firm counts: the "Firms" column in the first table for the overall comparison, and the "Adopters" and "Non-adopters" columns in the size-band table for the stratified results. Medians and IQRs are calculated over firms within each group, so please report each group's firm count alongside its median. Where a rate or proportion is mentioned in the write-up, state explicitly who is counted out of whom (for example, adopters out of all firms with a known adoption status). Before interpreting the counts, please establish rather than assume: whether the overall "Firms" total is consistent with the sum of adopters and non-adopters across the three size bands; whether any firms have missing size band or missing adoption status; and whether the adopter/non-adopter split is mutually exclusive and exhaustive as recorded in the survey. If the counts are inconsistent or incomplete, describe the discrepancy and base the analysis on what the tables actually cover, stating the effective denominators used.
+
+    What counts as an answer. An answer to the primary question is: whether the median revenue per employee differs between adopters and non-adopters, in which direction, and by roughly how much, with the IQRs and group sizes giving context. The researcher's question is phrased causally ("does adopting AI raise productivity"), but the data are cross-sectional and observational, so the analysis can at most establish an association between adoption and revenue per employee in 2025; please say so explicitly and do not present the difference as an effect of adoption. If the tables cannot support even the associational comparison as asked (for example, if counts or medians are suppressed, unavailable, or inconsistent), report exactly what can and cannot be determined from them, list what additional information would be needed (such as the underlying distributions, IQRs by size band, or the firms' size-band coverage), and do not substitute an answer to a different question. If results are withheld or rounded for disclosure control, state which figures are affected.
+- id: h16
+  attempts:
+  - stop_reason: stop
+    chars: 3871
+    output_tokens: 1230
+    error: ''
+  view: |
+    ## Request
+
+    Does remote working reduce sickness absence? Our HR system records
+    contracted working pattern and sickness days for 5,600 staff over the
+    last year.
+
+    ## Structure of the data pack
+
+    ### Sickness absence by working pattern
+
+    Columns: Pattern | Staff | Mean sickness days | SD
+    Row labels, in order: Fully remote; Hybrid; On site
+
+    ### Sickness absence by working pattern and job family
+
+    Columns: Job family | Remote n | Remote mean | Hybrid n | Hybrid mean | On-site n | On-site mean
+    Row labels, in order: Operational; Facilities; Administrative; Professional; Management
+  reply: |-
+    Rewritten request for the analyst:
+
+    **Question being addressed:** Does working pattern (fully remote, hybrid, on site) relate to the amount of sickness absence staff take? The researcher wants to know whether remote working is associated with lower sickness absence.
+
+    **Primary comparison:** Compare mean sickness days per staff member over the last year across the three contracted working patterns recorded in the HR system: fully remote, hybrid, and on site. The primary table is "Sickness absence by working pattern". State the mean and SD for each pattern, the number of staff in each group, the difference between each pair of patterns, and the direction and size of any differences. Specify which pattern(s) form the reference group and report contrasts against it.
+
+    **Unit of analysis:** The individual staff member. The tables provided are group-level summaries, so all analysis must be based on those summaries; do not treat the tables as implying access to person-level records.
+
+    **Number of comparisons:** The request implies the following:
+    - Primary: three pairwise comparisons between working patterns (remote vs hybrid, remote vs on site, hybrid vs on site) on one outcome (sickness days).
+    - Secondary (see below): within each of five job families, the same three pairwise comparisons, giving 15 further comparisons, plus descriptive comparison across job families.
+
+    Because the primary table involves three comparisons on a single outcome, state how multiplicity is handled (for example, report all three contrasts with a stated significance threshold or adjustment, decided before results are examined) rather than highlighting only significant pairs.
+
+    **Exploratory results:** All results from the second table, "Sickness absence by working pattern and job family", are exploratory. This table provides group sizes and means but no standard deviations, so formal tests between patterns within a job family may not be possible; if so, report the cell sizes, means and raw differences descriptively and label them as such. Report all five job families whether or not differences are apparent, and note that these results should be treated as hypothesis-generating.
+
+    **Denominators:** For each rate and mean, state the denominator explicitly: the number of staff in each working pattern (and in each pattern-by-job-family cell) out of whom mean sickness days are calculated. Establish and report whether the group sizes sum to the full 5,600 staff, and whether the denominators exclude any staff (for example, staff with no recorded pattern, or partial-year records). Do not assume the denominators are complete or equal to 5,600 without checking the counts in the tables.
+
+    **What would count as an answer, and limitations:** An answer is a statement of whether mean sickness days differ across the three working patterns over the last year, and by how much. Note explicitly what the summary tables cannot support, for example: no adjustment for job family or other factors in the primary comparison; no SDs in the job-family table; and no person-level data, so any test statistics must be derived from the summary statistics provided or the request cannot be answered as asked. If the tables cannot answer the question as asked, say so and report what can be answered with them, rather than substituting a different question.
+
+    **Points to establish, not assume:** Before running the analysis, establish and document: (a) how sickness days are defined and recorded in the HR system (the request and table structure do not show this); (b) the reference period covered by "the last year"; (c) whether working pattern is the pattern held at a single point in time or the pattern held throughout the year; and (d) whether staff with zero sickness days are included in the means. Report any of these that cannot be established from the data pack as limitations.
+- id: h17
+  attempts:
+  - stop_reason: stop
+    chars: 3386
+    output_tokens: 821
+    error: ''
+  view: |
+    ## Request
+
+    Sixteen GP practices took part in a trial of text-message reminders for
+    flu vaccination; eight were randomised to send reminders and eight to
+    usual practice. Did the reminder increase vaccination uptake?
+
+    ## Structure of the data pack
+
+    ### Flu vaccination uptake by practice
+
+    Columns: Practice | Arm | Eligible patients | Vaccinated
+    Row labels, in order: Practice 01; Practice 02; Practice 03; Practice 04; Practice 05; Practice 06; Practice 07; Practice 08; Practice 09; Practice 10; Practice 11; Practice 12; Practice 13; Practice 14; Practice 15; Practice 16; All reminder practices; All usual-care practices
+  reply: |-
+    To: Analyst
+
+    **Primary comparison.** The researcher asks whether a text-message reminder increased flu vaccination uptake. This is a single primary comparison: vaccination uptake in the eight practices randomised to the reminder arm versus the eight practices randomised to usual care. The outcome is uptake, defined as vaccinated patients divided by eligible patients. There is one outcome, one contrast, one period; no other comparison in this pack should be treated as confirmatory.
+
+    **Unit of analysis.** The unit of randomisation and of analysis is the GP practice. The eight reminder practices and eight usual-care practices are the units for the comparison. Do not treat individual patients as the unit of inference, since the pack contains only practice-level counts and patient-level allocation is not available here.
+
+    **Number of comparisons.** The request implies exactly one primary comparison (reminder vs usual care, on uptake). There are no subgroup variables, area breakdowns or multiple time points in the table, so no multiplicity adjustment is needed. Any additional figures the analyst produces beyond the arm-level contrast should be clearly labelled as descriptive and not tested against the primary question.
+
+    **Denominators.** For each practice, uptake = Vaccinated ÷ Eligible patients. "Eligible patients" is the denominator; the analyst should establish, rather than assume, whether the eligibility definition is identical across practices and across arms (e.g. whether it reflects a common eligibility protocol or each practice's own list), and report what the data show. For the arm level, uptake should be computed by summing Vaccinated and summing Eligible across the eight practices in each arm and dividing the sums — not by averaging practice-level percentages, since practices may have different denominators. Report both the pooled uptake per arm and the range of practice-level uptakes.
+
+    **Aggregate rows.** The final two rows ("All reminder practices", "All usual-care practices") appear to be arm-level totals. Before use, establish that they equal the sums of the corresponding eight practice rows; if they do not, report the discrepancy and base the analysis on the sixteen practice rows, stating this in the output.
+
+    **What counts as an answer.** The answer is the difference in uptake between arms (absolute difference in proportions, and relative difference if useful), with the practice-level counts shown so the reader can see the spread. Because there are only eight practices per arm, the analyst should establish what measure of uncertainty is appropriate for a cluster-randomised comparison at this size and report it; if a formal test or interval is not feasible with these data, say so and present the raw practice-level and arm-level figures instead.
+
+    **If the data cannot answer the question as asked.** If eligibility definitions differ between arms in a way that cannot be reconciled, if the aggregate rows do not reconcile with the practice rows, or if any practice has a missing or unusable count, report exactly which rows are affected and present the comparison on the practices that remain usable, clearly stating how many practices contributed to each arm. Do not impute or exclude silently. Do not extend the analysis to patient characteristics, timing, or dose of reminders — these are not in the pack and are out of scope.
+- id: h18
+  attempts:
+  - stop_reason: stop
+    chars: 3169
+    output_tokens: 1750
+    error: ''
+  view: |
+    ## Request
+
+    Twenty-four Year 5 classes across six schools were assigned, twelve each,
+    to a new maths curriculum or the existing one. Did pupils on the new
+    curriculum score higher on the end-of-year test?
+
+    ## Structure of the data pack
+
+    ### End-of-year maths score by class
+
+    Columns: School | Class | Curriculum | Pupils | Mean score | SD
+    Row labels, in order: School 1 (4 rows); School 2 (4 rows); School 3 (4 rows); School 4 (4 rows); School 5 (4 rows); School 6 (4 rows)
+  reply: |-
+    To the analyst:
+
+    **Primary comparison.** The question is whether pupils taught with the new maths curriculum scored higher on the end-of-year maths test than pupils taught with the existing curriculum. This is a single primary comparison: new curriculum versus existing curriculum, on end-of-year maths score, across the trial as a whole (24 Year 5 classes in six schools, twelve classes assigned to each arm). Because this is one prespecified primary comparison, use one primary test for it; no multiplicity adjustment applies to it.
+
+    **Unit of analysis.** The unit of analysis is the class. The data pack contains class-level summaries only (Pupils, Mean score, SD per class); pupils must not be treated as independent observations. Where an overall arm-level average is needed, compute a pupil-weighted mean using the Pupils column, and report the unweighted mean of class means alongside it.
+
+    **Comparisons implied and their handling.** The request implies one primary comparison (new vs existing). It also invites, but does not require, per-school contrasts (new vs existing within each of the six schools, two classes per arm per school if the allocation was balanced within schools). These six school-level contrasts are secondary and exploratory: report all six, in a consistent format, without highlighting selected results and without treating any of them as confirmatory. Do not produce further subgroup breakdowns unless they are reported in full and labelled exploratory.
+
+    **Denominators.** Each class mean has an implicit denominator: the pupils counted for that mean. The Pupils column shows class sizes, but the pack does not show whether Pupils counts all pupils assigned to the class or only those who sat the end-of-year test. Establish this before analysis. If any mean excludes pupils (for example absentees), report the class size, the number contributing to the mean, and the exclusion. If this cannot be established from the pack, report it as a limitation rather than assuming full coverage.
+
+    **What counts as an answer.** An answer is a clear statement of whether the new-curriculum classes show a higher average end-of-year score than the existing-curriculum classes across the 24 classes, with an uncertainty estimate appropriate to 24 clustered observations (school is the natural clustering or stratification factor). Before analysing, establish from the data how the twelve/twelve allocation is distributed across schools and whether each school contains classes in both arms; do not assume balance. Report the direction and size of the difference, the uncertainty around it, and the number of classes contributing to each arm.
+
+    **If the data cannot answer the question as asked.** If the class-level summaries do not support a valid uncertainty estimate, if key values are missing, or if the curriculum labels are inconsistent with a twelve/twelve allocation, do not present an invalid or underpowered test as an answer. Instead report what the data do show: the per-class means by arm and school, the pupil-weighted difference between arms, and an explicit statement that no inferential conclusion can be drawn from these data as given.
+- id: h19
+  attempts:
+  - stop_reason: stop
+    chars: 3170
+    output_tokens: 824
+    error: ''
+  view: |
+    ## Request
+
+    Forty patients with hypertension were given a home monitoring device
+    after three months of routine readings. Did their blood pressure fall
+    after the device was introduced?
+
+    ## Structure of the data pack
+
+    ### Monthly systolic readings, three months before and three months after
+
+    Columns: Period | Readings | Mean systolic | SD
+    Row labels, in order: Before; After
+
+    ### Per-patient mean change (after minus before)
+
+    Columns: Patients | Mean change | SD of change
+    Row labels: not shown
+  reply: |-
+    To the analyst:
+
+    The researcher's question is: among 40 patients with hypertension who were given a home monitoring device after three months of routine readings, did their blood pressure fall after the device was introduced?
+
+    **Primary comparison.** The single primary comparison is mean systolic blood pressure in the three months after the device was introduced versus the three months before, in the same group of patients. There is no control or comparison group in this data pack, so the analysis can describe the change within patients over the introduction of the device but cannot attribute it to the device. The write-up should state this limitation.
+
+    **Unit of analysis.** The patient. The per-patient mean change table (after minus before) is the basis for the primary analysis; the aggregated monthly table (Before; After rows) is supporting description only.
+
+    **Number of comparisons.** This request implies one primary comparison: after versus before, on mean systolic blood pressure. Please report it as a single paired analysis (mean change, SD of change, and a confidence interval and p-value from a paired test), not as a series of pairwise tests. Do not subdivide into month-by-month contrasts; no month-level rows beyond the Before/After aggregate are shown, and none should be created.
+
+    **Secondary/exploratory results.** None are pre-specified. If you report anything beyond the primary comparison — for example, the number of readings per patient or per period from the "Readings" column — label it as descriptive and exploratory, and report it without significance tests.
+
+    **Denominators.** For every mean, SD and change reported, the denominator is the number of patients contributing data. Please establish and report, rather than assume:
+
+    - how many of the 40 patients have readings in both the before and after periods (only these can contribute to the paired change analysis);
+    - how many readings per patient per period lie behind each mean, and how multiple readings per patient were handled (e.g. patient-level averaging before computing the summary statistics);
+    - whether any patients were excluded and why.
+
+    The "Patients" column in the per-patient change table should be reconciled against the number with paired data.
+
+    **What counts as an answer.** The question is answered by an estimate of the mean within-patient change in systolic blood pressure (after minus before) with an uncertainty interval, plus a statement of whether the change is consistent with a fall, a rise, or is too imprecise to distinguish these. State the direction of the change explicitly, since a negative mean change indicates a fall.
+
+    **If the data cannot answer the question as asked.** If the per-patient change table does not correspond to the same 40 patients, or if the paired structure cannot be verified from the summary tables, do not present a paired test. Instead report the before and after means with their SDs as an unpaired descriptive comparison, state explicitly that the paired question could not be answered from the available summaries, and describe what additional data would be needed. Do not guess at any values not shown in the tables.
+- id: h20
+  attempts:
+  - stop_reason: stop
+    chars: 4380
+    output_tokens: 2946
+    error: ''
+  view: |
+    ## Request
+
+    Thirty dairy farms have reported monthly antibiotic use for three years.
+    Fifteen received quarterly veterinary advisory visits from the start of
+    the second year. Did the visits reduce antibiotic use?
+
+    ## Structure of the data pack
+
+    ### Monthly antibiotic use (mg per kg population-corrected unit), by group and period
+
+    Columns: Group | Farms | Farm-months | Mean mg per PCU | SD
+    Row labels, in order: Advisory; Comparison
+
+    ### Farm-level mean use in years two and three
+
+    Columns: Group | Farms | Mean | SD
+    Row labels, in order: Advisory; Comparison
+
+    ### Year-one baseline by group
+
+    Columns: Group | Farms | Mean mg per PCU | SD
+    Row labels, in order: Advisory; Comparison
+  reply: |-
+    To the analyst:
+
+    **Researcher's question.** Thirty dairy farms reported monthly antibiotic use, in mg per population-corrected unit (mg per PCU), for three years. Fifteen farms received quarterly veterinary advisory visits from the start of the second year; the other fifteen did not. The researcher asks: did the advisory visits reduce antibiotic use?
+
+    **Primary comparison.** There is one primary comparison: advisory farms versus comparison farms, on antibiotic use measured in mg per PCU, over the post-intervention period (years two and three), assessed relative to the year-one baseline — that is, the difference between the two groups in their change from baseline. The single quantity of interest is the difference in that change between groups. If the tables only support a post-intervention group contrast without baseline adjustment, report that contrast and state plainly that it is not baseline-adjusted.
+
+    **Unit of analysis.** The farm-month is the unit for antibiotic use in the monthly table (each farm-month contributing one mg-per-PCU value). The farm is the unit for the farm-level and baseline tables, and the farm is the unit on which any inference about the intervention rests (30 farms, 15 per group).
+
+    **Comparisons implied and how to handle them.** On this single outcome, the request and the three tables imply the following contrasts:
+
+    1. Advisory vs comparison over years two and three — primary (see above).
+    2. Advisory vs comparison in year one — a baseline balance check, descriptive only.
+    3. Advisory vs comparison in year two and in year three separately, if the tables allow the two years to be separated — exploratory.
+    4. Within-group change from year one to years two–three, for each group separately — exploratory.
+
+    Treat only comparison 1 as primary and report it with an appropriate measure of uncertainty at the farm level. Report comparisons 2–4 as clearly labelled exploratory or descriptive results, without implying confirmatory testing, and do not choose among them after seeing results. Establish from the tables whether years two and three are pooled or separately available; if only pooled figures exist, say so and drop comparison 3. Also establish what the SDs in each table summarise (variation across farms or across farm-months), since this determines what uncertainty statements are possible; do not assume one or the other.
+
+    **Denominators.** Define each rate before computing it. Mg per PCU is total mg of antibiotic reported by a farm divided by that farm's PCU; establish how PCU is derived (e.g., livestock biomass, and over what period it is measured) rather than assuming. In the monthly table, the Farm-months column is the denominator for the mean: establish whether all 36 months per farm are present, and state how farm-months with missing or zero reports are handled. In the farm-level and baseline tables, the Farms column is the denominator: establish whether the farm-level mean is a mean of farm monthly means or of farm-year totals, and report which.
+
+    **What counts as an answer.** The question is answered if the data support a statement on whether the advisory group's antibiotic use fell relative to the comparison group after the visits began. If the summary tables cannot support this — for example, because they provide only grouped means and SDs that do not permit the between-group difference to be quantified with uncertainty, or because the basis of the SDs or the completeness of farm-months cannot be established — then report the descriptive differences the tables do support, state explicitly that the tables cannot answer the question as posed, and list what would be needed (e.g., farm-level monthly values, clarification of the SD basis, confirmation of complete reporting). Establish and report how farms came to be in each group if that is documented; if it is not, note that any between-group difference is not necessarily an effect of the visits, without overstating causal claims in either direction.
+
+    **Secondary and exploratory results.** The year-one baseline table and the farm-level means for years two and three are secondary: report them as context and supporting descriptives, clearly labelled as such. Any further breakdowns (for example, by individual year or within-group trends) are exploratory and should be reported descriptively, not as tests of the researcher's question.
+- id: h21
+  attempts:
+  - stop_reason: stop
+    chars: 3648
+    output_tokens: 877
+    error: ''
+  view: |
+    ## Request
+
+    During the outbreak period, what was the test positivity rate in small,
+    medium and large care homes, and did positivity differ by home size?
+
+    ## Structure of the data pack
+
+    ### Residents, tests and positive results by home size
+
+    Columns: Home size | Homes | Residents | Residents tested | Positive
+    Row labels, in order: Small (under 20 beds); Medium (20 to 49); Large (50 and over)
+  reply: |-
+    To: Analyst
+
+    **Request: test positivity in care homes by home size during the outbreak period**
+
+    **Primary comparison.** Compare the test positivity rate across three groups of care homes — small (under 20 beds), medium (20 to 49 beds) and large (50 beds and over) — during the outbreak period. The outcome is positivity: the proportion of tests (or of people tested — see denominators below) that returned a positive result in each size group.
+
+    **Unit of analysis.** The summary table reports counts aggregated to home-size category. Positivity should therefore be calculated at the level of the size category (individuals or tests within each category), not at the level of the individual home. Please state explicitly which unit the counts represent — individual residents tested or number of tests — as this affects how positivity should be defined and interpreted.
+
+    **Denominators.** For each size group, report positivity as: number of positives, out of the number of residents tested in that group. Do not use the total resident count as the denominator for a positivity rate; report the total resident count only as context (e.g. coverage of testing). If the "Positive" column counts positive people rather than positive tests, say so, and note the distinction.
+
+    **Number of comparisons.** The request implies: (a) three rate estimates, one per size group; (b) an overall test of whether positivity differs across the three groups; and (c) if the overall test is not possible with the available summary data, three pairwise comparisons (small vs medium, small vs large, medium vs large). Treat (b) as the primary comparison and (c) as secondary; if pairwise comparisons are reported, note that they are multiple comparisons and say how (if at all) this is accounted for. With only summary counts, an overall test may be possible from the aggregated counts (e.g. a chi-squared test on positives and negatives by size group); a formal pairwise comparison may not be possible without per-home or per-test data — report what the data support and do not present approximations as exact tests.
+
+    **Outbreak period.** The table structure shows no time variable, so it cannot be confirmed from the structure alone that the counts relate to the outbreak period only. Please establish and document the period over which these summary counts were compiled before interpreting them as outbreak-period figures, rather than assuming they are outbreak-period data. If they cover a different or wider period, report the rates as calculated and flag the mismatch with the question as asked.
+
+    **Exploratory / secondary results.** No subgroup or area-level analyses are requested. The number of homes in each size category should be reported as context for the rates, but no further breakdowns should be produced.
+
+    **What would count as an answer.** An answer consists of: the positivity rate for each size group with its denominator clearly stated, and a statement of whether positivity differed by home size, with the statistical evidence the data support (test statistic and p-value if computable, otherwise a descriptive comparison of the rates with appropriate uncertainty or caveats given only aggregate counts). If the data cannot answer the question as asked — for example, if the counts cannot be attributed to the outbreak period, or if the unit counted in "Positive" is ambiguous — report that the question cannot be answered as specified, describe exactly what limitation prevents it, and report the closest result the data do support, clearly labelled as such. Do not substitute an answer to a different question without flagging the substitution.
+- id: h22
+  attempts:
+  - stop_reason: stop
+    chars: 3448
+    output_tokens: 1125
+    error: ''
+  view: |
+    ## Request
+
+    What was our 30-day emergency readmission rate last year, using the
+    standard definition (an emergency readmission within 30 days of a live
+    discharge from an index admission), and are we above the regional
+    benchmark of 12.0%?
+
+    ## Structure of the data pack
+
+    ### Index admissions and outcomes
+
+    Columns: Measure | Count
+    Row labels, in order: Index admissions; Died during index admission; Discharged alive; Emergency readmission within 30 days
+  reply: |-
+    To the analyst:
+
+    Please run the following analysis on the summary table "Index admissions and outcomes" and write up the results for release.
+
+    **Primary question and comparison.** The researcher wants the 30-day emergency readmission rate for last year, calculated using the standard definition: an emergency readmission occurring within 30 days of a live discharge from an index admission. The primary comparison is a single one: the resulting rate against the regional benchmark of 12.0%. There is one outcome (30-day emergency readmission), one period (last year), and no group or area breakdowns in the request, so the request implies exactly one formal comparison. No multiplicity adjustment is needed.
+
+    **Unit of analysis.** The unit is the index admission (a discharge episode), not the patient.
+
+    **Denominator.** Under the stated definition, the denominator must be discharges alive from an index admission — patients who died during the index admission cannot experience a subsequent readmission. The table therefore supports the primary rate as:
+
+    - Numerator: the count labelled "Emergency readmission within 30 days"
+    - Denominator: the count labelled "Discharged alive"
+
+    Before running the analysis, please establish and document two things rather than assuming them:
+
+    1. Whether the "Emergency readmission within 30 days" row counts readmissions only among patients discharged alive, or among all index admissions. If it includes deaths or uses all index admissions as its base, say so and report both versions of the rate clearly labelled, treating the live-discharge version as primary.
+    2. Whether the table covers the same twelve-month period the researcher means by "last year". The table structure does not show a period label. Please confirm the reporting period from the data pack's documentation and state it in the write-up; if it cannot be confirmed, report the rate with the period explicitly left as whatever the pack covers.
+
+    Also note in the write-up whether the definition's details (e.g. whether a patient with multiple emergency readmissions within 30 days is counted once per index admission, and whether the 30 days run from discharge date) match the pack's derivation. If the documentation does not specify these, report the rate as the table defines it and flag the ambiguity rather than resolving it by assumption.
+
+    **Secondary/exploratory results.** The request contains no subgroup, area or time-point breakdowns, so there are no secondary comparisons. As a supplementary, clearly labelled exploratory figure only, you may report the rate using all index admissions (including deaths) as the denominator, to show sensitivity to the denominator choice. This must not be presented as the answer to the researcher's question.
+
+    **What counts as an answer.** An answer is: the 30-day emergency readmission rate for last year expressed as a percentage, with the numerator and denominator counts shown, and a clear statement of whether it is above or below the 12.0% regional benchmark (and by how many percentage points).
+
+    **If the data cannot answer the question as asked.** If the readmission count cannot be attributed to live discharges, or the period cannot be established, do not force a comparison to the benchmark. Instead, report all four counts from the table exactly as held, state which elements of the requested rate could and could not be derived, and explain what additional information would be needed.
+- id: h23
+  attempts:
+  - stop_reason: stop
+    chars: 3179
+    output_tokens: 1059
+    error: ''
+  view: |
+    ## Request
+
+    Which of these two wards has the higher residential burglary rate per
+    1,000 households, and how do they compare with the force average of 24
+    per 1,000 households?
+
+    ## Structure of the data pack
+
+    ### Burglaries, population and households by ward
+
+    Columns: Ward | Residents | Households | Residential burglaries
+    Row labels, in order: Ward X; Ward Y
+  reply: |-
+    To the analyst:
+
+    **Primary comparison.** Compare Ward X and Ward Y on residential burglary rate, expressed as residential burglaries per 1,000 households. The unit of analysis is the ward (two wards). For each ward, the rate should be calculated as: (residential burglaries in the ward) / (number of households in the ward) × 1,000. The denominator is households, not residents; the Residents column should not be used for this rate. Please report the numerator, denominator and resulting rate for each ward, so the calculation can be checked.
+
+    Please establish and note, rather than assume, what period the burglary counts and household figures cover, and confirm they refer to the same period; if they do not, flag this.
+
+    **Number of comparisons.** The request implies three comparisons: (1) Ward X vs Ward Y, (2) Ward X vs the force average of 24 per 1,000 households, (3) Ward Y vs the force average. Treat (1) as the primary comparison and (2) and (3) as benchmark comparisons. All should be reported descriptively; no formal significance testing or multiplicity correction is required unless we agree otherwise, but please say if you think the differences are too small relative to the counts to be meaningful.
+
+    **Benchmark figure.** The force average of 24 per 1,000 households is a figure supplied by the researcher. It is not derivable from the tables provided. Please state clearly in the write-up that this is an externally supplied benchmark, and establish (or flag as unknown) how it was calculated — what force-level numerator and denominator, over what period — so the comparison with the ward figures is like-for-like or its limitations are stated.
+
+    **Secondary and exploratory results.** The comparisons against the force average are secondary/contextual, not the primary question. Report them after the Ward X vs Ward Y comparison. There are no subgroup analyses requested; the Residents column is not needed for any requested output, so no secondary results should be derived from it.
+
+    **Denominators.** Residential burglary rate: residential burglaries recorded in the ward, out of all households in the ward, per 1,000 households. Please confirm the residential burglary count covers residential/domestic burglary only and note how it has been defined.
+
+    **What would count as an answer.** The request is answered if we can state which of Ward X and Ward Y has the higher residential burglary rate per 1,000 households, and whether each ward's rate is above or below the benchmark of 24 per 1,000. Please report the exact counts alongside the rates; if the counts are small enough that the rate is unstable, say so and present the counts so the ranking can be interpreted with appropriate caution.
+
+    **If the data cannot answer the question as asked.** If the burglary counts and household figures are not for comparable periods, or the burglary definition is unclear, state this rather than forcing a comparison, and report whatever rates can be calculated with their numerator and denominator made explicit. If the benchmark figure cannot be validated, still answer the primary Ward X vs Ward Y comparison and report the benchmark comparisons as provisional.
+- id: h24
+  attempts:
+  - stop_reason: stop
+    chars: 3116
+    output_tokens: 1221
+    error: ''
+  view: |
+    ## Request
+
+    Please compare all-cause mortality between the two cohorts in the heart
+    failure registry. Cohort A was recruited in 2019 and cohort B in 2022;
+    both have been followed to the end of 2025.
+
+    ## Structure of the data pack
+
+    ### Cohort size, follow-up and deaths
+
+    Columns: Cohort | Patients | Deaths | Total follow-up (person-years) | Median follow-up (years)
+    Row labels, in order: A (2019); B (2022)
+  reply: |-
+    Rewritten request for the analyst
+
+    **Primary comparison.** Compare all-cause mortality between two cohorts in the heart failure registry: cohort A (recruited 2019) versus cohort B (recruited 2022). Both cohorts are followed to the end of 2025. This is a single primary comparison on a single outcome; no other comparisons are requested, so no multiplicity adjustment is needed.
+
+    **Unit of analysis.** The data available to you are cohort-level summaries (patients, deaths, total person-years, median follow-up) for the two cohorts. The unit of analysis is therefore the cohort, and all results must be derived from these aggregates — patient-level analyses are not possible from this pack.
+
+    **Measures and denominators.** Report two summarisations of mortality per cohort, each with an explicit denominator:
+    1. Crude mortality proportion: deaths divided by all patients recruited into that cohort.
+    2. Mortality rate: deaths divided by total follow-up person-years for that cohort.
+
+    For both, state who is counted: all patients in the cohort, with follow-up running from recruitment to the earlier of death or the end of 2025. Please establish, rather than assume, how person-years were accrued (e.g., whether patients who died contribute time up to death, and whether anyone was lost to follow-up before end-2025), since this affects the interpretation of the rate.
+
+    **Key interpretive point to establish before comparing.** Cohort B was recruited in 2022 and cohort A in 2019, so maximum attainable follow-up differs between the cohorts (up to about 7 years for A versus about 4 years for B). Crude proportions are therefore not directly comparable as measures of cumulative mortality. Please confirm from the data whether median follow-up differs materially between cohorts, and treat the person-year rate as the primary basis for comparison if it does.
+
+    **What counts as an answer.** An answer is a quantified difference in all-cause mortality between the cohorts: report the mortality rate in each cohort, the rate ratio (B versus A, or state which you use) with a confidence interval computable from the death counts and person-years, and the corresponding crude proportions for context. State clearly whether any difference is compatible with no difference given the precision of the data.
+
+    **Secondary and exploratory results.** The researcher's request specifies no subgroups, areas, or time-point breakdowns, and the structure of this pack (a single two-row summary table) does not support any. Do not produce subgroup or year-by-year results from this pack. If the researcher expected such breakdowns, note in your write-up that they cannot be produced from the summary tables available.
+
+    **If the data cannot answer the question as asked.** If any required quantity is missing (e.g., person-years for a cohort), or if follow-up patterns make the cohorts non-comparable in a way the summaries cannot resolve, report exactly what is computable, state what is missing or unverifiable, and flag the limitation for the researcher rather than substituting an alternative definition of the outcome or population.
+- id: h25
+  attempts:
+  - stop_reason: stop
+    chars: 4112
+    output_tokens: 1133
+    error: ''
+  view: |
+    ## Request
+
+    Did the case-management programme reduce A&E attendance among frequent
+    attenders? Patients with ten or more attendances in the previous year
+    were offered a place; capacity allowed 180 to be enrolled.
+
+    ## Structure of the data pack
+
+    ### A&E attendances in the year before and the year after enrolment
+
+    Columns: Group | Patients | Mean attendances before | Mean attendances after
+    Row labels, in order: Enrolled; Eligible, not enrolled (capacity)
+  reply: |-
+    To: Analyst
+
+    Re: Analysis of the case-management programme for frequent A&E attenders
+
+    **Researcher's question (verbatim):** Did the case-management programme reduce A&E attendance among frequent attenders? Patients with ten or more attendances in the previous year were offered a place; capacity allowed 180 to be enrolled.
+
+    **Primary comparison.** The primary comparison is a single one: the change in mean A&E attendances from the year before to the year after enrolment, compared between the two groups in the table — (a) patients enrolled in the programme and (b) eligible patients who were not enrolled because capacity (180) was reached. The outcome is the number of A&E attendances per patient per year, as summarised by the "Mean attendances before" and "Mean attendances after" columns. The question is therefore whether the before-to-after change differs between the enrolled and eligible-not-enrolled groups (a difference-in-differences comparison), not simply whether each group changed.
+
+    **Unit of analysis.** The patient. Each patient contributes one before-period attendance count and one after-period attendance count.
+
+    **Number of comparisons.** This request implies exactly one primary comparison (two groups, one outcome, one before-vs-after change), so no multiplicity adjustment is required for the primary result. If any additional comparisons are produced (for example, within-group changes reported separately, or breakdowns by subgroup or period), these must be labelled as secondary/exploratory and reported descriptively, with no claims of programme effect drawn from them.
+
+    **Secondary and exploratory results.** The researcher has not specified any subgroup or area-level analyses. Please do not add any unless the data make them unavoidable; if you do produce any, report them in a clearly separate exploratory section, without significance testing presented as confirmatory.
+
+    **Denominators.** Each mean attendance figure has as its denominator the patients in that group in that period: the number of enrolled patients analysed, and the number of eligible-not-enrolled patients analysed. Please report these denominators explicitly. Eligibility is defined as ten or more attendances in the previous year; the enrolled group should contain only such patients. Please establish and report whether the "Patients" column gives the number of patients contributing to each mean, whether any patients are excluded (for example, death, deregistration, or missing data in either year), and whether the eligible-not-enrolled group comprises all eligible patients beyond the 180 enrolled or a subset.
+
+    **Points you should establish rather than assume.**
+    - How patients were allocated to enrolment versus the eligible-not-enrolled group. Capacity-based enrolment may not be equivalent to random allocation; report whatever is known or recorded about how the 180 were selected, and treat the comparison accordingly.
+    - Whether "the year after enrolment" is measured from each patient's individual enrolment date or from a common calendar period, and whether before and after windows are of equal length for every patient.
+    - Whether the table allows any assessment of variability (for example, group sizes only, or any dispersion measures), since this determines what can be said about uncertainty.
+
+    **What counts as an answer.** An answer to the researcher's question is a statement of whether the reduction (or increase) in mean annual A&E attendances from before to after differed between enrolled and eligible-not-enrolled patients, with the size of the difference in each group's change reported, and with denominators and any exclusions stated. If the summary tables cannot support this as asked — for example, if no measure of variability or group size is available, or if the before/after definitions differ between groups — say so explicitly, report what the tables do support (a descriptive comparison of the before-to-after change in each group), and state precisely what additional data would be needed to answer the question as posed. Do not infer values not present in the tables.
+- id: h26
+  attempts:
+  - stop_reason: stop
+    chars: 3113
+    output_tokens: 1452
+    error: ''
+  view: |
+    ## Request
+
+    Did the school improvement programme raise results in the thirty schools
+    it supported? Schools were chosen because they had the lowest Key Stage 2
+    results in the authority in 2024.
+
+    ## Structure of the data pack
+
+    ### Change in KS2 combined score, 2024 to 2025
+
+    Columns: Group | Schools | Mean 2024 | Mean 2025 | Mean change
+    Row labels, in order: Supported (lowest 30 in 2024); Next lowest 30 in 2024, not supported; All other schools
+  reply: |-
+    To the analyst:
+
+    Please carry out the following analysis on the table "Change in KS2 combined score, 2024 to 2025".
+
+    **Primary comparison (confirmatory).** The single primary comparison is between the "Supported (lowest 30 in 2024)" group and the "Next lowest 30 in 2024, not supported" group, on the outcome "Mean change" in KS2 combined score between 2024 and 2025. The research question is whether the supported schools' results improved more over 2024–2025 than those of comparable unsupported schools. Because both groups were selected on low 2024 results, the like-for-like contrast is supported versus next-lowest-30; the comparison against "All other schools" does not answer the question on its own and should not be treated as the primary result.
+
+    **Unit of analysis.** The unit of analysis is the school. The table reports means and school counts by group, so each mean is a school-level average. Please establish and state whether "Mean change" is the average of within-school changes or the difference between the group's mean 2025 and mean 2024 (these differ slightly if group composition varies), and report which was used.
+
+    **Comparisons implied.** The structure implies: (a) one primary contrast (supported vs next-lowest-30, on mean change); (b) one secondary contrast (supported vs all other schools); (c) three descriptive within-group changes (2024 to 2025 for each of the three row groups). Treat (a) as the confirmatory result. Treat (b) and (c) as exploratory/contextual only: report them all, clearly labelled as secondary, and do not select among them to support a conclusion. Do not run additional contrasts beyond these without flagging them as exploratory.
+
+    **Denominators.** For each mean, the denominator is the number of schools in that group with the required data, given in the "Schools" column. Please report those counts alongside every mean, establish whether any schools are missing from the 2025 data (i.e., whether the 2024 and 2025 means rest on the same schools), and state the denominators used. If the counts differ from 30 in the supported or comparison groups, say so explicitly rather than assuming the full 30 are present.
+
+    **What counts as an answer.** An answer is: the difference in mean change between supported schools and the next-lowest-30 unsupported schools, with the group sizes on which it rests, plus any measure of uncertainty or spread the environment permits you to produce. The question is whether the programme "raised" results, which the data can address only as relative change, not as a guaranteed causal effect; note this limitation. If the table contains only means with no basis for assessing uncertainty, report the point differences descriptively and state plainly that the data cannot establish whether the difference is larger than chance. If schools are missing so that the groups are no longer the lowest 30 / next lowest 30 as selected, report what is available and say that the comparison as designed cannot be evaluated as asked. Do not report 2025 levels alone as evidence of improvement, since the supported schools started lowest.
+- id: h27
+  attempts:
+  - stop_reason: stop
+    chars: 4125
+    output_tokens: 1204
+    error: ''
+  view: |
+    ## Request
+
+    Have the speed cameras reduced collisions at the twenty junctions where
+    they were installed? Sites were chosen as the twenty junctions with the
+    most injury collisions in 2022.
+
+    ## Structure of the data pack
+
+    ### Injury collisions per junction per year
+
+    Columns: Group | Junctions | 2019 to 2021 mean | 2022 | 2023 to 2024 mean
+    Row labels, in order: Camera sites (top 20 in 2022); Next 20 junctions by 2022 count, no camera
+  reply: |-
+    To the analyst:
+
+    The researcher asks whether speed cameras reduced collisions at the twenty junctions where they were installed. Please run the following analysis on the summary table "Injury collisions per junction per year" (columns: Group, Junctions, 2019 to 2021 mean, 2022, 2023 to 2024 mean; rows: Camera sites [top 20 in 2022] and Next 20 junctions by 2022 count, no camera).
+
+    **Primary comparison.** The primary comparison is a difference in changes: the change in injury collisions at the 20 camera sites from the 2019–2021 period to the 2023–2024 period, compared with the same change over the same periods at the 20 comparison junctions (the next 20 by 2022 count, no camera). The outcome is injury collisions; the count of junctions in each group is 20 in both rows, subject to confirmation (see below).
+
+    **Unit of analysis.** The unit is the junction. The table gives group-level means, so report changes per junction (mean collisions per junction per period), not totals, unless the "Junctions" column indicates the means are already per junction — please establish what the means represent before interpreting them.
+
+    **Number of comparisons.** This request implies one primary comparison (group × pre-to-post change). Any additional contrasts — e.g. camera sites' change alone, or the comparison group's change alone — are secondary and exploratory (see below). Do not treat the 2022 column as part of either before or after period for the primary comparison: sites were selected on their 2022 counts, so 2022 is the selection year and both groups' 2022 values are inflated by construction. If a single before/after contrast is needed, use 2019–2021 vs 2023–2024 only. Because there is effectively one primary comparison, no multiple-comparison correction is needed for it; exploratory results should be reported descriptively and labelled as such, with no significance claims.
+
+    **Exploratory results.** The following are exploratory and should be reported descriptively: (a) the change within each group separately; (b) the 2022 values for both groups, reported only to characterise the selection year; (c) any difference between groups in 2022 levels. These should not be presented as evidence of a camera effect.
+
+    **Denominators.** Collisions are counts, not rates. Make explicit who is counted and out of whom: collisions per junction per year within each group of 20 junctions. If the "Junctions" column shows fewer than 20 in either row (e.g. ties, missing sites, or the comparison group containing fewer usable junctions), state the actual number and use it as the denominator. Do not compute rates per vehicle, per flow, or per mile — no such denominators appear in the data.
+
+    **What would count as an answer.** The question is answered if we can say whether the camera sites' per-junction change from 2019–2021 to 2023–2024 differs from the comparison group's change over the same periods, and in which direction. Report the size and direction of the difference in changes. Note for the write-up: because sites were selected as the highest-collision junctions in 2022, both groups are subject to regression to the mean, and the comparison group is the best available control within these data but shares that selection.
+
+    **If the data cannot answer the question as asked.** If, on inspecting the table, the summary does not support the primary comparison (for example, if the periods are not comparable, if group membership or junction counts cannot be confirmed, or if the means cannot be related to a per-junction denominator), say so explicitly and report instead what the table does support: the observed pre-to-post change at each group, per junction, with the caveats above, and state precisely what additional data would be needed to answer the question as asked.
+
+    Please also establish, rather than assume: how the "2019 to 2021 mean" and "2023 to 2024 mean" are constructed (e.g. mean per year, whether all three years are present in each); whether the two groups are mutually exclusive; and whether any junctions appear in one group but not the other for reasons the row labels do not state.
+- id: h28
+  attempts:
+  - stop_reason: stop
+    chars: 4891
+    output_tokens: 1501
+    error: ''
+  view: |
+    ## Request
+
+    Did the coaching scheme improve performance? Staff whose annual
+    performance rating fell in the bottom quartile at three sites were
+    offered six months of coaching; the other two sites had no scheme.
+
+    ## Structure of the data pack
+
+    ### Change in standardised performance rating over one year
+
+    Columns: Group | Staff | Mean rating at selection (z) | Mean rating one year later (z) | Change
+    Row labels, in order: Bottom quartile, coaching sites; Bottom quartile, non-coaching sites; All other staff, coaching sites
+  reply: |-
+    To: Analyst
+
+    **Research question:** Did the coaching scheme improve performance? Staff whose annual performance rating fell in the bottom quartile at three sites were offered six months of coaching; the other two sites had no scheme.
+
+    **Data available:** One summary table, "Change in standardised performance rating over one year", with columns: Group | Staff | Mean rating at selection (z) | Mean rating one year later (z) | Change, and three row labels: (1) Bottom quartile, coaching sites; (2) Bottom quartile, non-coaching sites; (3) All other staff, coaching sites.
+
+    **Primary comparison.** The primary comparison is a single contrast: the change in standardised performance rating between selection and one year later, comparing staff in the bottom quartile at selection at the three coaching sites with staff in the bottom quartile at selection at the two non-coaching sites. The outcome is the mean change in standardised rating (report it as one-year-later mean minus selection mean for each group, and confirm that the "Change" column is computed this way rather than the reverse; if the sign convention cannot be established from the table, state this).
+
+    **Unit of analysis.** The individual staff member. The table reports group-level aggregates, so all figures should be reported at group level, but any statement about what the data represent should be framed in terms of individual staff.
+
+    **Number of comparisons.** This request implies one primary comparison (row 1 vs row 2). It should be treated as the only confirmatory result; no adjustment is needed beyond reporting it as the single pre-specified test of the question. The remaining possible contrasts (row 3 vs row 1, and row 3 against any non-coaching counterpart) are secondary, as set out below.
+
+    **Secondary and exploratory results.** The table includes "All other staff, coaching sites" but has no corresponding row for all other staff at non-coaching sites. This means:
+
+    - The change for all other staff at coaching sites (row 3) can be reported descriptively only. It cannot be compared with a non-coaching counterpart, and no coaching effect should be inferred from it.
+    - If you wish to report the difference in change between bottom-quartile and all other staff within coaching sites, do so explicitly as an exploratory, descriptive finding.
+
+    Report these secondary results after the primary comparison, clearly labelled as exploratory, without p-values or significance language unless the tables support inference (see below).
+
+    **Denominators.** The outcome is a mean change, not a rate, but the "Staff" column is the effective denominator for each mean. Before reporting, establish and state who is counted in each row: in particular, whether the counts include only staff with a rating at both selection and one year later, how the bottom quartile was defined (e.g. within each site at selection), and whether the coaching group includes staff who did not complete coaching. If any of this cannot be established from the data pack, report the counts as given and flag the definition as undetermined rather than assuming it.
+
+    **What would count as an answer.** The question is answered if the mean change over the year for bottom-quartile staff at coaching sites can be compared with that for bottom-quartile staff at non-coaching sites, with a difference reported in standardised units and its direction stated plainly (a larger improvement, or a smaller decline, in the coaching group).
+
+    **What to report if the data cannot answer it as asked.** Note the following limits, which are apparent from the structure and should be checked and stated rather than assumed:
+
+    - The table shows group means only; no standard deviations, standard errors or counts beyond group totals are shown. Establish whether any measure of spread or a basis for statistical testing exists. If not, report the difference in mean change as a descriptive result and state that no inference about statistical significance is possible from these tables.
+    - The three coaching sites and two non-coaching sites were not assigned at random, and staff-level data are aggregated to site groups. Any observed difference should be reported as an association consistent or inconsistent with a coaching effect, not as proof of causation, and site-level differences between the groups should be named as an unadjusted confounder.
+    - Establish whether staff who left during the year are included or excluded from the one-year means, since differential attrition between groups would affect the comparison; if this cannot be determined, report it as an open limitation.
+
+    If the primary comparison cannot be made at all (for example, if counts or means are suppressed for any row), state exactly which figures are unavailable, report whatever descriptive results are possible, and do not substitute the exploratory comparisons for the primary one.
+- id: h29
+  attempts:
+  - stop_reason: stop
+    chars: 3771
+    output_tokens: 1351
+    error: ''
+  view: |
+    ## Request
+
+    How well does our new 30-day readmission risk model predict readmission,
+    and is it good enough to recommend to other trusts?
+
+    ## Structure of the data pack
+
+    ### Model performance
+
+    Columns: Dataset | Patients | Readmissions | AUC | Calibration slope
+    Row labels, in order: Development (2022 to 2023 discharges); Temporal validation (2024 discharges)
+  reply: |-
+    To the analyst:
+
+    **Researcher's question (verbatim intent):** "How well does our new 30-day readmission risk model predict readmission, and is it good enough to recommend to other trusts?"
+
+    **Primary comparison.** The primary comparison is model performance in the temporal validation cohort (2024 discharges) against performance in the development cohort (2022–2023 discharges), on two pre-specified metrics: discrimination (AUC) and calibration (calibration slope). Report both metrics for both rows of the Model performance table. Treat the temporal validation row as the primary result and the development row as the reference point; do not treat the difference between them as a formal statistical test unless the summary data support one — if not, report the two sets of estimates side by side descriptively.
+
+    **Unit of analysis.** The unit of analysis is the discharge cohort (each row of the summary table): all patients in a given dataset/period, with cohort-level summary metrics. No patient-level analysis is possible from these tables; the analyst should not attempt any.
+
+    **Number of comparisons.** This request implies one primary comparison (development vs temporal validation) across two metrics (AUC, calibration slope), i.e. two primary estimates of interest. Handle this by pre-specifying both metrics as co-primary, reporting both regardless of result, and applying no post-hoc metric selection. Any further breakdowns would be additional comparisons and should be treated as exploratory (see below).
+
+    **Secondary / exploratory results.** The Patients and Readmissions columns are secondary and descriptive only: cohort sizes and observed readmission volumes for each row. Report them as context (e.g. to indicate the size of the validation cohort supporting the AUC and calibration estimates). They should not be presented as model performance findings.
+
+    **Denominators.** If any readmission rate or proportion is reported, the denominator is all patients listed in the Patients column for that dataset row, and the numerator is the Readmissions value for that row. The analyst should establish (and document) the exact definition of "Readmissions" in this table — in particular whether it counts readmissions within 30 days of discharge and how deaths, transfers and readmissions to other trusts are handled — rather than assuming the definition matches the model's target outcome.
+
+    **What would count as an answer, and limits of the data.** An answer to the first part of the question is: the AUC and calibration slope of the model on the 2024 discharge (temporal validation) cohort, with the development-cohort values for context. An answer to the second part ("good enough to recommend to other trusts") requires a pre-specified performance threshold (for both AUC and calibration slope), which the researcher has not supplied. The analyst should not invent one. The analyst should either (a) obtain the researcher's pre-specified thresholds before unblinding any results and report performance against them, or (b) if none can be obtained, report the estimates descriptively and state explicitly that "good enough" cannot be judged without a threshold. Note also that these tables contain only development and temporal validation cohorts; they contain no external validation at other trusts. The analyst should therefore state that the data can speak to temporal performance within this trust's population but cannot, on their own, establish whether the model is good enough for other trusts, and should flag this as a limitation in the write-up. If any required figure (e.g. a confidence interval around the validation AUC) cannot be derived from the summary tables, report what is available and state what is missing rather than estimating it.
+- id: h30
+  attempts:
+  - stop_reason: stop
+    chars: 4644
+    output_tokens: 1673
+    error: ''
+  view: |
+    ## Request
+
+    How accurately would the pupil dropout risk model identify next year's
+    at-risk pupils? Please report its expected accuracy and whether schools
+    can rely on it.
+
+    ## Structure of the data pack
+
+    ### Model performance
+
+    Columns: Dataset | Pupils | Dropouts | Accuracy | AUC | Sensitivity | Specificity
+    Row labels, in order: Fitted on 2024 cohort
+  reply: |-
+    To the analyst,
+
+    The researcher asks: "How accurately would the pupil dropout risk model identify next year's at-risk pupils? Please report its expected accuracy and whether schools can rely on it."
+
+    **Primary question and comparison.** The question of interest is the predictive performance of the pupil dropout risk model for identifying at-risk pupils in a future (next year's) cohort. The data pack contains a single performance row, "Fitted on 2024 cohort", with the metrics Accuracy, AUC, Sensitivity and Specificity. There is no row for a subsequent cohort, so the data cannot directly measure next-year performance; the 2024-cohort metrics are the only available evidence. The analyst should therefore report the 2024-cohort metrics as the primary result and state explicitly that any statement about next year is an extrapolation from them.
+
+    **What the analyst should establish before interpreting.** The row label says "Fitted on 2024 cohort" but does not show whether the metrics were computed on the same pupils used to fit the model or on a held-out validation set. This distinction is central to the question, and the analyst should establish and report which it is rather than assume either. If it cannot be established from the environment, that should be reported as an unresolved limitation.
+
+    **Unit of analysis.** The pupil. Each metric is a property of the model applied to a set of pupils in one cohort; there is no school-level or group-level unit in the data.
+
+    **Comparisons implied.** There is one model row and no group, area or period contrasts, so no multiple-comparison correction across groups or time points is needed. The request does imply reporting four separate metrics (Accuracy, AUC, Sensitivity, Specificity); these should be reported descriptively, each on its own terms, not framed as confirmatory tests. The implied comparison of "2024 performance versus next-year performance" cannot be computed from these data and should be described qualitatively as a limitation, not quantified.
+
+    **Denominators.** For each metric the analyst should state the denominator explicitly:
+    - Accuracy: pupils correctly classified out of all pupils in the evaluation set.
+    - Sensitivity: pupils flagged as at-risk who actually dropped out, out of all pupils who dropped out.
+    - Specificity: pupils not flagged who did not drop out, out of all pupils who did not drop out.
+    - The Pupils and Dropouts columns should be reported so the reader can see who is counted and out of whom. The analyst should establish whether these counts refer to the full 2024 cohort or to whatever subset the metrics were evaluated on, and report which.
+
+    **Threshold.** Accuracy, sensitivity and specificity each depend on the probability cut-off used to define "at-risk". The analyst should establish and report what threshold was used, or state that it cannot be determined. If it cannot be determined, the metrics should be interpreted with that caveat, and AUC (which is threshold-independent) should carry more weight in the write-up.
+
+    **Secondary and exploratory results.** The data pack contains no subgroup, school-level or area-level breakdowns, so no secondary analyses are possible; the analyst should not attempt any. The researcher's phrase "whether schools can rely on it" is an interpretive judgement, not a measurable outcome in these data. It should be addressed as a short qualitative assessment based on the reported metrics and the in-sample versus out-of-sample question above, clearly labelled as interpretation rather than a data result.
+
+    **What counts as an answer.** An answer consists of: (a) the four metrics for the 2024 cohort with explicit numerators and denominators and the threshold used; (b) a statement of whether the evaluation was in-sample or held-out; (c) a qualified conclusion about whether schools can rely on the model, grounded only in those metrics; and (d) an explicit statement that next-year accuracy cannot be directly measured from these data and that the 2024 figures are a proxy whose reliability for next year is unknown.
+
+    **If the data cannot answer the question as asked.** If the analyst cannot establish whether the evaluation was held-out, what threshold was used, or what the denominators refer to, the affected metrics should be reported with those gaps stated rather than silently assumed, and the write-up should say that the question about next-year pupils cannot be answered directly from this data pack. Do not impute or infer any values.
+
+    Please return the metrics, the denominators, the established facts listed above, and the qualified interpretation for release to the researcher.
+- id: h31
+  attempts:
+  - stop_reason: stop
+    chars: 3832
+    output_tokens: 1255
+    error: ''
+  view: |
+    ## Request
+
+    If we deployed the benefit-claim fraud model, what proportion of the
+    claims it flags would we expect to be genuinely fraudulent?
+
+    ## Structure of the data pack
+
+    ### Model performance at the proposed threshold
+
+    Columns: Dataset | Claims | Fraudulent | Flagged | True positives | Precision | Recall
+    Row labels, in order: Training (2023 to 2024); Held-out (2025 Q1)
+  reply: |-
+    Rewritten request for the analyst
+
+    **Primary question.** If the benefit-claim fraud model were deployed, what proportion of the claims it flags would be genuinely fraudulent — i.e. the model's precision at the proposed threshold? The primary estimate is precision on the Held-out (2025 Q1) row, as that is the only estimate that speaks to expected real-world performance; the Training (2023 to 2024) row is reported for context only.
+
+    **Unit of analysis.** The individual claim. Estimates should be computed from the claim-level counts summarised in the table (Claims, Fraudulent, Flagged, True positives), not treated as observations in themselves.
+
+    **Comparisons implied.** The request implies two estimates of one outcome (precision), one per dataset row, plus one contrast between them: precision in Held-out (2025 Q1) versus precision in Training (2023 to 2024). This is a small, pre-specified set; no multiplicity adjustment is needed. Report the held-out figure as the headline answer and the training figure alongside it, clearly labelled, so the reader can see the difference between in-sample and out-of-sample performance.
+
+    **Secondary and exploratory results.** The following are secondary and should be reported as exploratory, each with its underlying counts, and not presented as answers to the primary question:
+    - Recall on each row (the proportion of genuinely fraudulent claims that were flagged), which speaks to how much fraud the model catches, not to the purity of its flags.
+    - The flag rate (Flagged out of Claims) on each row.
+    - The prevalence of genuinely fraudulent claims (Fraudulent out of Claims) on each row, since precision depends on prevalence and the training and held-out periods may differ.
+
+    **Denominators.** Define and state each rate explicitly:
+    - Precision (the primary outcome): true positives out of all flagged claims — i.e. of the claims the model flags, how many are genuinely fraudulent.
+    - Recall: true positives out of all genuinely fraudulent claims (the Fraudulent column) — i.e. of the claims that are genuinely fraudulent, how many the model flags.
+    - Flag rate: Flagged out of Claims.
+    - Prevalence: Fraudulent out of Claims.
+    Report the raw counts (true positives, flagged, fraudulent, total claims) for each row alongside every rate, so the reader can see how stable each estimate is.
+
+    **What would count as an answer, and fallbacks.** An answer is a single precision figure for the held-out data, expressed as a proportion of flagged claims that are genuinely fraudulent, with its numerator and denominator counts. Please establish rather than assume the following points, and report what you find:
+    - That the Flagged and True positives columns in both rows were produced at the same threshold, and that this is the threshold the researcher means by "the proposed threshold". If the rows use different thresholds, or the threshold is not stated in the pack, say so and report precision per row with that caveat.
+    - That the definition behind the Fraudulent column (what counts as "genuinely fraudulent") is consistent across the two rows — e.g. confirmed fraud versus model-independent labels.
+    - Whether the held-out row is complete or provisional for 2025 Q1, since incomplete adjudication of flagged claims would bias precision.
+    - Whether the held-out data are representative of the population to which deployment would apply; if the pack does not show this, note it as a limitation rather than assuming it.
+
+    If the held-out row cannot yield the estimate — for example because flagged claims have not been adjudicated, or counts are too small to report — say so explicitly. In that case report the training-row precision as an in-sample figure only, clearly labelled as not an estimate of deployed performance, and state what data would be needed to answer the question as asked.
+- id: h32
+  attempts:
+  - stop_reason: stop
+    chars: 3054
+    output_tokens: 1657
+    error: ''
+  view: |
+    ## Request
+
+    How accurately can the wheat yield model predict next season's yields
+    for the 640 fields in the scheme?
+
+    ## Structure of the data pack
+
+    ### Model fit
+
+    Columns: Evaluation | Fields | Seasons | R squared | RMSE (t per ha)
+    Row labels, in order: Fitted on all data; Leave-one-season-out cross-validation
+  reply: |-
+    To the analyst:
+
+    The researcher's question is: how accurately can the wheat yield model predict next season's yields for the 640 fields in the scheme?
+
+    Primary comparison. The primary result is the model's predictive accuracy for yields in a season not used in fitting, read from the "Leave-one-season-out cross-validation" row of the Model fit table, measured by RMSE (t per ha) with R squared reported alongside. This is the row that speaks to the question; the "Fitted on all data" row is an in-sample fit and cannot answer a question about prediction of an unseen season.
+
+    Unit of analysis. The reported statistics are aggregates. The underlying unit should be the field-level prediction (each field in a held-out season), with R squared and RMSE computed over all such predictions. Establish, rather than assume, whether the R squared and RMSE in each row are pooled across all held-out seasons or computed some other way, and state the unit explicitly in the write-up.
+
+    Number of comparisons. This request implies one primary estimate: the leave-one-season-out RMSE (with its R squared). Anything beyond that is secondary. Specifically, the comparison of "Fitted on all data" against "Leave-one-season-out cross-validation" for each metric (at most two contrasts: RMSE and R squared) is exploratory only, illustrating how much the in-sample fit flatters the model. Report these contrasts descriptively and label them as exploratory; do not treat them as answering the researcher's question and do not add further groupings, splits or tests.
+
+    Denominators. For each row, state who is counted and out of whom: the number of fields covered (confirm whether it is all 640 fields in the scheme, using the Fields column) and the number of seasons contributing predictions (using the Seasons column). Confirm whether both evaluation rows cover the same fields and the same seasons; if they do not, report the coverage of each separately.
+
+    What counts as an answer, and what to do if the data cannot answer it. An answer is a single leave-one-season-out RMSE in t per ha, plus its R squared, interpretable as the expected error when predicting yields for the 640 fields in a season the model was not fitted on. Before reporting it, establish two things rather than assuming them: (1) whether the cross-validation holds out entire seasons (as the label suggests) rather than fields, and (2) whether this design genuinely mimics predicting a future, next season, or only interpolating to an unseen season within the observed set. If the design does not correspond to forward prediction of a next season, say so plainly and report the statistic with an exact description of what it does measure. If the table cannot confirm coverage of all 640 fields, does not identify the seasons, or the statistics are not computed at field level, state that the data cannot answer the question as asked, and report the closest available statistic with its precise definition, denominator and coverage, clearly labelled as not equivalent to next-season predictive accuracy.
+- id: h33
+  attempts:
+  - stop_reason: stop
+    chars: 3243
+    output_tokens: 762
+    error: ''
+  view: |
+    ## Request
+
+    Did the redesigned bowel screening invitation letter increase uptake?
+    Eight thousand people due for screening were individually randomised to
+    receive the new or the existing letter.
+
+    ## Structure of the data pack
+
+    ### Screening kit returned within 12 weeks
+
+    Columns: Letter | Invited | Returned
+    Row labels, in order: Redesigned; Existing
+  reply: |-
+    To the analyst:
+
+    **Research question (as received):** Did the redesigned bowel screening invitation letter increase uptake? Eight thousand people due for screening were individually randomised to receive the new or the existing letter.
+
+    **Primary comparison:** Uptake of screening, measured as return of a screening kit within 12 weeks, compared between the two randomised groups: those sent the redesigned letter versus those sent the existing letter. This is the only comparison the request specifies and it should be treated as the single primary analysis; there is one outcome, two groups, and one time point, so there is one comparison in total and no multiplicity adjustment is needed for it.
+
+    **Unit of analysis:** The individual person invited for screening. Each person was individually randomised, so the analysis should be based on counts of people, not on any aggregated unit.
+
+    **Denominators:** For each arm, uptake is the number of people who returned a kit within 12 weeks, out of the number of people invited in that arm. Please use the "Invited" column as the denominator and the "Returned" column as the numerator, both by letter arm. Before analysing, establish from the data or its documentation whether "Invited" means everyone randomised to that arm (i.e. an intention-to-treat denominator); if it instead excludes people who, for example, were never sent or did not receive their letter, report the uptake both ways, or state clearly which denominator you have used and why.
+
+    **What to report:** For each arm, the number invited, the number returning a kit within 12 weeks, and the uptake proportion. Then report the absolute difference in uptake between arms (with a confidence interval) and the result of a formal test of the difference (e.g. a two-proportion test or equivalent). Also report the relative difference or ratio if straightforward. State the direction of any observed difference in plain terms (which letter was associated with higher uptake).
+
+    **Checks before interpreting results:** Establish whether the numbers invited in each arm are consistent with the stated randomisation of eight thousand people (i.e. roughly equal allocation), and whether any rows or counts are missing or inconsistent. Report any such discrepancies.
+
+    **Exploratory analyses:** The request and the table structure specify no subgroup, area-level, or secondary outcomes. Please do not report additional breakdowns (for example, by any characteristic not shown in the data) as if they were pre-specified. If you consider any further breakdowns worth noting, label them clearly as exploratory and descriptive only.
+
+    **What would count as an answer:** The question is answered if, for each arm, we have a valid uptake proportion with a common, clearly stated denominator, and a between-arm difference with an uncertainty estimate and test. If the data cannot answer the question as asked — for example, if the "Returned" counts cannot be attributed to the correct denominators, if the two rows do not correspond to the two arms as described, or if the counts do not permit a valid comparison — say so explicitly, describe exactly what the data do and do not show, and do not present an interim result as an answer to the question.
+- id: h34
+  attempts:
+  - stop_reason: stop
+    chars: 3799
+    output_tokens: 932
+    error: ''
+  view: |
+    ## Request
+
+    Please describe current outpatient waiting times by specialty and
+    identify the specialties with the longest waits.
+
+    ## Structure of the data pack
+
+    ### Weeks from referral to first appointment, patients seen last quarter
+
+    Columns: Specialty | Patients | Median weeks | Lower quartile | Upper quartile | Over 18 weeks
+    Row labels, in order: Cardiology; Dermatology; ENT; Gastroenterology; General surgery; Gynaecology; Neurology; Ophthalmology; Orthopaedics; Rheumatology; Urology; Pain management
+  reply: |-
+    To the analyst:
+
+    **Question.** The researcher wants a description of current outpatient waiting times by specialty, and an identification of the specialties with the longest waits.
+
+    **Primary comparison.** The comparison is across the 12 specialties listed in the table (Cardiology, Dermatology, ENT, Gastroenterology, General surgery, Gynaecology, Neurology, Ophthalmology, Orthopaedics, Rheumatology, Urology, Pain management), on waiting time from referral to first appointment, for patients seen last quarter. The outcome measures available are, per specialty: median weeks, lower and upper quartiles, and the proportion waiting over 18 weeks. The primary outcome for identifying the longest waits should be the median weeks waited; report the quartiles and the over-18-weeks proportion alongside it for context. If the researcher intended a different ordering criterion (for example, the over-18-weeks proportion or the upper quartile), state this in your write-up rather than choosing silently — please establish with the researcher or note explicitly which criterion you used.
+
+    **Unit of analysis.** The unit of analysis is the specialty: each row of the table is one aggregate measure per specialty. There are no patient-level data; do not attempt patient-level calculations.
+
+    **Number of comparisons.** The request implies 12 sets of specialty-level estimates (one per specialty), and a ranking of those 12 against one another. There is one time period (last quarter, as defined by the table title) and one outcome family. Treat the ranking as descriptive; no formal pairwise significance testing between specialties is required, and none should be added. If you judge any formal comparison necessary, state this and how you handled multiplicity, rather than running ad hoc tests.
+
+    **Exploratory results.** All specialty-level results are on an equal footing; there is no pre-specified primary subgroup. Any additional breakdowns you can construct from the summary table (for example, highlighting specialties where the interquartile range is unusually wide, or where the over-18-weeks proportion is high relative to the median) are exploratory and should be reported as such, clearly labelled as exploratory observations.
+
+    **Denominators.** For the over-18-weeks figure, the denominator is the number of patients in the "Patients" column for that specialty, i.e. patients seen in that specialty last quarter, and the numerator is those whose wait exceeded 18 weeks. Please confirm and report what the "Patients" column counts (e.g., all patients seen in the specialty last quarter) rather than assuming it. The median and quartiles should be reported as weeks waited among patients seen in that specialty last quarter. Report the "Patients" count for every specialty alongside its statistics so relative sizes are visible; flag any specialty where the patient count is small enough that the summary statistics may be unstable, and state what suppression or rounding rules apply in the secure environment.
+
+    **What counts as an answer.** An answer consists of: (1) a table or description of the four measures for each of the 12 specialties for last quarter, and (2) a ranked list naming the specialties with the longest waits, stating explicitly which measure the ranking is based on, with the top specialties named in the write-up. If the data cannot answer the question as asked — for example, if some specialties are missing, values are suppressed, the period "last quarter" is not fully defined by the table, or the "Patients" column cannot be confirmed as the denominator — report what can be said from the available summaries, describe precisely what is missing or unclear, and state what additional data or definition would be needed, rather than substituting an alternative analysis.
+- id: h35
+  attempts:
+  - stop_reason: stop
+    chars: 4865
+    output_tokens: 1122
+    error: ''
+  view: |
+    ## Request
+
+    Has the rate of hip fracture in people aged 65 and over changed over the
+    last ten years?
+
+    ## Structure of the data pack
+
+    ### Hip fractures and population aged 65 and over, by year
+
+    Columns: Year | Population 65 and over | Hip fractures | Rate per 10,000
+    Row labels, in order: 2016; 2017; 2018; 2019; 2020; 2021; 2022; 2023; 2024; 2025
+  reply: |-
+    To: Analyst
+
+    Researcher's question: "Has the rate of hip fracture in people aged 65 and over changed over the last ten years?"
+
+    Please run the following analysis on the summary table "Hip fractures and population aged 65 and over, by year" (columns: Year; Population 65 and over; Hip fractures; Rate per 10,000; rows 2016 to 2025).
+
+    Primary comparison
+    - The primary comparison is the hip fracture rate per 10,000 population in people aged 65 and over in the most recent year (2025) against the first year (2016). Please also report the rate for each intermediate year, so the overall direction and pattern of change over the ten-year period can be seen, not just the two endpoints.
+    - The outcome is the rate of hip fracture. The rate should be expressed per 10,000, as the table's rate column indicates.
+
+    Unit of analysis
+    - The unit of analysis is the calendar year: each row is a year, and the rate is a yearly population-level rate. There is no individual-level or subnational unit in this table.
+
+    Number of comparisons
+    - This request implies one primary comparison: 2025 versus 2016 on the rate of hip fracture in people aged 65 and over.
+    - The year-by-year rates requested above are descriptive context for that single primary comparison, not a series of formal pairwise tests. Please do not run multiple pairwise tests between years; if you think a formal test of trend across the ten years is appropriate, flag this in your write-up as an additional analysis rather than substituting it for the primary comparison. State how, if at all, you account for multiplicity.
+
+    Denominator
+    - For each year, the rate is: number of hip fractures among people aged 65 and over in that year, divided by the population aged 65 and over in that same year, multiplied by 10,000. Please confirm in your write-up that the rate column in the table is calculated this way (numerator: hip fractures; denominator: population aged 65 and over for the same year). If the rate column is calculated differently, report what it actually represents and recalculate using the hip fractures and population columns if possible.
+    - Please also state whether the population denominator is a point-in-time estimate or an average over the year, if the table documentation allows this to be established; do not assume one or the other.
+
+    Exploratory results
+    - All results beyond the primary 2025-versus-2016 comparison are exploratory. This includes the individual year-by-year rates, any apparent turning points or trend breaks, and any year that looks unusual. Report these descriptively, without formal significance tests, and label them clearly as exploratory in the write-up.
+    - The data shown in the structure contain no subgroups (for example by sex, age band within 65+, or geography) and no area-level breakdowns, so no subgroup analyses can be requested from this table. If the researcher asks about subgroups later, this should be treated as a separate request.
+
+    What would count as an answer
+    - An answer is a statement of whether the hip fracture rate per 10,000 in people aged 65 and over was higher, lower, or broadly unchanged in 2025 compared with 2016, together with the size of the difference (for example, the 2016 rate, the 2025 rate, and the absolute and relative change), supported by the year-by-year pattern.
+    - The researcher's question does not specify a threshold for what counts as a meaningful change. Please report the observed change in plain terms; do not declare the change "significant" or "not meaningful" without stating what criterion you used, and flag that the criterion was your choice rather than the researcher's.
+
+    If the data cannot answer the question as asked
+    - If the table cannot support this comparison as specified — for example, if the population denominator is missing or inconsistent for some years, if the hip fractures column does not correspond to the 65-and-over population in the denominator, or if the rate column proves not to be per 10,000 of that population — please state this explicitly in the write-up, describe exactly what is missing or unclear, and report whatever can be reliably calculated (for example, year-by-year counts alongside population, or rates you recalculated yourself), clearly labelled as such. Do not silently substitute a different population base, a different rate unit, or a partial time period, and do not interpolate or impute missing years.
+
+    In the write-up, please include: the rate for each year 2016–2025; the primary 2016-versus-2025 comparison with the absolute and percentage change; your confirmation of the denominator and rate calculation; which results are primary and which are exploratory; and any caveats about data quality or coverage you identified. Release only the summary figures and written description; do not attempt to derive any individual-level information from these yearly aggregates.
+- id: h36
+  attempts:
+  - stop_reason: stop
+    chars: 3363
+    output_tokens: 751
+    error: ''
+  view: |
+    ## Request
+
+    By how much did biochemistry turnaround time change after the new
+    analyser was installed in Laboratory 1 in April? Laboratory 2 kept its
+    existing analyser.
+
+    ## Structure of the data pack
+
+    ### Median turnaround (minutes), routine biochemistry, three months before and after
+
+    Columns: Laboratory | Samples before | Median before | Samples after | Median after
+    Row labels, in order: Laboratory 1 (new analyser); Laboratory 2 (unchanged)
+  reply: |-
+    To the analyst,
+
+    Please address the following request using the summary table "Median turnaround (minutes), routine biochemistry, three months before and after".
+
+    **Primary comparison.** The researcher asks by how much biochemistry turnaround time changed after a new analyser was installed in Laboratory 1 in April. Laboratory 2 kept its existing analyser and serves as the comparison laboratory. The primary comparison is therefore the change in median turnaround time (minutes) for routine biochemistry from the three-month period before April to the three-month period after April, in Laboratory 1, assessed against the corresponding change in Laboratory 2 (a before-and-after comparison between the two laboratories, i.e. the difference in the before-to-after change between Laboratory 1 and Laboratory 2).
+
+    **Unit of analysis.** The unit is the individual biochemistry sample. The table summarises samples into laboratory-level medians; the analyst should report the medians and sample counts as given, and should not treat the laboratory-period median as if it were a single observational unit when describing variability.
+
+    **Number of comparisons and how to handle them.** The request implies two within-laboratory before-versus-after comparisons (Laboratory 1 and Laboratory 2) plus the between-laboratory contrast of those two changes, which is the primary estimate. These are a small, pre-specified set forming one primary question; treat them as one primary analysis rather than a family of independent tests, and do not apply multiplicity adjustments beyond stating this structure. There are no other pre-specified comparisons.
+
+    **Secondary and exploratory results.** The structure of the table shows no subgroup, area-level or additional outcome variables. If no such results are derivable from the table, report none; do not generate unplanned secondary analyses.
+
+    **Denominators.** Each median is to be reported with its denominator: the number of routine biochemistry samples in that laboratory in that three-month period ("Samples before" and "Samples after"). State these counts alongside each median so the reader knows out of whom each median is calculated. The analyst should establish from the data environment whether the before and after periods are comparable in length and sample volume, and report any imbalance rather than assuming it away.
+
+    **What counts as an answer.** An answer is an estimate of the before-to-after change in median turnaround time in Laboratory 1, the analogous change in Laboratory 2, and the difference between those changes, each reported in minutes with the underlying sample counts. Because the table contains medians and counts only, the analyst should establish whether any measure of uncertainty or spread (for example interquartile ranges or distributions) is available in the secure environment; if it is, report it; if it is not, state explicitly that uncertainty cannot be quantified from the summary data and present the point estimates descriptively without inferential claims. If the periods, sample definitions, or laboratory labels cannot be confirmed to match the researcher's description (for example, if the "before" and "after" windows are not the three months either side of the April installation), report what the data do show, flag the mismatch, and do not assume the intended alignment.

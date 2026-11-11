@@ -1,0 +1,3 @@
+# Model-sizing study, wave 2, for gpt-oss checkers.
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T effort=low
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T effort=low -T show_pack=true

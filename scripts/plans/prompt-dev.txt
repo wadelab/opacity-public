@@ -1,0 +1,9 @@
+# Model-sizing study, prompt optimisation on the dev tasks only (h01-h36):
+# the design-first rules prompt, and review-then-rewrite from the checklist and
+# from the rules, with thinking off; the rules prompt with a 1k think. The
+# held-out set has been read for error analysis and is not used here; the
+# fresh set (h73-h108) confirms whatever survives.
+harvest -T analyst_prompt=rules -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=revise -T analyst_prompt=checklist -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=revise -T analyst_prompt=rules -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T analyst_prompt=rules -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score

@@ -1,0 +1,13 @@
+# Model-sizing study, wave 1, for gpt-oss (reasoning effort instead of a
+# switch). Serve with REASONING_PARSER=openai_gptoss.
+harvest -T arm=open -T replicates=3 -T effort=low -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T replicates=3 -T effort=low -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=selfcheck -T replicates=3 -T effort=low -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=open -T replicates=3 -T effort=medium -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T replicates=3 -T effort=medium -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+opacity -T levels=0,1,2,3,4 -T replicates=5 -T effort=low
+opacity -T levels=0,1,2,3,4 -T replicates=5 -T effort=medium
+crosscheck -T logs=runs/inspect/scored/*harvest*.eval -T effort=low
+# Model-sizing study, wave 2, for gpt-oss checkers.
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T effort=low
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T effort=low -T show_pack=true

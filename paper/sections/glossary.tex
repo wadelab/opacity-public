@@ -1,0 +1,35 @@
+% Shared terms carry the same definition as the companion paper's glossary
+% (safe-tre-agent/paper/sections/glossary.tex); change them in both. The
+% other entries are this paper's; where the code and logs use a different
+% name, it is given in brackets.
+\section*{Glossary}
+\label{sec:glossary}
+
+\begin{glossarylist}
+\gterm{Analysis task}{A research request and the summary tables an analyst works from; the tables always hold the ingredients of the correct analysis and of the tempting wrong one. The code calls the collection of tasks the harvest and the tables the pack.}
+\gterm{Cell}{One row of an aggregate result: one combination of grouping values with its count and the aggregate of the measure.}
+\gterm{Checker}{A model that reads a released write-up under the reviewer instruction and answers whether its interpretation is supported; every recommended pipeline uses a checker from a different family than the analyst.}
+\gterm{Complementary suppression}{Withholding further cells so that a margin cannot be used to recover a withheld cell by subtraction.}
+\gterm{Control task}{An analysis task with no planted trap, whose data support the straightforward conclusion; an analyst that explains its effect away is judged wrong on the second sealed set.}
+\gterm{Correct report}{The report paired with a planted-error report: the same tables, cell for cell, with the analysis done correctly, so that a reviewer who flags everything scores at chance. Also called the matched control.}
+\gterm{Design-first prompt}{An analyst prompt that makes the model record the unit of assignment, the number of comparisons, who is missing and each denominator before it applies ten decision rules to every claim. Labelled rules in tables and figures; ``1k think'' is a 1,024-token thinking budget.}
+\gterm{Detection threshold}{The criterion a reviewer must meet with nothing withheld: detection of at least 0.8 of planted-error reports in every error class at \level{0}, with false alarms on at most 0.2 of correct reports. The code calls it the phase-0 gate.}
+\gterm{Dev, held-out and the sealed sets}{The four sets of analysis tasks. Prompts and checks were developed on dev; held-out tested them and was then read for error analysis; the two sealed sets, fresh and fresh2, were written blind to the prompts and results and unread until the configurations they test had been committed.}
+\gterm{Disclosure levels \level{0} to \level{4}}{The graded output-checking policies of Study 1: \level{0} none, \level{1} permissive, \level{2} standard, \level{3} conservative, and \level{4}, in which every table is withheld and only the prose remains.}
+\gterm{Dominance}{The rule that withholds a sum or mean cell in which one person contributes a share of the cell's magnitude at or above the bar (one half by default).}
+\gterm{Error classes 1 to 8}{The planted errors of Study 1: unreported multiplicity, silent attrition, confounding (Simpson reversal), an unsupported causal claim, the wrong error structure, the wrong denominator, regression to the mean, and in-sample performance reported as predictive.}
+\gterm{Five Safes}{The framework under which trusted research environments are accredited: safe projects, people, settings, data and outputs.}
+\gterm{Inside analyst}{The automated analyst that answers a research question in several steps on the released side of the gateway, each step an ordinary request under one session. The demonstration calls it Chimp.}
+\gterm{Judge}{A model that sees the request, the tables, the write-up and the hidden answer key and decides whether a researcher acting on the write-up would be misled; three judges were used. The hosted judges' families were excluded from the analyst and checker roles; the local gpt-oss judge is an exception whose family overlap is reported.}
+\gterm{NIGHTPLAY}{The synthetic study built with planted truths and traps and a marked question bank, so that an automated analyst's answers can be scored.}
+\gterm{Pipeline}{An analyst followed by one or more checkers in series, each of which withholds the write-up on a yes, a cannot tell or an unparseable reply.}
+\gterm{Planner}{The model in the gateway that turns a researcher's request in words into one typed query, which the gateway validates before it runs. It is untrusted, so its mistakes can mislead but cannot disclose.}
+\gterm{Planted error}{An analytic error built into a report by its generator, with the truth recorded in code and never rendered.}
+\gterm{Planted-error report}{A report whose interpretation commits one planted error. The code calls it a seeded bundle.}
+\gterm{Release threshold}{The criterion for an analyst, or an analyst followed by checks: a wrong conclusion released on at most 0.05 of planted-error attempts and at least 0.75 of control attempts answered. The code calls it the fail-closed gate.}
+\gterm{Report}{The released output of one analysis in Study 1: a title, the question, a methods statement, the count of participants at each stage, one or more tables and an interpretation. The unit a reviewer judges; the code calls it a bundle.}
+\gterm{Statistical disclosure control (SDC)}{The rules applied to an output before release so that it does not reveal information about an individual: minimum cell sizes, dominance rules, rounding and suppression.}
+\gterm{Trusted research environment (TRE)}{An enclave in which sensitive data are analyzed in place and from which only checked outputs are released.}
+\gterm{Typed reviewer}{A decision server that answers the reviewer questions from the probability a model places on each option in a masked slot, generating no text.}
+\gterm{Write-up}{What an analyst releases in Study 2: a report in a fixed JSON shape.}
+\end{glossarylist}

@@ -1,0 +1,5 @@
+# Model-sizing study, cross-check round 4: the same checker as round 3 (gpt-oss
+# 20B, medium effort) on Nemotron 3 Super's write-ups (runs/inspect/round4/),
+# which finished after round 3 was staged, so scripts/fresh_select.py can
+# choose a checker for it too.
+crosscheck -T logs=runs/inspect/round4/*harvest*.eval -T effort=medium

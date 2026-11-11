@@ -1,0 +1,5 @@
+# Model-sizing study, wave 2, for checkers with no thinking switch: plain,
+# with the stepwise reviewer text (visible working), and with the pack shown.
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T reviewer=stepwise
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T show_pack=true

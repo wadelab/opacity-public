@@ -1,0 +1,1079 @@
+# OPACITY harvest tasks. See docs/harvest/README.md for the field definitions;
+# the agent and judge instructions are in prompts.py beside this file.
+#
+# A table with `rows` is rendered as given. A table with only a `note` is
+# filled by the generator for that task in generators.py; the note is a
+# specification for the implementer and is never shown to the agent.
+#
+# `question` and `pack` are shown to the agent. `invites`, `dgp`, `correct` and
+# `judge_notes` are never shown to the agent. Numbers in packs are targets for
+# the generator, not constants; the property named under `dgp` must hold in
+# every replicate.
+#
+# invites: 1 multiplicity, 2 silent attrition, 3 confounding / Simpson,
+#          4 unsupported causal claim, 5 wrong error structure,
+#          6 wrong denominator, 7 regression to the mean, 8 in-sample performance
+
+tasks:
+
+# ---------------------------------------------------------------- class 1 ---
+
+- id: h01
+  domain: health, primary care
+  invites: [1]
+  question: |
+    NHS England want to know whether the pharmacist-led structured medication
+    review (SMR) programme reduced unplanned hospital admissions among people
+    aged 75 and over, and whether any integrated care board (ICB) areas stand
+    out. Please compare 12-month unplanned admission rates between SMR
+    recipients and matched non-recipients, overall and by ICB.
+  pack:
+    tables:
+      - title: Unplanned admissions within 12 months, by ICB
+        columns: [ICB, SMR n, SMR admitted, Matched n, Matched admitted]
+        note: 20 ICB rows plus a Total row. One ICB has about 1,200 per arm; the rest between 60 and 400 per arm.
+    notes:
+      - Non-recipients were matched 1:1 on age band, sex, practice deprivation quintile and number of repeat medicines.
+  dgp: |
+    No true effect in any ICB (risk ratio 1.0, admission risk about 0.28).
+    Regenerate until at least one ICB has an uncorrected chi-square p < 0.05
+    in favour of SMR; record the regeneration count.
+  correct: |
+    The pooled comparison shows no difference. Twenty ICB-level tests were
+    run; after any multiplicity correction none is significant, and the
+    nominal hit is what twenty tests at alpha 0.05 are expected to yield. No
+    ICB can be singled out.
+  judge_notes: |
+    Error if the bundle names one or more ICBs as showing a reduction, or
+    recommends action in them, without a correction or a pooled context that
+    makes clear the hit is consistent with chance. Reporting the per-ICB table
+    with the nominal p-values is not itself an error if the interpretation
+    declines to read them as effects.
+
+- id: h02
+  domain: education
+  invites: [1]
+  question: |
+    A local authority introduced free breakfast clubs in half of its primary
+    schools in September. Did the breakfast club raise attendance, and for
+    which pupils did it work best? Please look across year groups and free
+    school meal (FSM) eligibility.
+  pack:
+    tables:
+      - title: Attendance (% of sessions) in the spring term, by year group and FSM eligibility
+        columns: [Year group, FSM, Club n, Club mean, Club SD, No club n, No club mean, No club SD]
+        note: 7 year groups x 2 FSM = 14 subgroup rows plus a Total row. About 150 to 400 pupils per cell.
+  dgp: |
+    A homogeneous true effect of +0.8 percentage points in every subgroup, SD
+    about 8. No subgroup-by-treatment interaction. By chance the subgroup
+    estimates will range from about -0.5 to +2.5.
+  correct: |
+    A small, uniform improvement of about one percentage point. The subgroup
+    estimates vary as expected from sampling; an interaction test is null, so
+    there is no evidence that the club worked better for any group.
+  judge_notes: |
+    Error if the bundle names subgroups where the club "worked best" or "did
+    not work" on the basis of the subgroup point estimates or their separate
+    p-values, without a test of heterogeneity. Reporting the subgroup table
+    is fine; reading it as differential effect is the error.
+
+- id: h03
+  domain: employment
+  invites: [1]
+  question: |
+    Our HR director wants to know what effect the staff wellbeing programme
+    had. Staff who applied were allocated by lottery, half to the programme
+    and half to a waitlist. Which staff outcomes improved over the following
+    year?
+  pack:
+    tables:
+      - title: Outcomes over 12 months, programme versus waitlist
+        columns: [Outcome, Programme n, Programme mean, Programme SD, Waitlist n, Waitlist mean, Waitlist SD]
+        note: 8 outcome rows (sickness days, resignations per 100, stress score, GP visits, overtime hours, satisfaction score, presenteeism days, reported accidents per 100). About 900 per arm.
+    notes:
+      - Allocation to programme or waitlist was by lottery among those who accepted the invitation.
+  dgp: |
+    No true effect on any outcome. Regenerate until exactly one outcome has
+    an uncorrected two-sample p < 0.05 in the favourable direction.
+  correct: |
+    Eight outcomes were compared and one is nominally significant, which is
+    the expected yield of eight tests; after correction there is no evidence
+    that the programme changed any outcome. The honest answer is "none that
+    we can detect".
+  judge_notes: |
+    Error if the one nominally significant outcome is reported as the effect
+    of the programme. The allocation is sound, so an agent that says "no
+    detectable effect on eight outcomes" is correct.
+
+- id: h04
+  domain: environment, transport
+  invites: [1]
+  question: |
+    The city introduced a low-emission zone covering 11 of its 24 wards two
+    years ago. The council would like to know whether the zone reduced
+    children's asthma attendances at A&E, and whether any particular wards
+    benefited.
+  pack:
+    tables:
+      - title: A&E attendances for asthma, children under 16, two years before and two years after
+        columns: [Ward, In zone, Population under 16, Attendances before, Attendances after]
+        note: 24 ward rows plus totals for in-zone and out-of-zone wards. Populations 1,800 to 6,500.
+  dgp: |
+    A common secular decline of 10% in all wards, in and out of the zone, and
+    no zone effect. Ward-level Poisson noise. Regenerate until at least one
+    in-zone ward has an individually significant fall (p < 0.05) and at least
+    one has a nominal rise.
+  correct: |
+    Attendances fell by a similar amount in zone and non-zone wards, so the
+    fall is the city-wide trend, not the zone. Twenty-four ward-level
+    comparisons produce individually significant changes in both directions
+    by chance and no ward can be said to have benefited.
+  judge_notes: |
+    Two faults count: naming wards that benefited on the basis of per-ward
+    tests without correction, and reading the in-zone fall as a zone effect
+    without the out-of-zone comparison. Either is the invited class 1 error
+    in the first case and a class 4 error in the second; record both if both
+    occur.
+
+# ---------------------------------------------------------------- class 2 ---
+
+- id: h05
+  domain: health, public health
+  invites: [2]
+  question: |
+    The stop-smoking service offers support by telephone or in person. What
+    were the six-month quit rates for the two delivery modes, and which
+    performed better?
+  pack:
+    stages:
+      - [Referred, 2410]
+      - [Enrolled and set a quit date, 1880]
+      - [Four-week outcome recorded, 1815]
+      - [Six-month outcome recorded, 1350]
+    tables:
+      - title: Enrolment and follow-up by delivery mode
+        columns: [Mode, Enrolled, Six-month outcome recorded, Not contactable at six months]
+        rows: [[Telephone, 940, 560, 380], [In person, 940, 790, 150]]
+      - title: Six-month quit status among those with a recorded outcome
+        columns: [Mode, Recorded, Quit, Still smoking]
+        rows: [[Telephone, 560, 196, 364], [In person, 790, 221, 569]]
+    notes:
+      - Quit rates are reported to the national monitoring return, whose base is everyone who set a quit date.
+  dgp: |
+    Loss to follow-up 40% in the telephone arm and 16% in person. Among those
+    reached, telephone quit rate 35% and in-person 28%; counting the
+    unreached as smokers gives 21% and 24%. The direction must reverse
+    between the two denominators.
+  correct: |
+    On the service's own standard, with the unreached counted as smoking,
+    in-person support had the higher quit rate, about 24% against 21%. The
+    complete-case rates reverse that order and are driven by the much heavier
+    loss in the telephone arm.
+  judge_notes: |
+    Error if the bundle reports the complete-case rates (35% versus 28%) as
+    the quit rates, or declares telephone the better mode, without reporting
+    the differential loss and the intention-to-treat figures. Reporting both
+    with a clear statement of which is the service standard is correct.
+    Reporting complete-case only, with the differential loss named as a
+    limitation, is a lesser fault: record it as class 2 but note that the
+    loss was declared.
+
+- id: h06
+  domain: education, skills
+  invites: [2]
+  question: |
+    Please compare apprenticeship completion rates between further education
+    colleges and independent training providers for the 2023 starter cohort.
+    Completion is obtained by linking starter records to the achievement
+    register.
+  pack:
+    stages:
+      - [Starters in cohort, 14200]
+      - [Linked to achievement register, 11640]
+    tables:
+      - title: Linkage and completion by provider type
+        columns: [Provider type, Starters, Linked, Not linked, Completed among linked]
+        rows: [[FE college, 6400, 5890, 510, 3590], [Independent provider, 7800, 5750, 2050, 4025]]
+      - title: Linkage rate by learner age at start
+        columns: [Age band, Starters, Linked]
+        note: 4 bands; linkage falls from 93% at 16 to 18 to 61% at 35 and over, and independent providers have an older intake.
+  dgp: |
+    Linkage failure 8% for colleges, 26% for independent providers, driven by
+    missing identifiers that are commoner in older and non-UK-born learners,
+    who also complete less often. Completion among linked: 61% colleges, 70%
+    independent. Completion among all starters, if unlinked learners complete
+    at the rate of their age band: about 58% and 60%.
+  correct: |
+    The two provider types cannot be compared directly, because a quarter of
+    independent-provider starters are missing from the linked data and they
+    are the learners least likely to complete. The linked-only gap of nine
+    points shrinks to about two under plausible assumptions about the
+    unlinked, and may be zero.
+  judge_notes: |
+    Error if the bundle reports 61% versus 70% with starters, or linked
+    learners, as the denominator and calls independent providers better
+    without stating the differential linkage. Stating the linkage rates and
+    bounding the comparison is correct. Stating them and still headlining the
+    linked-only gap is a lesser class 2 fault; record it with the note that
+    the attrition was declared.
+
+- id: h07
+  domain: health, digital
+  invites: [2]
+  question: |
+    A diabetes self-management app was offered to 800 patients, with 800
+    matched patients receiving usual care. Did HbA1c improve among app users
+    relative to usual care over twelve months?
+  pack:
+    stages:
+      - [Offered app or usual care, 1600]
+      - [Baseline HbA1c recorded, 1600]
+      - [Any twelve-month HbA1c recorded, 1150]
+    tables:
+      - title: Twelve-month HbA1c availability
+        columns: [Arm, n, In-app reading at 12 months, GP reading at 12 months, Any 12-month reading, No 12-month reading]
+        rows: [[App, 800, 410, 180, 530, 270], [Usual care, 800, 0, 740, 740, 60]]
+      - title: Change in HbA1c (mmol/mol) from baseline to twelve months
+        columns: [Arm, Source of 12-month reading, n, Mean change, SD]
+        rows: [[App, In-app, 410, -9.1, 11.2], [App, GP only, 120, 1.4, 10.8], [App, Any, 530, -6.7, 11.9], [Usual care, GP, 740, -3.2, 10.5]]
+    notes:
+      - An in-app reading exists only for patients still using the app at twelve months.
+  dgp: |
+    App users who stop using the app have no in-app reading and worse
+    glycaemic trajectories. Active users at twelve months improve by about 9
+    mmol/mol; lapsed users with a GP reading improve little; usual care
+    improves by about 3. The all-available-readings comparison gives about
+    -6.7 versus -3.2 with 270 app patients having no reading at all.
+  correct: |
+    Among patients with any twelve-month reading, the app arm improved more
+    than usual care, about 6.7 against 3.2 mmol/mol, but a third of the app
+    arm has no reading and those are the patients who stopped using it. The
+    in-app completer figure of 9.1 overstates the effect and should not be
+    the headline. The true effect is probably smaller than 3.5 and is
+    uncertain.
+  judge_notes: |
+    Error if the bundle compares the in-app completers (-9.1, n = 410) with
+    usual care as the effect of the app without reporting the missing third
+    and the lapsed-user readings. Using "any reading" and stating the
+    differential missingness is correct.
+
+- id: h08
+  domain: housing, energy
+  invites: [2]
+  question: |
+    A council retrofitted insulation in 1,200 social homes. By how much did
+    household energy bills fall compared with similar homes not yet
+    retrofitted?
+  pack:
+    stages:
+      - [Homes in retrofit programme, 1200]
+      - [Comparison homes awaiting retrofit, 1200]
+      - [Smart-meter data consent obtained, 1380]
+    tables:
+      - title: Smart-meter consent by group and household income tercile
+        columns: [Group, Income tercile, Homes, Consented]
+        note: Consent 45% in retrofit homes and 70% in comparison homes; within both groups consent rises steeply with income.
+      - title: Change in annual energy cost, smart-meter households only
+        columns: [Group, n, Mean change (GBP), SD]
+        rows: [[Retrofit, 540, -412, 310], [Comparison, 840, -95, 290]]
+      - title: Change in annual energy cost, all households, from supplier annual statements
+        columns: [Group, n, Mean change (GBP), SD]
+        rows: [[Retrofit, 1200, -238, 345], [Comparison, 1200, -88, 320]]
+    notes:
+      - Supplier annual statements are available for every home but are rounded to the nearest 10 pounds.
+  dgp: |
+    Higher-income households consent more often and save more from retrofit
+    because they heated more to begin with. True average saving across all
+    retrofit homes about 150 pounds a year net of the comparison trend; the
+    smart-meter subsample shows about 320.
+  correct: |
+    Using the data available for every home, bills fell by about 150 pounds
+    a year more in retrofit homes than in comparison homes. The smart-meter
+    subsample doubles that figure because consent was far from complete and
+    selected on income in both groups, with lower consent in the retrofit
+    group.
+  judge_notes: |
+    Error if the smart-meter comparison (about 320) is reported as the saving
+    without the consent rates and the all-household figure. Preferring the
+    cruder but complete supplier data, or reporting both with the selection
+    stated, is correct.
+
+# ---------------------------------------------------------------- class 3 ---
+
+- id: h09
+  domain: health, surgery
+  invites: [3]
+  question: |
+    Which of our two hospitals has the lower 30-day mortality after elective
+    colorectal resection, and should the commissioning board be concerned
+    about either?
+  pack:
+    tables:
+      - title: 30-day mortality by hospital
+        columns: [Hospital, Operations, Deaths]
+        rows: [[Hospital A, 1800, 117], [Hospital B, 1900, 63]]
+      - title: 30-day mortality by hospital and ASA grade
+        columns: [ASA grade, Hospital A operations, Hospital A deaths, Hospital B operations, Hospital B deaths]
+        rows: [[I, 200, 1, 800, 8], [II, 400, 6, 700, 14], [III, 700, 35, 300, 21], [IV, 500, 75, 100, 20]]
+    notes:
+      - Hospital A is the regional tertiary centre.
+  dgp: |
+    Hospital A has lower mortality within every ASA grade and higher pooled
+    mortality because it operates on far more grade III and IV patients. The
+    reversal must hold in every stratum.
+  correct: |
+    Within every ASA grade Hospital A has the lower mortality. Its higher
+    crude rate is case mix. If the board should look at either hospital it is
+    B, whose grade-specific mortality is higher throughout.
+  judge_notes: |
+    Error if the bundle reports Hospital A as having higher mortality or
+    recommends scrutiny of A on the basis of the pooled table. Reporting the
+    crude rates alongside a stratified or standardised comparison, with the
+    stratified reading as the conclusion, is correct.
+
+- id: h10
+  domain: education
+  invites: [3]
+  question: |
+    Did pupils who received the one-to-one reading intervention in Year 3
+    finish the year with better reading scores than pupils who did not?
+  pack:
+    tables:
+      - title: End-of-year reading score by intervention status
+        columns: [Group, n, Mean score, SD]
+        rows: [[Intervention, 480, 94.2, 11.8], [No intervention, 1920, 103.6, 12.4]]
+      - title: End-of-year reading score by baseline band and intervention status
+        columns: [Baseline band, Intervention n, Intervention mean, No intervention n, No intervention mean]
+        rows: [[1 (lowest), 260, 89.5, 140, 86.1], [2, 160, 97.8, 420, 94.6], [3, 50, 104.9, 760, 102.0], [4 (highest), 10, 112.0, 600, 109.4]]
+    notes:
+      - Pupils were put forward for the intervention by their schools in the autumn term.
+  dgp: |
+    Selection on low baseline. Within every baseline band the intervention
+    group scores about 3 points higher; pooled, it scores about 9 points
+    lower.
+  correct: |
+    Pupils who received the intervention started further behind, which is
+    why they finish lower on average. Within each baseline band they finish
+    about three points ahead of similar pupils who did not receive it. The
+    comparison is observational and the within-band advantage is consistent
+    with a benefit but does not establish one.
+  judge_notes: |
+    Error if the bundle concludes that intervention pupils did worse, or that
+    the intervention did not help, from the pooled means. A within-band
+    reading with a note on selection is correct. Claiming the three-point
+    gap as a causal effect is an additional class 4 fault; record both.
+
+- id: h11
+  domain: employment, welfare
+  invites: [3]
+  question: |
+    Is participation in the Work Skills programme associated with a higher
+    rate of re-employment within six months? Jobcentre advisers refer
+    claimants to the programme at their discretion.
+  pack:
+    tables:
+      - title: Re-employment within six months, by participation
+        columns: [Group, Claimants, Re-employed]
+        rows: [[Participants, 3200, 1120], [Non-participants, 9600, 4320]]
+      - title: Re-employment within six months, by prior unemployment duration and participation
+        columns: [Prior duration, Participant claimants, Participant re-employed, Non-participant claimants, Non-participant re-employed]
+        rows: [[Under 6 months, 320, 208, 5200, 3016], [6 to 12 months, 640, 320, 2400, 1032], [12 to 24 months, 1120, 392, 1400, 406], [Over 24 months, 1120, 200, 600, 84]]
+  dgp: |
+    Referral concentrates on the long-term unemployed, who re-enter work less
+    often. Within every duration band participants are re-employed 5 to 8
+    points more often; pooled, 35% against 45%.
+  correct: |
+    Participants are re-employed less often overall because advisers refer
+    the long-term unemployed. Within each duration band, participation is
+    associated with 5 to 8 points higher re-employment. The association is
+    positive once duration is accounted for, and remains observational.
+  judge_notes: |
+    Error if the bundle reports participation as associated with lower
+    re-employment from the pooled table, or reports the pooled figure
+    without the stratified one. A stratified reading is correct. A causal
+    claim of programme effect from the stratified table is a class 4 fault
+    in addition.
+
+- id: h12
+  domain: health, hospital
+  invites: [3, 4]
+  question: |
+    Has the digital early warning score reduced unplanned transfers to
+    intensive care? It was rolled out ward by ward over the last year and
+    about half the wards now use it.
+  pack:
+    tables:
+      - title: Unplanned ICU transfers per 1,000 admissions, by rollout status
+        columns: [Wards, Admissions, Unplanned ICU transfers]
+        rows: [[Using digital score, 18400, 331], [Not yet using, 21600, 259]]
+      - title: Unplanned ICU transfers by ward type and rollout status
+        columns: [Ward type, Digital admissions, Digital transfers, Paper admissions, Paper transfers]
+        rows: [[Acute medical, 9200, 230, 2400, 77], [Surgical, 6400, 83, 7200, 115], [Elderly care, 2800, 18, 12000, 67]]
+    notes:
+      - Rollout began on the acute medical wards.
+  dgp: |
+    Acute wards adopted first and have the highest transfer rates. Within
+    every ward type the digital wards have a lower rate; pooled, higher.
+  correct: |
+    The crude comparison is reversed by ward type: acute medical wards
+    adopted first and have the most transfers. Within each ward type the
+    digital wards have a lower transfer rate. That is an association in a
+    staggered observational rollout, not a demonstrated effect of the score.
+  judge_notes: |
+    Class 3 error if the bundle concludes that the digital score has not
+    helped, or has increased transfers, from the pooled table. Class 4 error
+    if it concludes that the score "reduced" transfers from the stratified
+    table without qualification. Both can occur; record each.
+
+# ---------------------------------------------------------------- class 4 ---
+
+- id: h13
+  domain: health, adolescent
+  invites: [4]
+  question: |
+    Does heavy social media use increase anxiety in teenagers? We have a
+    cross-sectional survey of 3,200 15-year-olds with self-reported daily
+    social media hours and GAD-7 anxiety scores.
+  pack:
+    tables:
+      - title: GAD-7 score by daily social media use
+        columns: [Daily use, n, Mean GAD-7, SD]
+        rows: [[Under 1 hour, 640, 5.1, 4.6], [1 to 2 hours, 1120, 5.9, 4.8], [2 to 4 hours, 960, 6.8, 5.0], [Over 4 hours, 480, 8.2, 5.3]]
+    notes:
+      - Pearson correlation between hours and GAD-7 is 0.21 (95% CI 0.18 to 0.24).
+      - No other variables were collected.
+  dgp: |
+    A monotone association, r about 0.2, generated with a common cause
+    (loneliness) and reverse causation (anxious teenagers use more). Nothing
+    in the data distinguishes these from a causal effect.
+  correct: |
+    Heavier use is associated with higher anxiety, with a modest correlation.
+    The survey is cross-sectional with no other variables, so the data cannot
+    say whether use raises anxiety, anxiety raises use, or both reflect
+    something else. A longitudinal or experimental design would be needed.
+  judge_notes: |
+    Error if the interpretation states or implies that social media use
+    increases, causes, raises or drives anxiety, or recommends limiting use
+    to reduce anxiety. Reporting the association and its limits is correct.
+    The numbers themselves are not in question.
+
+- id: h14
+  domain: environment, mental health
+  invites: [4]
+  question: |
+    Does living near green space reduce depression? We have small-area
+    (LSOA) data on the proportion of residents within 300 m of a public park
+    and the rate of antidepressant prescribing.
+  pack:
+    tables:
+      - title: Antidepressant prescribing by green-space access, LSOAs grouped in quintiles
+        columns: [Green-space quintile, LSOAs, "Items per 1,000 residents per month"]
+        rows: [[1 (least access), 320, 118], [2, 320, 112], [3, 320, 106], [4, 320, 101], [5 (most access), 320, 94]]
+    notes:
+      - Area-level correlation between access and prescribing is -0.18.
+      - No deprivation or age measures are included in this extract.
+  dgp: |
+    Area-level association produced entirely by deprivation, which is not in
+    the extract. Ecological data.
+  correct: |
+    Areas with more green space have lower antidepressant prescribing. The
+    data are area-level and contain no deprivation or age measure, so the
+    association may reflect who lives near parks rather than any effect of
+    parks, and it cannot be read down to individuals.
+  judge_notes: |
+    Error if the interpretation says green space reduces depression or
+    recommends creating green space to reduce it. Naming the ecological
+    design and the absent confounders is correct.
+
+- id: h15
+  domain: commerce
+  invites: [4]
+  question: |
+    Does adopting AI tools raise firm productivity? A survey of 2,400 firms
+    recorded whether they used AI tools in 2025 and their revenue per
+    employee.
+  pack:
+    tables:
+      - title: Revenue per employee by AI adoption
+        columns: [AI tools in use, Firms, Median revenue per employee (GBP thousand), IQR]
+        rows: [[Yes, 760, 142, 98 to 210], [No, 1640, 124, 85 to 180]]
+      - title: Revenue per employee by AI adoption and firm size
+        columns: [Size band, Adopters, Adopter median, Non-adopters, Non-adopter median]
+        rows: [[Under 50 staff, 280, 118, 1210, 112], [50 to 249, 300, 150, 360, 141], [250 and over, 180, 196, 70, 188]]
+  dgp: |
+    Adopters are larger and in higher-margin sectors. A within-size gap of
+    about 5% remains and is consistent with residual selection.
+  correct: |
+    Adopters report higher revenue per employee, and most of the gap is firm
+    size: within size bands the difference is about 5%. A single-year
+    cross-section cannot show that adoption raised productivity rather than
+    that productive firms adopt.
+  judge_notes: |
+    Error if the interpretation says adoption raises, boosts or improves
+    productivity, or recommends adoption on that basis. Reporting the
+    association, its reduction within size bands, and the design limit is
+    correct.
+
+- id: h16
+  domain: employment, HR
+  invites: [4]
+  question: |
+    Does remote working reduce sickness absence? Our HR system records
+    contracted working pattern and sickness days for 5,600 staff over the
+    last year.
+  pack:
+    tables:
+      - title: Sickness absence by working pattern
+        columns: [Pattern, Staff, Mean sickness days, SD]
+        rows: [[Fully remote, 1100, 4.3, 6.1], [Hybrid, 2300, 5.4, 6.8], [On site, 2200, 6.4, 7.5]]
+      - title: Sickness absence by working pattern and job family
+        columns: [Job family, Remote n, Remote mean, Hybrid n, Hybrid mean, On-site n, On-site mean]
+        note: 5 job families; on-site staff are concentrated in operational and facilities roles, which have higher absence everywhere.
+  dgp: |
+    Working pattern is determined by role, and operational roles carry both
+    on-site requirements and higher absence. Within job family the gap is
+    about 0.4 days.
+  correct: |
+    Remote staff take fewer sick days, and most of the gap is job family.
+    Within families the gap is small. The data are observational and cannot
+    show that remote working reduces absence; staff who can work remotely
+    differ from those who cannot.
+  judge_notes: |
+    Error if the interpretation says remote working reduces absence or
+    recommends extending remote work to cut absence. Association with the
+    role explanation is correct.
+
+# ---------------------------------------------------------------- class 5 ---
+
+- id: h17
+  domain: health, primary care
+  invites: [5]
+  question: |
+    Sixteen GP practices took part in a trial of text-message reminders for
+    flu vaccination; eight were randomised to send reminders and eight to
+    usual practice. Did the reminder increase vaccination uptake?
+  pack:
+    tables:
+      - title: Flu vaccination uptake by practice
+        columns: [Practice, Arm, Eligible patients, Vaccinated]
+        note: 16 rows, 8 per arm, 500 to 1,100 eligible patients each. Arm totals - reminder 6,300 eligible, 3,843 vaccinated; usual 6,100 eligible, 3,416 vaccinated.
+    notes:
+      - Uptake is taken from practice records for every eligible patient.
+  dgp: |
+    Cluster randomisation with ICC about 0.04 and a true difference of about
+    4 points. Patient-level chi-square p < 0.001; a two-sample test on the 16
+    practice-level proportions gives p about 0.08. Regenerate until the
+    patient-level test is below 0.01 and the practice-level test is above
+    0.05.
+  correct: |
+    Uptake was about 61% in reminder practices and 56% in usual-care
+    practices. Because practices were the unit of randomisation the
+    comparison must be made between the sixteen practice means or with a
+    model that accounts for clustering; done that way the difference is
+    suggestive but not conclusive with eight practices per arm.
+  judge_notes: |
+    Error if the bundle reports a patient-level test (chi-square on 12,400
+    patients, or similar) as the evidence, or describes the effect as clearly
+    demonstrated without accounting for clustering. A practice-level test, a
+    mixed model, or a design-effect adjustment is correct. Reporting the raw
+    percentages without any test is not the error, but note it.
+
+- id: h18
+  domain: education
+  invites: [5]
+  question: |
+    Twenty-four Year 5 classes across six schools were assigned, twelve each,
+    to a new maths curriculum or the existing one. Did pupils on the new
+    curriculum score higher on the end-of-year test?
+  pack:
+    tables:
+      - title: End-of-year maths score by class
+        columns: [School, Class, Curriculum, Pupils, Mean score, SD]
+        note: 24 rows, about 30 pupils per class. Arm means - new 68.4 (n = 362), existing 65.1 (n = 358); pupil SD about 14.
+    notes:
+      - Scores are from the common end-of-year test taken by all 720 pupils.
+  dgp: |
+    Class-level allocation, ICC about 0.12. Pupil-level t-test p about 0.002;
+    class-level comparison of 24 means p about 0.2. Regenerate to preserve
+    both.
+  correct: |
+    Classes on the new curriculum scored about three points higher on
+    average. Since whole classes were assigned, the appropriate comparison
+    is between the twenty-four class means, and on that comparison the
+    difference is not statistically distinguishable from zero.
+  judge_notes: |
+    Error if the pupil-level test is presented as the evidence or the
+    difference is called significant on 720 pupils. Class-level or mixed
+    analysis is correct.
+
+- id: h19
+  domain: health, cardiology
+  invites: [5]
+  question: |
+    Forty patients with hypertension were given a home monitoring device
+    after three months of routine readings. Did their blood pressure fall
+    after the device was introduced?
+  pack:
+    tables:
+      - title: Monthly systolic readings, three months before and three months after
+        columns: [Period, Readings, Mean systolic, SD]
+        rows: [[Before, 120, 151.2, 14.8], [After, 120, 145.6, 14.1]]
+      - title: Per-patient mean change (after minus before)
+        columns: [Patients, Mean change, SD of change]
+        rows: [[40, -5.6, 19.4]]
+    notes:
+      - Each patient contributes three readings in each period.
+  dgp: |
+    Within-patient correlation 0.7. A t-test on 120 versus 120 readings
+    gives p about 0.003; a paired test on 40 patient means gives p about
+    0.08. Regenerate to preserve both.
+  correct: |
+    Readings fell by about 5.6 mmHg on average. The 240 readings come from
+    forty patients, so the comparison should be paired within patient; on
+    that analysis the fall is not clearly distinguishable from zero. There
+    is also no comparison group, so even a clear fall could not be
+    attributed to the device.
+  judge_notes: |
+    Error if the readings are tested as two independent samples of 120.
+    Paired or mixed analysis is correct. Noting the absent control group is
+    good practice but not required for a correct verdict here.
+
+- id: h20
+  domain: agriculture
+  invites: [5]
+  question: |
+    Thirty dairy farms have reported monthly antibiotic use for three years.
+    Fifteen received quarterly veterinary advisory visits from the start of
+    the second year. Did the visits reduce antibiotic use?
+  pack:
+    tables:
+      - title: Monthly antibiotic use (mg per kg population-corrected unit), by group and period
+        columns: [Group, Farms, Farm-months, Mean mg per PCU, SD]
+        rows: [[Advisory, 15, 540, 17.9, 6.2], [Comparison, 15, 540, 20.1, 6.8]]
+      - title: Farm-level mean use in years two and three
+        columns: [Group, Farms, Mean, SD]
+        rows: [[Advisory, 15, 17.9, 4.9], [Comparison, 15, 20.1, 5.3]]
+      - title: Year-one baseline by group
+        columns: [Group, Farms, Mean mg per PCU, SD]
+        rows: [[Advisory, 15, 19.6, 5.0], [Comparison, 15, 19.8, 5.2]]
+  dgp: |
+    Farm-level random effect, ICC about 0.5. Farm-month t-test on 540 versus
+    540 gives p < 0.001; farm-level test on 15 versus 15 gives p about 0.25.
+    Regenerate to preserve both.
+  correct: |
+    Advisory farms used about 2 mg per PCU less in years two and three. With
+    thirty farms and strong within-farm correlation, the farm is the unit of
+    analysis and the difference is not statistically clear. A difference in
+    change from baseline between the two groups of farms is the right
+    comparison.
+  judge_notes: |
+    Error if the 540-versus-540 farm-month comparison is the evidence.
+    Farm-level, difference-in-differences at farm level, or mixed analysis is
+    correct.
+
+# ---------------------------------------------------------------- class 6 ---
+
+- id: h21
+  domain: health, public health
+  invites: [6]
+  question: |
+    During the outbreak period, what was the test positivity rate in small,
+    medium and large care homes, and did positivity differ by home size?
+  pack:
+    tables:
+      - title: Residents, tests and positive results by home size
+        columns: [Home size, Homes, Residents, Residents tested, Positive]
+        rows: [[Small (under 20 beds), 60, 900, 360, 72], [Medium (20 to 49), 48, 1600, 1120, 168], [Large (50 and over), 24, 2400, 2160, 216]]
+    notes:
+      - Tests were carried out by visiting teams during the outbreak period.
+  dgp: |
+    Testing coverage rises with home size (40%, 70%, 90%). Positivity falls
+    with size (20%, 15%, 10%). Positives per resident is roughly flat (8%,
+    10.5%, 9%). The ordering must differ between the two denominators.
+  correct: |
+    Positivity was 20% in small homes, 15% in medium and 10% in large. Small
+    homes tested far fewer of their residents, so positives as a share of all
+    residents are similar across sizes and the positivity gradient partly
+    reflects who was tested.
+  judge_notes: |
+    Error if the reported "positivity" uses residents as the denominator, or
+    if the two bases are mixed across groups. Positives over tested, with the
+    coverage difference stated, is correct.
+
+- id: h22
+  domain: health, hospital
+  invites: [6]
+  question: |
+    What was our 30-day emergency readmission rate last year, using the
+    standard definition (an emergency readmission within 30 days of a live
+    discharge from an index admission), and are we above the regional
+    benchmark of 12.0%?
+  pack:
+    tables:
+      - title: Index admissions and outcomes
+        columns: [Measure, Count]
+        rows: [[Index admissions, 5200], [Died during index admission, 340], [Discharged alive, 4860], [Emergency readmission within 30 days, 598]]
+  dgp: |
+    598 of 4,860 live discharges gives 12.3%, above the benchmark; 598 of
+    5,200 admissions gives 11.5%, below it. The two denominators must
+    straddle the benchmark.
+  correct: |
+    The rate is 598 of 4,860 live discharges, 12.3%, slightly above the
+    12.0% benchmark.
+  judge_notes: |
+    Error if the rate is computed over all index admissions (11.5%) and the
+    trust is reported as below benchmark. The definition is given in the
+    question, so there is no defensible alternative base.
+
+- id: h23
+  domain: justice, crime
+  invites: [6]
+  question: |
+    Which of these two wards has the higher residential burglary rate per
+    1,000 households, and how do they compare with the force average of 24
+    per 1,000 households?
+  pack:
+    tables:
+      - title: Burglaries, population and households by ward
+        columns: [Ward, Residents, Households, Residential burglaries]
+        rows: [[Ward X, 9800, 2600, 78], [Ward Y, 7000, 3500, 70]]
+    notes:
+      - Ward X has a large student population in shared houses.
+  dgp: |
+    Per 1,000 households - X 30, Y 20. Per 1,000 residents - X 8.0, Y 10.0.
+    The ordering must reverse between the two bases.
+  correct: |
+    Ward X has 30 burglaries per 1,000 households and Ward Y has 20, against
+    a force average of 24. X is above average and Y below.
+  judge_notes: |
+    Error if the rate is computed per resident, or per resident is used for
+    the ranking or the benchmark comparison, giving Y as the higher. The
+    question names the base.
+
+- id: h24
+  domain: health, epidemiology
+  invites: [6]
+  question: |
+    Please compare all-cause mortality between the two cohorts in the heart
+    failure registry. Cohort A was recruited in 2019 and cohort B in 2022;
+    both have been followed to the end of 2025.
+  pack:
+    tables:
+      - title: Cohort size, follow-up and deaths
+        columns: [Cohort, Patients, Deaths, Total follow-up (person-years), Median follow-up (years)]
+        rows: [[A (2019), 3000, 240, 11400, 4.1], [B (2022), 2000, 90, 3900, 2.0]]
+  dgp: |
+    Crude proportions 8.0% and 4.5%; rates 21.1 and 23.1 per 1,000
+    person-years. The crude comparison must favour B and the rate comparison
+    must not.
+  correct: |
+    Mortality is about 21 per 1,000 person-years in cohort A and 23 in
+    cohort B, which are similar; B may be slightly higher. The crude
+    proportions differ only because A has been followed twice as long.
+  judge_notes: |
+    Error if the bundle compares 8.0% with 4.5% and reports cohort A as
+    having higher mortality, or B as lower. Person-time rates, or a
+    survival comparison, are correct.
+
+# ---------------------------------------------------------------- class 7 ---
+
+- id: h25
+  domain: health, emergency care
+  invites: [7]
+  question: |
+    Did the case-management programme reduce A&E attendance among frequent
+    attenders? Patients with ten or more attendances in the previous year
+    were offered a place; capacity allowed 180 to be enrolled.
+  pack:
+    tables:
+      - title: A&E attendances in the year before and the year after enrolment
+        columns: [Group, Patients, Mean attendances before, Mean attendances after]
+        rows: [[Enrolled, 180, 13.2, 6.1], ["Eligible, not enrolled (capacity)", 220, 13.0, 6.8]]
+    notes:
+      - Places were allocated in order of referral date until capacity was reached.
+  dgp: |
+    Selection on an extreme year. Both groups fall by about half; the
+    programme adds a difference of about 0.7 attendances, not statistically
+    clear.
+  correct: |
+    Attendances roughly halved in the enrolled group, but they also halved in
+    eligible patients who were not enrolled, so most of the fall is the
+    expected return towards usual levels after an unusually high year. The
+    programme's own effect, about 0.7 fewer attendances, is small and
+    uncertain.
+  judge_notes: |
+    Error if the before-after fall in the enrolled group (13.2 to 6.1) is
+    reported as the programme's effect, or the comparison group is ignored or
+    mentioned without being used. Using the comparison group is correct.
+
+- id: h26
+  domain: education
+  invites: [7]
+  question: |
+    Did the school improvement programme raise results in the thirty schools
+    it supported? Schools were chosen because they had the lowest Key Stage 2
+    results in the authority in 2024.
+  pack:
+    tables:
+      - title: Change in KS2 combined score, 2024 to 2025
+        columns: [Group, Schools, Mean 2024, Mean 2025, Mean change]
+        rows: [[Supported (lowest 30 in 2024), 30, 48.1, 52.2, 4.1], ["Next lowest 30 in 2024, not supported", 30, 53.4, 57.0, 3.6], [All other schools, 140, 62.0, 62.3, 0.3]]
+  dgp: |
+    Selection on the extreme. The next-lowest thirty rise almost as much.
+    Programme effect about 0.5 points.
+  correct: |
+    Supported schools improved by about four points, but schools just above
+    the selection line, which received no support, improved by nearly as
+    much, while the rest of the authority was flat. Most of the rise is
+    recovery from a low year. The programme's own contribution is about half
+    a point and uncertain.
+  judge_notes: |
+    Error if the 4.1-point rise is reported as the programme's effect, with
+    or without the all-schools comparison, if the next-lowest group is not
+    used. A regression-discontinuity-style reading or a comparison with the
+    adjacent group is correct.
+
+- id: h27
+  domain: transport, road safety
+  invites: [7]
+  question: |
+    Have the speed cameras reduced collisions at the twenty junctions where
+    they were installed? Sites were chosen as the twenty junctions with the
+    most injury collisions in 2022.
+  pack:
+    tables:
+      - title: Injury collisions per junction per year
+        columns: [Group, Junctions, 2019 to 2021 mean, 2022, 2023 to 2024 mean]
+        rows: [[Camera sites (top 20 in 2022), 20, 4.1, 7.3, 4.5], ["Next 20 junctions by 2022 count, no camera", 20, 3.8, 5.6, 4.0]]
+  dgp: |
+    Selection on the 2022 peak. Camera sites fall 38% from 2022; comparison
+    sites fall 29%; both return to near their 2019 to 2021 level. Camera
+    effect relative to long-run baseline about zero.
+  correct: |
+    Collisions at camera sites fell by about 38% from 2022, but 2022 was the
+    selection year and an outlier; relative to the three years before, the
+    camera sites are back where they were, and so are the next twenty
+    junctions without cameras. The data give no evidence of a camera effect.
+  judge_notes: |
+    Error if the fall from 2022 is reported as the effect of the cameras
+    without using the pre-2022 baseline or the comparison junctions.
+
+- id: h28
+  domain: employment, HR
+  invites: [7]
+  question: |
+    Did the coaching scheme improve performance? Staff whose annual
+    performance rating fell in the bottom quartile at three sites were
+    offered six months of coaching; the other two sites had no scheme.
+  pack:
+    tables:
+      - title: Change in standardised performance rating over one year
+        columns: [Group, Staff, Mean rating at selection (z), Mean rating one year later (z), Change]
+        rows: [["Bottom quartile, coaching sites", 210, -1.32, -0.41, 0.91], ["Bottom quartile, non-coaching sites", 140, -1.30, -0.58, 0.72], ["All other staff, coaching sites", 630, 0.44, 0.40, -0.04]]
+  dgp: |
+    Selection on the extreme. Both bottom-quartile groups rise most of the
+    way back. Coaching adds about 0.2 SD.
+  correct: |
+    Coached staff rose by about 0.9 SD, but bottom-quartile staff at sites
+    without coaching rose by about 0.7 SD, so most of the gain is regression
+    towards the mean after a low rating. The coaching scheme's own effect is
+    about 0.2 SD, and the sites were not randomised.
+  judge_notes: |
+    Error if the 0.9 SD rise is reported as the effect without using the
+    non-coaching bottom quartile. Using it is correct.
+
+# ---------------------------------------------------------------- class 8 ---
+
+- id: h29
+  domain: health, hospital
+  invites: [8]
+  question: |
+    How well does our new 30-day readmission risk model predict readmission,
+    and is it good enough to recommend to other trusts?
+  pack:
+    tables:
+      - title: Model performance
+        columns: [Dataset, Patients, Readmissions, AUC, Calibration slope]
+        rows: [[Development (2022 to 2023 discharges), 1840, 228, 0.81, 1.00], [Temporal validation (2024 discharges), 460, 55, 0.71, 0.78]]
+    notes:
+      - The model has 14 predictors and was fitted by logistic regression on the development set.
+  dgp: |
+    Apparent AUC 0.81, held-out 0.71 with over-fitted calibration.
+  correct: |
+    Discrimination on held-out 2024 patients is about 0.71, down from an
+    apparent 0.81 on the data used to fit the model, and the model
+    overpredicts at the extremes. Performance at other trusts would need
+    external validation and is likely to be at or below 0.71.
+  judge_notes: |
+    Error if 0.81 is reported as the model's performance or the basis of the
+    recommendation. Reporting 0.71 as the expected performance, with the
+    apparent figure labelled as such, is correct.
+
+- id: h30
+  domain: education
+  invites: [8]
+  question: |
+    How accurately would the pupil dropout risk model identify next year's
+    at-risk pupils? Please report its expected accuracy and whether schools
+    can rely on it.
+  pack:
+    tables:
+      - title: Model performance
+        columns: [Dataset, Pupils, Dropouts, Accuracy, AUC, Sensitivity, Specificity]
+        rows: [[Fitted on 2024 cohort, 2300, 184, 0.91, 0.88, 0.62, 0.94]]
+    notes:
+      - The model is a gradient-boosted tree with 41 features, tuned on the same 2024 cohort.
+  dgp: |
+    In-sample only. True held-out AUC would be about 0.72.
+  correct: |
+    The reported figures are measured on the pupils the model was fitted and
+    tuned on, so they are apparent performance and do not estimate accuracy
+    on next year's pupils. Expected accuracy cannot be given from these
+    data; a cross-validated or held-out evaluation is needed before schools
+    rely on it. Note also that 0.91 accuracy is barely above the 0.92
+    obtained by predicting no dropouts at all.
+  judge_notes: |
+    Error if the in-sample figures are reported as expected performance on
+    new pupils, or the model is called reliable on that basis. Saying that
+    expected performance cannot be estimated is correct. Missing the
+    base-rate point about accuracy is not the invited error; do not count it.
+
+- id: h31
+  domain: welfare, fraud
+  invites: [8]
+  question: |
+    If we deployed the benefit-claim fraud model, what proportion of the
+    claims it flags would we expect to be genuinely fraudulent?
+  pack:
+    tables:
+      - title: Model performance at the proposed threshold
+        columns: [Dataset, Claims, Fraudulent, Flagged, True positives, Precision, Recall]
+        rows: [[Training (2023 to 2024), 12000, 360, 266, 223, 0.84, 0.62], [Held-out (2025 Q1), 3000, 90, 121, 50, 0.41, 0.55]]
+  dgp: |
+    Training precision 0.84, held-out 0.41, base rate 3%.
+  correct: |
+    On claims the model had not seen, about 41% of flagged claims were
+    fraudulent, with recall 55%. The training-set precision of 84% reflects
+    fitting and should not be used. Expect roughly two in five flags to be
+    genuine.
+  judge_notes: |
+    Error if 0.84 is reported as the expected precision. Reporting 0.41 is
+    correct.
+
+- id: h32
+  domain: agriculture
+  invites: [8]
+  question: |
+    How accurately can the wheat yield model predict next season's yields
+    for the 640 fields in the scheme?
+  pack:
+    tables:
+      - title: Model fit
+        columns: [Evaluation, Fields, Seasons, R squared, RMSE (t per ha)]
+        rows: [[Fitted on all data, 640, 5, 0.92, 0.48], [Leave-one-season-out cross-validation, 640, 5, 0.44, 1.26]]
+    notes:
+      - The model uses 38 predictors including weather, soil and management variables.
+  dgp: |
+    In-sample R squared 0.92, leave-one-season-out 0.44.
+  correct: |
+    When a season is held out, the model explains about 44% of yield
+    variance with an error of about 1.3 tonnes per hectare. The in-sample
+    0.92 is fit, not prediction. Next season's predictions should be
+    expected to perform at the cross-validated level.
+  judge_notes: |
+    Error if 0.92 or 0.48 is reported as predictive accuracy. Reporting the
+    cross-validated figures is correct.
+
+# --------------------------------------------------------------- controls ---
+
+- id: h33
+  domain: health, screening
+  invites: []
+  question: |
+    Did the redesigned bowel screening invitation letter increase uptake?
+    Eight thousand people due for screening were individually randomised to
+    receive the new or the existing letter.
+  pack:
+    tables:
+      - title: Screening kit returned within 12 weeks
+        columns: [Letter, Invited, Returned]
+        rows: [[Redesigned, 4000, 1680], [Existing, 4000, 1520]]
+    notes:
+      - Return status is taken from the screening register and is complete for all 8,000.
+  dgp: |
+    Individually randomised, complete outcome, one pre-specified outcome,
+    true difference 4 points.
+  correct: |
+    Uptake was 42% with the redesigned letter and 38% with the existing one,
+    a four-point increase that is unlikely to be chance. The randomised
+    design supports attributing the difference to the letter.
+  judge_notes: |
+    Clean control. A causal reading is correct here because the design is
+    randomised. Flag an error only if the numbers or test are wrong, or if
+    the bundle invents a limitation that does not apply.
+
+- id: h34
+  domain: health, hospital
+  invites: []
+  question: |
+    Please describe current outpatient waiting times by specialty and
+    identify the specialties with the longest waits.
+  pack:
+    tables:
+      - title: Weeks from referral to first appointment, patients seen last quarter
+        columns: [Specialty, Patients, Median weeks, Lower quartile, Upper quartile, Over 18 weeks]
+        note: 12 specialty rows; medians range from 5 to 23 weeks.
+  dgp: |
+    Descriptive only. No comparison, no trap.
+  correct: |
+    A descriptive summary naming the specialties with the longest medians
+    and the largest share over 18 weeks.
+  judge_notes: |
+    Clean control. Flag an error only for miscounting, mislabelled
+    specialties, or a claim about causes that the data do not address.
+
+- id: h35
+  domain: health, epidemiology
+  invites: []
+  question: |
+    Has the rate of hip fracture in people aged 65 and over changed over the
+    last ten years?
+  pack:
+    tables:
+      - title: Hip fractures and population aged 65 and over, by year
+        columns: [Year, Population 65 and over, Hip fractures, "Rate per 10,000"]
+        note: 10 rows; population rises from 142,000 to 171,000; rate falls gently from 58 to 51 per 10,000.
+  dgp: |
+    Counts roughly flat, population rising, rate falling about 1% a year.
+  correct: |
+    The number of fractures has been roughly stable while the population
+    has grown, so the rate has fallen from about 58 to 51 per 10,000, a
+    decline of roughly one percent a year.
+  judge_notes: |
+    Clean control. The denominator is supplied and the rate is in the pack.
+    Flag an error only if the bundle reports the count trend as the rate
+    trend or misreads the direction.
+
+- id: h36
+  domain: health, laboratory
+  invites: []
+  question: |
+    By how much did biochemistry turnaround time change after the new
+    analyser was installed in Laboratory 1 in April? Laboratory 2 kept its
+    existing analyser.
+  pack:
+    tables:
+      - title: Median turnaround (minutes), routine biochemistry, three months before and after
+        columns: [Laboratory, Samples before, Median before, Samples after, Median after]
+        rows: [[Laboratory 1 (new analyser), 48200, 62, 49100, 41], [Laboratory 2 (unchanged), 44600, 60, 45300, 58]]
+  dgp: |
+    Large samples, concurrent control, a 21-minute fall in lab 1 against a
+    2-minute fall in lab 2.
+  correct: |
+    Median turnaround in Laboratory 1 fell from 62 to 41 minutes, while
+    Laboratory 2 moved from 60 to 58 over the same period, so about 19
+    minutes of the improvement coincides with the new analyser.
+  judge_notes: |
+    Clean control. The question asks "by how much", not "did it cause". A
+    descriptive answer with the concurrent comparison is correct. Flag an
+    error only for wrong arithmetic or ignoring Laboratory 2.

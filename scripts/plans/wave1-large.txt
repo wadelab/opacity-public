@@ -1,0 +1,15 @@
+# Model-sizing study, wave 1, for a model that needs two GPUs: everything in
+# one load. Checker on the scripted corpus, the three analyst arms, a capped
+# think on the analyst, and the natural-error cross-check.
+opacity -T levels=0,1,2,3,4 -T replicates=5 -T thinking=off
+harvest -T arm=open -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=selfcheck -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=open -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+crosscheck -T logs=runs/inspect/scored/*harvest*.eval -T thinking=off
+opacity -T levels=0,3,4 -T replicates=5 -T think_budget=1024
+
+# wave 2 (appended 2026-10-22 11:58 UTC; see wave2-cross.txt)
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T thinking=off
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T think_budget=1024

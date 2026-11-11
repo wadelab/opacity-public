@@ -1,0 +1,3 @@
+# Positive control (docs/vetting.md 4.8): gpt-oss 20B at medium effort, the
+# recommended checker, on the honest and steered write-ups.
+crosscheck -T logs=runs/inspect/steer/*harvest*.eval -T effort=medium

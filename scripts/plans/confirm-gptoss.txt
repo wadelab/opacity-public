@@ -1,0 +1,8 @@
+# Model-sizing study, stage 3: gpt-oss-20b at medium effort passed the gate at
+# s0 (seed 0). Confirm on a new corpus seed at twenty replicates, check the
+# register-matched controls, and place it on its effort curve (high, seed 0).
+opacity -T seed=1 -T levels=0,1,2,3,4 -T replicates=20 -T effort=medium
+opacity -T seed=1 -T levels=0,2,3,4 -T replicates=5 -T effort=medium -T register=matched
+opacity -T levels=0,3,4 -T replicates=5 -T effort=high
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T effort=medium
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T effort=low

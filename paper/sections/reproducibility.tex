@@ -1,0 +1,8 @@
+\section{Reproducibility and availability}
+\label{sec:reproducibility}
+
+The repository at \url{https://github.com/wadelab/opacity} holds the generators, the disclosure layer, the tasks, the prompts, the Inspect harness, the model-serving scripts, and the code of the companion paper's tests~\cite{wade2026vetting}. The selection procedures are preserved as executable rules, with the commits at which they were fixed. Appendix~\ref{app:instructions} reproduces the instructions as executed. Inspect logs preserve rendered inputs, verbatim responses, timings, token counts and verdicts, and run records are append-only.
+
+Every number in the text, tables and captions is a macro generated from the task files and the result summaries by one script, which also writes the companion paper's numbers, and the preprint line on the first page records the commit the document was built from. The planner measurement's numbers come from the gateway repository's planner report and are marked in that script with its section and commit; the corpus and scoring script are kept there.
+
+At the time of writing the repository was private; public release is planned with the preprint, including the logs and per-item verdict tables. The task-release plan keeps at least one task set back for future vetting, since a published task can no longer serve as an unseen admission test.

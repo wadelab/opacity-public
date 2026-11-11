@@ -1,0 +1,4 @@
+# Second held-out round: the 35B-A3B held-out logs only (see
+# heldout2-cross-nothink.txt); the first round is 37934447.
+crosscheck -T logs=runs/inspect/heldout/2026-10-22T19-*harvest*.eval -T effort=medium
+crosscheck -T logs=runs/inspect/heldout/2026-10-22T19-*harvest*.eval -T effort=low

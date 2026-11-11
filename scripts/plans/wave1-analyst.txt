@@ -1,0 +1,14 @@
+# Model-sizing study, wave 1, analyst side (docs/model-sizing-study.md).
+# Harvest on the corrected packs (tables fixed 2026-10-22), every arm with and
+# without thinking, then this model as checker on the judged v1 write-ups.
+# Serve with REASONING_PARSER set for the model family.
+harvest -T arm=open -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=selfcheck -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=open -T checklist=true -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T checklist=true -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=open -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=open -T replicates=3 -T think_budget=4096 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T replicates=3 -T think_budget=4096 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+crosscheck -T logs=runs/inspect/scored/*harvest*.eval -T thinking=off

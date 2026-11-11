@@ -1,0 +1,19 @@
+# build products (build.sh makes them; the PDF is committed as docs/build/opacity-vetting-preprint.pdf)
+main.pdf
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.toc
+*.synctex.gz
+latexmk.out
+gitinfo.tex
+# figures are copied in from docs/figures, where they are committed
+figures/*.pdf
+flat.tex
+version.tex
+build.log
+html/

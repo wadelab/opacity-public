@@ -1,0 +1,14 @@
+# Exploratory preparer arm (1f44c2e, from opacity-0f): a hosted model (GLM-5.3)
+# outside the TRE rewrites each request from the request and the table
+# structure, no values; then the local analyst runs. Outside fresh_select's
+# ARMS, so never a fresh-set candidate; a different configuration from
+# all-local. Needs the prepared files first (scripts/prepare_requests.py),
+# made on 25 Oct 2026 with GLM-5.3 flash on Cline credits (cline/z-ai/glm-5.3-flash; Wade
+# asked for flash). glm-5.3-dev.yaml, from the full model, is a record only: no
+# analyst has run on it. For
+# 27B, 35B-A3B and 9B, REASONING_PARSER=qwen3. Judged locally (gpt-oss-120b) and
+# by MiMo v2.6 flash, appended afterwards; the judge string is what --no-score records.
+harvest -T arm=open -T prepared=glm-5.3-flash -T replicates=3 -T thinking=off -T judge=openai-api/vllm/openai/gpt-oss-120b --no-score
+harvest -T task_set=heldout -T arm=open -T prepared=glm-5.3-flash -T replicates=3 -T thinking=off -T judge=openai-api/vllm/openai/gpt-oss-120b --no-score
+harvest -T analyst_prompt=rules -T prepared=glm-5.3-flash -T replicates=3 -T think_budget=1024 -T judge=openai-api/vllm/openai/gpt-oss-120b --no-score
+harvest -T task_set=heldout -T analyst_prompt=rules -T prepared=glm-5.3-flash -T replicates=3 -T think_budget=1024 -T judge=openai-api/vllm/openai/gpt-oss-120b --no-score

@@ -1,0 +1,95 @@
+\section{Study 1: can a model review analyses under increasingly strict disclosure rules?}
+\label{sec:results-checkers}
+
+\subsection{Detection with nothing withheld}
+\label{sec:results-gate}
+
+Rules-only review flagged no planted-error report at any level, as expected of rules that address disclosure rather than inference. Both hosted reviewers met the detection threshold: each detected every planted error at \level{0}, with false alarms within the limit (Table~\ref{tab:gate}; Figure~\ref{fig:spine}a).
+
+No open-weight reviewer met the threshold with thinking off. The smallest models either performed near chance or flagged most reports. The larger ones had fewer false alarms, but every one of them missed the wrong denominator. The typed reviewer detected the five classes whose evidence is in the prose on every replicate and missed the three that need a count. The pattern separates two abilities: recognizing an interpretation that overreaches, and checking the arithmetic that supports it.
+
+\begin{table}[t]
+\centering\footnotesize
+\begin{threeparttable}
+\caption{Reviewers at \level{0}, with nothing withheld: \N{corpus.seeded.per.level} planted-error and \N{corpus.control.per.level} correct reports per reviewer, five replicates, Wilson 95\% intervals, AUC from confidence-weighted verdicts. The detection threshold is at least \N{gate.det} in every class with false alarms of at most \N{gate.fa}. Open-weight models ran with thinking off; a 1,024-token thinking budget takes the Qwen3.5 27B over the threshold (\S\ref{sec:results-thinking}).}
+\label{tab:gate}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Reviewer & Detection & False alarm & Wrong denominator & AUC \\
+\midrule
+rules only & 0.00 & 0.00 & 0.00 & -- \\
+\N{model.deepseek.short} (hosted) & \N{det.deepseek.s0} (\N{det.deepseek.s0.lo}--\N{det.deepseek.s0.hi}) & \N{fa.deepseek.s0} (\N{fa.deepseek.s0.lo}--\N{fa.deepseek.s0.hi}) & \N{detcls.deepseek.c6.s0} & \N{auc.deepseek.s0} \\
+\N{model.mimo.pro.short} (hosted) & \N{det.mimo.s0} (\N{det.mimo.s0.lo}--\N{det.mimo.s0.hi}) & \N{fa.mimo.s0} (\N{fa.mimo.s0.lo}--\N{fa.mimo.s0.hi}) & \N{detcls.mimo.c6.s0} & \N{auc.mimo.s0} \\
+Qwen3.5 27B & \N{det.q27.s0} (\N{det.q27.s0.lo}--\N{det.q27.s0.hi}) & \N{fa.q27.s0} (\N{fa.q27.s0.lo}--\N{fa.q27.s0.hi}) & \N{detcls.q27.c6.s0} & \N{auc.q27.s0} \\
+Mistral Small 24B & \N{det.mistral.s0} (\N{det.mistral.s0.lo}--\N{det.mistral.s0.hi}) & \N{fa.mistral.s0} (\N{fa.mistral.s0.lo}--\N{fa.mistral.s0.hi}) & \N{detcls.mistral.c6.s0} & \N{auc.mistral.s0} \\
+Llama 3.3 70B & \N{det.llama.s0} (\N{det.llama.s0.lo}--\N{det.llama.s0.hi}) & \N{fa.llama.s0} (\N{fa.llama.s0.lo}--\N{fa.llama.s0.hi}) & \N{detcls.llama.c6.s0} & \N{auc.llama.s0} \\
+Qwen3 32B & \N{det.q332.s0} (\N{det.q332.s0.lo}--\N{det.q332.s0.hi}) & \N{fa.q332.s0} (\N{fa.q332.s0.lo}--\N{fa.q332.s0.hi}) & \N{detcls.q332.c6.s0} & \N{auc.q332.s0} \\
+typed reviewer & \N{det.typed.s0} (\N{det.typed.s0.lo}--\N{det.typed.s0.hi}) & \N{fa.typed.s0} (\N{fa.typed.s0.lo}--\N{fa.typed.s0.hi}) & \N{detcls.typed.c6.s0} & \N{auc.typed.s0} \\
+Qwen3.5 9B & \N{det.q9.s0} (\N{det.q9.s0.lo}--\N{det.q9.s0.hi}) & \N{fa.q9.s0} (\N{fa.q9.s0.lo}--\N{fa.q9.s0.hi}) & \N{detcls.q9.c6.s0} & \N{auc.q9.s0} \\
+Qwen3.5 4B & \N{det.q4.s0} (\N{det.q4.s0.lo}--\N{det.q4.s0.hi}) & \N{fa.q4.s0} (\N{fa.q4.s0.lo}--\N{fa.q4.s0.hi}) & \N{detcls.q4.c6.s0} & \N{auc.q4.s0} \\
+Qwen3.5 2B & \N{det.q2.s0} (\N{det.q2.s0.lo}--\N{det.q2.s0.hi}) & \N{fa.q2.s0} (\N{fa.q2.s0.lo}--\N{fa.q2.s0.hi}) & \N{detcls.q2.c6.s0} & \N{auc.q2.s0} \\
+Qwen3.5 0.8B & \N{det.q08.s0} (\N{det.q08.s0.lo}--\N{det.q08.s0.hi}) & \N{fa.q08.s0} (\N{fa.q08.s0.lo}--\N{fa.q08.s0.hi}) & \N{detcls.q08.c6.s0} & \N{auc.q08.s0} \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_spine}
+\caption{Reviewers with nothing withheld, and from the prose alone. (a) Detection (blue circles) and false alarm (orange squares) at \level{0} for every reviewer, in the order of Table~\ref{tab:gate}, with Wilson 95\% intervals. The dashed lines are the two limits of the detection threshold; a reviewer must also detect at least \N{gate.det} in every class, which the Qwen3.5 27B and Mistral Small 24B do not. Reviewers in bold meet it. (b) Detection at \level{0} (filled) and at \level{4}, prose only (open, with its value). The hosted reviewers lose about a quarter of their detection when every table is withheld, and the Qwen3.5 27B loses most of it.}
+\label{fig:spine}
+\end{figure}
+
+\subsection{Detection as disclosure rules tighten}
+\label{sec:results-levels}
+
+Hosted detection was unchanged through \level{2} and fell at \level{3}, with more cannot-tell answers on both planted-error and correct reports (Figure~\ref{fig:levels}; Table~\ref{tab:auc-levels}). The loss was specific (Figure~\ref{fig:classmap}). Every reviewer missed the wrong denominator once the table holding the correct base was withheld. Silent attrition was partly hidden from one hosted reviewer. The other six classes stayed detectable by both. The causal-claim control, whose evidence is all in the prose, stayed fully detected at every level, so what was lost was numerical evidence, not the ability to review.
+
+Two local reviewers behaved differently. Under heavier suppression Llama 3.3 70B and the typed reviewer flagged more reports with confidence, correct ones included, so their ROC curves steepened where the other four reviewers' curves flattened (Appendix Figure~\ref{fig:roc}). A higher flag rate under stricter disclosure is no evidence of better detection.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_hosted_levels}
+\caption{Detection, false alarm and cannot-tell against disclosure level for the two hosted reviewers, with Wilson 95\% bands. The shaded column is the prose-only level.}
+\label{fig:levels}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_class_map}
+\caption{Share of planted-error reports flagged, per class and level, for six reviewers (five replicates per cell). Cells without a number are 1.0; the paler the cell, the fewer were flagged. The wrong denominator (class 6) goes undetected by every reviewer at \level{3}, and by every open-weight reviewer even at \level{0}. Classes 3, 4, 5, 7 and 8 survive every level for the hosted reviewers because their evidence is in the prose.}
+\label{fig:classmap}
+\end{figure}
+
+\begin{table}[t]
+\centering\footnotesize
+\begin{threeparttable}
+\caption{AUC by disclosure level, \N{corpus.seeded.per.level} planted-error against \N{corpus.control.per.level} correct reports per cell. Bootstrap intervals are about $\pm 0.06$ near the top of the range and $\pm 0.10$ in the middle.}
+\label{tab:auc-levels}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Reviewer & \level{0} & \level{1} & \level{2} & \level{3} & \level{4} \\
+\midrule
+\N{model.deepseek.short} & \N{auc.deepseek.s0} & \N{auc.deepseek.s1} & \N{auc.deepseek.s2} & \N{auc.deepseek.s3} & \N{auc.deepseek.s4} \\
+\N{model.mimo.pro.short} & \N{auc.mimo.s0} & \N{auc.mimo.s1} & \N{auc.mimo.s2} & \N{auc.mimo.s3} & \N{auc.mimo.s4} \\
+Qwen3.5 27B & \N{auc.q27.s0} & \N{auc.q27.s1} & \N{auc.q27.s2} & \N{auc.q27.s3} & \N{auc.q27.s4} \\
+Mistral Small 24B & \N{auc.mistral.s0} & \N{auc.mistral.s1} & \N{auc.mistral.s2} & \N{auc.mistral.s3} & \N{auc.mistral.s4} \\
+Llama 3.3 70B & \N{auc.llama.s0} & \N{auc.llama.s1} & \N{auc.llama.s2} & \N{auc.llama.s3} & \N{auc.llama.s4} \\
+typed reviewer & \N{auc.typed.s0} & \N{auc.typed.s1} & \N{auc.typed.s2} & \N{auc.typed.s3} & \N{auc.typed.s4} \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\subsection{Detection from the prose and from writing style}
+\label{sec:results-prose}
+
+Hosted reviewers kept much of their detection when every table was withheld (Figure~\ref{fig:spine}b). They found confounding, causal overreach, the clustering error, regression to the mean and in-sample evaluation from the mismatch between the stated design and the interpretation. A simple count of assertive against hedging words, however, also separated planted-error reports from correct ones, which suggests that part of the apparent analytical discrimination was recognition of writing style.
+
+To test this, an assertiveness-matched version of the corpus rewrote the correct interpretations to be as assertive as the wrong ones without changing their conclusions or tables. False alarms rose and AUC fell for both local reviewers tested (Qwen3.5 27B: false alarms \N{matched.q27.fa.default} to \N{matched.q27.fa.matched}; Mistral 24B: \N{matched.mistral.fa.default} to \N{matched.mistral.fa.matched}), so the default correct reports partly rewarded a reviewer for recognizing cautious prose. The matched version was not run on the hosted reviewers, so the measured effect applies to these local models. Twenty-replicate runs supported the aggregate estimates and again found no wrong-denominator detection by the three larger local reviewers with thinking off (Appendix Table~\ref{tab:rep20}).
+
+\subsection{The typed reviewer}
+\label{sec:results-typed}
+
+The typed reviewer returned a verdict for every report with no parse failures, at far lower cost than a model that writes its verdict out (Appendix Table~\ref{tab:cost}). Its confidence, from the entropy of its answer probabilities, used the whole range, where the generative reviewers stated 80 or more on almost every verdict, but it was too cautious: below 70 it was right far more often than it said (Appendix Figure~\ref{fig:calibration}). A short thinking budget improved its detection of the denominator and attrition errors but lost two classes carried by the prose.

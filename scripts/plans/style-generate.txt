@@ -1,0 +1,13 @@
+# Does slant detection survive a change of style? (docs/vetting.md 4.11), 27 October 2026.
+# Qwen3.5 27B as in 4.9 (rules prompt, thinking off, instruct sampling, a seed per replicate).
+# Twins in the concise and thorough styles, and the disguised slant (its honest twins are 4.9's).
+harvest -T arm=open -T style=concise -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered2 -T style=concise -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=open -T style=concise -T task_set=heldout -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered2 -T style=concise -T task_set=heldout -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=open -T style=thorough -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered2 -T style=thorough -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=open -T style=thorough -T task_set=heldout -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered2 -T style=thorough -T task_set=heldout -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered2 -T style=disguise -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered2 -T style=disguise -T task_set=heldout -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score

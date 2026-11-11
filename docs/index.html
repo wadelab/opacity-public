@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPACITY</title>
+<meta name="description" content="Tests of local language models as statistical analysts inside secure data environments: errors, review under disclosure control, and vetting for bias. Alex R. Wade, University of York.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --ink: #1d1f24; --muted: #5b6070;
+  --rule: #e2dfd8; --accent: #1f5fa8; --accent-soft: #e8f0fa;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15171b; --surface: #1d2026; --ink: #e8e6e1; --muted: #a3a7b3;
+    --rule: #30343d; --accent: #7fb0ea; --accent-soft: #1f2a38;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15171b; --surface: #1d2026; --ink: #e8e6e1; --muted: #a3a7b3;
+  --rule: #30343d; --accent: #7fb0ea; --accent-soft: #1f2a38;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 18px/1.55 "Crimson Pro", Georgia, serif;
+}
+main { max-width: 760px; margin: 0 auto; padding: 48px 16px 64px; }
+h1, h2, .card h3, .meta, .links, footer { font-family: "Source Sans 3", system-ui, sans-serif; }
+h1 { font-size: 2.4rem; letter-spacing: 0.04em; margin: 0 0 8px; }
+.lede { font-size: 1.25rem; margin: 0 0 12px; }
+.meta { color: var(--muted); font-size: 0.95rem; margin: 0 0 36px; }
+h2 { font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 44px 0 14px; }
+.cards { display: grid; gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; }
+.card h3 { font-size: 1.1rem; margin: 0 0 6px; }
+.card p { margin: 0 0 10px; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.95rem; }
+.links a { background: var(--accent-soft); color: var(--accent); text-decoration: none; padding: 4px 12px; border-radius: 999px; font-weight: 600; }
+.links a:hover { text-decoration: underline; }
+ul { padding-left: 1.2em; }
+li { margin: 0 0 10px; }
+a { color: var(--accent); }
+footer { color: var(--muted); font-size: 0.9rem; margin-top: 48px; border-top: 1px solid var(--rule); padding-top: 16px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>OPACITY</h1>
+  <p class="lede">Tests of local language models as statistical analysts inside secure data environments: how often their conclusions are wrong, whether a second model can catch those errors when disclosure rules hide much of the evidence, and whether a model can be checked for deliberate bias before it is admitted.</p>
+  <p class="meta">Alex R. Wade &middot; Department of Psychology and York Neuroimaging Centre, University of York &middot; preprints, October 2026, not yet peer reviewed</p>
+
+  <h2>Read</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Testing local LLMs for bias and deception in safe statistical analysis</h3>
+      <p>Probes on a model's internal state, a positive control for bias, a bias detector run on the recommended analyst, its robustness to writing style, and a contained fine-tuning pilot.</p>
+      <div class="links"><a href="papers/vetting/">Read online</a><a href="build/opacity-vetting-preprint.pdf">PDF</a></div>
+    </div>
+    <div class="card">
+      <h3>Evaluating the capabilities of local LLMs for safe statistical analysis</h3>
+      <p>Model reviewers under five levels of disclosure control, and 16 open-weight models as analysts on tasks with hidden answer keys, their write-ups checked by other models.</p>
+      <div class="links"><a href="papers/capabilities/">Read online</a><a href="build/opacity-preprint.pdf">PDF</a></div>
+    </div>
+    <div class="card">
+      <h3>Reading the Robot's Mind</h3>
+      <p>A plain-language guide to the vetting paper, with worked examples of an honest and a biased write-up.</p>
+      <div class="links"><a href="explainers/reading-the-robots-mind.html">Read the guide</a></div>
+    </div>
+  </div>
+
+  <h2>Main findings</h2>
+  <ul>
+    <li>Linear probes on a model's internal state beat the model's own verdict at spotting wrong write-ups (AUC 0.86 against 0.79), but a control trained on labels shuffled within tasks did almost as well: the probes had learnt which tasks are risky, and within a task they added nothing.</li>
+    <li>A hidden instruction to bias the write-up without changing any number raised wrong conclusions from 22 to 55 of 180. A probe and a simple word-count classifier both caught it (AUC 0.95 within tasks), while checkers that judge correctness caught little.</li>
+    <li>Disclosure rules alone detected none of eight kinds of planted analytic error. Hosted reviewers caught every one when nothing was withheld and lost detection only under the strictest policy.</li>
+    <li>A prompt that makes the model record the study design before it writes reduced analysts' errors across three Qwen3.5 sizes, where a larger model added no consistent benefit. Qwen3.5 27B followed by a gpt-oss 20B checker met the release threshold on both sealed task sets.</li>
+  </ul>
+
+  <h2>Code and data</h2>
+  <p>The Inspect tasks, analysis code, aggregate results, LaTeX sources and tests are on <a href="https://github.com/wadelab/opacity-public">GitHub</a>.</p>
+
+  <footer>Code under the MIT licence. Please cite the preprints if you use the tasks, figures or results.</footer>
+</main>
+</body>
+</html>

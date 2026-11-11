@@ -1,0 +1,14 @@
+\section{Background and threat model}
+\label{sec:background}
+
+\paragraph{Admitting a model to a TRE.}
+The Five Safes framework treats safe outputs as one of five components of responsible data access~\cite{fivesafes,ritchie2017fivesafes}, and output checking applies disclosure rules to what leaves~\cite{hundepool2012,griffiths2019handbook}. The companion gateway places a model analyst behind a deterministic boundary that restricts its queries and audits every release~\cite{wade2026safetre}. That boundary governs what the model can disclose. It says nothing about whether the model's conclusions are sound, or whether it would steer them. Guidance on releasing trained models concerns models leaving the environment~\cite{jefferson2022graimatter}. Our concern is a model brought into it. The companion evaluation measured honest analytic errors and the checkers that catch them~\cite{wade2026opacity}, and this paper concerns what lies beyond those errors.
+
+\paragraph{Models that mislead.}
+Work on AI control asks whether monitoring can constrain an untrusted model~\cite{greenblatt2024control}. Sandbagging, sleeper agents and prompt injection show behavior that ordinary capability tests miss~\cite{vanderweij2024sandbagging,hubinger2024sleeper,greshake2023}. Model-based evaluation uses one model to judge another's output~\cite{zheng2023judge}, but such judgments are measurements by fallible models, and a checker built to ask whether a conclusion follows from the data is not built to ask whether it was steered.
+
+\paragraph{Probes.}
+Classifiers trained on a model's internal state, called probes, read what the model represents without asking it~\cite{alain2017probes,belinkov2022probing}. Probes have recovered latent knowledge and the truth of statements~\cite{burns2023latent,marks2024geometry,zou2023repe}, detected strategic deception~\cite{goldowskydill2025probes} and caught sleeper agents~\cite{macdiarmid2024sleeperprobes}. A probe can also learn which inputs are risky, or the style of the text, rather than the behavior of interest. Telling these apart needs controls that the behavior of interest passes and the shortcut fails.
+
+\paragraph{Threat model.}
+We assume the companion gateway's containment boundary: the analyst receives only vetted aggregates, has no network access and cannot bypass the release audit~\cite{wade2026safetre}. The probe experiment concerns an honest but fallible analyst whose data invite a particular error. The bias experiments add a hidden instruction, after the tables, that asks the model to bias its write-up, and which the judge and the checkers never see. We do not evaluate a model trained to deceive, an unknown trigger, bias aimed at particular subjects or an attack on the gateway. The fine-tuning pilot establishes the engineering that a trained-deception experiment will need and supplies no evidence about those threats.

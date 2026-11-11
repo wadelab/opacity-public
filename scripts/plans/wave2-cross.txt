@@ -1,0 +1,11 @@
+# Model-sizing study, wave 2: this model as checker on every wave-1 write-up
+# (corrected packs; runs/inspect/wave1/ holds copies of those 41 logs only).
+# In priority order, so a job that hits its time limit loses the least: plain,
+# capped think, then with the pack shown, as a reviewer inside the TRE could
+# see it. Appended on 2026-10-22 at 11:58 UTC to the plans of the wave-1 jobs
+# still running (27B and 9B checker jobs, 4B and 35B-A3B joined plans), so
+# the models did not reload.
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T thinking=off
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T think_budget=1024
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T think_budget=1024 -T show_pack=true
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T thinking=off -T show_pack=true

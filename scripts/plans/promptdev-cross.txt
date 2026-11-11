@@ -1,0 +1,4 @@
+# gpt-oss 20B (the checker confirmed on a new seed) on the prompt-optimisation
+# write-ups (runs/inspect/promptdev/: the twelve sizing-20261022-po dev logs),
+# so the rules analysts can be evaluated with a cheap checker after them.
+crosscheck -T logs=runs/inspect/promptdev/*harvest*.eval -T effort=medium

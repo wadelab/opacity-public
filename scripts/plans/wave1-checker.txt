@@ -1,0 +1,25 @@
+# Model-sizing study, wave 1, checker side. Scripted corpus at every level,
+# thinking off and at two budgets, then the two exploratory reviewer texts,
+# then the natural-error cross-check with thinking and with visible working.
+opacity -T levels=0,1,2,3,4 -T replicates=5 -T thinking=off
+opacity -T levels=0,1,2,3,4 -T replicates=5 -T think_budget=1024
+opacity -T levels=0,1,2,3,4 -T replicates=5 -T think_budget=4096
+opacity -T levels=0,3,4 -T replicates=5 -T thinking=off -T reviewer=checklist
+opacity -T levels=0,3,4 -T replicates=5 -T thinking=off -T reviewer=stepwise
+crosscheck -T logs=runs/inspect/scored/*harvest*.eval -T think_budget=1024
+crosscheck -T logs=runs/inspect/scored/*harvest*.eval -T thinking=off -T reviewer=stepwise
+
+# Model-sizing study, wave 2: this model as checker on every wave-1 write-up
+# (corrected packs; runs/inspect/wave1/ holds copies of those 41 logs only).
+# In priority order, so a job that hits its time limit loses the least: plain,
+# capped think, then with the pack shown, as a reviewer inside the TRE could
+# see it. Appended on 2026-10-22 at 11:58 UTC to the plans of the wave-1 jobs
+# still running (27B and 9B checker jobs, 4B and 35B-A3B joined plans), so
+# the models did not reload.
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T thinking=off
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T think_budget=1024
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T think_budget=1024 -T show_pack=true
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T thinking=off -T show_pack=true
+# appended 2026-10-22 15:50 BST: the stepwise reviewer with thinking off passed the
+# gate at s0 at the lowest cost and had no cross-check on the corrected write-ups
+crosscheck -T logs=runs/inspect/wave1/*harvest*.eval -T thinking=off -T reviewer=stepwise

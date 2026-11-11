@@ -1,0 +1,8 @@
+# Model-sizing study, prompt optimisation: the same four arms on the held-out
+# tasks (h37-h72), so that selection for the fresh set can pool dev and
+# held-out (192 seeded attempts). The held-out set is spent as a confirmation
+# set; the fresh set (h73-h108) confirms.
+harvest -T task_set=heldout -T analyst_prompt=rules -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T arm=revise -T analyst_prompt=checklist -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T arm=revise -T analyst_prompt=rules -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T analyst_prompt=rules -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score

@@ -1,0 +1,53 @@
+% The first OPACITY preprint: review under disclosure rules, and model analysts.
+% The probe and bias tests are the second paper, ../paper-vetting/main.tex.
+% Wrapper only: class, the shared style, the title
+% block and the generated numbers. The body lives in sections/*.tex.
+% Build with paper/build.sh (shared with safe-tre-agent/paper; regen.sh is
+% this repository's part).
+\documentclass[11pt,a4paper]{article}
+\usepackage{wadelab}
+% Breakout boxes with worked examples (this paper only; the shared style has none).
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\newtcolorbox[auto counter]{examplebox}[2][]{enhanced, breakable, colback=wllight!20, colframe=wlgrey,
+  boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=4pt, bottom=5pt, fontupper=\small,
+  title={Box~\thetcbcounter. #2}, fonttitle=\bfseries\sffamily\small, coltitle=black, colbacktitle=wllight!70,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm}, boxed title style={boxrule=0.5pt, colframe=wlgrey, arc=1pt}, #1}
+\input{numbers}
+\IfFileExists{version.tex}{\input{version}}{\newcommand{\BuildCommit}{\tbd}\newcommand{\BuildDate}{\tbd}}
+
+\title{Evaluating the capabilities of local LLMs\\for safe statistical analysis}
+\shorttitle{Evaluating the capabilities of local LLMs for safe statistical analysis}
+\author{Alex R. Wade\\[2pt]
+  \small Department of Psychology and York Neuroimaging Centre, University of York, UK\\
+  \small \code{alex.wade@york.ac.uk}}
+\preprintline{Preprint, not peer reviewed \;\textperiodcentered\; \BuildDate{} \;\textperiodcentered\; all data synthetic\\
+  \sys{OPACITY} at commit \code{\BuildCommit}; machine arms only, the human reviewer arm is pre-registered to follow}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\input{sections/map}
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/methods}
+\input{sections/results-checkers}
+\input{sections/results-analysts}
+\input{sections/discussion}
+\input{sections/limitations}
+\input{sections/reproducibility}
+\input{sections/acknowledgements}
+\input{sections/glossary}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{sections/appendix}
+
+\end{document}

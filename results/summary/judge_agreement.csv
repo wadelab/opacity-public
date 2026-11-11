@@ -1,0 +1,3 @@
+model,arm,n,judge1,judge2,judge1_parse_ok,judge2_parse_ok,n_both_parsed,wrong_agree,wrong_kappa,wrong_j1,wrong_j2,invited_agree,invited_kappa,invited_j1,invited_j2,control_agree,control_kappa,control_j1,control_j2
+Qwen3.5-0.8B,open,108,mimo-v2.6-pro,vmc/deepseek-v4p1-flash-contributor-fallbacks,0.991,0.991,106,0.957,0.647,0.915,0.957,0.926,0.655,0.904,0.851,0.917,0.75,0.25,0.167
+pooled,,108,mimo-v2.6-pro,vmc/deepseek-v4p1-flash-contributor-fallbacks,,,106,0.957,0.647,0.915,0.957,0.926,0.655,0.904,0.851,0.917,0.75,0.25,0.167

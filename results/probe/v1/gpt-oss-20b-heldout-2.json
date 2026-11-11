@@ -1,0 +1,215 @@
+{
+ "probe": "gpt-oss-20b",
+ "primary": false,
+ "margin": 0.05,
+ "states": "runs/probe/v1/states/gpt-oss-20b.npz",
+ "extract": {
+  "probe": "gpt-oss-20b",
+  "hf": "openai/gpt-oss-20b",
+  "revision": "6cee5e81ee83917806bbde320786a8fb61efebee",
+  "class": "AutoModelForCausalLM",
+  "arch": "GptOssForCausalLM",
+  "chat": {
+   "reasoning_effort": "medium"
+  },
+  "n_layers": 24,
+  "depths": [
+   6,
+   12,
+   18
+  ],
+  "argv": [
+   "/users/<user>/git/opacity/src/opacity/probe/extract.py",
+   "gpt-oss-20b",
+   "--revision",
+   "6cee5e81ee83917806bbde320786a8fb61efebee",
+   "--inputs",
+   "runs/probe/v1/inputs/gpt-oss-20b.jsonl",
+   "--out",
+   "runs/probe/v1/states/gpt-oss-20b.npz",
+   "--limit",
+   "0"
+  ],
+  "torch": "2.13.0+cu130",
+  "transformers": "5.19.0",
+  "host": "gpu24.viking2.yor.alces.network",
+  "gpus": [
+   "NVIDIA H100 PCIe"
+  ]
+ },
+ "when": "2026-10-26T23:30:55+00:00",
+ "commit": "40551ec119b2115023cb47aa21dfc11b97e19ad6",
+ "rerun_reason": "pre-registered shuffled-label check failed (held-out 0.83 for the 27B, 0.77 for gpt-oss, expected 0.5): add the AUC within tasks (exploratory) and save per-item scores; primary numbers must reproduce",
+ "n_dev": 3613,
+ "n_dev_wrong": 1027,
+ "n_heldout": 1198,
+ "n_heldout_wrong": 370,
+ "heldout_tasks": 36,
+ "selection": {
+  "depth": 2,
+  "depth_layer": 18,
+  "C": 0.001,
+  "table": [
+   {
+    "depth": 0,
+    "C": 0.0001,
+    "cv_auc": 0.6862480195379256
+   },
+   {
+    "depth": 0,
+    "C": 0.001,
+    "cv_auc": 0.6788951363026543
+   },
+   {
+    "depth": 0,
+    "C": 0.01,
+    "cv_auc": 0.6724940387488122
+   },
+   {
+    "depth": 0,
+    "C": 0.1,
+    "cv_auc": 0.6505073894650564
+   },
+   {
+    "depth": 0,
+    "C": 1.0,
+    "cv_auc": 0.6303837966606607
+   },
+   {
+    "depth": 1,
+    "C": 0.0001,
+    "cv_auc": 0.7057319547756467
+   },
+   {
+    "depth": 1,
+    "C": 0.001,
+    "cv_auc": 0.7077405984151318
+   },
+   {
+    "depth": 1,
+    "C": 0.01,
+    "cv_auc": 0.6984177365508285
+   },
+   {
+    "depth": 1,
+    "C": 0.1,
+    "cv_auc": 0.6791603651367696
+   },
+   {
+    "depth": 1,
+    "C": 1.0,
+    "cv_auc": 0.6666743806656555
+   },
+   {
+    "depth": 2,
+    "C": 0.0001,
+    "cv_auc": 0.6951004809139042
+   },
+   {
+    "depth": 2,
+    "C": 0.001,
+    "cv_auc": 0.7081087662059854
+   },
+   {
+    "depth": 2,
+    "C": 0.01,
+    "cv_auc": 0.6998091918981276
+   },
+   {
+    "depth": 2,
+    "C": 0.1,
+    "cv_auc": 0.6858768006322671
+   },
+   {
+    "depth": 2,
+    "C": 1.0,
+    "cv_auc": 0.674192350060768
+   }
+  ]
+ },
+ "threshold": 0.3644144535064697,
+ "probe_heldout": {
+  "auc": 0.7886130695913305,
+  "lo": 0.6962915962610597,
+  "hi": 0.8673387776018204
+ },
+ "verbal_heldout": {
+  "gpt-oss-20b|effort-low": {
+   "auc": 0.641578535056796,
+   "lo": 0.5778510274996561,
+   "hi": 0.7039666868751495
+  },
+  "gpt-oss-20b|effort-medium": {
+   "auc": 0.655888497192845,
+   "lo": 0.5880907010954898,
+   "hi": 0.721888399888702
+  }
+ },
+ "best_verbal": "gpt-oss-20b|effort-medium",
+ "difference": {
+  "auc": 0.13272457239848545,
+  "lo": 0.04530358941604256,
+  "hi": 0.20666476887245036
+ },
+ "stop_rule_met": true,
+ "verbal_released_wrong": 226,
+ "probe_catches_of_those": 98,
+ "operating_point": {
+  "caught_wrong": 0.4783783783783784,
+  "stopped_right": 0.13647342995169082
+ },
+ "length_heldout": {
+  "auc": 0.7065837576707142,
+  "lo": 0.5870547440173424,
+  "hi": 0.805914476504147
+ },
+ "within_analyst": {
+  "aucs": {
+   "Qwen3.5-27B|open|off": 0.859391771019678,
+   "Qwen3.5-27B|open|off|checklist": 0.7160326086956522,
+   "Qwen3.5-27B|open|think1024": 0.7931034482758621,
+   "Qwen3.5-27B|selfcheck|off": 0.8795454545454545,
+   "Qwen3.5-35B-A3B|open|off": 0.7959880495091762,
+   "Qwen3.5-35B-A3B|open|off|checklist": 0.8630681818181818,
+   "Qwen3.5-35B-A3B|open|think1024": 0.8486666666666667,
+   "Qwen3.5-35B-A3B|selfcheck|off": 0.7195767195767195,
+   "Qwen3.5-9B|open|off": 0.7955283086909485,
+   "Qwen3.5-9B|open|off|checklist": 0.84375,
+   "Qwen3.5-9B|open|think1024": 0.7765652951699463,
+   "Qwen3.5-9B|selfcheck|off": 0.7156381486676017
+  },
+  "mean": 0.8005712210529906
+ },
+ "shuffled_heldout": {
+  "mean": 0.772536068677373,
+  "min": 0.7514933411672542,
+  "max": 0.7899709492100796
+ },
+ "within_task": {
+  "tasks": 24.0,
+  "probe": 0.5538246669531586,
+  "verbal": {
+   "gpt-oss-20b|effort-low": 0.6047486033519553,
+   "gpt-oss-20b|effort-medium": 0.6138805328749463
+  },
+  "shuffled_mean": 0.47857756768371296,
+  "difference_vs_best_verbal": {
+   "auc": -0.06005586592178769,
+   "lo": -0.1454839773500124,
+   "hi": 0.031879440982581685
+  }
+ },
+ "judges_agree": {
+  "n": 1108,
+  "probe": {
+   "auc": 0.8026137408088235,
+   "lo": 0.7051685308236971,
+   "hi": 0.880122311066835
+  },
+  "best_verbal": {
+   "auc": 0.6651309742647059,
+   "lo": 0.5883210179241094,
+   "hi": 0.7387111222730924
+  }
+ }
+}

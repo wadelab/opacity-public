@@ -1,0 +1,2 @@
+checker,agent,self,n,n_wrong,sensitivity,n_right,false_alarm,n_unknown,cannot_tell,parse_ok
+deepseek-v4.1-flash,Qwen3.5-0.8B,0,4,4,1.000,0,,0,0.000,1.000

@@ -1,0 +1,227 @@
+{
+ "probe": "Qwen3.5-27B",
+ "primary": true,
+ "margin": 0.05,
+ "states": "runs/probe/v1/states/Qwen3.5-27B.npz",
+ "extract": {
+  "probe": "Qwen3.5-27B",
+  "hf": "Qwen/Qwen3.5-27B",
+  "revision": "fc05daec18b0a78c049392ed2e771dde82bdf654",
+  "class": "AutoModelForImageTextToText",
+  "arch": "Qwen3_5ForConditionalGeneration",
+  "chat": {
+   "enable_thinking": false
+  },
+  "n_layers": 64,
+  "depths": [
+   16,
+   32,
+   48
+  ],
+  "argv": [
+   "/users/<user>/git/opacity/src/opacity/probe/extract.py",
+   "Qwen3.5-27B",
+   "--revision",
+   "fc05daec18b0a78c049392ed2e771dde82bdf654",
+   "--inputs",
+   "runs/probe/v1/inputs/Qwen3.5-27B.jsonl",
+   "--out",
+   "runs/probe/v1/states/Qwen3.5-27B.npz",
+   "--limit",
+   "0"
+  ],
+  "torch": "2.13.0+cu130",
+  "transformers": "5.19.0",
+  "host": "gpu23.viking2.yor.alces.network",
+  "gpus": [
+   "NVIDIA H100 PCIe"
+  ]
+ },
+ "when": "2026-10-26T23:27:23+00:00",
+ "commit": "40551ec119b2115023cb47aa21dfc11b97e19ad6",
+ "rerun_reason": "pre-registered shuffled-label check failed (held-out 0.83 for the 27B, 0.77 for gpt-oss, expected 0.5): add the AUC within tasks (exploratory) and save per-item scores; primary numbers must reproduce",
+ "n_dev": 3613,
+ "n_dev_wrong": 1027,
+ "n_heldout": 1198,
+ "n_heldout_wrong": 370,
+ "heldout_tasks": 36,
+ "selection": {
+  "depth": 2,
+  "depth_layer": 48,
+  "C": 0.0001,
+  "table": [
+   {
+    "depth": 0,
+    "C": 0.0001,
+    "cv_auc": 0.7291503474625664
+   },
+   {
+    "depth": 0,
+    "C": 0.001,
+    "cv_auc": 0.7214808066959547
+   },
+   {
+    "depth": 0,
+    "C": 0.01,
+    "cv_auc": 0.7105621457502411
+   },
+   {
+    "depth": 0,
+    "C": 0.1,
+    "cv_auc": 0.6785601760507823
+   },
+   {
+    "depth": 0,
+    "C": 1.0,
+    "cv_auc": 0.6632317035789519
+   },
+   {
+    "depth": 1,
+    "C": 0.0001,
+    "cv_auc": 0.7790238090307717
+   },
+   {
+    "depth": 1,
+    "C": 0.001,
+    "cv_auc": 0.7640455463597662
+   },
+   {
+    "depth": 1,
+    "C": 0.01,
+    "cv_auc": 0.7432965122640165
+   },
+   {
+    "depth": 1,
+    "C": 0.1,
+    "cv_auc": 0.7119873041988641
+   },
+   {
+    "depth": 1,
+    "C": 1.0,
+    "cv_auc": 0.7036293435630055
+   },
+   {
+    "depth": 2,
+    "C": 0.0001,
+    "cv_auc": 0.8298799535674383
+   },
+   {
+    "depth": 2,
+    "C": 0.001,
+    "cv_auc": 0.8090191099491886
+   },
+   {
+    "depth": 2,
+    "C": 0.01,
+    "cv_auc": 0.7671994681297769
+   },
+   {
+    "depth": 2,
+    "C": 0.1,
+    "cv_auc": 0.7372484351665315
+   },
+   {
+    "depth": 2,
+    "C": 1.0,
+    "cv_auc": 0.72490919909627
+   }
+  ]
+ },
+ "threshold": 0.35038310289382935,
+ "probe_heldout": {
+  "auc": 0.8625979240109675,
+  "lo": 0.7955194143256679,
+  "hi": 0.9176103928234063
+ },
+ "verbal_heldout": {
+  "Qwen3.5-27B|off": {
+   "auc": 0.7202490534012274,
+   "lo": 0.6610477041028443,
+   "hi": 0.7771525384696667
+  },
+  "Qwen3.5-27B|off|stepwise": {
+   "auc": 0.7771967619793707,
+   "lo": 0.7016196597377646,
+   "hi": 0.843464678443802
+  },
+  "Qwen3.5-27B|think1024": {
+   "auc": 0.75171693432563,
+   "lo": 0.6879957938800502,
+   "hi": 0.8101826318271964
+  },
+  "Qwen3.5-27B|think1024|pack": {
+   "auc": 0.7862939025982504,
+   "lo": 0.7357740246091591,
+   "hi": 0.8347852398023747
+  }
+ },
+ "best_verbal": "Qwen3.5-27B|think1024|pack",
+ "difference": {
+  "auc": 0.07630402141271708,
+  "lo": 0.01129093653136119,
+  "hi": 0.13257340264049972
+ },
+ "stop_rule_met": true,
+ "verbal_released_wrong": 188,
+ "probe_catches_of_those": 63,
+ "operating_point": {
+  "caught_wrong": 0.527027027027027,
+  "stopped_right": 0.08454106280193237
+ },
+ "length_heldout": {
+  "auc": 0.7496001436218828,
+  "lo": 0.6315433324398644,
+  "hi": 0.8469927785196805
+ },
+ "within_analyst": {
+  "aucs": {
+   "Qwen3.5-27B|open|off": 0.8243291592128802,
+   "Qwen3.5-27B|open|off|checklist": 0.6908967391304348,
+   "Qwen3.5-27B|open|think1024": 0.7851458885941645,
+   "Qwen3.5-27B|selfcheck|off": 0.86489898989899,
+   "Qwen3.5-35B-A3B|open|off": 0.8433632095603927,
+   "Qwen3.5-35B-A3B|open|off|checklist": 0.8721590909090909,
+   "Qwen3.5-35B-A3B|open|think1024": 0.882,
+   "Qwen3.5-35B-A3B|selfcheck|off": 0.9227513227513228,
+   "Qwen3.5-9B|open|off": 0.9516768842408944,
+   "Qwen3.5-9B|open|off|checklist": 0.8893849206349206,
+   "Qwen3.5-9B|open|think1024": 0.8982110912343471,
+   "Qwen3.5-9B|selfcheck|off": 0.9169004207573632
+  },
+  "mean": 0.8618098097437333
+ },
+ "shuffled_heldout": {
+  "mean": 0.8307018703486095,
+  "min": 0.806960765112939,
+  "max": 0.8443350959655308
+ },
+ "within_task": {
+  "tasks": 24.0,
+  "probe": 0.7381822088525999,
+  "verbal": {
+   "Qwen3.5-27B|off": 0.6395573700042974,
+   "Qwen3.5-27B|off|stepwise": 0.7081005586592178,
+   "Qwen3.5-27B|think1024": 0.6679200687580575,
+   "Qwen3.5-27B|think1024|pack": 0.7022990975504942
+  },
+  "shuffled_mean": 0.5173721529866782,
+  "difference_vs_best_verbal": {
+   "auc": 0.03588311130210564,
+   "lo": -0.041066197196153516,
+   "hi": 0.11354287150334555
+  }
+ },
+ "judges_agree": {
+  "n": 1108,
+  "probe": {
+   "auc": 0.8813782935049019,
+   "lo": 0.8175878558734149,
+   "hi": 0.9367691907177251
+  },
+  "best_verbal": {
+   "auc": 0.797491574754902,
+   "lo": 0.7456733693466183,
+   "hi": 0.8447475789790729
+  }
+ }
+}

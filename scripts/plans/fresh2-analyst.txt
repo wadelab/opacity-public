@@ -1,0 +1,7 @@
+# Model-sizing study: the second fresh set (h109-h148), pre-registered in the
+# report, section 6b (39c9183), before the set existed. The analyst with the
+# rules prompt and a 1k think (the tested arm), then its open arm (reported
+# beside it). Judged afterwards on d2-1 by the local judge
+# (scripts/local_judge.sh), so the judge string here is a placeholder.
+harvest -T task_set=fresh2 -T analyst_prompt=rules -T replicates=3 -T think_budget=1024 -T judge=openai-api/vllm/openai/gpt-oss-120b --no-score
+harvest -T task_set=fresh2 -T arm=open -T replicates=3 -T thinking=off -T judge=openai-api/vllm/openai/gpt-oss-120b --no-score

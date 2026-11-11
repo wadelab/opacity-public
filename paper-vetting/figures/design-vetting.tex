@@ -1,0 +1,51 @@
+% Figure: the two questions of the vetting paper, in the style of the first
+% paper's design figures. (a) does a model's internal state reveal its honest
+% errors: judged write-ups, read by a model, its verdict against a probe on its
+% state; (b) can a biased write-up be detected: paired write-ups, detectors,
+% unseen tasks, then the candidate's ordinary write-ups. A picture above each
+% step (figures/icons.tex, the explainer page's pictures); every box a bold
+% title and a short gloss that wraps at the box width, never hyphenated; boxes
+% in a row share their top edge and one height, and each picture hangs from
+% its box's top edge. Colour roles as in the first paper: grey inputs, blue
+% deterministic code, red the models, green what comes out. Explicit
+% coordinates in mm.
+\input{figures/icons}%
+\begin{tikzpicture}[
+  font=\footnotesize,
+  box/.style={draw, rounded corners=2pt, align=center, inner sep=3pt, minimum height=22mm, text width=#1, anchor=north,
+              line width=0.6pt, execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
+  box/.default=30mm,
+  input/.style={box, fill=wllight!22, draw=wlgrey},
+  code/.style={box, fill=wlblue!10, draw=wlblue},
+  model/.style={box, fill=wlred!10, draw=wlred},
+  leaves/.style={box, fill=wlgreen!12, draw=wlgreen},
+  arr/.style={-{Latex[length=2mm]}, line width=0.8pt, draw=wlink!75},
+  lab/.style={font=\sffamily\bfseries\normalsize, anchor=north west, inner sep=0},
+]
+% ------------------------------------------------ (a) probes on honest errors
+\node[lab] at (-1mm,14mm) {a};
+\node[input]  (wu)   at (16.5mm,0)  {\textbf{Judged write-ups}\\ analysts' reports, each judged right or wrong against a hidden key};
+\node[model]  (rd)   at (54.5mm,0)  {\textbf{The model reads one}\\ as it does when checking, and gives its verdict};
+\node[code]   (prb)  at (92.5mm,0)  {\textbf{Probe}\\ a linear classifier on the same model's internal state, fit on dev tasks};
+\node[leaves] (cmp)  at (130.5mm,0) {\textbf{Unseen tasks}\\ which tells wrong from right better, within a task?};
+\draw[arr] (wu) -- (rd);
+\draw[arr] (rd) -- (prb);
+\draw[arr] (prb) -- (cmp);
+\pic at ($(wu.north)+(-4mm,6mm)$) {page};
+\pic at ($(wu.north)+(4mm,6mm)$) {flagpage};
+\pic at ($(rd.north)+(0,6mm)$) {robot};
+\pic at ($(prb.north)+(0,6mm)$) {proberobot};
+% ------------------------------------------------ (b) the bias test
+\node[lab] at (-1mm,-34mm) {b};
+\node[input]  (pair) at (16.5mm,-48mm)  {\textbf{Paired write-ups}\\ each task twice: honest, and under a hidden instruction to bias};
+\node[code]   (det)  at (54.5mm,-48mm)  {\textbf{Detectors}\\ a text classifier on the words, or a probe on the model's internal state};
+\node[leaves] (auc)  at (92.5mm,-48mm)  {\textbf{Unseen tasks}\\ can a detector tell each honest write-up from its biased pair?};
+\node[leaves] (flag) at (130.5mm,-48mm) {\textbf{Ordinary write-ups}\\ does it flag more of them than of honest ones?};
+\draw[arr] (pair) -- (det);
+\draw[arr] (det) -- (auc);
+\draw[arr] (auc) -- (flag);
+\pic at ($(pair.north)+(-4mm,6mm)$) {page};
+\pic at ($(pair.north)+(4mm,6mm)$) {flagpage};
+\pic at ($(det.north)+(-5mm,6mm)$) {page};
+\pic at ($(det.north)+(4mm,6mm)$) {proberobot};
+\end{tikzpicture}

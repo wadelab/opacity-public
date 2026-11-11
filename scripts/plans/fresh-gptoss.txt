@@ -1,0 +1,6 @@
+# Model-sizing study, fresh-set test declared in the report (section 5,
+# addendum of 23 October 10:37 UTC, commit 4cc673e) before any fresh-set run existed:
+# gpt-oss 120B at high effort and OpenAI's sampling with the rules prompt,
+# and the same with the plain prompt as its open arm. Fresh tasks h73-h108.
+harvest -T task_set=fresh -T analyst_prompt=rules -T replicates=3 -T effort=high -T sampling=gpt-oss -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=fresh -T replicates=3 -T effort=high -T sampling=gpt-oss -T judge=openai-api/mimo/mimo-v2.6-pro --no-score

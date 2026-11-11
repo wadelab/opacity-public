@@ -1,0 +1,3 @@
+# gpt-oss checkers on the held-out write-ups.
+crosscheck -T logs=runs/inspect/heldout/*harvest*.eval -T effort=medium
+crosscheck -T logs=runs/inspect/heldout/*harvest*.eval -T effort=low

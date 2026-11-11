@@ -1,0 +1,9 @@
+# Calculator version 2 (calculator2, 25 October 2026), development runs on dev
+# and held-out (both readable): the analyst with the rules prompt, a 1k think
+# and the calculator with guardrails (range for unobserved outcomes, subgroups
+# heterogeneity tool, one corrective turn). Compared item by item with the
+# version-1 runs of 24 October (report 6c) and the hand-arithmetic runs.
+# Serve with VLLM_EXTRA_ARGS="--enable-auto-tool-choice --tool-call-parser qwen3_coder"
+# and REASONING_PARSER=qwen3.
+harvest -T analyst_prompt=rules -T replicates=3 -T think_budget=1024 -T tools=calculator2 -T judge=openai-api/vllm/openai/gpt-oss-120b --no-score
+harvest -T task_set=heldout -T analyst_prompt=rules -T replicates=3 -T think_budget=1024 -T tools=calculator2 -T judge=openai-api/vllm/openai/gpt-oss-120b --no-score

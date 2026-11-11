@@ -1,0 +1,5 @@
+# Model-sizing study: the fresh-set test (h73-h108) of the configuration
+# chosen by scripts/fresh_select.py on 23 October 11:00 UTC (report Table 9,
+# bf7b878), with the same model's open arm beside it.
+harvest -T task_set=fresh -T analyst_prompt=rules -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=fresh -T arm=open -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score

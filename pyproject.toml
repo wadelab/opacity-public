@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opacity"
+version = "0.1.0"
+description = "Detectability of analytic error under statistical disclosure control"
+requires-python = ">=3.11"
+dependencies = [
+    "inspect-ai>=0.3.282",
+    "numpy>=1.26",
+    "pyyaml>=6",
+    "scipy>=1.11",
+]
+
+[project.optional-dependencies]
+llm = ["openai>=1.30"]
+dev = ["pytest>=8"]
+probe = ["scikit-learn>=1.5"]  # fitting the probes (docs/vetting.md); extraction runs on Viking with torch
+# Install the recorded torch 2.13.0+cu130 wheel FIRST, in a separate pilot environment.
+# Runtime checks require its exact package/image lock; this extra is not that lock.
+lora-pilot = ["transformers==5.19.0", "peft==0.21.0", "accelerate==1.15.0", "safetensors>=0.4"]
+
+[project.entry-points.inspect_ai]
+opacity = "opacity.harness"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"opacity.harvest" = ["tasks.yaml", "prepared/*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

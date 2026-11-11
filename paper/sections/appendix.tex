@@ -1,0 +1,177 @@
+% Appendix figures and tables are numbered S1, S2, ... as supplementary material.
+\setcounter{figure}{0}\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{table}{0}\renewcommand{\thetable}{S\arabic{table}}
+
+\section{The instructions, verbatim}
+\label{app:instructions}
+
+The instructions below are reproduced verbatim as executed. The reviewer, standard analyst and judge instructions were the same in every run; the design-first prompt is appended to the standard analyst instruction.
+
+\input{instructions}
+
+\section{One task, start to finish}
+\label{app:example}
+
+This dev task asks whether structured medication reviews reduced hospital admissions overall and whether any of twenty regional comparisons stands out. The tables hold matched recipient and non-recipient groups. Its hidden key specifies equal risks, with the generator selecting a draw containing a nominal subgroup result. On the illustrated draw, ICB R has an uncorrected $p=0.02$, above the Bonferroni threshold for twenty comparisons. The keyed conclusion permits no region-specific claim.
+
+Qwen3.5 27B generated both excerpts below with thinking disabled. Only the second prompt includes the checklist. The quotations retain the original wording, including its limitations.
+
+\begin{quote}\small
+\textit{Without the checklist. Both hosted judges: wrong.} Overall, the SMR group had a slightly higher unplanned admission rate (28.6\%) compared to the matched non-recipient group (28.0\%), a difference of +0.6 percentage points. This suggests no overall reduction in admissions attributable to the SMR programme in this dataset. Results varied significantly by ICB: ICB R showed the largest reduction (-12.0\%), while ICB H and ICB L showed the largest increases (+7.1\%). The lack of a consistent directional trend across ICBs and the small overall difference indicate that the SMR programme did not uniformly reduce unplanned admissions. Limitations include the absence of statistical significance testing, potential unmeasured confounders despite matching, and the possibility that the observed differences are due to random variation rather than a true programme effect.
+\end{quote}
+
+\begin{quote}\small
+\textit{With the checklist. Both hosted judges: right.} Overall, the 12-month unplanned admission rate was slightly higher among SMR recipients (28.61\%) compared to matched non-recipients (28.01\%), a difference of 0.60 percentage points. At the ICB level, differences varied widely, with ICB R showing the largest reduction in admissions for SMR recipients (-12.06 percentage points) and ICB L showing the largest increase (+7.15 percentage points). However, given the number of comparisons (20 ICBs), no single ICB difference is statistically significant after correction for multiple testing. The matched design reduces confounding, but residual confounding cannot be ruled out. The observational nature of the data precludes causal conclusions about the effect of SMR on admissions. Limitations include lack of adjustment for multiple comparisons and potential unmeasured confounders despite matching.
+\end{quote}
+
+Both hosted judges rejected the first interpretation for singling out an uncorrected regional extreme and claiming significant regional variation. They accepted the second conclusion, although it asserts a corrected result without performing the test and acknowledges no adjustment in its methods. Several checkers objected to that omission in the accepted output; none withheld the rejected output for the judges' stated reason. The same model's self-check released a similar incorrect interpretation at high confidence. The example exposes a difference between scoring the conclusion and auditing the reasoning that supports it.
+
+\section{Further tables and figures}
+\label{app:tables}
+
+\begin{table}[h]
+\centering\footnotesize
+\begin{threeparttable}
+\caption{Wrong conclusions released on planted-error tasks under the analyst prompts for the two Nemotron models, standard instruction, deterministic decoding, dev / held-out, judged by \N{model.mimo.pro.short}. The companion to Table~\ref{tab:prompts}.}
+\label{tab:prompts-full}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Analyst & Active & plain & checklist & rules & rules + 1k think \\
+\midrule
+Nemotron 3 Super 120B-A12B & 12B & \N{prompt.nsuper.open.dev} / \N{prompt.nsuper.open.heldout} & \N{prompt.nsuper.checklist.dev} / \N{prompt.nsuper.checklist.heldout} & \N{prompt.nsuper.rules.dev} / \N{prompt.nsuper.rules.heldout} & \N{prompt.nsuper.rules1k.dev} / \N{prompt.nsuper.rules1k.heldout} \\
+Nemotron 3.5 Lightning 30B-A3B & 3B & \N{prompt.nlight.open.dev} / \N{prompt.nlight.open.heldout} & \N{prompt.nlight.checklist.dev} / \N{prompt.nlight.checklist.heldout} & \N{prompt.nlight.rules.dev} / \N{prompt.nlight.rules.heldout} & \N{prompt.nlight.rules1k.dev} / \N{prompt.nlight.rules1k.heldout} \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[h]
+\centering\footnotesize\setlength{\tabcolsep}{2.5pt}
+\begin{threeparttable}
+\caption{Twenty replicates per class for the three larger local reviewers, 160 planted-error and 160 correct reports per level, Wilson 95\% intervals. The five-replicate figures of Table~\ref{tab:gate} hold within their intervals, and the wrong denominator (class 6) stays at zero over twenty datasets.}
+\label{tab:rep20}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+Reviewer & \level{0} detection & \level{0} false alarm & \level{3} detection & \level{4} detection & AUC \level{0} & AUC \level{3} & Class 6 at \level{0} \\
+\midrule
+Qwen3.5 27B & \N{rep20.q27.det.s0} (\N{rep20.q27.det.s0.lo}--\N{rep20.q27.det.s0.hi}) & \N{rep20.q27.fa.s0} (\N{rep20.q27.fa.s0.lo}--\N{rep20.q27.fa.s0.hi}) & \N{rep20.q27.det.s3} & \N{rep20.q27.det.s4} & \N{rep20.q27.auc.s0} & \N{rep20.q27.auc.s3} & \N{rep20.q27.c6.s0} \\
+Mistral Small 24B & \N{rep20.mistral.det.s0} (\N{rep20.mistral.det.s0.lo}--\N{rep20.mistral.det.s0.hi}) & \N{rep20.mistral.fa.s0} (\N{rep20.mistral.fa.s0.lo}--\N{rep20.mistral.fa.s0.hi}) & \N{rep20.mistral.det.s3} & \N{rep20.mistral.det.s4} & \N{rep20.mistral.auc.s0} & \N{rep20.mistral.auc.s3} & \N{rep20.mistral.c6.s0} \\
+Llama 3.3 70B & \N{rep20.llama.det.s0} (\N{rep20.llama.det.s0.lo}--\N{rep20.llama.det.s0.hi}) & \N{rep20.llama.fa.s0} (\N{rep20.llama.fa.s0.lo}--\N{rep20.llama.fa.s0.hi}) & \N{rep20.llama.det.s3} & \N{rep20.llama.det.s4} & \N{rep20.llama.auc.s0} & \N{rep20.llama.auc.s3} & \N{rep20.llama.c6.s0} \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[h]
+\centering\small
+\begin{threeparttable}
+\caption{Cost of a verdict over the \N{corpus.bundles.all.levels} reports of one run (five levels), from the logs' wall times and token counts. The hosted reviewers' times include the network. The local reviewers ran on one H100 with sixteen requests in flight. The typed reviewer answered all \N{corpus.bundles.all.levels} in about fifteen seconds once loaded and generated no tokens.}
+\label{tab:cost}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Reviewer & Median seconds & 90th centile & Median output tokens \\
+\midrule
+\N{model.mimo.pro.short} (hosted) & \N{cost.mimo.median} & \N{cost.mimo.p90} & \N{cost.mimo.tokens} \\
+\N{model.deepseek.short} (hosted) & \N{cost.deepseek.median} & \N{cost.deepseek.p90} & \N{cost.deepseek.tokens} \\
+Qwen3.5 27B, one H100 & \N{cost.q27.median} & \N{cost.q27.p90} & \N{cost.q27.tokens} \\
+Llama 3.3 70B NVFP4, one H100 & \N{cost.llama.median} & \N{cost.llama.p90} & \N{cost.llama.tokens} \\
+Mistral Small 24B NVFP4, one H100 & \N{cost.mistral.median} & \N{cost.mistral.p90} & \N{cost.mistral.tokens} \\
+typed reviewer, one H100 & about 0.04 & -- & 0 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{fig_roc}
+\caption{ROC curves at \level{0} (grey), \level{3} (blue) and \level{4} (blue dotted), one panel per reviewer, from confidence-weighted verdicts, with each curve's AUC. The hosted curves flatten from \level{0} to \level{3}, and so do those of the Qwen3.5 27B and Mistral Small 24B; those of Llama 3.3 70B and the typed reviewer steepen, because they answer more reports with a confident yes as more is hidden.}
+\label{fig:roc}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{fig_calibration}
+\caption{Reliability of stated confidence: the share of verdicts that were correct against the confidence stated, over all levels and both conditions, in bins holding at least eight verdicts. The typed reviewer is in blue, the generative reviewers in grey. The generative reviewers state 80 or more on almost every verdict, and MiMo pro's few verdicts near 60 were mostly wrong. The typed reviewer's entropy confidence spans the range and runs too low below 70.}
+\label{fig:calibration}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{sizing_analyst}
+\caption{The analyst instructions without a prompt change, dev tasks, thinking off, judged by \N{model.mimo.pro.short}. (a) Wrong conclusions released on planted-error tasks with task-resampled 95\% intervals. Self-check lowered wrong releases for nine of the twelve analysts. (b) Correct answers released over all tasks: the price of self-check and of the declines the decline option allows.}
+\label{fig:analyst-arms}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{sizing_checker}
+\caption{Every checker configuration of the sizing study. (a) On the planted-error corpus at \level{0} (seed 0, five replicates): detection (filled), false alarm (open) and the lowest class (tick). Blue rows meet the detection threshold. (b) On the analysts' released dev write-ups: the share of judge-wrong (filled) and judge-right (open) write-ups withheld.}
+\label{fig:checker-full}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{sizing_frontier}
+\caption{Every analyst-plus-checks configuration on the dev tasks that answers at least \N{gate.answer} of control tasks, wrong conclusions released against GPU-seconds per task, marker size by correct answers released. Numbers mark the frontier, cheapest first; the list gives each configuration's stages, its wrong-release rate with a 95\% interval, the correct answers it released and its cost. A screen is a cheap first checker that releases a write-up it confidently judges clean and passes the rest to the next stage. The frontier is the best of many and is optimistic. Section~\ref{sec:results-sealed} shows what survived the held-out and sealed sets.}
+\label{fig:frontier}
+\end{figure}
+
+\section{Models and revisions}
+\label{app:models}
+\input{models}
+
+Table~\ref{tab:models} lists every open-weight model used, with the Hugging Face repository and the commit at which its weights and tokenizer were downloaded once on a login node and served offline with no code from the repository. The families are Qwen3.5~\cite{qwen35_2026} and Qwen3~\cite{qwen3_2025}, Gemma 4~\cite{gemma4_2026,gemma3_2025}, Llama 3.3~\cite{llama3_2024}, Mistral Small 3.2~\cite{mistral_small32_2025}, gpt-oss~\cite{gptoss2025}, Nemotron 3 and 3.5~\cite{nemotron3_2026} and DiffusionGemma~\cite{diffusiongemma_2026}, the last served by openjev~\cite{openjev2026}. The hosted models were \N{model.mimo.pro} (\code{mimo-v2.6-pro}, Xiaomi, Amsterdam endpoint)~\cite{mimo26_2026,mimo2025}, \N{model.deepseek} (\code{deepseek-v4.1-flash}, through a gateway)~\cite{deepseekv4_2026,deepseekv3_2024}, GLM-5.3 and GLM-5.3 flash (Z.ai, for the frontier ceiling and the preparer)~\cite{glm53_2026,glm45_2025}, and MiMo v2.6 flash as a second judge on the calculator and preparer arms. Serving: vLLM \N{sw.vllm}, torch \N{sw.torch}, transformers \N{sw.transformers}, Inspect \N{sw.inspect}. The typed server was openjev 0.7 in its container.
+
+\begin{table}[h]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{threeparttable}
+\caption{Open-weight models, their Hugging Face repositories and pinned revisions. Roles: A analyst, C checker, J local judge, T typed reviewer.}
+\label{tab:models}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Model, then its Hugging Face repository & Roles & Revision \\
+\midrule
+\modelrows
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\section{Additional intervention results}
+\label{app:interventions}
+
+These are exploratory dev and held-out comparisons; none was part of the sealed-set confirmation.
+
+\begin{table}[h]
+\centering\footnotesize
+\caption{Calculator interventions pooled across dev and held-out. Entries are wrong conclusions on about \N{calc.n} planted-error attempts per configuration. Counts and denominators are approximate in the source reports.}
+\label{tab:calculators}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Configuration & Local judge & MiMo flash judge \\
+\midrule
+Design-first prompt, hand calculation & \N{calc.hand.local} & \N{calc.hand.mimo} \\
+Calculator version 1 & \N{calc.v1.local} & \N{calc.v1.mimo} \\
+Calculator version 2 & \N{calc.v2.local} & \N{calc.v2.mimo} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Request preparation reduced wrong conclusions for the standard instruction on held-out from \N{prep.plain.ho.before} to \N{prep.plain.ho.after}, on about \N{prep.n} planted-error attempts under the local judge. With the design-first prompt it increased dev errors from \N{prep.rules.before} to \N{prep.rules.dev.after}, and also worsened held-out results. The verifier withheld \N{verifier.dev.wrong} of judge-wrong and \N{verifier.dev.right} of judge-right outputs on dev, compared with \N{verifier.ho.wrong} and \N{verifier.ho.right} on held-out.
+
+\begin{table}[h]
+\centering\footnotesize
+\caption{NIGHTPLAY analyst results on \sys{safe-tre-agent} 0.13.0, commit \code{7884328}: three repeats of the nine questions, with the 108 marks of the executable marker summed over them. No checker stage was run.}
+\label{tab:nightplay}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Analyst & Prompt & Correct question-repeats (of 27) & Marks (of 108) \\
+\midrule
+Qwen3.5 35B-A3B & plain & \N{chimp.q35.plain.verdicts} & \N{chimp.q35.plain.marks} \\
+Qwen3.5 35B-A3B & rules, 1k & \N{chimp.q35.rules.verdicts} & \N{chimp.q35.rules.marks} \\
+Qwen3.5 27B & plain & \N{chimp.q27.plain.verdicts} & \N{chimp.q27.plain.marks} \\
+Qwen3.5 27B & rules, 1k & \N{chimp.q27.rules.verdicts} & \N{chimp.q27.rules.marks} \\
+\bottomrule
+\end{tabular}
+\end{table}

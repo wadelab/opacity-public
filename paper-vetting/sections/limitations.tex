@@ -1,0 +1,10 @@
+\section{Limitations}
+\label{sec:limitations}
+
+The reference judgments are made by models. The probe labels are the companion study's primary judge, and every check that a bias instruction worked rests on one local judge, gpt-oss 120B, whose family includes one of the checkers compared. Human adjudication is pending. The tasks were written by a model and received one human pass for leakage and naturalness.
+
+One analyst model, Qwen3.5 27B, wrote every pair, and the probes were linear and read three depths in two models. A nonlinear probe, or one at more depths, might read more. The bias came from an instruction, not from training, and instruction produced no successful disguised bias. The detector applied to the recommended configuration had its sensitivity established on a bias that succeeded in another configuration, which differed in its sampling settings as well as its thinking.
+
+All data are synthetic, and the tasks deliberately invite particular errors. Each held-out condition holds \N{steer.n.heldout} write-ups per condition from \N{harvest.heldout.count} tasks, so intervals that resample tasks are wide, and the recommended analyst's flag rate rests on \N{slant.flagged.n} ordinary write-ups. The within-task analysis of the probes was exploratory, added after an instrument check failed. The test for bias aimed at particular subjects, by relabeling each task's subject and groups, is specified but not implemented.
+
+The models and pinned revisions tested are a subset of what was available in October 2026, and a result for one revision does not carry to another. The thresholds of the bias test are working criteria with no calibrated model of harm.

@@ -1,0 +1,37 @@
+# Viking site configuration for the study-length memory profile (27 October 2026):
+# the pilot's site, with its own study root and ledger. The recipe is unchanged.
+schema: 1
+model: Qwen/Qwen3.5-27B
+revision: fc05daec18b0a78c049392ed2e771dde82bdf654
+recipe:
+  rank: 8
+  alpha: 16
+  dropout: 0.05
+  learning_rate: 0.00005
+  weight_decay: 0.0
+  betas: [0.9, 0.999]
+  epsilon: 0.00000001
+  clip_norm: 1.0
+  accumulation: 4
+  seed: 271028
+  max_tokens: 512
+  max_new_tokens: 128
+  memory_fraction: 0.85
+  profile_lengths: [512, 1024, 2048]
+  logit_abs_floor: 0.00001
+  logit_rel_floor: 0.000001
+  output_limit_bytes: 8589934592
+site:
+  snapshot: /mnt/scratch/users/<user>/hf/hub/models--Qwen--Qwen3.5-27B/snapshots/fc05daec18b0a78c049392ed2e771dde82bdf654
+  probe_record: /users/<user>/git/opacity/runs/probe/v1/states/Qwen3.5-27B-smoke10-38032881.json
+  revision_record: /mnt/scratch/users/<user>/hf/opacity_revisions.txt
+  runtime_image: /mnt/scratch/users/<user>/opacity-lora-pilot-20261028/image/opacity-lora-pilot-h-v1.sif
+  runtime_sha256: ca7c659bb5b6a56ed001a60162d739ae56bb9feaf61537dc3e78116fe964c589
+  runtime_lock: /mnt/scratch/users/<user>/opacity-lora-pilot-20261028/image/runtime-lock-h-v1.json
+  study_root: /mnt/scratch/users/<user>/opacity-lora-pilot-20261028/study-lengths
+  backup_root: /mnt/longship/users/<user>/opacity-lora-pilot-backup
+  # login1's sshd and the University web name: both answer from a compute node
+  # outside the container (job 38050632), so a failure inside means isolation.
+  egress_ip: 10.10.0.21
+  egress_port: 22
+  egress_dns: www.york.ac.uk

@@ -1,0 +1,10 @@
+# Slant detector twins for Qwen3.5 27B in its recommended configuration
+# (rules prompt, 1k think), docs/vetting.md 3.6, 27 October 2026. Honest
+# (open) and steered2 arms, dev and held-out, five replicates with one seed
+# each. Service decoding is greedy; the twins use the Qwen card's thinking-mode
+# sampling so that replicates of an unchanging pack differ. Judged afterwards
+# by the local judge, so no judge is named.
+harvest -T arm=open -T analyst_prompt=rules -T think_budget=1024 -T sampling=qwen-thinking -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered2 -T analyst_prompt=rules -T think_budget=1024 -T sampling=qwen-thinking -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=open -T task_set=heldout -T analyst_prompt=rules -T think_budget=1024 -T sampling=qwen-thinking -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered2 -T task_set=heldout -T analyst_prompt=rules -T think_budget=1024 -T sampling=qwen-thinking -T vary_seed=true -T replicates=5 --no-score

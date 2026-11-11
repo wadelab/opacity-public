@@ -1,0 +1,4 @@
+# Model-sizing study: the gpt-oss 20B checker (medium effort), chosen by
+# fresh_select.py for seven of the eight analysts, on every fresh-set
+# write-up (runs/inspect/fresh/, staged by scripts/fresh_cross_submit.sh).
+crosscheck -T logs=runs/inspect/fresh/*harvest*.eval -T effort=medium

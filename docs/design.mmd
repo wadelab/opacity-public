@@ -1,0 +1,70 @@
+flowchart TB
+  D[("SDDS dataset")] --> A["safe-tre-agent<br/>analysis task"]
+  A --> SEED{"Seeded or<br/>control?"}
+  SEED -->|"error class 1-8"| B["Output bundle<br/>tables, figures,<br/>interpretation"]
+  SEED -->|"matched control"| B
+
+  B --> J["Blind double<br/>adjudication"]
+  J --> AG{"Both agree:<br/>error and class?"}
+  AG -->|"no"| DROP["Dropped"]
+  AG -->|"yes"| GT["Ground truth label"]
+
+  B --> SDC["Disclosure control<br/>s0 none to s3 conservative,<br/>tables and quoted numbers alike;<br/>s4 prose-only ablation"]
+  SDC --> REL["Released bundle"]
+
+  subgraph INS["AISI Inspect harness: one task, two machine arms"]
+    direction TB
+    M["Mechanical arm<br/>SDC rules only, no model"]
+    L["LLM arm<br/>any model: vLLM on Viking2,<br/>MiMo, Cline, ...<br/>thinking off / capped budget / effort"]
+    LOG[("Eval log<br/>every prompt and verbatim reply,<br/>tokens, time, score per sample")]
+    M --> LOG
+    L --> LOG
+  end
+  REL --> M
+  REL --> L
+  REL --> H["Human arm, primary<br/>16 reviewers, Latin square<br/>separate review interface"]
+
+  LOG --> R["Response per bundle<br/>yes / no / cannot tell<br/>confidence, free text,<br/>release decision, time"]
+  H --> R
+
+  R --> CODE["Free text coded to class<br/>blind to seeding"]
+  GT --> SCORE["Scoring"]
+  CODE --> SCORE
+
+  subgraph HV["Harvest: the agent arm"]
+    direction TB
+    HP["Preparer, exploratory<br/>hosted GLM-5.3 outside the TRE:<br/>request and table structure,<br/>no values; rewrites the request"]
+    HP -.->|"prepared request"| HA
+    HA["Agent under test<br/>open: must write up<br/>closed: may decline<br/>selfcheck: own write-up<br/>through the LLM arm first"]
+    HA -->|"released"| HJ["Judge with the key<br/>right or wrong, classes"]
+    HA -->|"declined / withheld"| HD["Declined<br/>not judged"]
+  end
+  HJ --> XC["Cross-check<br/>every model as checker on<br/>every model's write-ups"]
+  XC -.->|"same prompts"| PR["Reading probe<br/>a model's internal state<br/>on its checker prompts;<br/>fit on dev, held-out once"]
+  PR --> SCORE
+  HA -->|"released"| VF["Deterministic verifier<br/>recomputes from the pack:<br/>Holm, cluster test, bases,<br/>sample flow, held-out"]
+  VF --> SCORE
+  XC --> L
+  HJ --> SCORE
+  HD --> SCORE
+
+  SCORE --> O1["d of e,s<br/>detectability vs<br/>disclosure strength"]
+  SCORE --> O2["Cannot-tell migration"]
+  SCORE --> O3["False alarms<br/>on controls"]
+  SCORE --> O4["Right / wrong / declined<br/>per agent and arm;<br/>agent-by-checker matrix"]
+
+  classDef ctrl fill:#fff3cd,stroke:#b8860b
+  classDef out fill:#d4edda,stroke:#2d6a4f
+  classDef rig fill:#e7f0fa,stroke:#2b5c8a
+  class SDC,REL ctrl
+  class O1,O2,O3,O4 out
+  class M,L,LOG rig
+
+  subgraph LP["Separate honest-LoRA engineering pilot (27 October: all three stages passed)"]
+    LPB["Frozen base, honest synthetic data,<br/>CPU receipt and runtime preflight"]
+    LPS["One-H100 smoke: two updates<br/>gradients, frozen base, 512-token memory"]
+    LPT["Fresh honest adapter: twenty updates<br/>bounded profiles; adapter-only save"]
+    LPR["Fresh-process reload and disable<br/>logits, greedy outputs and oracle checks"]
+    LPE["Append-only evidence, Slurm accounting,<br/>durable backup and engineering report"]
+    LPB --> LPS --> LPT --> LPR --> LPE
+  end

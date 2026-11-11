@@ -1,0 +1,35 @@
+schema: 1
+model: Qwen/Qwen3.5-27B
+revision: fc05daec18b0a78c049392ed2e771dde82bdf654
+recipe:
+  rank: 8
+  alpha: 16
+  dropout: 0.05
+  learning_rate: 0.00005
+  weight_decay: 0.0
+  betas: [0.9, 0.999]
+  epsilon: 0.00000001
+  clip_norm: 1.0
+  accumulation: 4
+  seed: 271028
+  max_tokens: 512
+  max_new_tokens: 128
+  memory_fraction: 0.85
+  profile_lengths: [512, 1024, 2048]
+  logit_abs_floor: 0.00001
+  logit_rel_floor: 0.000001
+  output_limit_bytes: 8589934592
+# Fill in a COPY. No placeholder is accepted by prepare. No image is built/downloaded automatically.
+site:
+  snapshot: null
+  probe_record: null
+  revision_record: null
+  runtime_image: null
+  runtime_sha256: null
+  runtime_lock: null
+  study_root: null  # private directory (mode 0700) for the ledger and attempts; each attempt writes
+                    # only to its own output_limit_bytes ext4 image, FUSE-mounted inside the job
+  backup_root: null  # pre-existing durable restricted directory outside Viking scratch
+  egress_ip: null  # infrastructure-owner approved connection-test endpoint
+  egress_port: null
+  egress_dns: null  # infrastructure-owner approved DNS test name

@@ -1,0 +1,11 @@
+# Model-sizing study, wave 1, for models with no thinking switch (Mistral,
+# Llama, phi-4, GLM-4): the analyst arms without budgets, the checker with the
+# exploratory reviewer texts in place of thinking, and the cross-check.
+harvest -T arm=open -T replicates=3 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T replicates=3 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=selfcheck -T replicates=3 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T arm=closed -T checklist=true -T replicates=3 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+opacity -T levels=0,3,4 -T replicates=5 -T reviewer=checklist
+opacity -T levels=0,3,4 -T replicates=5 -T reviewer=stepwise
+crosscheck -T logs=runs/inspect/scored/*harvest*.eval
+crosscheck -T logs=runs/inspect/scored/*harvest*.eval -T reviewer=stepwise

@@ -1,0 +1,9 @@
+# Positive control for the probes (docs/vetting.md 4.8), 26 October 2026.
+# Qwen3.5 27B as analyst: rules prompt, thinking off, the Qwen card's instruct
+# sampling, five replicates with one seed each (vary_seed); honest (open) and
+# steered arms, dev and held-out. Not judged here: the local judge appends
+# judged_alt afterwards (scripts/local_judge.sh), so no judge is named.
+harvest -T arm=open -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=open -T task_set=heldout -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score
+harvest -T arm=steered -T task_set=heldout -T analyst_prompt=rules -T thinking=off -T sampling=qwen-instruct -T vary_seed=true -T replicates=5 --no-score

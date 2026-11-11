@@ -1,0 +1,222 @@
+\section{Study 2: evaluating a model analyst before admission}
+\label{sec:results-analysts}
+
+Study 2 asks what a TRE can learn about a model analyst before admitting it: how often the model draws a wrong conclusion when the data invite one, what changes that rate, what a second model adds as a checker, and whether a configuration chosen on development tasks holds up on sealed ones (Figure~\ref{fig:design-evaluation}). The last two subsections take models into the gateway itself.
+
+\subsection{Errors by model size}
+\label{sec:results-harvest}
+
+With the standard instruction, larger Qwen3.5 models drew fewer wrong conclusions on the dev tasks (Figure~\ref{fig:harvest}a). Unreported multiplicity stayed common at every size. Plotted against the same models' detection as reviewers at \level{0}, only the 27B combines few wrong conclusions with high detection and few false alarms (Figure~\ref{fig:harvest}b); the 2B to 9B models detect more errors than they commit only because they also flag nearly half or more of the correct reports. The relation did not carry across families, since models with similar detection of planted errors differed widely as analysts.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_harvest}
+\caption{Model analysts on the dev tasks, standard instruction, thinking off, judged by \N{model.mimo.pro.short}. (a) Share of planted-error tasks on which each Qwen3.5 size committed the invited error, per class; class 1 (unreported multiplicity), in blue, is the one that does not fall with size; the other seven classes are in grey. (b) Wrong conclusions as an analyst against detection and false alarm as a reviewer at \level{0}. Wrong conclusions fall with size; only the 27B pairs high detection with few false alarms.}
+\label{fig:harvest}
+\end{figure}
+
+\subsection{Analyst prompts}
+\label{sec:results-prompt}
+
+The design-first prompt gave the most consistent improvement (Table~\ref{tab:prompts}; Figure~\ref{fig:prompt}a). Held-out tasks were harder than dev (Figure~\ref{fig:prompt}b), above all where recognizing regression to the mean required reasoning from the design because the tables held no comparison group. The checklist improved held-out performance. The design-first prompt helped on both sets, and with a 1,024-token thinking budget it brought Qwen3.5 27B, 35B-A3B and 122B-A10B to the same pooled error rate within overlapping intervals, and the smaller 9B stayed worse. Among these three, extra size gave no consistent advantage once the prompt and the thinking budget were set, which does not show that size is irrelevant in general.
+
+Gemma did best without added thinking, and gpt-oss 120B improved under its vendor's sampling settings and high reasoning effort, while the same sampling change did not help Qwen3.5 27B. Reasoning settings therefore need testing for each model.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
+\begin{threeparttable}
+\caption{Wrong conclusions released on planted-error tasks under four analyst prompts, standard instruction, deterministic decoding, dev / held-out (\N{harvest.seeded.attempts} planted-error attempts per set), judged by \N{model.mimo.pro.short}. Every row here answered all control tasks. The pooled column is dev and held-out together for the best prompt (\N{harvest.pooled.attempts} attempts), with a Wilson 95\% interval. Rules is the design-first prompt and 1k think a 1,024-token thinking budget.}
+\label{tab:prompts}
+\begin{tabular}{@{}lccccl@{}}
+\toprule
+Analyst (active parameters) & plain & checklist & rules & rules + 1k think & Pooled, best prompt \\
+\midrule
+Qwen3.5 9B (9B) & \N{prompt.q9.open.dev} / \N{prompt.q9.open.heldout} & \N{prompt.q9.checklist.dev} / \N{prompt.q9.checklist.heldout} & \N{prompt.q9.rules.dev} / \N{prompt.q9.rules.heldout} & \N{prompt.q9.rules1k.dev} / \N{prompt.q9.rules1k.heldout} & \N{prompt.q9.rules1k.pooled} (\N{prompt.q9.rules1k.pooled.lo}--\N{prompt.q9.rules1k.pooled.hi}) \\
+Qwen3.5 27B (27B) & \N{prompt.q27.open.dev} / \N{prompt.q27.open.heldout} & \N{prompt.q27.checklist.dev} / \N{prompt.q27.checklist.heldout} & \N{prompt.q27.rules.dev} / \N{prompt.q27.rules.heldout} & \N{prompt.q27.rules1k.dev} / \N{prompt.q27.rules1k.heldout} & \N{prompt.q27.rules1k.pooled} (\N{prompt.q27.rules1k.pooled.lo}--\N{prompt.q27.rules1k.pooled.hi}) \\
+Qwen3.5 35B-A3B (3B) & \N{prompt.q35.open.dev} / \N{prompt.q35.open.heldout} & \N{prompt.q35.checklist.dev} / \N{prompt.q35.checklist.heldout} & \N{prompt.q35.rules.dev} / \N{prompt.q35.rules.heldout} & \N{prompt.q35.rules1k.dev} / \N{prompt.q35.rules1k.heldout} & \N{prompt.q35.rules1k.pooled} (\N{prompt.q35.rules1k.pooled.lo}--\N{prompt.q35.rules1k.pooled.hi}) \\
+Qwen3.5 122B-A10B (10B) & \N{prompt.q122.open.dev} / -- & -- & \N{prompt.q122.rules.dev} / -- & \N{prompt.q122.rules1k.dev} / \N{prompt.q122.rules1k.heldout} & \N{prompt.q122.rules1k.pooled} (\N{prompt.q122.rules1k.pooled.lo}--\N{prompt.q122.rules1k.pooled.hi}) \\
+Gemma 4 26B-A4B (4B) & \N{prompt.g26.open.dev} / \N{prompt.g26.open.heldout} & \N{prompt.g26.checklist.dev} / \N{prompt.g26.checklist.heldout} & \N{prompt.g26.rules.dev} / \N{prompt.g26.rules.heldout} & \N{prompt.g26.rules1k.dev} / \N{prompt.g26.rules1k.heldout} & \N{prompt.g26.rules.pooled} (\N{prompt.g26.rules.pooled.lo}--\N{prompt.g26.rules.pooled.hi}), rules \\
+Gemma 4 31B (31B) & \N{prompt.g31.open.dev} / \N{prompt.g31.open.heldout} & \N{prompt.g31.checklist.dev} / \N{prompt.g31.checklist.heldout} & \N{prompt.g31.rules.dev} / \N{prompt.g31.rules.heldout} & \N{prompt.g31.rules1k.dev} / \N{prompt.g31.rules1k.heldout} & \N{prompt.g31.rules.pooled} (\N{prompt.g31.rules.pooled.lo}--\N{prompt.g31.rules.pooled.hi}), rules \\
+gpt-oss 120B, high effort (5.1B) & \N{prompt.gptoss120.open.dev} / \N{prompt.gptoss120.open.heldout} & -- & \N{prompt.gptoss120.rules.dev} / \N{prompt.gptoss120.rules.heldout} & -- & \N{prompt.gptoss120.rules.pooled} (\N{prompt.gptoss120.rules.pooled.lo}--\N{prompt.gptoss120.rules.pooled.hi}), rules \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item gpt-oss 120B ran at the vendor's sampling (temperature 1.0) with unbounded thinking; every other row used deterministic decoding. The Nemotron 3 Super 120B-A12B and Nemotron 3.5 Lightning 30B-A3B rows are in Appendix Table~\ref{tab:prompts-full}.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{sizing_prompt}
+\caption{Wrong conclusions released on planted-error tasks under the four analyst prompts, standard instruction, deterministic decoding, with task-resampled 95\% intervals, on (a) the dev tasks and (b) the held-out tasks. The design-first prompt with a 1,024-token thinking budget (filled blue) brings the three Qwen3.5 models from 3B to 27B active parameters to the same rate; the dashed line is the release threshold.}
+\label{fig:prompt}
+\end{figure}
+
+Allowing the model to decline did not reduce wrong releases. With the decline option the model often declined tasks it had answered correctly under the standard instruction, and erred more on the tasks it kept. Self-check reduced wrong releases at several sizes (Appendix Figure~\ref{fig:analyst-arms}a) but withheld much correct work and many clean control tasks (Figure~\ref{fig:analyst-arms}b). A lower error rate bought by refusing to answer has to be weighed against the coverage lost.
+
+\subsection{Thinking budgets}
+\label{sec:results-thinking}
+
+A thinking budget helped the checkers more consistently than the analysts (Figure~\ref{fig:thinking}a, b and c for the checkers, Figure~\ref{fig:thinking}d for the analysts). A short budget let every Qwen3.5 size from 4B upward detect every wrong-denominator report on the first set of datasets (Figure~\ref{fig:thinking}c). The smaller models still failed on attrition or on false alarms. Several larger configurations met the detection threshold, among them a stepwise instruction that requires written working with no hidden thinking, and gpt-oss 20B at medium effort (Appendix Figure~\ref{fig:checker-full}a; Figure~\ref{fig:checker-full}b shows the same checkers on the analysts' real write-ups). What thinking fixed was an arithmetic failure, not a size threshold.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{sizing_thinking}
+\caption{The effect of a thinking budget on the Qwen3.5 reviewers at \level{0} on the dev corpus, (a) detection, (b) false alarm and (c) the wrong denominator flagged, and (d) on the same models as analysts on the dev tasks, standard instruction. Thinking fixes the wrong denominator at every size (c). The analyst gains less (d).}
+\label{fig:thinking}
+\end{figure}
+
+On a second set of datasets with twenty replicates, gpt-oss 20B and the stepwise Qwen3.5 27B again met the threshold, whereas Qwen3.5 27B with a short thinking budget kept full detection but exceeded the false-alarm limit there and on a third set. Assertiveness-matched correct reports also raised gpt-oss's false alarms, which again points to writing style.
+
+\subsection{Transfer, and confirmation on sealed tasks}
+\label{sec:results-sealed}
+
+Development performance overstated how reliable a pipeline was: all three pipelines chosen by the first rule failed on the held-out tasks despite strong dev results, and the prompt transferred better than the checks chosen with it. Searching many combinations of stages on a small task set leaves ample room to select on chance (Appendix Figure~\ref{fig:frontier}).
+
+The second rule pooled dev and held-out and fixed the configurations before the first sealed set was opened. Three pipelines were confirmed under the primary judge: Qwen3.5 122B-A10B, 27B and 35B-A3B, each with the design-first prompt, a short thinking budget and gpt-oss 20B at medium effort as checker (Table~\ref{tab:fresh}; Figure~\ref{fig:fresh}a). Both other judges supported those outcomes. Configurations that had done well on an earlier set regressed.
+
+The same three analysts also met the planted-error criterion on the first sealed set without a checker. Adding the checker reduced wrong releases but withheld some correct answers and about one control task in six (Figure~\ref{fig:fresh}b). The analyst-alone comparison on this set is exploratory, because the registered test was of the analyst with its checker.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{2.5pt}
+\begin{threeparttable}
+\caption{The first sealed set (bold rows confirm): \N{harvest.seeded.attempts} planted-error and \N{harvest.control.attempts} control attempts per configuration on the \N{harvest.fresh.count} tasks, written blind to the prompts and checks and unread until the configurations were committed. ``With checker'' and ``Alone'' are wrong conclusions released on planted-error attempts, with Wilson 95\% intervals, the pre-registered test being the analyst with its chosen checker; ``Controls'' is the share of control attempts answered with the checker and ``Correct'' the share of correct answers the analyst alone released. Judge: \N{model.mimo.pro.short}; the two other judges' verdicts are in the text.}
+\label{tab:fresh}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Analyst & Prompt & With checker & Controls & Alone & Correct \\
+\midrule
+\textbf{Qwen3.5 122B-A10B} & rules, 1k & \N{fresh.q122.checked.wrong} (\N{fresh.q122.checked.lo}--\N{fresh.q122.checked.hi}) & \N{fresh.q122.checked.controls} & \N{fresh.q122.alone.wrong} (\N{fresh.q122.alone.lo}--\N{fresh.q122.alone.hi}) & \N{fresh.q122.alone.correct} \\
+\textbf{Qwen3.5 27B} & rules, 1k & \N{fresh.q27.checked.wrong} (\N{fresh.q27.checked.lo}--\N{fresh.q27.checked.hi}) & \N{fresh.q27.checked.controls} & \N{fresh.q27.alone.wrong} (\N{fresh.q27.alone.lo}--\N{fresh.q27.alone.hi}) & \N{fresh.q27.alone.correct} \\
+\textbf{Qwen3.5 35B-A3B} & rules, 1k & \N{fresh.q35.checked.wrong} (\N{fresh.q35.checked.lo}--\N{fresh.q35.checked.hi}) & \N{fresh.q35.checked.controls} & \N{fresh.q35.alone.wrong} (\N{fresh.q35.alone.lo}--\N{fresh.q35.alone.hi}) & \N{fresh.q35.alone.correct} \\
+Gemma 4 31B & rules & \N{fresh.g31.checked.wrong} (\N{fresh.g31.checked.lo}--\N{fresh.g31.checked.hi}) & \N{fresh.g31.checked.controls} & \N{fresh.g31.alone.wrong} (\N{fresh.g31.alone.lo}--\N{fresh.g31.alone.hi}) & \N{fresh.g31.alone.correct} \\
+Nemotron 3 Super & rules & \N{fresh.nsuper.checked.wrong} (\N{fresh.nsuper.checked.lo}--\N{fresh.nsuper.checked.hi}) & \N{fresh.nsuper.checked.controls} & \N{fresh.nsuper.alone.wrong} (\N{fresh.nsuper.alone.lo}--\N{fresh.nsuper.alone.hi}) & \N{fresh.nsuper.alone.correct} \\
+Gemma 4 26B-A4B & rules & \N{fresh.g26.checked.wrong} (\N{fresh.g26.checked.lo}--\N{fresh.g26.checked.hi}) & \N{fresh.g26.checked.controls} & \N{fresh.g26.alone.wrong} (\N{fresh.g26.alone.lo}--\N{fresh.g26.alone.hi}) & \N{fresh.g26.alone.correct} \\
+Qwen3.5 9B & rules, 1k & \N{fresh.q9.checked.wrong} (\N{fresh.q9.checked.lo}--\N{fresh.q9.checked.hi}) & \N{fresh.q9.checked.controls} & \N{fresh.q9.alone.wrong} (\N{fresh.q9.alone.lo}--\N{fresh.q9.alone.hi}) & \N{fresh.q9.alone.correct} \\
+Nemotron 3.5 Lightning & revise & \N{fresh.nlight.checked.wrong} (\N{fresh.nlight.checked.lo}--\N{fresh.nlight.checked.hi}) & \N{fresh.nlight.checked.controls} & \N{fresh.nlight.alone.wrong} (\N{fresh.nlight.alone.lo}--\N{fresh.nlight.alone.hi}) & \N{fresh.nlight.alone.correct} \\
+gpt-oss 120B & rules, high & -- & -- & \N{fresh.gptoss120.alone.wrong} (\N{fresh.gptoss120.alone.lo}--\N{fresh.gptoss120.alone.hi}) & \N{fresh.gptoss120.alone.correct} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item ``rules, 1k'' is the design-first prompt with a 1,024-token thinking budget; ``rules, high'' is the design-first prompt at high reasoning effort; ``revise'' is the revise variant of the design-first prompt. The checker is gpt-oss 20B at medium effort for every row but the two Nemotron rows, whose chosen checker was the typed reviewer with a 512-token thinking budget. gpt-oss 120B was declared by addendum with no checker.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{sizing_fresh}
+\caption{The first sealed set. (a) Wrong conclusions released on planted-error tasks for the nine configurations, with each one's dev and held-out rates in grey; bars are task-resampled 95\% intervals on the analyst alone; bold rows confirm. (b) Control tasks answered on the sealed set, alone and with the chosen checker.}
+\label{fig:fresh}
+\end{figure}
+
+The second sealed set tested the two cheaper analysts with and without the checker, and added control tasks with real effects to catch an analyst that explains an effect away (Table~\ref{tab:fresh2}). Traps visible only in the design did not raise the planted-error rate much. The control tasks decided the outcome. Under the pre-specified local judge, only Qwen3.5 27B with the checker met every criterion. DeepSeek also accepted the 27B alone, because it allowed caveats that the local judge rejected. The 35B-A3B pipeline failed the coverage criterion, and its analyst-alone outcome under DeepSeek rests on incomplete scoring of one control task.
+
+We therefore recommend Qwen3.5 27B with the design-first prompt, a 1,024-token thinking budget and gpt-oss 20B at medium reasoning effort as its checker. Both sealed tests support this configuration under every judge that scored them. Human adjudication of the contested control tasks is still needed to decide whether either analyst qualifies on its own.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{1.6pt}
+\begin{threeparttable}
+\caption{The second sealed set (fresh2): \N{fresh2.n.seeded} planted-error and \N{fresh2.n.control} control attempts, every control task carrying a real effect. ``Wrong'' is the share of planted-error attempts with a wrong conclusion released. The rule: wrong on at most \N{gate.wrong} of planted-error attempts, at least \N{gate.answer} of control attempts answered, at most \N{gate.control.wrong} of control attempts judged wrong. The local judge is \N{model.gptoss120.short} at high effort (pre-registered); DeepSeek is \N{model.deepseek.short}, which left a few write-ups unscored, so its denominators differ.}
+\label{tab:fresh2}
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Analyst & Checker & Judge & Wrong (95\% CI) & Controls answered & Controls wrong & Confirms \\
+\midrule
+Qwen3.5 27B & gpt-oss 20B & local & \N{fresh2.q27.checked.wrong} (\N{fresh2.q27.checked.lo}--\N{fresh2.q27.checked.hi}) & \N{fresh2.q27.checked.controls} & \N{fresh2.q27.checked.cwrong} & yes \\
+Qwen3.5 27B & gpt-oss 20B & DeepSeek & \N{fresh2.q27.checked.ds.wrong} (\N{fresh2.q27.checked.ds.lo}--\N{fresh2.q27.checked.ds.hi}) & \N{fresh2.q27.checked.ds.controls} & \N{fresh2.q27.checked.ds.cwrong} & yes \\
+Qwen3.5 27B & none & local & \N{fresh2.q27.alone.wrong} (\N{fresh2.q27.alone.lo}--\N{fresh2.q27.alone.hi}) & \N{fresh2.q27.alone.controls} & \N{fresh2.q27.alone.cwrong} & no \\
+Qwen3.5 27B & none & DeepSeek & \N{fresh2.q27.alone.ds.wrong} (\N{fresh2.q27.alone.ds.lo}--\N{fresh2.q27.alone.ds.hi}) & \N{fresh2.q27.alone.ds.controls} & \N{fresh2.q27.alone.ds.cwrong} & yes \\
+Qwen3.5 35B-A3B & none & local & \N{fresh2.q35.alone.wrong} (\N{fresh2.q35.alone.lo}--\N{fresh2.q35.alone.hi}) & \N{fresh2.q35.alone.controls} & \N{fresh2.q35.alone.cwrong} & no \\
+Qwen3.5 35B-A3B & none & DeepSeek & \N{fresh2.q35.alone.ds.wrong} (\N{fresh2.q35.alone.ds.lo}--\N{fresh2.q35.alone.ds.hi}) & \N{fresh2.q35.alone.ds.controls} & \N{fresh2.q35.alone.ds.cwrong} & yes$^*$ \\
+Qwen3.5 35B-A3B & gpt-oss 20B & local & \N{fresh2.q35.checked.wrong} (\N{fresh2.q35.checked.lo}--\N{fresh2.q35.checked.hi}) & \N{fresh2.q35.checked.controls} & \N{fresh2.q35.checked.cwrong} & no \\
+Qwen3.5 35B-A3B & gpt-oss 20B & DeepSeek & \N{fresh2.q35.checked.ds.wrong} (\N{fresh2.q35.checked.ds.lo}--\N{fresh2.q35.checked.ds.hi}) & \N{fresh2.q35.checked.ds.controls} & \N{fresh2.q35.checked.ds.cwrong} & no \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item $^*$On the items DeepSeek scored; both control write-ups of one task have no DeepSeek verdict, and with the local judge's verdict on one of them the configuration would fail. Both analysts use the design-first prompt with a 1,024-token thinking budget. Beside them, not tested: the standard instruction at \N{fresh2.q35.open.wrong} (35B-A3B) and \N{fresh2.q27.open.wrong} (27B) wrong on planted-error attempts, and the 9B with the design-first prompt at \N{fresh2.q9.rules.wrong}, with \N{fresh2.q9.rules.cwrong} of control attempts judged wrong.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{Checking analysts' real errors}
+\label{sec:results-crosscheck}
+
+Strong detection of planted errors did not carry over to analysts' real write-ups. On the dev write-ups that all checkers read, AUC was far lower (Table~\ref{tab:crosscheck}; Figure~\ref{fig:auc}a). The more aggressive configurations withheld more of the write-ups the judge called wrong, but also more of those it called right. Thinking and access to the tables helped a little; size beyond 27B did not. The models with near-perfect AUC on planted errors lost about 0.3 of AUC on real write-ups.
+
+Qwen3.5 27B also found fewer of its own errors than of other models' errors, with and without thinking. The effect was weaker for the 9B and absent for gpt-oss 20B. This is an association, not an isolated effect of model family, since the errors being compared differ too. Appendix~\ref{app:example} shows one such failure of self-review on a singled-out subgroup.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{threeparttable}
+\caption{Checkers on the analysts' released dev write-ups (\N{auc.common.n} write-ups from \N{xc.analyst.configs} analyst configurations), with \N{model.mimo.pro.short}'s verdict as the target. Withheld counts a yes, a cannot tell or an unparseable reply, as the release rule would. AUC on the same write-ups, with its bootstrap interval over tasks.}
+\label{tab:crosscheck}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Checker & Configuration & Withheld, judge-wrong & Withheld, judge-right & AUC (95\% CI) \\
+\midrule
+Qwen3.5 27B & thinking off & \N{xc.q27off.wrong} & \N{xc.q27off.right} & \N{auc.q27.off} (\N{auc.q27.off.lo}--\N{auc.q27.off.hi}) \\
+Qwen3.5 27B & 1k think & \N{xc.q27think.wrong} & \N{xc.q27think.right} & \N{auc.q27.1k} (\N{auc.q27.1k.lo}--\N{auc.q27.1k.hi}) \\
+Qwen3.5 27B & 1k think, sees the tables & \N{xc.q27pack.wrong} & \N{xc.q27pack.right} & \N{auc.q27.1k.pack} (\N{auc.q27.1k.pack.lo}--\N{auc.q27.1k.pack.hi}) \\
+Qwen3.5 122B-A10B & 1k think & \N{xc.q122think.wrong} & \N{xc.q122think.right} & \N{auc.q122.1k} (\N{auc.q122.1k.lo}--\N{auc.q122.1k.hi}) \\
+gpt-oss 20B & medium effort & \N{xc.gptoss.wrong} & \N{xc.gptoss.right} & \N{auc.gptoss.medium} (\N{auc.gptoss.medium.lo}--\N{auc.gptoss.medium.hi}) \\
+Mistral Small 24B & default & \N{xc.mistral.wrong} & \N{xc.mistral.right} & \N{auc.mistral.default} (\N{auc.mistral.default.lo}--\N{auc.mistral.default.hi}) \\
+Llama 3.3 70B & stepwise & \N{xc.llamastep.wrong} & \N{xc.llamastep.right} & \N{auc.llama.stepwise} (\N{auc.llama.stepwise.lo}--\N{auc.llama.stepwise.hi}) \\
+typed reviewer & no thinking & \N{xc.typed0.wrong} & \N{xc.typed0.right} & \N{auc.typed0} (\N{auc.typed0.lo}--\N{auc.typed0.hi}) \\
+typed reviewer & 512-token thinking & \N{xc.typed512.wrong} & \N{xc.typed512.right} & \N{auc.typed512} (\N{auc.typed512.lo}--\N{auc.typed512.hi}) \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{sizing_auc}
+\caption{Checkers on real write-ups. (a) Each checker's ROC curve on the \N{auc.common.n} dev write-ups that all \N{auc.checkers.count} checkers read; the dots are the operating points of the three named ones. (b) Wrong conclusions released on the first sealed set's planted-error attempts by each analyst alone (open) and followed by gpt-oss 20B (filled). (c) Right answers released, alone and with the checker. Blue rows use the design-first prompt (rules, or its revise variant; 1k is a 1,024-token thinking budget and high is high reasoning effort); the recommended analyst is in bold.}
+\label{fig:auc}
+\end{figure}
+
+AUC measures ranking, whereas a pipeline's wrong-release rate depends on how often the analyst errs and on which of its errors the checker catches. The strongest analysts left too few wrong write-ups for a precise AUC. A pipeline can therefore release few wrong conclusions although its checker's AUC is weakly estimated (Figure~\ref{fig:auc}b). Its practical cost is the correct work it withholds (Figure~\ref{fig:auc}c). A second checker added little.
+
+These estimates also depend on the judge: judges sometimes disagreed, and some checker objections concerned faults outside the scoring rubric.
+
+\subsection{Judge agreement}
+\label{sec:results-judges}
+
+The two hosted judges agreed on \N{judges.pooled.agree} of the dev and held-out write-ups that both scored ($\kappa=\N{judges.pooled.kappa}$). On the first sealed set all three pairs of judges agreed substantially but differed in severity, MiMo pro being the most lenient. The local gpt-oss judge was harsher on the gpt-oss analyst than the other judges were, despite the shared family. On the second sealed set, agreement was lower on control tasks than on planted-error tasks, which reflects disagreement over how much caution is acceptable (Table~\ref{tab:fresh2}).
+
+A hosted frontier model, GLM-5.3, run once as analyst showed the answer keys to be broadly reachable, with its errors concentrated on one task that local models also found hard; that task awaits human review.
+
+\subsection{Statistical tools and prior planning}
+\label{sec:results-nohelp}
+
+Neither of two further interventions reduced wrong conclusions consistently across dev and held-out (Appendix~\ref{app:interventions}). Statistical tools removed arithmetic mistakes and introduced inferential ones: analysts attached precise tests to fragile comparisons, including imputed outcomes and uncorrected subgroups. Having a hosted model rewrite each request from the structure of the tables, without their values, helped the standard-instruction analyst on held-out but hurt the design-first configuration, because a plan fixed before the values were seen could favor a comparison that proved confounded. These results concern the tools and integrations tested; they do not show that statistical tools or prior planning are useless in general.
+
+\subsection{Turning a request into a typed query}
+\label{sec:results-planner}
+
+With the dataset semantics stated, the local-class planner matched the intended query on \N{planner.local.primary.stated} of answerable requests, within one request of the demonstration's planner, and stating them raised its accepted share from \N{planner.local.accepted.omitted} to \N{planner.local.accepted.stated} (Table~\ref{tab:planner}). A model of the class a TRE could host locally can therefore do this job, and the change that mattered was to the prompt, which carries no safety obligation because the planner is untrusted. Neither planner reliably refused what the query language cannot express. Under both prompts both answered a different, permitted question instead (Box~\ref{box:planner}). The local-class model refused outright when a request was plainly for rows or timestamps, which is why its rejected share is higher, but it substituted on the subtler requests as readily as the other. A substituted answer is safe but misleading, so refusal has to come from the gateway, and an analyst that assembles many answers must report such a step as not answerable.
+
+\begin{table}[t]
+\centering\footnotesize
+\begin{threeparttable}
+\caption{The gateway's two planners on its reference corpus of \N{planner.answerable} answerable and \N{planner.unanswerable} unanswerable requests, with a prompt that omits the dataset semantics and one that states them. Primary and accepted are the shares of answerable requests whose proposal matched the intended query or any acceptable one; rejected is the share of unanswerable requests whose proposal failed validation. Ranges span two runs; one answerable request is four points.}
+\label{tab:planner}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Planner & Dataset semantics & Primary & Accepted & Rejected \\
+\midrule
+demonstration's planner & omitted & \N{planner.demo.primary.omitted} & \N{planner.demo.accepted.omitted} & \N{planner.demo.rejected.omitted} \\
+local-class stand-in & omitted & \N{planner.local.primary.omitted} & \N{planner.local.accepted.omitted} & \N{planner.local.rejected.omitted} \\
+demonstration's planner & stated & \N{planner.demo.primary.stated} & \N{planner.demo.accepted.stated} & \N{planner.demo.rejected.stated} \\
+local-class stand-in & stated & \N{planner.local.primary.stated} & \N{planner.local.accepted.stated} & \N{planner.local.rejected.stated} \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+\subsection{End-to-end operation in the gateway}
+\label{sec:results-e2e}
+
+Both candidate analysts also ran as the inside analyst of the \sys{safe-tre-agent} gateway, version 0.13.0~\cite{wade2026safetre}, on NIGHTPLAY, a synthetic study of late-night phone use, gambling, giving and wellbeing kept with the gateway's code. The truths a competent analyst should find and the traps an incompetent one falls into were decided first, and the population was generated to hold them. Each of its nine questions has an expected verdict and a list of marks that an executable marker scores from the analyst's typed output alone. Here the analyst does not receive tables: it asks the gateway for them, one typed aggregate query at a time, and the gateway applies disclosure control to each answer. The questions include ``Is late-night phone use linked to gambling?'', a planted association; ``Is late-night phone use linked to charitable giving?'', a planted null in which heavy phone users include fewer high earners, so the raw link is an artefact of income and vanishes within every income band; and ``Does the association survive adjustment for employment pattern? Is it plausibly causal?'', which requires an adjusted model that the gateway refuses when a category is too sparse. With the design-first prompt and a short thinking budget they answered \N{chimp.q35.rules.verdicts} of 27 question-repeats correctly (35B-A3B) and \N{chimp.q27.rules.verdicts} of 27 (27B). Every miss came from stopping after the gateway refused an adjusted model over a sparse category, rather than revising the analysis. The runs show that the analysts operate in the gateway on one question bank, but not the recommended analyst-plus-checker pipeline, because NIGHTPLAY has no checker stage.

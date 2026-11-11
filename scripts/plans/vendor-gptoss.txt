@@ -1,0 +1,8 @@
+# Model-sizing study, 23 October: gpt-oss at high reasoning effort and
+# OpenAI's recommended sampling (temperature 1.0), plain and rules prompts,
+# dev and held-out. Earlier runs were greedy at low or medium effort, on
+# A40s. Diagnostic only: the fresh set is not used.
+harvest -T replicates=3 -T effort=high -T sampling=gpt-oss -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T analyst_prompt=rules -T replicates=3 -T effort=high -T sampling=gpt-oss -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T replicates=3 -T effort=high -T sampling=gpt-oss -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T analyst_prompt=rules -T replicates=3 -T effort=high -T sampling=gpt-oss -T judge=openai-api/mimo/mimo-v2.6-pro --no-score

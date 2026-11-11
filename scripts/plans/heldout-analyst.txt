@@ -1,0 +1,8 @@
+# Model-sizing study, stage 3: the candidate analyst configurations on the
+# held-out tasks (h37 to h72, -T task_set=heldout), which no prompt, rule or
+# threshold was tuned on. Appended to the 35B-A3B wave-1 plan at 12:20 UTC;
+# separate jobs for the 27B and 9B.
+harvest -T task_set=heldout -T arm=open -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T arm=open -T checklist=true -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T arm=selfcheck -T replicates=3 -T thinking=off -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
+harvest -T task_set=heldout -T arm=open -T replicates=3 -T think_budget=1024 -T judge=openai-api/mimo/mimo-v2.6-pro --no-score
